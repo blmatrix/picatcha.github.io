@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>tsū</title>
+    <link rel="canonical" href="http://www.tsu.co/"/>
+    
+
+    <link rel="shortcut icon" type="image/x-icon" href="http://cdn-2.tsu.co/assets/favicon-7da38af7d00292c23e2cc18442e5fef1ed36d3b9ff8c4761931b2b583214992d.ico" />
+    <link rel="stylesheet" media="screen" href="http://cdn-2.tsu.co/assets/application-49df12828c228621b3d514e244a6b1bd56e04790c35f5fda4f3ce2e16254b54d.css" />
+    
+    
+    <script src="http://cdn-2.tsu.co/assets/plugins/video/jwplayer-71c0dab3af29ed7d37950232bb81ce26d6f44d7281e75b4fcbe03766474d0d63.js"></script>
+    <script src="http://cdn-3.tsu.co/assets/application-e6820367c7062267725a99f5663b6857c837f7d5dfa88884d58dc1018c51a755.js"></script>
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="yl6f/lsHuASrqxrBPlGV7Q45tyHMsOoLgPw9dQES8qrG5faYt2WI7oE7SISDn34swzu1GDi9DvnZjbROkxVYXw==" />
+    
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"a2fe19dd36","applicationID":"3987760","transactionName":"IAxbTBZXXlgDRR4NBBQQU10BXB1dCFNUGw==","queueTime":0,"applicationTime":70,"agent":""}</script>
+<script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"UQQEUlJRGwAJXFZVAQE="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o||e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(t,e,n){function r(t){try{s.console&&console.log(t)}catch(e){}}var o,i=t("ee"),a=t(11),s={};try{o=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(s.console=!0,-1!==o.indexOf("dev")&&(s.dev=!0),-1!==o.indexOf("nr_dev")&&(s.nrDev=!0))}catch(c){}s.nrDev&&i.on("internal-error",function(t){r(t.stack)}),s.dev&&i.on("fn-err",function(t,e,n){r(n.stack)}),s.dev&&(r("NR AGENT IN DEVELOPMENT MODE"),r("flags: "+a(s,function(t,e){return t}).join(", ")))},{}],2:[function(t,e,n){function r(t,e,n,r,o){try{d?d-=1:i("err",[o||new UncaughtException(t,e,n)])}catch(s){try{i("ierr",[s,(new Date).getTime(),!0])}catch(c){}}return"function"==typeof f?f.apply(this,a(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function o(t){i("err",[t,(new Date).getTime()])}var i=t("handle"),a=t(12),s=t("ee"),c=t("loader"),f=window.onerror,u=!1,d=0;c.features.err=!0,t(1),window.onerror=r;try{throw new Error}catch(l){"stack"in l&&(t(5),t(4),"addEventListener"in window&&t(3),c.xhrWrappable&&t(6),u=!0)}s.on("fn-start",function(t,e,n){u&&(d+=1)}),s.on("fn-err",function(t,e,n){u&&(this.thrown=!0,o(n))}),s.on("fn-end",function(){u&&!this.thrown&&d>0&&(d-=1)}),s.on("internal-error",function(t){i("ierr",[t,(new Date).getTime(),!0])})},{}],3:[function(t,e,n){function r(t){for(var e=t;e&&!e.hasOwnProperty(u);)e=Object.getPrototypeOf(e);e&&o(e)}function o(t){s.inPlace(t,[u,d],"-",i)}function i(t,e){return t[1]}var a=t("ee").get("events"),s=t(13)(a),c=t("gos"),f=XMLHttpRequest,u="addEventListener",d="removeEventListener";e.exports=a,"getPrototypeOf"in Object?(r(document),r(window),r(f.prototype)):f.prototype.hasOwnProperty(u)&&(o(window),o(f.prototype)),a.on(u+"-start",function(t,e){if(t[1]){var n=t[1];if("function"==typeof n){var r=c(n,"nr@wrapped",function(){return s(n,"fn-",null,n.name||"anonymous")});this.wrapped=t[1]=r}else"function"==typeof n.handleEvent&&s.inPlace(n,["handleEvent"],"fn-")}}),a.on(d+"-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{}],4:[function(t,e,n){var r=t("ee").get("raf"),o=t(13)(r);e.exports=r,o.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),r.on("raf-start",function(t){t[0]=o(t[0],"fn-")})},{}],5:[function(t,e,n){function r(t,e,n){t[0]=a(t[0],"fn-",null,n)}function o(t,e,n){this.method=n,this.timerDuration="number"==typeof t[1]?t[1]:0,t[0]=a(t[0],"fn-",this,n)}var i=t("ee").get("timer"),a=t(13)(i);e.exports=i,a.inPlace(window,["setTimeout","setImmediate"],"setTimer-"),a.inPlace(window,["setInterval"],"setInterval-"),a.inPlace(window,["clearTimeout","clearImmediate"],"clearTimeout-"),i.on("setInterval-start",r),i.on("setTimer-start",o)},{}],6:[function(t,e,n){function r(t,e){d.inPlace(e,["onreadystatechange"],"fn-",s)}function o(){var t=this,e=u.context(t);t.readyState>3&&!e.resolved&&(e.resolved=!0,u.emit("xhr-resolved",[],t)),d.inPlace(t,v,"fn-",s)}function i(t){y.push(t),h&&(g=-g,x.data=g)}function a(){for(var t=0;t<y.length;t++)r([],y[t]);y.length&&(y=[])}function s(t,e){return e}function c(t,e){for(var n in t)e[n]=t[n];return e}t(3);var f=t("ee"),u=f.get("xhr"),d=t(13)(u),l=NREUM.o,p=l.XHR,h=l.MO,m="readystatechange",v=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"],y=[];e.exports=u;var w=window.XMLHttpRequest=function(t){var e=new p(t);try{u.emit("new-xhr",[e],e),e.addEventListener(m,o,!1)}catch(n){try{u.emit("internal-error",[n])}catch(r){}}return e};if(c(p,w),w.prototype=p.prototype,d.inPlace(w.prototype,["open","send"],"-xhr-",s),u.on("send-xhr-start",function(t,e){r(t,e),i(e)}),u.on("open-xhr-start",r),h){var g=1,x=document.createTextNode(g);new h(a).observe(x,{characterData:!0})}else f.on("fn-end",function(t){t[0]&&t[0].type===m||a()})},{}],7:[function(t,e,n){function r(t){var e=this.params,n=this.metrics;if(!this.ended){this.ended=!0;for(var r=0;l>r;r++)t.removeEventListener(d[r],this.listener,!1);if(!e.aborted){if(n.duration=(new Date).getTime()-this.startTime,4===t.readyState){e.status=t.status;var i=o(t,this.lastSize);if(i&&(n.rxSize=i),this.sameOrigin){var a=t.getResponseHeader("X-NewRelic-App-Data");a&&(e.cat=a.split(", ").pop())}}else e.status=0;n.cbTime=this.cbTime,u.emit("xhr-done",[t],t),c("xhr",[e,n,this.startTime])}}}function o(t,e){var n=t.responseType;if("json"===n&&null!==e)return e;var r="arraybuffer"===n||"blob"===n||"json"===n?t.response:t.responseText;return i(r)}function i(t){if("string"==typeof t&&t.length)return t.length;if("object"==typeof t){if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if(!("undefined"!=typeof FormData&&t instanceof FormData))try{return JSON.stringify(t).length}catch(e){return}}}function a(t,e){var n=f(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}var s=t("loader");if(s.xhrWrappable){var c=t("handle"),f=t(8),u=t("ee"),d=["load","error","abort","timeout"],l=d.length,p=t("id"),h=t(10),m=window.XMLHttpRequest;s.features.xhr=!0,t(6),u.on("new-xhr",function(t){var e=this;e.totalCbs=0,e.called=0,e.cbTime=0,e.end=r,e.ended=!1,e.xhrGuids={},e.lastSize=null,h&&(h>34||10>h)||window.opera||t.addEventListener("progress",function(t){e.lastSize=t.loaded},!1)}),u.on("open-xhr-start",function(t){this.params={method:t[0]},a(this,t[1]),this.metrics={}}),u.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),u.on("send-xhr-start",function(t,e){var n=this.metrics,r=t[0],o=this;if(n&&r){var a=i(r);a&&(n.txSize=a)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(o.params.aborted=!0),("load"!==t.type||o.called===o.totalCbs&&(o.onloadCalled||"function"!=typeof e.onload))&&o.end(e)}catch(n){try{u.emit("internal-error",[n])}catch(r){}}};for(var s=0;l>s;s++)e.addEventListener(d[s],this.listener,!1)}),u.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),u.on("xhr-load-added",function(t,e){var n=""+p(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),u.on("xhr-load-removed",function(t,e){var n=""+p(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),u.on("addEventListener-end",function(t,e){e instanceof m&&"load"===t[0]&&u.emit("xhr-load-added",[t[1],t[2]],e)}),u.on("removeEventListener-end",function(t,e){e instanceof m&&"load"===t[0]&&u.emit("xhr-load-removed",[t[1],t[2]],e)}),u.on("fn-start",function(t,e,n){e instanceof m&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),u.on("fn-end",function(t,e){this.xhrCbStart&&u.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{}],8:[function(t,e,n){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");!r.port&&o[1]&&(r.port=o[1].split("/")[0].split("@").pop().split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,r.protocol=o[0],"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname);var i=!e.protocol||":"===e.protocol||e.protocol===n.protocol,a=e.hostname===document.domain&&e.port===n.port;return r.sameOrigin=i&&(!e.hostname||a),r}},{}],9:[function(t,e,n){function r(t,e){return function(){o(t,[(new Date).getTime()].concat(a(arguments)),null,e)}}var o=t("handle"),i=t(11),a=t(12);"undefined"==typeof window.newrelic&&(newrelic=NREUM);var s=["setPageViewName","setCustomAttribute","finished","addToTrace","inlineHit"],c=["addPageAction"],f="api-";i(s,function(t,e){newrelic[e]=r(f+e,"api")}),i(c,function(t,e){newrelic[e]=r(f+e)}),e.exports=newrelic,newrelic.noticeError=function(t){"string"==typeof t&&(t=new Error(t)),o("err",[t,(new Date).getTime()])}},{}],10:[function(t,e,n){var r=0,o=navigator.userAgent.match(/Firefox[\/\s](\d+\.\d+)/);o&&(r=+o[1]),e.exports=r},{}],11:[function(t,e,n){function r(t,e){var n=[],r="",i=0;for(r in t)o.call(t,r)&&(n[i]=e(r,t[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],12:[function(t,e,n){function r(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=r},{}],13:[function(t,e,n){function r(t){return!(t&&"function"==typeof t&&t.apply&&!t[a])}var o=t("ee"),i=t(12),a="nr@original",s=Object.prototype.hasOwnProperty,c=!1;e.exports=function(t){function e(t,e,n,o){function nrWrapper(){var r,a,s,c;try{a=this,r=i(arguments),s="function"==typeof n?n(r,a):n||{}}catch(u){d([u,"",[r,a,o],s])}f(e+"start",[r,a,o],s);try{return c=t.apply(a,r)}catch(l){throw f(e+"err",[r,a,l],s),l}finally{f(e+"end",[r,a,c],s)}}return r(t)?t:(e||(e=""),nrWrapper[a]=t,u(t,nrWrapper),nrWrapper)}function n(t,n,o,i){o||(o="");var a,s,c,f="-"===o.charAt(0);for(c=0;c<n.length;c++)s=n[c],a=t[s],r(a)||(t[s]=e(a,f?s+o:o,i,s))}function f(e,n,r){if(!c){c=!0;try{t.emit(e,n,r)}catch(o){d([o,e,n,r])}c=!1}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){d([r])}for(var o in t)s.call(t,o)&&(e[o]=t[o]);return e}function d(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=o),e.inPlace=n,e.flag=a,e}},{}],ee:[function(t,e,n){function r(){}function o(t){function e(t){return t&&t instanceof r?t:t?s(t,a,i):i()}function n(n,r,o){t&&t(n,r,o);for(var i=e(o),a=l(n),s=a.length,c=0;s>c;c++)a[c].apply(i,r);var u=f[v[n]];return u&&u.push([y,n,r,i]),i}function d(t,e){m[t]=l(t).concat(e)}function l(t){return m[t]||[]}function p(t){return u[t]=u[t]||o(n)}function h(t,e){c(t,function(t,n){e=e||"feature",v[n]=e,e in f||(f[e]=[])})}var m={},v={},y={on:d,emit:n,get:p,listeners:l,context:e,buffer:h};return y}function i(){return new r}var a="nr@context",s=t("gos"),c=t(11),f={},u={},d=e.exports=o();d.backlog=f},{}],gos:[function(t,e,n){function r(t,e,n){if(o.call(t,e))return t[e];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return t[e]=r,r}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],handle:[function(t,e,n){function r(t,e,n,r){o.buffer([t],r),o.emit(t,e,n)}var o=t("ee").get("handle");e.exports=r,r.ee=o},{}],id:[function(t,e,n){function r(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:a(t,i,function(){return o++})}var o=1,i="nr@id",a=t("gos");e.exports=r},{}],loader:[function(t,e,n){function r(){if(!m++){var t=h.info=NREUM.info,e=u.getElementsByTagName("script")[0];if(t&&t.licenseKey&&t.applicationID&&e){c(l,function(e,n){t[e]||(t[e]=n)});var n="https"===d.split(":")[0]||t.sslForHttp;h.proto=n?"https://":"http://",s("mark",["onload",a()],null,"api");var r=u.createElement("script");r.src=h.proto+t.agent,e.parentNode.insertBefore(r,e)}}}function o(){"complete"===u.readyState&&i()}function i(){s("mark",["domContent",a()],null,"api")}function a(){return(new Date).getTime()}var s=t("handle"),c=t(11),f=window,u=f.document;NREUM.o={ST:setTimeout,CT:clearTimeout,XHR:f.XMLHttpRequest,REQ:f.Request,EV:f.Event,PR:f.Promise,MO:f.MutationObserver},t(9);var d=""+location,l={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-943.min.js"},p=window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent),h=e.exports={offset:a(),origin:d,features:{},xhrWrappable:p};u.addEventListener?(u.addEventListener("DOMContentLoaded",i,!1),f.addEventListener("load",r,!1)):(u.attachEvent("onreadystatechange",o),f.attachEvent("onload",r)),s("mark",["firstbyte",a()],null,"api");var m=0},{}]},{},["loader",2,7]);</script>
+
+
+    <meta name="apple-itunes-app" content="app-id=907137884">
+    <meta name="google-play-app" content="app-id=com.evac.tsu">
+    <meta name="p:domain_verify" content="07e55727bbc0953515a826e64f0a80fd"/>
+
+    <script>
+	// Google Analytics
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-44277807-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+    <script type='text/javascript'>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+  (function() {
+    var gads = document.createElement('script');
+    gads.async = true;
+    gads.type = 'text/javascript';
+    var useSSL = 'https:' == document.location.protocol;
+    gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+    var node = document.getElementsByTagName('script')[0];
+    node.parentNode.insertBefore(gads, node);
+  })();
+</script>
+
+<script type='text/javascript'>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/66234358/dfp_tsu_Feed', [160, 600], 'dfp-ad-skyscraper').addService(googletag.pubads());
+    googletag.defineSlot('/66234358/dfp_tsu_Feed', [300, 600], 'dfp-ad-halfpage').addService(googletag.pubads());
+    googletag.defineSlot('/66234358/dfp_tsu_Feed', [300, 250], 'dfp-ad-rectangle-top').addService(googletag.pubads());
+    googletag.defineSlot('/66234358/dfp_tsu_Feed', [300, 250], 'dfp-ad-rectangle-bottom').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.pubads().collapseEmptyDivs();
+    googletag.enableServices();
+    googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+      // calculate sticky ads after dfp load
+      if ($('.sticky_advertisement').exists()) {
+        sticky_ad_relocate()
+      }
+    });
+  });
+</script>
+
+
+  </head>
+  <body class="newsfeed index logged-in email_confirmation has-right-col">
+    <script>jwplayer.key="JUR5RXgGnrJRNTlAWL4lzzee/X6IuTP9YJCQfg==";</script>
+    <div class="globalBar">
+
+  <div class="navBar">
+
+    <div class="mobile_menu nav_sprite_button nav_item_left popup-trigger">
+      <span class='sprite_icon' id="mobile_menu_button"></span>
+    </div>
+
+    <ul class="mobile_menu_popup popup">
+      <div class="cell">
+        <li><a href="http://www.tsu.co/">Feed</a></li>
+      </div>
+      <div class="cell">
+        <li><a href="/home">All Topics</a></li>
+      </div>
+      <div class="cell">
+        <li><a href="/groups/animals">Animals</a></li>
+        <li><a href="/groups/arts">Arts</a></li>
+        <li><a href="/groups/communities">Communities</a></li>
+        <li><a href="/groups/entertainment-music">Entertainment &amp; Music</a></li>
+        <li><a href="/groups/food">Food</a></li>
+        <li><a href="/groups/giving">Giving</a></li>
+        <li><a href="/groups/health">Health</a></li>
+        <li><a href="/groups/humor">Humor</a></li>
+        <li><a href="/groups/news-politics">News &amp; Politics</a></li>
+        <li><a href="/groups/science-tech">Science &amp; Tech</a></li>
+        <li><a href="/groups/sports">Sports</a></li>
+        <li><a href="/groups/style">Style</a></li>
+        <li><a href="/groups/travel-nature">Travel &amp; Nature</a></li>
+      </div>
+    </ul>
+
+      <div class="mobile_search nav_sprite_button nav_item_left">
+        <span class="sprite_icon" id="mobile_search_button"></span>
+      </div>
+
+    <div class="logo nav_item_left">
+      <a href="/home">
+        <span class='sprite_icon'></span>
+</a>    </div>
+
+    <div class='tab h3 nav_item_left'>
+      <span> <a href="http://www.tsu.co/">Feed</a> </span>
+    </div>
+
+      <div class="name popup-trigger nav_item_right">
+        <img style="display: block" src="https://cdn-0.tsu.co/images/user.png" alt="User" width="36" height="36" />
+      </div>
+
+      <ul class="sub_nav popup">
+        <div class='cell'>
+          <li><a href="/duntcur">Profile</a></li>
+          <li><a class="settings" href="/settings/general">Settings</a></li>
+        </div>
+
+          <div class='cell'>
+
+            <li><a class="tree" href="/account/tree">Family Tree</a></li>
+          </div>
+
+        <div class='cell'>
+          <li><a class="groups" href="/groups">My Groups</a></li>
+        </div>
+
+        <div class='cell'>
+          <li><a class="faq" href="/settings/faq">FAQ</a></li>
+          <li><a class="campaigns" href="/campaigns">Advertising</a></li>
+        </div>
+
+        <div class='cell'>
+          <li><a class="signout" rel="nofollow" data-method="delete" href="/users/sign_out">Sign Out</a></li>
+        </div>
+      </ul>
+
+      <div id="new_notifications" class="new_notifications nav_item_right">
+        <span id="new_notifications_button" class="new_notifications_counter popup-trigger sprite_icon"> </span>
+
+        <div id="new_notifications_popup" class="notifications_list popup">
+          <div class="notifications_title">
+            General
+            <a href="/notifications">See all</a>
+          </div>
+          <div id="notifs_general" class="notifications clearfix">
+            <span class="no_event">Loading... <img src="http://cdn-3.tsu.co/assets/loader-ce3bd7c267ee0f8396beca87a7e4c376ef94cad696670c51407b0e930a200911.gif" alt="Loader" /></span>
+          </div>
+          <div class="messages_title">
+            Messages
+            <a href="/messages">See all</a>
+          </div>
+          <div id="notifs_messages" class="messages clearfix">
+            <span class="no_event">Loading... <img src="http://cdn-3.tsu.co/assets/loader-ce3bd7c267ee0f8396beca87a7e4c376ef94cad696670c51407b0e930a200911.gif" alt="Loader" /></span>
+          </div>
+          <div class="friend_requests_title">
+            Friend Requests
+            <a href="/notifications/friend_requests">See all</a>
+          </div>
+          <div id="notifs_friend_requests" class="friend_requests clearfix">
+            <span class="no_event">Loading... <img src="http://cdn-3.tsu.co/assets/loader-ce3bd7c267ee0f8396beca87a7e4c376ef94cad696670c51407b0e930a200911.gif" alt="Loader" /></span>
+          </div>
+        </div>
+      </div>
+
+      <a class="button create_post_popup fancybox.ajax h4 nav_item_right" data-remote="true" href="/posts/create/popup">Create Post</a>
+
+      <div class="create_post_button_small nav_item_right">
+        <a class="create_post_popup fancybox.ajax h4" href="/posts/create/popup">
+          <span class='sprite_icon'></span>
+</a>      </div>
+
+      <div class="search_form nav_item_right">
+        <input type="text" name="search" id="search" class="autocomplete" placeholder="Search" />
+      </div>
+
+  </div>
+  <div class="topic_bar">
+    <div class='tab_container'>
+      <span> <li><a href="/groups/animals">Animals</a></li> </span>
+      <span> <li><a href="/groups/arts">Arts</a></li> </span>
+      <span> <li><a href="/groups/communities">Communities</a></li> </span>
+      <span> <li><a href="/groups/entertainment-music">Entertainment &amp; Music</a></li> </span>
+      <span> <li><a href="/groups/food">Food</a></li> </span>
+      <span> <li><a href="/groups/giving">Giving</a></li> </span>
+      <span> <li><a href="/groups/health">Health</a></li> </span>
+      <span> <li><a href="/groups/humor">Humor</a></li> </span>
+      <span> <li><a href="/groups/news-politics">News &amp; Politics</a></li> </span>
+      <span> <li><a href="/groups/science-tech">Science &amp; Tech</a></li> </span>
+      <span> <li><a href="/groups/sports">Sports</a></li> </span>
+      <span> <li><a href="/groups/style">Style</a></li> </span>
+      <span> <li><a href="/groups/travel-nature">Travel &amp; Nature</a></li> </span>
+    </div>
+  </div>
+
+    <div id="email_confirmation">
+      You need to confirm your email (<a href="/users/confirmation/new">re-send confirmation instructions</a>)
+    </div>
+</div>
+
+  <div class="mobile_search_bar">
+    <input type="text" name="search" id="mobile_search" class="mobile_autocomplete" placeholder="Search" />
+  </div>
+
+
+    <div id="page-outer" class="clearfix">
+      
+
+      <div id="notice_box">
+      </div>
+
+      
+
+      <div class="mainContainer clearfix">
+            <div class="billboard_advertisement" data-format="billboard_970x250"></div>
+
+
+        <div id="leftBar">
+    <div class="side_bar">
+      <div class='user'>
+        <a class="profile" href="/duntcur">
+          <div class="profile_picture">
+            <img style="display: block" src="https://cdn-0.tsu.co/images/user.png" alt="User" width="36" height="36" />
+          </div>
+          <div class="name">
+            <span class='full_name'>Who Cares</span>
+            <span class='username'>@duntcur</span>
+          </div>
+</a>      </div>
+
+      <div class='feed'>
+        <ul class="nav-links">
+          <li class="selected"><a class="newsfeed sprite_icon " href="/">Feed</a></li>
+          <li><a class="groups sprite_icon " href="/groups/my_channels">My Channels</a></li>
+          <li><a class="messages sprite_icon " href="/messages">Messages</a></li>
+          <li><a class="bank sprite_icon " href="/account/bank">Bank</a></li>
+          <li><a class="analytics sprite_icon " href="/account/dashboard">Analytics</a></li>
+        </ul>
+      </div>
+
+      <div class='other_link'>
+        <ul class="nav-links">
+          <li><a class="activity_feed sprite_icon " href="/activity_feed">My Network</a></li>
+          <li><a class="group sprite_icon " href="/groups">tsūGroups <span>(BETA)</span></a></li>
+          <li><a class="discover sprite_icon " href="/discover">Discover Users</a></li>
+        </ul>
+      </div>
+    </div>
+
+  <div class="invite_box">
+  <a class="sprite_icon fancybox.ajax" href="/settings/invitations/new?popup=true">Invite your friends</a>
+</div>
+  <div class="skyscraper_advertisement sticky_advertisement ">
+
+        <!-- /66234358/dfp_tsu_Feed -->
+<div id='dfp-ad-skyscraper'>
+  <script type='text/javascript'>
+    googletag.cmd.push(function() { googletag.display('dfp-ad-skyscraper'); });
+  </script>
+</div>
+
+  </div>
+
+</div>
+
+
+        <div id="content-col" class="clearfix">
+          <div id="rightBar">
+    <div class="homepage_before_advertisement">
+      
+  </div>
+
+    <div class="advertisement">
+      <div class="big_rectangle_advertisement">
+        <!-- /66234358/dfp_tsu_Feed -->
+<div id='dfp-ad-halfpage'>
+  <script type='text/javascript'>
+    googletag.cmd.push(function() { googletag.display('dfp-ad-halfpage'); });
+  </script>
+</div>
+
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="section">
+        <div class="section-title with-border black">Suggested Channels</div>
+        <div>
+          <div class="suggested-group clearfix">
+  <span class="black"><a href="/groups/44">howtotsū</a></span>
+  <p>Your official source for tips and tricks to unlock the power of tsū. #howtotsu #tsutip #tsupress #tsuquotes</p>
+  <div class="actions">
+    <a class="button button_follow_channel" group-id="44" data-remote="true" rel="nofollow" data-method="post" href="/api/v1/groups/44/memberships">+ FOLLOW</a>
+  </div>
+</div>
+<div class="suggested-group clearfix">
+  <span class="black"><a href="/groups/43">Snacks</a></span>
+  <p>All photos must be original content. No pictures of fast food. Posts are approved at our discretion.</p>
+  <div class="actions">
+    <a class="button button_follow_channel" group-id="43" data-remote="true" rel="nofollow" data-method="post" href="/api/v1/groups/43/memberships">+ FOLLOW</a>
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class='advertisement sticky_advertisement'>
+    <div class="rectangle_advertisement">
+      <div>
+          <!-- /66234358/dfp_tsu_Feed -->
+<div id='dfp-ad-rectangle-top'>
+  <script type='text/javascript'>
+    googletag.cmd.push(function() { googletag.display('dfp-ad-rectangle-top'); });
+  </script>
+</div>
+
+      </div>
+    </div>
+
+    <div class="rectangle_advertisement">
+      <div>
+          <!-- /66234358/dfp_tsu_Feed -->
+<div id='dfp-ad-rectangle-bottom'>
+  <script type='text/javascript'>
+    googletag.cmd.push(function() { googletag.display('dfp-ad-rectangle-bottom'); });
+  </script>
+</div>
+
+      </div>
+    </div>
+  </div>
+
+
+</div>
+          <div id="mainContent">
+            
+
+
+
+<div class="create_post clearfix">
+  <form id="create_post_form" onsubmit="return false;" enctype="multipart/form-data" action="/posts" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="duEWG1vyNfu5WZMGWWqD2z4VYSwW+8V/dBr/r+MftKx6Wn99t5AFEZPJwUPkpGga8xdjFeL2IY0ta3aUcRgeWQ==" />
+  <input type="text" name="title" id="title" placeholder="Add a title" class="createpost_title" />
+  <textarea name="text" id="text" placeholder="What&#39;s on your mind..." class="createpost_textarea expanding">
+</textarea>
+  <div class="show_on_feed clearfix">
+    <input type="hidden" name="show_on_profile" id="show_on_profile" value="true" />
+    <div class="custom_checkbox show_on_feed_cb sprite_icon check pull-right"></div>
+    <label class="pull-right">Display post on my profile</label>
+  </div>
+  <input type="hidden" name="edit_picture_url" id="edit_picture_url" />
+
+  <div class="loading-preview-wrapper">
+    <img class="loading-preview" src="http://cdn-3.tsu.co/assets/loader-ce3bd7c267ee0f8396beca87a7e4c376ef94cad696670c51407b0e930a200911.gif" alt="Loader" width="14" height="14" />
+  </div>
+
+  <div id="link_preview" style="display:none;">
+    <div class="link_preview_box expanded_layout">
+      <div class="link_preview_box_href">
+        <div class="navigation">
+          <div class="navigation_background"></div>
+          <a class="previous disabled"></a>
+
+          <div class="vertical_line"></div>
+          <a class="next"></a>
+        </div>
+
+        <div class="delete_preview">
+          <span class="close sprite_icon"></span>
+        </div>
+
+        <div class="images"></div>
+        <div class='text_content'>
+          <div class="title" contenteditable="true"></div>
+          <div class="description" contenteditable="true"></div>
+          <div class="provider"></div>
+        </div>
+      </div>
+    </div>
+    <input type="hidden" name="has_link" id="has_link" value="false" />
+    <input type="hidden" name="link" id="link" />
+    <input type="hidden" name="link_title" id="link_title" />
+    <input type="hidden" name="link_description" id="link_description" />
+    <input type="hidden" name="link_image_path" id="link_image_path" />
+    <input type="hidden" name="provider_domain" id="provider_domain" />
+    <input type="hidden" name="id" id="group_id" />
+  </div>
+
+  <div id="create_post_pic_preview"></div>
+
+  <div class="options clearfix">
+    <div class="filebutton sprite_icon" title="Add Media">
+      <input type="file" name="picture" id="file" accept="image/png,image/jpeg,image/gif,image/tiff" />
+    </div>
+
+    <div class="add_channel_button sprite_icon" title="Add to Topic / Channel" data-text='Add to Topic / Channel'>
+      <div class="selection_container">
+        <span class="selection ">Post to a Topic or Channel <span></span></span>
+      </div>
+      <span class="remove_channel_icon sprite_icon hide"></span>
+    </div>
+
+    <input type="submit" name="commit" value="Post" id="create_post_button" class="button purple pull-right" />
+    <img class="loading_icon hide" src="http://cdn-3.tsu.co/assets/loader-ce3bd7c267ee0f8396beca87a7e4c376ef94cad696670c51407b0e930a200911.gif" alt="Loader" />
+
+      <div class="checkboxes_options_create_post">
+        <input type="checkbox" name="twitter" id="twitter" value="1" title="Post to Twitter" class="hide twt" /><a class="twt" title="Connect to post to Twitter" href="/settings/apps"></a>
+      </div>
+  </div>
+
+  <div class="selector ">
+
+    <div class="menu_row clearfix">
+      <div class="menu_option" show-id="topic_select"><span class="pill active">TOPICS</span></div>
+      <div class="menu_option" show-id="channel_select"><span class="pill">MY CHANNELS</span></div>
+    </div>
+
+    <div class="selector_content">
+      <div class="search_bar channel_select">
+        <div class="channel_search_form">
+          <span class="search_icon sprite_icon"></span>
+          <input type="text" name="channel_search" id="channel_search" placeholder="Add to..." class="channel_search" />
+          <span class="cancel_icon sprite_icon"></span>
+        </div>
+      </div>
+
+      <div class="select_options topic_select">
+        <div class="option clearfix" group-id="43045">
+  <span class="name">Animals</span>
+</div>
+<div class="option clearfix" group-id="43046">
+  <span class="name">Arts</span>
+</div>
+<div class="option clearfix" group-id="43051">
+  <span class="name">Communities</span>
+</div>
+<div class="option clearfix" group-id="43047">
+  <span class="name">Entertainment &amp; Music</span>
+</div>
+<div class="option clearfix" group-id="43049">
+  <span class="name">Food</span>
+</div>
+<div class="option clearfix" group-id="43055">
+  <span class="name">Giving</span>
+</div>
+<div class="option clearfix" group-id="43050">
+  <span class="name">Health</span>
+</div>
+<div class="option clearfix" group-id="43052">
+  <span class="name">Humor</span>
+</div>
+<div class="option clearfix" group-id="43053">
+  <span class="name">News &amp; Politics</span>
+</div>
+<div class="option clearfix" group-id="43054">
+  <span class="name">Science &amp; Tech</span>
+</div>
+<div class="option clearfix" group-id="43056">
+  <span class="name">Sports</span>
+</div>
+<div class="option clearfix" group-id="43048">
+  <span class="name">Style</span>
+</div>
+<div class="option clearfix" group-id="43057">
+  <span class="name">Travel &amp; Nature</span>
+</div>
+
+      </div>
+
+      <div class="select_options channel_select">
+        <div class="results"></div>
+      </div>
+
+    </div>
+
+  </div>
+</form>
+<script id="channel-results-template" type="text/x-handlebars-template">
+  {{#each data}}
+    <div class="option" group-id="{{id}}">
+      <span class="name">{{name}}</span>
+      <span class="followers">{{members_count}} followers</span>
+    </div>
+  {{/each}}
+</script>
+
+<script id="channel-memberships-template" type="text/x-handlebars-template">
+  {{#each data}}
+    <div class="option" group-id="{{group.id}}">
+      <span class="name">{{group.name}}</span>
+      <span class="followers">{{group.members_count}} followers</span>
+    </div>
+  {{/each}}
+</script>
+
+
+</div>
+
+<div id="feed" class="home_content feed">
+</div>
+
+<script id="post-template" type="text/x-handlebars-template">
+  <div class="post {{#if is_private}}private{{/if}} clearfix" data-post-id="{{original_id}}" {{#if is_native_ad}}data-aid="{{ad_id}}"{{/if}}>
+    {{> post_content}}
+  </div>
+</script>
+
+<script type="text/x-handlebars-template" id="post-content-form">
+  <form action="/api/v2/posts/{{id}}" method="put" data-remote="true">
+    <div class="expandingText_parent">
+      <textarea name="post[content]" autocomplete="off">{{content}}</textarea>
+    </div>
+    <div class="submit-inputs">
+      <input class="button button-small grey" name="cancel" type="submit" value="Cancel" />
+      <input class="button button-small" type="submit" value="Save" />
+    </div>
+  </form>
+</script>
+
+<script id="post-content-partial" type="text/x-handlebars-template">
+  <div class="post-content">
+    {{#if is_share}}
+      <div class="share_header clearfix">
+        <div class="post_header_name">
+          <div class="name">
+            <div class="name_2">
+              {{#user}}{{> user_fullname is_share=true original_post=../original_post }}{{/user}}
+            </div>
+
+            {{#unless disable_comments}}
+              <div class="action more_action">
+            <span class="more_action_button sprite_icon popup-trigger"></span>
+
+            <ul class="post_link_dropdown popup">
+              <div class="cell">
+                <li>
+                  <a href="/{{user.username}}/{{id}}" target="_blank" class="post_link_dropdown_show_post">Open</a>
+                </li>
+
+                {{#if is_share}}
+                  <li>
+                    <a href="/{{original_user.username}}/{{shared_id}}" target="_blank">Open original post</a>
+                  </li>
+                {{/if}}
+              </div>
+
+              {{#if can_delete}}
+                {{#if current_user_is_author}}
+                {{#if has_picture_and_not_gif}}
+                  <div class='cell'>
+                    <li>
+                      <a href='#' id="avatar_from_post">Use as avatar</a>
+                    </li>
+                    <li>
+                      <a href='#' id="cover_picture_from_post">Use as cover picture</a>
+                    </li>
+                  </div>
+                {{/if}}
+                {{/if}}
+
+                <div class="cell">
+                  {{#if current_user_can_edit_post}}
+                    <li><a href="#" class="edit-post" rel="nofollow">Edit post</a></li>
+                  {{/if}}
+                  <li>
+                    <a data-confirm="Do you want to delete this post?" class="delete-post" rel="nofollow">Remove post</a>
+                  </li>
+                </div>
+              {{/if}}
+
+
+
+              {{#if current_user_id }}
+                {{#unless can_report}}
+                  <div class="cell">
+                    <li>
+                      <a href="/posts/{{id}}/reports/new" class="report fancybox.ajax">Report</a>
+                    </li>
+                  </div>
+                {{/unless}}
+              {{/if}}
+              </ul>
+            </div>
+            {{/unless}}
+
+            <ul class="provider_icons">
+              {{#if is_native_ad}}
+                <li class="sponsored_post">Sponsored</li>
+              {{else}}
+                <li class="post_time_from_now">{{time_from_now}}</li>
+              {{/if}}
+            </ul>
+          </div>
+        </div>
+      </div>
+    {{/if}}
+
+    <div class="post_header clearfix">
+      <div class="post_header_pp">
+        {{#original_user}}{{> profile_picture}}{{/original_user}}
+      </div>
+
+      <div class="post_header_name">
+        <div class="name">
+          <div class="name_2">
+            {{#original_user}}{{> user_fullname}}{{/original_user}}
+
+            {{#if action_label}}
+              <span class="post_action_description">{{action_label}}</span>
+            {{/if}}
+
+            {{#if has_recipient}}
+              <div class="post_header_name_arrow"></div>
+              {{#recipient}}{{> user_fullname}}{{/recipient}}
+            {{/if}}
+
+            {{#if group_friendly_id}}
+              <div class="post_header_name_arrow"></div>
+              <span><a href="{{group_url}}">{{group_name}}</a></span>
+            {{/if}}
+          </div>
+
+          <ul class="provider_icons">
+            {{#if is_native_ad}}
+              <li class="sponsored_post">Sponsored</li>
+            {{else}}
+              <li class="original_post_time_from_now">
+                <a href="/{{user.username}}/{{id}}">{{original_post_time_from_now}}</a>
+              </li>
+
+              {{#if edited }}
+                <li class="privacy_box">&nbsp;&middot; Edited</li>
+              {{/if}}
+
+            {{/if}}
+          </ul>
+        </div>
+      </div>
+
+      {{#unless is_share}}
+        {{#unless disable_comments}}
+          <div class="action more_action">
+            <span class="more_action_button sprite_icon popup-trigger"></span>
+
+            <ul class="post_link_dropdown popup">
+              <div class="cell">
+                <li>
+                  <a href="/{{user.username}}/{{id}}" target="_blank" class="post_link_dropdown_show_post">Open</a>
+                </li>
+
+                {{#if is_share}}
+                  <li>
+                    <a href="/{{original_user.username}}/{{shared_id}}" target="_blank">Open original post</a>
+                  </li>
+                {{/if}}
+              </div>
+
+              {{#if can_delete}}
+                {{#if current_user_is_author}}
+                {{#if has_picture_and_not_gif}}
+                  <div class='cell'>
+                    <li>
+                      <a href='#' id="avatar_from_post">Use as avatar</a>
+                    </li>
+                    <li>
+                      <a href='#' id="cover_picture_from_post">Use as cover picture</a>
+                    </li>
+                  </div>
+                {{/if}}
+                {{/if}}
+
+                <div class="cell">
+                  {{#if current_user_can_edit_post}}
+                    <li><a href="#" class="edit-post" rel="nofollow">Edit post</a></li>
+                  {{/if}}
+                  <li>
+                    <a data-confirm="Do you want to delete this post?" class="delete-post" rel="nofollow">Remove post</a>
+                  </li>
+                </div>
+              {{/if}}
+
+
+
+              {{#if current_user_id }}
+                {{#unless can_report}}
+                  <div class="cell">
+                    <li>
+                      <a href="/posts/{{id}}/reports/new" class="report fancybox.ajax">Report</a>
+                    </li>
+                  </div>
+                {{/unless}}
+              {{/if}}
+            </ul>
+          </div>
+        {{/unless}}
+      {{/unless}}
+
+      {{#unless is_native_ad}}
+        <!-- div class="post_header_icon_left">
+        </div -->
+      {{/unless}}
+
+      {{#if is_share}}
+        {{#unless current_user_is_author}}
+          {{#unless is_following_or_friend_with_original_user}}
+            <div class="post_header_follow_author follow_form">
+              {{#if current_user_id}}
+                <span class="button button_follow_author" data-id="{{original_user_id}}">Follow</span>
+              {{else}}
+                <span class="button follow_button non-registered-signup-button">Follow</span>
+              {{/if}}
+            </div>
+          {{/unless}}
+        {{/unless}}
+      {{/if}}
+    </div>
+
+    <div class="post_story clearfix">
+      {{#if has_text}}
+        <div class="provider_status_text {{#unless current_user_id}} non-registered-signup-button {{/unless}}">
+          {{#if parsed_title}}
+            <div class="title">{{{parsed_title}}}</div>
+          {{/if}}
+          {{{parsed_content}}}
+        </div>
+      {{/if}}
+
+      {{#unless is_popup}}
+        {{#if has_picture_or_gif}}
+          {{#unless has_video}}
+            {{#unless has_stream}}
+              {{#unless has_link}}
+                <div class="post_story_picture" data-img="{{picture_url}}">
+                  <span class="facade-of-protection"></span>
+                  <img src="{{picture_url}}">
+                </div>
+              {{/unless}}
+            {{/unless}}
+          {{/unless}}
+        {{/if}}
+
+        {{#if has_video}}
+          <div class="post_story_video">
+            {{#if youtube_id}}
+              <iframe title="YouTube video player" width="540" height="390" frameborder="0"
+                      delayed-src="https://www.youtube.com/embed/{{youtube_id}}" allowfullscreen=true></iframe>
+            {{else}}
+              <video controls="">
+                <source src={{video_url}} type="video/mp4"></source>
+              </video>
+            {{/if}}
+          </div>
+        {{/if}}
+
+        {{#if has_stream}}
+          <div class="post_story_video">
+            <div id="stream-{{stream.id}}-{{id}}" class="stream player">
+              <img src="{{stream.thumbnail_url}}">
+            </div>
+          </div>
+        {{/if}}
+
+        {{#if show_link_preview}}
+          {{#link_preview}}
+            <div class="link_preview_box {{../link_preview_layout_class}}">
+              <div class="link_preview_box_href">
+                {{#if link_image_path}}
+                  <a href="{{link}}" target="_blank" class="image" style="background-image: url('{{escape_quote link_image_path}}')"></a>
+                {{/if}}
+
+                {{#if has_link_text}}
+                  <div class="text_content">
+                    {{#if link_title}}
+                      <a href="{{link}}" target="_blank" class="title">{{link_title}}</a>
+                    {{/if}}
+
+                    {{#if link_description_truncated}}
+                      <a href="{{link}}" target="_blank" class="description">{{{link_description_truncated}}}</a>
+                    {{/if}}
+
+                    {{#if link_provider_domain}}
+                      <a href="{{link}}" target="_blank" class="provider">{{link_provider_domain}}</a>
+                    {{/if}}
+                  </div>
+                {{/if}}
+              </div>
+            </div>
+          {{/link_preview}}
+        {{/if}}
+      {{/unless}}
+    </div>
+
+    <div class="post_social clearfix">
+      <div class='stats_wrapper like_stats_wrapper {{#if has_liked_original}} has_liked {{/if}}'>
+        <span class="{{#if current_user_id}} like_button {{else}} non-registered-signup-button {{/if}} like_stats_span sprite_icon">
+        </span>
+
+        {{#if has_likes }}
+          <span title="{{like_list_user_fullnames}}" class="count like_count {{#if current_user_id}} like_popup_button {{/if}}">
+            {{likes_count}}
+          </span>
+        {{else}}
+          <span class="count like_count {{#if current_user_id}} like_button {{else}} non-registered-signup-button {{/if}}">
+            Like
+          </span>
+        {{/if}}
+      </div>
+
+      {{#unless disable_comments}}
+        <div class='stats_wrapper comment_stats_wrapper'>
+        <span class="stats_span {{#if current_user_id}} comment_button {{else}} non-registered-signup-button {{/if}} comment_stats_span sprite_icon">
+        </span>
+
+        <span class="count comment_count {{#if current_user_id}} comment_button {{else}} non-registered-signup-button {{/if}}">
+          {{#if has_comments }}
+            {{comments_count}}
+          {{else}}
+            Comment
+          {{/if}}
+        </span>
+        </div>
+      {{/unless}}
+
+      <div class="stats_wrapper share_stats_wrapper {{#if has_shared_original}} has_shared {{/if}} {{#if can_share}} can_share {{/if}}">
+
+        <span class="stats_span share_stats_span sprite_icon popup-trigger" />
+
+        {{#if has_been_shared}}
+          <span title="{{share_list_user_fullnames}}" class="count share_count {{#if current_user_id}} sharers_popup_button {{/if}}">
+            {{shares_count}}
+          </span>
+        {{else}}
+          <span class="count share_count popup-trigger">Share</span>
+        {{/if}}
+
+        <ul class="post_link_dropdown popup">
+          {{#unless current_user_is_owner}}
+            <div class="cell">
+              <li>
+                {{#if has_shared_original}}
+                  <a class="{{#if current_user_id}} {{#if can_share}} share_button share_button_menu {{/if}} {{else}} non-registered-signup-button {{/if}}" href="/">Unshare</a>
+                {{else}}
+                  <a class="{{#if current_user_id}} {{#if can_share}} share_button share_button_menu {{/if}} {{else}} non-registered-signup-button {{/if}}" href="/">Share</a>
+                {{/if}}
+              </li>
+            </div>
+          {{/unless}}
+          <div class="cell">
+            <li>
+              <a class="{{#if current_user_id}} share_to_facebook {{else}} non-registered-signup-button {{/if}}" href="/">Share on Facebook</a>
+            </li>
+          </div>
+        </ul>
+
+      </div>
+
+    </div>
+  </div>
+
+  {{#unless disable_comments}}
+    {{> comment_container_partial}}
+  {{/unless}}
+</script>
+
+<script id="profile-picture-partial" type="text/x-handlebars-template">
+  <a href="/{{username}}">
+    <img src="{{profile_picture_url}}" class="post_profile_picture"/>
+  </a>
+</script>
+
+<script id="user-fullname-partial" type="text/x-handlebars-template">
+  <span class="evac_user" user_id="{{id}}">
+    <a href="/{{username}}" class="{{#if is_share}} {{#ifCond original_post.share_count '>' 1}}with_share_description{{/ifCond}} {{/if}}">{{full_name}}</a>
+  </span>
+  {{#if is_share}}
+    {{#ifCond original_post.share_count '>' 1}}
+      <span class="share_description">
+        and {{#substract original_post.share_count 1}}{{/substract}}
+          other {{#ifCond original_post.share_count '>' 2}}people{{else}}person{{/ifCond}}
+      </span>
+    {{/ifCond}}
+    shared this <b>post</b>
+  {{/if}}
+</script>
+
+<script id="comment-partial" type="text/x-handlebars-template">
+  <div class="comment {{#if is_reply}}reply{{/if}} clearfix" data-created-at="{{created_at_int}}" data-comment-id="{{id}}">
+    <div class="comment_inner_wrapper">
+      <div class="comment_header">
+        {{#user}} {{> profile_picture}} {{/user}}
+      </div>
+
+      <div class="comment_body">
+        <div class="comment_stats">
+          <span title="{{like_list_user_fullnames}}" class="like_stats_span {{#if has_liked}} has_liked {{/if}} sprite_icon" {{#unless has_likes}}style="display: none"{{/unless}}>
+            {{#if current_user_id}}
+              <a class="ec_user_profile_summary fancybox.ajax" href="/likes/loadmore_likes/comment/{{id}}">
+                {{like_count}}
+              </a>
+            {{else}}
+               <a class="non-registered-signup-button" href="#">
+                {{like_count}}
+              </a>
+            {{/if}}
+          </span>
+        </div>
+
+        <div class="comment_text">
+          {{#user}}{{> user_fullname}}{{/user}}
+          {{{parsed_body}}}
+        </div>
+
+        <div class="comment_social clearfix">
+          <div class="comment_actions">
+            <div class="action">
+              <a class="like_action {{#if current_user_id}} like_comment_action {{else}} non-registered-signup-button {{/if}}" href='#'>
+                {{#if has_liked}}Unlike{{else}}Like{{/if}}
+              </a>
+            </div>
+            {{#if current_user_id}}
+              {{#if is_root}}
+                <div class="action with_bull">
+                  <a class="load_more_post_comment_replies" href="#">
+                    Reply {{#if has_replies}}({{reply_count}}){{/if}}
+                  </a>
+                </div>
+              {{/if}}
+            {{/if}}
+
+            {{#if can_delete}}
+              <div class="action with_bull">
+                <a data-confirm="Do you want to delete this comment ?" class="delete-comment" rel="nofollow">
+                  Delete
+                </a>
+              </div>
+            {{/if}}
+
+            <div class="action with_bull comment_time_from_now"> <span> {{time_from_now}} </span> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{#if is_root}}
+      <div class="reply_container clearfix">
+        <div class="reply_list"></div>
+        <div class="create_reply_wrapper post_write_comment clearfix">
+          <div class="comment_header">
+            {{#current_user}} {{> profile_picture}} {{/current_user}}
+          </div>
+
+          <div class="comment_form">
+            <form id="create_comment_form" action="/comments/evac_comment" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="+IkxPqNaUqbK7QxOsbGR0kayViAsMmcPkcDhkDzH55n0MlhYTzhiTOB9XgsMf3oTi7BUGdg/g/3IsWirrsBNbA==" />
+              {{#if this.is_native_ad}}
+                <input id="aid" name="aid" type="hidden" value="{{this.ad_id}}">
+              {{/if}}
+              <input id="post_id" name="post_id" type="hidden" value="{{this.post.id}}">
+              <input id="parent_comment_id" name="parent_comment_id" type="hidden" value="{{id}}">
+              <div class="expandingText_parent">
+                <textarea class="evac_comment_textarea" id="comment_text" name="text" placeholder="Write a reply..."></textarea>
+              </div>
+</form>           </div>
+        </div>
+      </div>
+    {{/if}}
+  </div>
+</script>
+
+<script id="comment-container-partial" type="text/x-handlebars-template">
+
+    <div class="comment_container">
+      {{#if current_user_id}}
+        {{#if show_more_comments_link}}
+          <div class="load_more_comments">
+            <span class='sprite_icon'>view previous comments</span>
+          </div>
+        {{/if}}
+      {{/if}}
+
+      {{#if can_add_content }}
+        <div class="post_write_comment">
+          <div class='comment_header'>
+            {{#current_user}}
+              {{> profile_picture}}
+            {{/current_user}}
+          </div>
+
+          <div class='comment_form'>
+            <form id="create_comment_form" action="/comments/evac_comment" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="2vXKsaXdHHQhu0pPlPstNsRtxGKYBfQU/iG543HJStDWTqPXSb8sngsrGAopNcb3CW/GW2wIEOanUDDY487gJQ==" />
+              {{#if is_native_ad}}
+                <input id="aid" name="aid" type="hidden" value="{{ad_id}}">
+              {{/if}}
+              <input id="post_id" name="post_id" type="hidden" value="{{original_id}}">
+
+              <div class="expandingText_parent">
+                <textarea class="expanding evac_comment_textarea" id="comment_text" name="text"
+                          placeholder="Write a comment..."></textarea>
+              </div>
+</form>          </div>
+        </div>
+      {{/if}}
+    </div>
+
+</script>
+
+<script id="activity-template" type="text/x-handlebars-template">
+  <div class="activity post">
+    <div class="post_header clearfix">
+      <div class="post_header_pp">
+        {{#user}}{{> profile_picture}}{{/user}}
+      </div>
+
+      <div class="post_header_name">
+        <div class="name">
+          <div class="name_2">
+            {{#user}}
+              <span class="evac_user" user_id="{{id}}">
+                <a href="/{{username}}" class="with_activity_description">{{full_name}}</a>
+              </span>
+            {{/user}}
+
+            {{#if action_label}}
+              <span class="post_action_description">{{action_label}}</span>
+            {{/if}}
+          </div>
+
+          <ul class="provider_icons">
+            <li class="original_post_time_from_now">{{time_from_now}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="activity_content">
+      {{#if is_follow_or_friendship_activity}}
+        <div class="follow_activity_wrapper">
+          {{#each activities}}
+            <div class="activity_thumbnail follow_activity_thumbnail {{#ifCond @index '>' 2}}hide{{/ifCond}}">
+                <div class="user_profile_picture">
+                  <a href="/{{username}}"> <img src="{{profile_picture_url}}"/> </a>
+                </div>
+
+                <div class="user_info">
+                  <div class="name"> {{full_name}} </div>
+                  <div class="bio"> {{bio}} </div>
+                </div>
+
+                {{#if show_follow_button }}
+                  <div class="follow_form">
+                    {{#if has_followed}}
+                      <span class="button button_unfollow_author" data-id="{{id}}">Following</span>
+                    {{else}}
+                      <span class="button button_follow_author" data-id="{{id}}">Follow</span>
+                    {{/if}}
+                  </div>
+                {{/if}}
+            </div>
+          {{/each}}
+        </div>
+      {{/if}}
+
+      {{#if is_like_or_comment_activity}}
+        {{#each activities}}
+          {{#if has_picture }}
+            {{#unless has_link}}
+              <div class="activity_thumbnail like_activity_thumbnail" data-post-id="{{id}}" style="background: url({{ escape_quote picture_url }}) no-repeat center center; background-size: cover;"></div>
+            {{/unless}}
+          {{ else }}
+            <div class="activity_thumbnail like_activity_thumbnail no_picture_thumbnail" data-post-id="{{id}}">
+              <div class="no_picture_post_wrapper">
+                <div class="name"> {{#user}} {{full_name}} {{/user}} </div>
+                <div class="content"> {{content}} </div>
+              </div>
+            </div>
+          {{/if}}
+        {{/each}}
+      {{/if}}
+
+      {{#if is_comment_activity}}
+        <div class="activity_thumbnail comment_activity_thumbnail">
+
+        </div>
+      {{/if}}
+    </div>
+
+    {{#if show_view_more_button}}
+      <div class="view_more_button"> View More </div>
+    {{/if}}
+  </div>
+</script>
+
+<script id="post-popup-template" type="text/x-handlebars-template">
+
+  <div class="post post-popup clearfix" data-post-id="{{original_id}}" {{#if is_native_ad}}data-aid="{{ad_id}}"{{/if}}>
+    <div class="left-column">
+      {{#if has_media}}
+        <div class="media_content">
+          {{#if has_picture_or_gif}}
+            {{#unless has_video}}
+              {{#unless has_stream}}
+                {{#unless has_link}}
+                  <div class="post_story_picture" data-img="{{picture_url}}">
+                    <span class="facade-of-protection"></span>
+                    <img src="{{picture_url}}">
+                  </div>
+                {{/unless}}
+              {{/unless}}
+            {{/unless}}
+          {{/if}}
+
+          {{#if has_video}}
+            <div class="post_story_video">
+              {{#if youtube_id}}
+                <iframe title="YouTube video player" width="540" height="390" frameborder="0"
+                        delayed-src="https://www.youtube.com/embed/{{youtube_id}}" allowfullscreen=true></iframe>
+              {{else}}
+                <video controls="" class="post_story_video">
+                  <source src={{video_url}} type="video/mp4"></source>
+                </video>
+              {{/if}}
+            </div>
+          {{/if}}
+
+          {{#if has_stream}}
+            <div class="post_story_video">
+              <div id="stream-{{stream.id}}-{{id}}" class="stream player">
+                <img src="{{stream.thumbnail_url}}">
+              </div>
+            </div>
+          {{/if}}
+
+          {{#if show_link_preview}}
+            {{#link_preview}}
+              <div class="link_preview_box {{../link_preview_layout_class}}">
+                <div class="link_preview_box_href">
+                  {{#if link_image_path}}
+                    <a href="{{link}}" target="_blank" class="image" style="background-image: url('{{escape_quote link_image_path}}')"></a>
+                  {{/if}}
+
+                  {{#if has_link_text}}
+                    <div class="text_content">
+                      {{#if link_title}}
+                        <a href="{{link}}" target="_blank" class="title">{{link_title}}</a>
+                      {{/if}}
+
+                      {{#if link_description_truncated}}
+                        <a href="{{link}}" target="_blank" class="description">{{{link_description_truncated}}}</a>
+                      {{/if}}
+
+                      {{#if link_provider_domain}}
+                        <a href="{{link}}" target="_blank" class="provider">{{link_provider_domain}}</a>
+                      {{/if}}
+                    </div>
+                  {{/if}}
+                </div>
+              </div>
+            {{/link_preview}}
+          {{/if}}
+        </div>
+      {{/if}}
+
+      {{> post_content}}
+    </div>
+
+    <div class="right-column">
+      {{#if show_advertisement_on_pop_up}}
+        <div class="advertisement">
+          <div class="rectangle_advertisement">
+            <iframe src='/districtm_refresh_300x250.html' width='300' height='250' frameborder='0'></iframe>
+          </div>
+
+          <div class="rectangle_advertisement">
+            <iframe src='/districtm.html' width='300' height='250' frameborder='0'></iframe>
+          </div>
+        </div>
+      {{/if}}
+    </div>
+    <div class="popup_close_button sprite_icon"></div>
+  </div>
+</script>
+
+<script id="post-gallory-template" type="text/x-handlebars-template">
+  <div class="post_gallory_view_containter" data-post-id="{{original_id}}" {{#if is_native_ad}}data-aid="{{ad_id}}"{{/if}}>
+    {{#if has_stream}}
+      <div class="gallory_view video_play_icon" style="background: url({{ escape_quote stream.thumbnail_url }}) no-repeat center center; background-size: cover;"></div>
+    {{else}}
+      {{#if has_picture}}
+        <div class="gallory_view" style="background: url({{ escape_quote picture_url }}) no-repeat center center; background-size: cover;"></div>
+      {{else}}
+        {{#if has_link}}
+          {{#if link_preview.link_image_path}}
+            <div class="gallory_view" style="background: url({{ escape_quote link_preview.link_image_path }}) no-repeat center center; background-size: cover;"></div>
+          {{else}}
+            <div class="gallory_view no_picture_gallory_view">
+              <div class='name'> {{#original_user}} {{full_name}} {{/original_user}} </div>
+                <div class='quote sprite_icon'> </div>
+                <div class='content'>
+                  {{{parsed_content}}}
+                  {{#if link_preview.link_title}}
+                    <div class='link_title'>
+                      {{link_preview.link_title}}
+                    </div>
+                  {{/if}}
+                  {{link_preview.link_description}}
+                </div>
+                <div class='ellipsis sprite_icon'> </div>
+              </div>
+          {{/if}}
+        {{else}}
+          <div class="gallory_view no_picture_gallory_view">
+            <div class='name'> {{#original_user}} {{full_name}} {{/original_user}} </div>
+            <div class='quote sprite_icon'> </div>
+            <div class='content'> {{{parsed_content}}} </div>
+            <div class='ellipsis sprite_icon'> </div>
+          </div>
+        {{/if}}
+      {{/if}}
+    {{/if}}
+  </div>
+</script>
+
+<script id="aggregated-post-template" type="text/x-handlebars-template">
+  <div class="post post_aggregated">
+    <div class="post-content">
+      <div class="post_header clearfix">
+        <div class="post_header_name">
+          <div class="name">
+            <div class="name_2">
+              <a href="{{{object.group_url}}}">{{{object.name}}}</a>
+            </div>
+            <ul class="provider_icons">
+                <li class="sponsored_post">
+                {{{object.members_count}}} followers{{#if object.parent_id }}{{/if}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="post_aggregated_gallery">
+        {{#each posts}}
+        <div class="post_gallory_view_containter" data-post-id="{{original_id}}">
+          {{#if has_stream}}
+            <div class="gallory_view video_play_icon" style="background: url({{ escape_quote stream.thumbnail_url }}) no-repeat center center; background-size: cover;"></div>
+          {{else}}
+            {{#if has_picture}}
+              <div class="gallory_view" style="background: url({{ escape_quote picture_url }}) no-repeat center center; background-size: cover;"></div>
+            {{else}}
+              {{#if has_link}}
+                {{#if link_preview.link_image_path}}
+                  <div class="gallory_view" style="background: url({{ escape_quote link_preview.link_image_path }}) no-repeat center center; background-size: cover;"></div>
+                {{else}}
+                  <div class="gallory_view no_picture_gallory_view">
+                    <div class='name'> {{#original_user}} {{full_name}} {{/original_user}} </div>
+                      <div class='quote sprite_icon'> </div>
+                      <div class='content'>
+                        {{{parsed_content}}}
+                        {{#if link_preview.link_title}}
+                          <div class='link_title'>
+                            {{link_preview.link_title}}
+                          </div>
+                        {{/if}}
+                        {{link_preview.link_description}}
+                      </div>
+                      <div class='ellipsis sprite_icon'> </div>
+                    </div>
+                {{/if}}
+              {{else}}
+                <div class="gallory_view no_picture_gallory_view">
+                  <div class='name'> {{#original_user}} {{full_name}} {{/original_user}} </div>
+                  <div class='quote sprite_icon'> </div>
+                  <div class='content'> {{{parsed_content}}} </div>
+                  <div class='ellipsis sprite_icon'> </div>
+                </div>
+              {{/if}}
+            {{/if}}
+          {{/if}}
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</script>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <script src="//js.pusher.com/2.2/pusher.min.js" type="text/javascript"></script>
+      <script type="text/javascript">
+  window.urls = {};
+  window.urls['is_advertiser'] = {url: '/api/adserver/v1/users/4983210/is_advertiser', method: 'GET'};
+
+  window.services = {};
+  window.services['adserver'] = {
+    base_url: 'https://adservice.tsu.co',
+    enabled: true
+  };
+
+    window.services['adserver']['user'] = {
+      u_info: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpcCI6IjcwLjIxMy45LjYiLCJ1c2VyX2lkIjo0OTgzMjEwLCJhZ2UiOjEwMSwiZ2VuZGVyIjoiQnVzaW5lc3MiLCJwcm90b2NvbCI6Imh0dHAifQ.J2-qxW-6yrcSvnKX5dB6o88trT12DT-1j8G273mNcww',
+      uuid:   'ce955cf7-c32a-4333-951a-c682e362b2f4'
+    };
+
+  window.current_timestamp = 1464383978;
+  window.current_time = "2016-05-27T21:19:38+00:00";
+
+  window.current_user = {
+    id: 4983210,
+    username: "duntcur",
+    full_name: "Who Cares",
+    profile_picture_url: "https://cdn-0.tsu.co/images/user.png",
+    role: ""
+  };
+
+  window.services['notifications'] = new NotificationsClient({
+      base_url: '/notif',
+      user_id: 4983210,
+      username: 'duntcur',
+      auth_token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0OTgzMjEwfQ.aeQ2okRfRybvkDKjW43mXhh9QB-jr14yHSxKunYeOhQ',
+      pusher_key: '3e9983dc588c5aed5f8b'
+  });
+
+</script>
+
+<script id="notif_popup_template" type="text/x-handlebars-template">
+  <a href="{{resource_url}}"> 
+    <div class="new_growl_notification"> 
+      <div class="author">
+        <img src="{{notification.picture_url}}" /> 
+      </div>
+      <div class="body"> 
+        <div class="message">{{notification.message}}</div> 
+        <div class="time time_to_update">{{when}}</div> 
+      </div>
+    </div>
+  </a>
+</script>
+
+<script id="notif_dropdown_item_template" type="text/x-handlebars-template">
+  <a class="notifications_item" href="{{resource_url}}">
+    <div class="new_notification">
+      <div class="author">
+        <img src="{{notification.picture_url}}" />
+      </div>
+      <div class="body">
+        <div class="message">{{message}}</div>
+        <div class="time time_to_update">
+          {{#if author_name}}<b>{{author_name}}</b>{{/if}}
+          {{when}}
+        </div>
+      </div>
+    </div>
+  </a>
+</script>
+
+<script id="notif_dropdown_fr_template" type="text/x-handlebars-template">
+  <a class="notifications_item" href="{{resource_url}}">
+    <div class="new_notification" data-user="{{friend_id}}">
+      <div class="author">
+        <img src="{{notification.picture_url}}">
+      </div>
+      <div class="body">
+        <div class="message">{{message}}</div>
+        <div class="buttons">
+          <a class="button friend_button green"
+             data-user="{{friend_id}}" data-method="patch" data-remote="true"
+             href="/friendships/accept/{{friend_id}}">
+            Accept
+          </a>
+          <a class="button friend_button grey"
+             data-user="{{friend_id}}" data-method="patch" data-remote="true"
+             href="/friendships/decline/{{friend_id}}">
+            Decline
+          </a>
+        </div>
+      </div>
+    </div>
+  </a>;
+</script>
+
+<script id="notif_feed_item_template" type="text/x-handlebars-template">
+  <div class="notification">
+    <div class="author">
+      <a href="{{resource_url}}"><img src="{{notification.picture_url}}" /></a>
+    </div>
+    <div class="body {{#if button_text}}with_button{{/if}}">
+      <div class="message"><a href="{{resource_url}}">{{notification.message}}</a></div>
+      {{#if preview}}<div class="preview"><q class="{{preview_class}}">{{preview}}</q></div>{{/if}}
+      <div class="when">{{when}}</div>
+    </div>
+    <div class="buttons">
+      {{#if button_text}}<a class="button" href="{{resource_url}}">{{button_text}}</a>{{/if}}
+    </div>
+  </div>
+</script>
+
+<script id="friend_request_template" type="text/x-handlebars-template">
+  <a href="{{friend.profile_url}}">
+    <div class="new_notification" id="friend-request-{{friend.user_id}}" data-user="{{friend.user_id}}">
+      <div class="author"><img src="{{friend.profile_picture_url}}"></div>
+      <div class="body">
+        <div class="message"><span class="name">{{friend.full_name}}</span></div>
+        <div class="time time_to_update">{{when}}</div>
+        <div class="buttons">
+          <a class="button friend_button green" data-method="patch" data-remote="true" href="/friendships/accept/{{friend.user_id}}">Accept</a>
+          <a class="button friend_button grey" data-method="patch" data-remote="true" href="/friendships/decline/{{friend.user_id}}">Decline</a>
+        </div>
+      </div>
+    </div>
+  </a>
+</script>
+
+
+
+
+
+    <script>
+   window.fbAsyncInit = function() {
+     FB.init({
+       appId      : 146585535541538,
+       xfbml      : true,
+       version    : 'v2.5'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "WebSite",
+  "url": "https://www.tsu.co/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.tsu.co/search/{search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<!-- Begin ADSNATIVE Code -->
+<script type="text/javascript" src="//static.adsnative.com/static/js/render.v1.js"></script>
+<!-- End ADSNATIVE Code -->
+        
+  </body>
+</html>
