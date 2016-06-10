@@ -1,0 +1,107 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* ========== HOMEPAGE ========== */
+
+.home .left-column { padding-bottom: 0; }
+
+/* ----- Ads ----- */
+.adTopHome { margin: 0 0 20px 0; text-align: center; z-index: 1; overflow: hidden; width: 100%; }
+.adBottomHome { margin-bottom: 20px; text-align: center; z-index: 1; overflow: hidden; width: 100%; }
+  .adTopHome #div-gpt-ad-1360796532142-10_ad_container, .adBottomHome #div-gpt-ad-1360796532142-9_ad_container { background: url(images/ad-label-vert.gif) no-repeat right 12px; display: inline-block; margin-right:-10px; padding:0 10px 0 0; }
+
+/* ----- Related Nav (Left Sidebar) ----- */
+#popularTopics { margin-bottom: 30px; }
+#popularTopics h2 { margin-bottom: 10px; }
+#popularTopics h2 a.popularTitle { color: #666669; font-size: 1em; font-weight: 600; letter-spacing: -0.035em; }
+#popularTopics h2 a.popularTitle:hover { text-decoration: none; }
+@media (max-width: 767px) {
+  #popularTopics a.pull-right { float: none !important; }
+}
+#popularTopics .popularLine { border-bottom: 1px solid #e4e7b0; clear: left; margin: 0 15px; }
+#popularTopics ul { margin: 0 15px; }
+#popularTopics li { float: left; width: 33.333%; }
+@media (max-width: 991px) {
+  #popularTopics li { float: left; font-size: .95em; width: 50%; }
+}
+
+/* Dramatic Health Theater */
+#videoPromo { margin: 0 0 50px 0; }
+#videoPromo .graphic { background: url(images/dramatic-expert-home-thumbnail.jpg) 0 0 no-repeat; display: block; height: 101px; margin-bottom:5px; width: 180px; }
+
+/* EmpowHER Health Expert */
+#expertPromo { margin: 30px 0; }
+#expertPromo .defaultTitle { margin-top: 0; }
+#expertPromo .graphic { background: url(images/dramatic-expert-home-thumbnail.jpg) 0 -101px no-repeat; display: block; height: 101px; margin-bottom:5px; width: 180px; }
+#expertPromo .readMore, #videoPromo .readMore { font-size: 14px; font-weight: bold; }
+
+
+/* ----- Main Graphic Title -----*/
+h1.mainTitle { border-bottom: none; font-size: 50px; font-weight: 300; }
+  h1.mainTitle span { color: #4c96c3; font-weight: 500; }
+
+/* ----- Showcase in regular stylesheet----- */
+
+/* ----- News ----- */
+.news {  }
+#mainContent .news { border-bottom: 1px solid #e4e7b0; margin-bottom: 30px; }
+.news .defaultTitle {
+  font-size: 1.25em;
+  font-weight: 600;
+  line-height: 1.2em;
+  margin: 0 0 10px 0;
+  padding: 0;
+  position: relative;
+  zoom: 1;
+}
+.news .defaultTitleCopy {
+  background: #fff;
+  border: 1px solid #e4e7b0;
+  color: #807F83;
+  -moz-box-shadow: 0 1px 2px #d2d3c5;
+  -webkit-box-shadow: 0 1px 2px #d2d3c5;
+  box-shadow: 0 1px 2px #d2d3c5;
+  display: block;
+  padding: 4px 10px 4px 9px;
+  text-shadow: 0 1px 2px #d9d9d9;
+}
+.news li { margin-bottom: 20px; }
+.news .imgThumb { display: block; float: none; margin: 0 0 5px 0; padding-top: 56.25%; max-width: 100%; max-height: 100%; overflow: hidden; }
+.news .imgThumb img { max-width: 100%; max-height: 100%; position: absolute; top: 0; }
+.news .avatarThumb { float: left; margin-right: 15px; max-width: 90px; max-height: 90px; }
+.news .avatarThumb img { max-width: 90px; max-height: 90px; }
+@media (max-width: 767px) {
+  .news li a + a { font-size: 20px;}
+}
+
+/* ----- Actions Block ----- */
+.actionsContent a.button.big { font-size:.95em; margin-bottom: 10px; }
+.actionsContent { clear: left; }
+  .actionsContent h2 { font-size: 1.4em; margin-bottom: 3px; }
+    .actionsContent h2 a { color: #807f83; }
+  .actionsContent .her { margin-bottom: 10px; }
+  .actionsContent p { margin-top: 10px; }
+    .actionsContent p a { color: #807f83; text-decoration: none; }
+  .actionsContent .addMemberIcon { background: url(images/icons-button.png) 0 0 no-repeat; display: block; height: 18px; margin-top: 4px; width: 29px; }
+  .actionsContent .Twenty4hrSmall { float: right; margin-top: -40px; }
+  
+/* ----- Content Block ----- */
+.actionsContent .content { padding-top: 20px; width: 100%; z-index: 2; }
+.actionsContent .content h3 { border-bottom: solid 1px #e6e5e6; font-size: .95em; margin-bottom: 5px; padding-bottom: 3px; }
+.actionsContent .content a:link, .contentBlock a:visited { text-decoration: none; }
+  .actionsContent .content a:hover, .actionsContent .content a:active { text-decoration: underline; }
+.actionsContent .content li { border-top: solid 1px #ececed; min-height: 75px; line-height: 1.33em; list-style: none; padding: 10px 0; vertical-align: text-top; }
+  .actionsContent .content li:first-child { border-top: none; }
+.actionsContent .content .avatar { float: left; }
+.actionsContent .title { display: block; margin-left: 60px; max-height:62px; overflow:hidden; }
+.actionsContent .subInfo { color: #a6a5a8; display: block; font-size: .9em; margin-left: 60px; }
+  .actionsContent .subInfo a { color: #a6a5a8; }
+.actionsContent .userRoleBadges { display: none; }
+.actionsContent .moreGreen { display: inline-block; margin-bottom: 30px; }
+  
+/* ----- Home Promo ----- */
+#homePromo { display: block; margin: 15px 0; }
+
+
+/* ----- Footer ----- */
+#footer { position: relative; }
