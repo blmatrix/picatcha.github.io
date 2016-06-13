@@ -1890,7 +1890,8 @@
         tw_order_quantity: 0
     });
     </script>
-    <!-- Begin ADSNATIVE Code -->
+    
+   <!-- Begin ADSNATIVE Code -->
     <script type="text/javascript">
     var _AdsNativeOpts = {
         blockAdLoad: true
@@ -1906,8 +1907,11 @@
 
             // Fetch all the game elements on page tieing click listeners 
             // Create adsnative object manually because we are blocking render js on load.
-            var ingame_placement = new AdsNative('wN3YSfjO3Cq1NmGJrgZCo5zV7vQ-EGU87tJU0SH4', ['test']),
-            	gameElements = document.getElementsByClassName('zing-games-list-game');
+            var ingame_placement1 = new AdsNative('wN3YSfjO3Cq1NmGJrgZCo5zV7vQ-EGU87tJU0SH4', ['test']),
+                gameElements = document.getElementsByClassName('zing-games-list-game'),
+                ingame_placement2 = new AdsNative('5QUNkucI0gPvm-pqRhc_8e-7LbUshvUuXwEsv7OQ', ['test']);
+
+
 
             // Loop through and add event listeners for "click" action
             for (var i = 0; i < gameElements.length; i++) {
@@ -1920,27 +1924,52 @@
                         console.log('Game container is on page');
 
                         // Fetch the ad from adsnative using placement id.
-                        ingame_placement.fetchAd(function(status) {
+                        ingame_placement1.fetchAd(function(status) {
                             if (status) { // If returned a valid campaign to display.
                                 console.log("Ad fetched to display");
 
-                                var didDisplay = ingame_placement.displayAd('in_game_ad1');
+                                var didDisplay = ingame_placement1.displayAd('in_game_ad1');
                                 if (!didDisplay) {
                                     console.log('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
                                 } else {
-                                	console.log('Ad was displayed successfully');
+                                    console.log('Ad was displayed successfully');
                                 }
                             } else {
                                 console.log("No ad was fetched to display");
                             }
-                        });
-                    }
-                });
-            }
+                        }); //end of ingame_placement1.fetch ad
 
-        }, 3000);
+// Fetch the ad from adsnative using placement id.
+                        ingame_placement2.fetchAd(function(status) {
+                            if (status) { // If returned a valid campaign to display.
+                                console.log("Ad fetched to display");
 
-    }, false);
+                                var didDisplay = ingame_placement2.displayAd('in_game_ad2');
+                                if (!didDisplay) {
+                                    console.log('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
+                                } else {
+                                    console.log('Ad was displayed successfully');
+                                }
+                            } else {
+                                console.log("No ad was fetched to display");
+                            }
+                        }); //end of ingame_placement2.fetch ad
+
+
+
+                    } // end of if (document.getElementById('ap_in_game_landscape')) 
+
+
+
+
+                });  //end of gameElements[i].addEventListener('click', function(e)
+
+
+            } // end of for loop
+
+        }, 3000); // end of set time out.
+
+    }, false); // end of addEvenListner
     </script>
     <noscript>
         <img height="1" width="1" style="display:none;" alt="" src="https://analytics.twitter.com/i/adsct?txn_id=l6lnl&p_id=Twitter&tw_sale_amount=0&tw_order_quantity=0" />
