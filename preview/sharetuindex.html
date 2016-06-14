@@ -1903,15 +1903,13 @@
     document.addEventListener('DOMContentLoaded', function() {
 
         // Wait for approx 3 seconds for addplay cwidget to load
-        setTimeout(function() {
+        var CheckAddPlayWidgetTimer = setTimeInterval(function() {
 
             // Fetch all the game elements on page tieing click listeners 
             // Create adsnative object manually because we are blocking render js on load.
             var ingame_placement1 = new AdsNative('wN3YSfjO3Cq1NmGJrgZCo5zV7vQ-EGU87tJU0SH4', ['test']),
                 gameElements = document.getElementsByClassName('zing-games-list-game'),
                 ingame_placement2 = new AdsNative('5QUNkucI0gPvm-pqRhc_8e-7LbUshvUuXwEsv7OQ', ['test']);
-
-
 
             // Loop through and add event listeners for "click" action
             for (var i = 0; i < gameElements.length; i++) {
@@ -1921,6 +1919,8 @@
 
                     // Check for game container
                     if (document.getElementById('in_game_ad1')) {
+                        // Clear timeinterval
+                        clearTimeInterval(CheckAddPlayWidgetTimer);
                         console.log('Game container is on page');
 
                         // Fetch the ad from adsnative using placement id.
@@ -1954,21 +1954,10 @@
                                 console.log("No ad was fetched to display");
                             }
                         }); //end of ingame_placement2.fetch ad
-
-
-
                     } // end of if (document.getElementById('ap_in_game_landscape')) 
-
-
-
-
                 });  //end of gameElements[i].addEventListener('click', function(e)
-
-
             } // end of for loop
-
-        }, 3000); // end of set time out.
-
+        }, 100); // end of set time interval.
     }, false); // end of addEvenListner
     </script>
     <noscript>
