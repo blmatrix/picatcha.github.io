@@ -422,9 +422,9 @@ $('#tablepress-642').dataTable({"order":[],"orderClasses":false,"stripeClasses":
 
         // Fetch all the game elements on page tieing click listeners 
         // Create adsnative object manually because we are blocking render js on load.
-        var ingame_placement1 = new AdsNative('wN3YSfjO3Cq1NmGJrgZCo5zV7vQ-EGU87tJU0SH4', ['test']),
-            ingame_placement2 = new AdsNative('5QUNkucI0gPvm-pqRhc_8e-7LbUshvUuXwEsv7OQ', ['test']),
-            pregame_placement = new AdsNative('QRMDGhbkOhRuog0b18EZgLlRYeyHEcI_X82kOBnJ', ['test']),
+        var ingame_placement1 = new AdsNative('V_sghPfdjfnjmR2Vvnzo6F0O0BNu4R9oyxNtUedP', ['test1']),
+            ingame_placement2 = new AdsNative('UQp0Zb8HCX34oJijwICJEtxVzvlAQkQFCgN1ZY_1', ['test2']),
+            pregame_placement = new AdsNative('htmT7OxJd_LwVdaLmzdmvIgt2IF46tGWKVC93pUS', ['test2']),
             gameElements = document.getElementsByClassName('zing-games-list-game');
 
         // After publisher page load : Check every 100ms to see if AddPlay widget is loaded on the page
@@ -447,6 +447,7 @@ $('#tablepress-642').dataTable({"order":[],"orderClasses":false,"stripeClasses":
                 preGameContainer.id = "preGameContainer";
                 if(addPlayWidget.offsetWidth <= 557) {
                 	// pre-game placement added to the end of the game elements, rendered at the bottom of the widget
+                	preGameContainer.style.marginRight = 
                 	addPlayWidget.appendChild(preGameContainer);
                 } else {
                 	// pre-game placement added in the middle of the game elements, rendered to the right of widget
