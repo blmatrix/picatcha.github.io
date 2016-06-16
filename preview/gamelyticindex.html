@@ -451,7 +451,7 @@ $('#tablepress-642').dataTable({"order":[],"orderClasses":false,"stripeClasses":
                 	addPlayWidget.appendChild(preGameContainer);
                 } else {
                 	// pre-game placement added in the middle of the game elements, rendered to the right of widget
-                	addPlayWidget.insertBefore(preGameContainer, addPlayWidget.childNodes[addPlayWidget.childNodes.length / 2]);
+                	addPlayWidget.insertBefore(preGameContainer, addPlayWidget.childNodes[parseInt(addPlayWidget.childNodes.length / 2)]);
                 }
 
                 pregame_placement.fetchAd(function(status) {
