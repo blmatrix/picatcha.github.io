@@ -408,120 +408,17 @@ $('#tablepress-642').dataTable({"order":[],"orderClasses":false,"stripeClasses":
 });
 </script></div> <!-- #weaver-final -->
 
-    <!-- Begin ADSNATIVE Code -->
-    <script type="text/javascript">
+<!-- Begin ADSNATIVE Code -->
+<script type="text/javascript">
     var _AdsNativeOpts = {
         blockAdLoad: true
     };
-    </script>
-    <script type="text/javascript" src="//static.adsnative.com/static/js/render.v1.js"></script>
-    <script type="text/javascript">
-    // Wait for the publisher page to load
-
-    document.addEventListener('DOMContentLoaded', function() {
-
-        // Fetch all the game elements on page tieing click listeners 
-        // Create adsnative object manually because we are blocking render js on load.
-        var ingame_placement1 = new AdsNative('V_sghPfdjfnjmR2Vvnzo6F0O0BNu4R9oyxNtUedP', ['test1']),
-            ingame_placement2 = new AdsNative('UQp0Zb8HCX34oJijwICJEtxVzvlAQkQFCgN1ZY_1', ['test2']),
-            pregame_placement = new AdsNative('htmT7OxJd_LwVdaLmzdmvIgt2IF46tGWKVC93pUS', ['test2']),
-            gameElements = document.getElementsByClassName('zing-games-list-game');
-
-        // After publisher page load : Check every 100ms to see if AddPlay widget is loaded on the page
-        var CheckAddPlayWidgetTimer = setInterval(function() {
-
-            // Check for game container
-            if (document.getElementById('in_game_ad1')) {
-                console.log('Game container is on page');
-                // Clear timeinterval since we found the AddPlay widget loaded on the page
-                clearInterval(CheckAddPlayWidgetTimer);
-
-                // Remove outstream ad
-                var outstream_ad = document.getElementById('outstream_ad');
-                outstream_ad.parentNode.removeChild(outstream_ad);
-
-                // Add Pre-game container -> fetch ad -> render ad
-                var addPlayWidget = document.getElementById('games_row'),
-                	preGameContainer = document.createElement("div"),
-                	gamesInRow = parseInt(addPlayWidget.childNodes.length / 2);
-
-                preGameContainer.id = "preGameContainer";
-                if(addPlayWidget.offsetWidth <= 557) {
-                	// pre-game placement added to the end of the game elements, rendered at the bottom of the widget
-                	addPlayWidget.appendChild(preGameContainer);
-                } else {
-                	// pre-game placement added in the middle of the game elements, rendered to the right of widget
-                	addPlayWidget.insertBefore(preGameContainer, addPlayWidget.childNodes[gamesInRow]);
-                }
-
-                pregame_placement.fetchAd(function(status) {
-                    if (status) { // If returned a valid campaign to display.
-                        console.log("Ad fetched to display");
-
-                        var didDisplay = pregame_placement.displayAd("preGameContainer");
-                        if (!didDisplay) {
-                            console.log('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
-                        } else {
-                            console.log('Ad was displayed successfully');
-                            if(addPlayWidget.offsetWidth <= 557) {
-                            	document.getElementById('an-class').style.margin = '6px auto';
-                            } else {
-	                            var marginRight = addPlayWidget.offsetWidth - (gamesInRow * (gameElements[0].offsetWidth + 5)) - 300;
-	                            document.getElementById('an-class').style.marginRight = marginRight + "px";
-                            	document.getElementById('an-class').style.cssFloat = 'right';
-                            }
-                        }
-                    } else {
-                        console.log("No ad was fetched to display");
-                    }
-                }); //end of pregame_placement.fetch ad
-
-                // Loop through and add event listeners for "click" action
-                for (var i = 0; i < gameElements.length; i++) {
-                    console.log('Adding event listener for : ', gameElements[i]);
-                    gameElements[i].addEventListener('click', function(e) {
-                        console.log('User clicked : ' + e.target);
-
-                        // Fetch the ad from adsnative using placement id.
-                        ingame_placement1.fetchAd(function(status) {
-                            if (status) { // If returned a valid campaign to display.
-                                console.log("Ad fetched to display");
-
-                                var didDisplay = ingame_placement1.displayAd('in_game_ad1');
-                                if (!didDisplay) {
-                                    console.log('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
-                                } else {
-                                    console.log('Ad was displayed successfully');
-                                }
-                            } else {
-                                console.log("No ad was fetched to display");
-                            }
-                        }); //end of ingame_placement1.fetch ad
-
-                        // Fetch the ad from adsnative using placement id.
-                        ingame_placement2.fetchAd(function(status) {
-                            if (status) { // If returned a valid campaign to display.
-                                console.log("Ad fetched to display");
-
-                                var didDisplay = ingame_placement2.displayAd('in_game_ad2');
-                                if (!didDisplay) {
-                                    console.log('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
-                                } else {
-                                    console.log('Ad was displayed successfully');
-                                }
-                            } else {
-                                console.log("No ad was fetched to display");
-                            }
-                        }); //end of ingame_placement2.fetch ad
-                    }); //end of click addEvenListner
-                } // end of for loop
-            }
-        }, 100); // end of set time interval.
-    }, false); // end of DOMContentLoaded addEvenListner
-    </script>
-    <!-- End ADSNATIVE Code -->
-
-
+</script>
+<script type="text/javascript" src="//static.adsnative.com/static/js/render.v1.js"></script>
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded",function(){var e=new AdsNative("V_sghPfdjfnjmR2Vvnzo6F0O0BNu4R9oyxNtUedP",["test1"]),t=new AdsNative("UQp0Zb8HCX34oJijwICJEtxVzvlAQkQFCgN1ZY_1",["test2"]),n=new AdsNative("htmT7OxJd_LwVdaLmzdmvIgt2IF46tGWKVC93pUS",["test2"]),d=document.getElementsByClassName("zing-games-list-game"),a=setInterval(function(){if(document.getElementById("in_game_ad1")){clearInterval(a);var i=document.getElementById("games_row"),s=document.createElement("div"),o=parseInt(i.childNodes.length/2),m=document.getElementById("outstream_ad");m.parentNode.removeChild(m),s.id="preGameContainer",i.offsetWidth<=557?i.appendChild(s):i.insertBefore(s,i.childNodes[o]),n.fetchAd(function(e){if(e&&n.displayAd("preGameContainer"))if(i.offsetWidth<=557)document.getElementById("an-class").style.margin="6px auto";else{var t=i.offsetWidth-o*(d[0].offsetWidth+5)-300;document.getElementById("an-class").style.marginRight=t+"px",document.getElementById("an-class").style.cssFloat="right"}});for(var l=0;l<d.length;l++)d[l].addEventListener("click",function(n){e.fetchAd(function(t){t&&e.displayAd("in_game_ad1")}),t.fetchAd(function(e){e&&t.displayAd("in_game_ad2")})})}},100)},!1);
+</script>
+<!-- End ADSNATIVE Code -->
 
 
 </body>
