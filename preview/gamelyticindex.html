@@ -465,6 +465,11 @@ $('#tablepress-642').dataTable({"order":[],"orderClasses":false,"stripeClasses":
                             console.log('Ad was displayed successfully');
                             var marginRight = addPlayWidget.offsetWidth - (gamesInRow * gameElements[0].offsetWidth) - 300;
                             document.getElementById('an-class').style.marginRight = marginRight + "px";
+                            if(addPlayWidget.offsetWidth <= 557) {
+                            	document.getElementById('an-class').style.margin = '6px auto';
+                            } else {
+                            	document.getElementById('an-class').style.cssFloat = 'right';
+                            }
                         }
                     } else {
                         console.log("No ad was fetched to display");
