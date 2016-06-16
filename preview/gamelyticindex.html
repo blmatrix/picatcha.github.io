@@ -408,8 +408,7 @@ $('#tablepress-642').dataTable({"order":[],"orderClasses":false,"stripeClasses":
 });
 </script></div> <!-- #weaver-final -->
 
-
-<!-- Begin ADSNATIVE Code -->
+    <!-- Begin ADSNATIVE Code -->
     <script type="text/javascript">
     var _AdsNativeOpts = {
         blockAdLoad: true
@@ -423,9 +422,9 @@ $('#tablepress-642').dataTable({"order":[],"orderClasses":false,"stripeClasses":
 
         // Fetch all the game elements on page tieing click listeners 
         // Create adsnative object manually because we are blocking render js on load.
-        var ingame_placement1 = new AdsNative('V_sghPfdjfnjmR2Vvnzo6F0O0BNu4R9oyxNtUedP', ['test1']),
-            ingame_placement2 = new AdsNative('UQp0Zb8HCX34oJijwICJEtxVzvlAQkQFCgN1ZY_1', ['test2']),
-            pregame_placement = new AdsNative('htmT7OxJd_LwVdaLmzdmvIgt2IF46tGWKVC93pUS', ['test2']),
+        var ingame_placement1 = new AdsNative('wN3YSfjO3Cq1NmGJrgZCo5zV7vQ-EGU87tJU0SH4', ['test']),
+            ingame_placement2 = new AdsNative('5QUNkucI0gPvm-pqRhc_8e-7LbUshvUuXwEsv7OQ', ['test']),
+            pregame_placement = new AdsNative('QRMDGhbkOhRuog0b18EZgLlRYeyHEcI_X82kOBnJ', ['test']),
             gameElements = document.getElementsByClassName('zing-games-list-game');
 
         // After publisher page load : Check every 100ms to see if AddPlay widget is loaded on the page
@@ -437,17 +436,28 @@ $('#tablepress-642').dataTable({"order":[],"orderClasses":false,"stripeClasses":
                 // Clear timeinterval since we found the AddPlay widget loaded on the page
                 clearInterval(CheckAddPlayWidgetTimer);
 
+                // Remove outstream ad
+                var outstream_ad = document.getElementById('outstream_ad');
+                outstream_ad.parentNode.removeChild(outstream_ad);
+
                 // Add Pre-game container -> fetch ad -> render ad
-                var divElement = document.createElement("div");
-                divElement.id = "pregame_divId";
-                var mydiv = document.getElementById('games_row');
-                mydiv.appendChild(divElement);
+                var addPlayWidget = document.getElementById('games_row'),
+                	preGameContainer = document.createElement("div");
+
+                preGameContainer.id = "preGameContainer";
+                if(addPlayWidget.offsetWidth <= 557) {
+                	// pre-game placement added to the end of the game elements, rendered at the bottom of the widget
+                	addPlayWidget.appendChild(preGameContainer);
+                } else {
+                	// pre-game placement added in the middle of the game elements, rendered to the right of widget
+                	addPlayWidget.insertBefore(preGameContainer, addPlayWidget.childNodes[addPlayWidget.childNodes.length / 2]);
+                }
 
                 pregame_placement.fetchAd(function(status) {
                     if (status) { // If returned a valid campaign to display.
                         console.log("Ad fetched to display");
 
-                        var didDisplay = pregame_placement.displayAd("pregame_divId" );
+                        var didDisplay = pregame_placement.displayAd("preGameContainer");
                         if (!didDisplay) {
                             console.log('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
                         } else {
@@ -500,9 +510,6 @@ $('#tablepress-642').dataTable({"order":[],"orderClasses":false,"stripeClasses":
             }
         }, 100); // end of set time interval.
     }, false); // end of DOMContentLoaded addEvenListner
-
-    //mydiv.innerHTML = mydiv.innerHTML + "pregame_divID";
-    // Fetch the ad from adsnative using placement id.
     </script>
     <!-- End ADSNATIVE Code -->
 
