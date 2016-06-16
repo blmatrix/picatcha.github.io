@@ -466,7 +466,7 @@ $('#tablepress-642').dataTable({"order":[],"orderClasses":false,"stripeClasses":
                             if(addPlayWidget.offsetWidth <= 557) {
                             	document.getElementById('an-class').style.margin = '6px auto';
                             } else {
-	                            var marginRight = addPlayWidget.offsetWidth - (gamesInRow * (gameElements[0].offsetWidth + 5) - 300);
+	                            var marginRight = addPlayWidget.offsetWidth - (gamesInRow * (gameElements[0].offsetWidth + 5)) - 300;
 	                            document.getElementById('an-class').style.marginRight = marginRight + "px";
                             	document.getElementById('an-class').style.cssFloat = 'right';
                             }
