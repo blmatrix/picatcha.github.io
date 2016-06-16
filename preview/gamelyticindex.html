@@ -463,7 +463,7 @@ $('#tablepress-642').dataTable({"order":[],"orderClasses":false,"stripeClasses":
                             console.log('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
                         } else {
                             console.log('Ad was displayed successfully');
-                            var marginRight = addPlayWidget.offsetWidth - (gamesInRow * gameElements[0].offsetWidth) - 300;
+                            var marginRight = addPlayWidget.offsetWidth - (gamesInRow * (gameElements[0].offsetWidth + 5) - 300;
                             document.getElementById('an-class').style.marginRight = marginRight + "px";
                             if(addPlayWidget.offsetWidth <= 557) {
                             	document.getElementById('an-class').style.margin = '6px auto';
