@@ -442,16 +442,16 @@ $('#tablepress-642').dataTable({"order":[],"orderClasses":false,"stripeClasses":
 
                 // Add Pre-game container -> fetch ad -> render ad
                 var addPlayWidget = document.getElementById('games_row'),
-                	preGameContainer = document.createElement("div");
+                	preGameContainer = document.createElement("div"),
+                	gamesInRow = parseInt(addPlayWidget.childNodes.length / 2);
 
                 preGameContainer.id = "preGameContainer";
                 if(addPlayWidget.offsetWidth <= 557) {
                 	// pre-game placement added to the end of the game elements, rendered at the bottom of the widget
-                	preGameContainer.style.marginRight = 
                 	addPlayWidget.appendChild(preGameContainer);
                 } else {
                 	// pre-game placement added in the middle of the game elements, rendered to the right of widget
-                	addPlayWidget.insertBefore(preGameContainer, addPlayWidget.childNodes[parseInt(addPlayWidget.childNodes.length / 2)]);
+                	addPlayWidget.insertBefore(preGameContainer, addPlayWidget.childNodes[gamesInRow]);
                 }
 
                 pregame_placement.fetchAd(function(status) {
@@ -463,6 +463,8 @@ $('#tablepress-642').dataTable({"order":[],"orderClasses":false,"stripeClasses":
                             console.log('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
                         } else {
                             console.log('Ad was displayed successfully');
+                            var marginRight = addPlayWidget.offsetWidth - (gamesInRow * gameElements[0].offsetWidth) - 300;
+                            document.getElementById('an-class').style.marginRight = marginRight + "px";
                         }
                     } else {
                         console.log("No ad was fetched to display");
