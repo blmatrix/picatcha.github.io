@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<!-- saved from url=(0170)https://s0.2mdn.net/ads/richmedia/studio/pv2/38647954/20160105134817974/454008_BREOAsthma_Icon_300x600.html?e=69&renderingType=2&leftOffset=0&topOffset=0&c=fHuxTOifhH&t=4 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="ad.size" content="width=300,height=600">
+<title>Breo</title>
+
+<script src="./easeljs-0.8.1.min.js"></script>
+<script src="./tweenjs-0.6.1.min.js"></script>
+<script src="./movieclip-0.8.1.min.js"></script>
+<script src="./preloadjs-0.6.1.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.2/TweenMax.min.js"></script> -->
+<script src="./CSSPlugin.min.js"></script>
+<script src="./EasePack.min.js"></script>
+<script src="./TweenLite.min.js"></script>
+<script src="./Enabler_01_93.js"> </script>
+<!-- <script src="DTR097R0_triumeq_branded_300x250.js"></script> -->
+<script src="./breo_300x600.js"></script>
+<script src="./scroll.js"></script>
+
+
+
+<script>
+
+var canvas, stage, exportRoot;
+//overall
+//var clickTag = "https://www.mybreo.com/asthma.html";
+var clickTag = "https://www.mybreo.com/asthma/about-breo.html";
+//PI
+var clickTag2 = "https://www.gsksource.com/pharma/content/dam/GlaxoSmithKline/US/en/Prescribing_Information/Breo_Ellipta/pdf/BREO-ELLIPTA-PI-MG.PDF";
+//Med guide
+var clickTag3 = "https://www.gsksource.com/pharma/content/dam/GlaxoSmithKline/US/en/Prescribing_Information/Breo_Ellipta/pdf/BREO-ELLIPTA-PI-MG.PDF#page=47";
+//CTA
+var clickTag4 = "https://www.mybreo.com/asthma/savings-and-offers.html";
+//Med watch (link at bottom of isi) 
+var clickTag5 = "https://www.fda.gov/Safety/MedWatch/default.htm";
+var clickTag6 = "https://us.gsk.com";
+var clickTagFinal = "https://www.mybreo.com/asthma/savings-and-offers.html";
+var clickTag7 = "https://www.mybreo.com/asthma.html";
+
+
+function init() {
+	canvas = document.getElementById("canvas");
+    images = images||{};
+
+	var loader = new createjs.LoadQueue(false);
+	loader.addEventListener("fileload", handleFileLoad);
+	loader.addEventListener("complete", handleComplete);
+	loader.loadManifest(lib.properties.manifest);
+}
+
+function handleFileLoad(evt) {
+	if (evt.item.type == "image") { images[evt.item.id] = evt.result; }
+}
+
+function handleComplete(evt) {
+	var queue = evt.target;
+	exportRoot = new lib.breo_300x600();
+
+	stage = new createjs.Stage(canvas);
+	stage.enableMouseOver();
+    createjs.Touch.enable(stage)
+	stage.addChild(exportRoot);
+	stage.update();
+
+	createjs.Ticker.setFPS(lib.properties.fps);
+	createjs.Ticker.addEventListener("tick", stage);
+	
+	if (Enabler.isInitialized()) {
+      enablerInitHandler();
+
+    } else {
+	  
+      Enabler.addEventListener(studio.events.StudioEvent.INIT, enablerInitHandler);  
+    }
+	
+}
+
+
+function enablerInitHandler() {
+	//console.log("function called");
+	//this works
+	//exportRoot.mainBanner.gotoAndPlay("playBanner");
+	//this works as well
+//	Enabler.setExpandingPixelOffsets(0, 0, 300, 500, false, false);
+	if (Enabler.isPageLoaded()) {
+		pageLoadedHandler();
+	} else {
+		Enabler.addEventListener(studio.events.StudioEvent.PAGE_LOADED,
+		pageLoadedHandler);
+	}
+
+
+}
+
+function pageLoadedHandler() {
+	//console.log("pageload handler");
+	if (Enabler.isVisible()) {
+		adVisibilityHandler();
+	} else {
+		Enabler.addEventListener(studio.events.StudioEvent.VISIBLE,
+		adVisibilityHandler);
+	}
+
+// Load in additional assets or add animation/video
+}
+
+function adVisibilityHandler() {
+	//console.log("should play banner");
+	exportRoot.initBanner();
+	// Load in additional assets or start the animation/video
+}
+this.mybreoExit = function() {
+  // Enabler.exit("Main Exit", "https://us.triumeq.com/");
+  Enabler.exit("my breo exit", clickTag7);
+  // window.open(window.clickTag);
+} 
+
+this.ctaExit = function() {
+	// Enabler.exit("Main Exit", "https://us.triumeq.com/");
+	Enabler.exit("cta Exit", clickTag4);
+	// window.open(window.clickTag);
+}
+this.ctExitFinal = function() {
+	Enabler.exit("ct Exit Final", clickTagFinal);
+	//window.open(window.clickTag4);
+}	
+
+this.preExit = function() {
+	Enabler.exit("Prescribing Info Exit",clickTag2);
+	// window.open(window.clickTag2);
+}
+	  
+this.medExit = function() {
+	Enabler.exit("Med guide Exit", clickTag3);
+	//  window.open(window.clickTag3);
+}	
+
+this.ctExit = function() {
+	Enabler.exit("ct Exit", clickTag);
+	//window.open(window.clickTag4);
+}		  	  
+this.isiExit = function() {
+	Enabler.exit("ISI Exit", clickTag5);
+	//  window.open(window.clickTag5);
+}	
+this.gskExit = function() {
+	Enabler.exit("GSK Exit", clickTag6);
+	//  window.open(window.clickTag5);
+}	
+
+
+</script>
+<link href="./css(3)" rel="stylesheet" type="text/css">
+<link href="./breo_styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onload="init();" style="background-color:#D4D4D4;margin-left:0;margin-top:0;overflow:hidden;">
+	<canvas id="canvas" width="300" height="600" style="background-color:#FFFFFF"></canvas>
+   
+   <div id="isiText" style="height: 208px; display: block; transform: matrix(1, 0, 0, 1, 1, 375); width: 292px;">
+     <h1><strong>Important Safety Information </strong><img id="scrollhere" src="./scrollhere.gif"><br></h1>
+<ul>
+  <li><strong>People with asthma who take long-acting beta<sub>2</sub>-adrenergic agonist</strong> <strong>(LABA) medicines, such as vilanterol (one of the medicines in BREO), have an increased risk of death from asthma problems. </strong>It is not known whether fluticasone furoate, the other medicine in BREO, reduces the risk of death from asthma problems seen with LABA medicines. <strong></strong></li>
+  <li><strong>Call your healthcare provider if breathing problems worsen over time </strong><strong>while using BREO. </strong></li>
+  <li><strong>Get emergency medical care if </strong>your breathing problems worsen quickly, or if you use your rescue inhaler, but it does not relieve your breathing problems. </li>
+  <li>BREO should be used only if your healthcare provider decides that your asthma is not well controlled with a long-term asthma control medicine, such as an inhaled corticosteroid.<strong></strong></li>
+  <li>When your asthma is well controlled, your healthcare provider may tell you to stop taking BREO. Your healthcare provider will decide if you can stop BREO without loss of asthma control. Your healthcare provider may prescribe a different asthma control medicine for you, such as an inhaled corticosteroid. </li>
+  <li>Children and adolescents who take LABA medicines may have an increased risk of being hospitalized for asthma problems. </li>
+  <li>BREO should not be used in children and adolescents. It is not known if BREO is safe and effective in children and adolescents younger than 18 years of age. </li>
+  <li><strong>Do not use BREO to relieve sudden breathing problems. </strong>Always have a rescue inhaler with you to treat sudden symptoms.</li>
+  <li>Do not use BREO if you have a severe allergy to milk proteins or are allergic to any of the ingredients in BREO. Ask your healthcare provider if you are not sure. <strong></strong></li>
+  <li><strong>Do not </strong>use BREO more often than prescribed.</li>
+  <li><strong>Do not take BREO with other medicines that contain a LABA for any reason. Tell your healthcare provider about all the medicines you take and about all of your health conditions.</strong></li>
+  <li><strong>BREO can cause serious side effects, including:</strong>
+    <ul>
+      <li><strong>fungal infection in your mouth or throat (thrush). </strong>Rinse your mouth with water without swallowing after using BREO to help reduce your chance of getting thrush.<strong> </strong></li>
+      <li><strong>weakened immune system and increased chance of getting infections (immunosuppression). </strong>You should avoid exposure to chickenpox and measles, and, if exposed, consult your healthcare provider without delay. Worsening of existing tuberculosis, fungal, bacterial, viral, or parasitic infections, or herpes infection of the eye may occur.<strong></strong></li>
+      <li><strong>reduced adrenal function </strong><strong>(adrenal insufficiency). </strong>This can happen when you stop taking an oral corticosteroid (such as prednisone) and start taking a medicine containing an inhaled corticosteroid (such as BREO). During this transition period, when your body is under stress such as from fever, trauma (such as a car accident), infection, surgery, or worse chronic obstructive pulmonary disease symptoms, adrenal insufficiency can get worse and may cause death. Symptoms include: feeling tired; lack of energy; weakness; nausea and vomiting; low blood pressure.<strong></strong></li>
+      <li><strong>sudden breathing problems immediately after inhaling your medicine. </strong>If you have sudden breathing problems immediately after inhaling your medicine, stop taking BREO and call your healthcare provider right away. <strong></strong></li>
+      <li><strong>serious allergic reactions. </strong>Call your healthcare provider or get emergency medical care if you get any of the following symptoms of a serious allergic reaction: rash; hives; swelling of your face, mouth, and tongue; breathing problems. <strong></strong></li>
+      <li><strong>effects on heart: </strong>increased blood pressure; a fast or irregular heartbeat, awareness of heartbeat; chest pain.<strong></strong></li>
+      <li><strong>effects on nervous system: </strong>tremor; nervousness. </li>
+      <li><strong>bone thinning or weakness (osteoporosis) </strong></li>
+      <li><strong>eye problems including glaucoma and cataracts. </strong>You should have regular eye exams while using BREO. </li>
+      <li><strong>changes in laboratory blood values (sugar, potassium)</strong><strong> </strong></li>
+      <li><strong>slowed growth in children</strong><strong> </strong></li>
+    </ul>
+  </li>
+  <li><strong>Common side effects of BREO for asthma include: </strong>
+    <ul>
+      <li>runny nose and sore throat<strong> </strong></li>
+      <li>thrush in your mouth or throat. Rinse your mouth with water without swallowing after use to help prevent this.</li>
+      <li>headache</li>
+      <li>flu</li>
+      <li>respiratory tract infection</li>
+      <li>bronchitis</li>
+      <li>inflammation of the sinuses</li>
+      <li>mouth and throat pain</li>
+      <li>hoarseness and voice changes</li>
+      <li>cough</li>
+    </ul>
+  </li>
+</ul>
+  <p><strong>You are encouraged to report negative side effects of prescription drugs to the FDA. Visit <a href="https://s0.2mdn.net/ads/richmedia/studio/pv2/38647954/20160105134817974/454008_BREOAsthma_Icon_300x600.html?e=69&amp;renderingType=2&amp;leftOffset=0&amp;topOffset=0&amp;c=fHuxTOifhH&amp;t=4#" onclick="isiExit()" tabindex="-1">www.fda.gov/medwatch</a>, or call 1-800-FDA-1088.</strong></p>
+   </div>
+
+
+</body></html>
