@@ -999,7 +999,7 @@
                                                     </div>
 
                                                     <!-- an-container -->
-                                                    <div id="xH-NgJsE7FkwBJgCjH9EEo2uNvfpx0knbwoJv8go"> </div>
+                                                    <div id="DjoIbK22BJk7yWFbokClnQiai9cpWpMxOvgNwuXe"> </div>
 
                                                     <div class="stream-item">
                                                         <div class="item-container">
@@ -1858,7 +1858,7 @@
     <!-- Begin ADSNATIVE Code -->
     <!--     <script type="text/javascript">
       var _AdsNativeOpts = {
-        apiKey: 'xH-NgJsE7FkwBJgCjH9EEo2uNvfpx0knbwoJv8go',
+        apiKey: 'DjoIbK22BJk7yWFbokClnQiai9cpWpMxOvgNwuXe',
         autoPosition: true
       };
     </script>
@@ -1874,12 +1874,12 @@
     <script type="text/javascript" src="//static.adsnative.com/static/js/render.v1.pocket.js"></script>
     <!-- End ADSNATIVE Code -->
     <script type="text/javascript">
-    var infeed_placement = new AdsNative('xH-NgJsE7FkwBJgCjH9EEo2uNvfpx0knbwoJv8go', []);
+    var infeed_placement = new AdsNative('DjoIbK22BJk7yWFbokClnQiai9cpWpMxOvgNwuXe', []);
     infeed_placement.fetchAd(function(status, adObj) {
         window.adObj = adObj;
         if (status) { // If returned a valid campaign to display.
             $(document).ready(function() {
-                var didDisplay = infeed_placement.displayAd('xH-NgJsE7FkwBJgCjH9EEo2uNvfpx0knbwoJv8go');
+                var didDisplay = infeed_placement.displayAd('DjoIbK22BJk7yWFbokClnQiai9cpWpMxOvgNwuXe');
                 if (!didDisplay) {
                     console.log('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
                 } else {
@@ -1904,6 +1904,18 @@
                             $('.an-item').append("<img class='an-tracker' style=\"width:1px;height:1px;\" width='0' height='0' border='0' src=\"" + tracker + "\"/>");
                             $('.an-item .share').html('Shared');
                             console.log('share tracked');
+                        }
+                    });
+
+                    $('.an-item .install').on('click', function() {
+                        var customActions = window.adObj.ad.trackingUrls.actions;
+                        if (customActions.installed) {
+                            var tracker = customActions.installed[0];
+
+                            $('.an-item .install').addClass('an-action');
+                            $('.an-item').append("<img class='an-tracker' style=\"width:1px;height:1px;\" width='0' height='0' border='0' src=\"" + tracker + "\"/>");
+                            $('.an-item .install').html('Installed');
+                            console.log('install tracked');
                         }
                     });
                 }
