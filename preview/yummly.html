@@ -2667,19 +2667,16 @@
                 if (!didDisplay) {
                     console.log('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
                 } else {
-                    $('.an-item .like').on('click', function() {
+                    $('.an-item .yum').on('click', function() {
                         var customActions = window.adObj.ad.trackingUrls.actions;
-                        if (customActions.liked) {
-                            var tracker = customActions.liked[0];
+                        if (customActions.Yums) {
+                            var tracker = customActions.Yums[0];
 
-                            $('.an-item .like').addClass('an-action');
+                            $('.an-item .btn-yum').addClass('yummed');
                             $('.an-item').append("<img class='an-tracker' style=\"width:1px;height:1px;\" width='0' height='0' border='0' src=\"" + tracker + "\"/>");
-                            $('.an-item .like').html('Liked');
-                            console.log('like tracked');
+                            console.log('Yum tracked');
                         }
                     });
-
-                    
                 }
             });
         }
