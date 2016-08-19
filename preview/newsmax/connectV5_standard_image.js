@@ -28,7 +28,7 @@
             screenWidth = window.innerWidth,
             numAds = 0,
             apiKey = '';
-console.log(val);
+
         if(val === 1234) {
             if(screenWidth <= 480) {
                 numAds = 4;
@@ -49,6 +49,14 @@ console.log(val);
             }
 
             apiKey = '_KqFQgIsOm33tKM_DbFPi93FtUzSZG_nZQNrAHLw';
+        } else if(val === 3456) {
+            if(screenWidth <= 480) {
+                numAds = 5;
+            } else {
+                numAds = 8;
+            }
+
+            apiKey = 'q9XdoqNG8Qxwv1eqdUsd2nO60m-T4IsCVWkZL35O';
         }
 
         _AdsNativeOpts = {
