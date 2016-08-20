@@ -29,7 +29,7 @@
             numAds = 0,
             apiKey = '';
 
-        if(val === 1234) {
+        if(val === 1234) { // Standard Image
             if(screenWidth <= 480) {
                 numAds = 4;
             } else if(screenWidth <= 720) {
@@ -39,7 +39,7 @@
             }
 
             apiKey = 'Ypi1vILq3qiQt5aRuLC_Meg_JULNq_Re34TQhYJW';
-        } else if(val === 2345) {
+        } else if(val === 2345) { // Standard Image - Mobile 2 columns
             if(screenWidth <= 480) {
                 numAds = 8;
             } else if(screenWidth <= 720) {
@@ -49,7 +49,7 @@
             }
 
             apiKey = '_KqFQgIsOm33tKM_DbFPi93FtUzSZG_nZQNrAHLw';
-        } else if(val === 3456) {
+        } else if(val === 3456) { // 
             if(screenWidth <= 480) {
                 numAds = 5;
             } else {
@@ -57,7 +57,7 @@
             }
 
             apiKey = 'q9XdoqNG8Qxwv1eqdUsd2nO60m-T4IsCVWkZL35O';
-        } else if(val === 4567) {
+        } else if(val === 4567) { // 
             if(screenWidth <= 480) {
                 numAds = 5;
             } else {
@@ -65,6 +65,16 @@
             }
 
             apiKey = 'fOfp7ReOZp66gTJZB9iKjc_hJYxJ4Mn3ajTJNnn-';
+        } else if(val === 5678) { // Leaderboard
+            if(screenWidth <= 480) {
+                numAds = 2;
+            } else if(screenWidth <= 960) {
+                numAds = 4;
+            } else if(screenWidth > 960) {
+                numAds = 5;
+            }
+
+            apiKey = 'xUW9N6alquSbevlEwDxW0rEP_UahXpmuH1pBkgh-';
         }
 
         _AdsNativeOpts = {
