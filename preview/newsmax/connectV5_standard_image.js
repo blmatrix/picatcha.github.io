@@ -66,13 +66,7 @@
 
             apiKey = 'fOfp7ReOZp66gTJZB9iKjc_hJYxJ4Mn3ajTJNnn-';
         } else if(val === 5678) { // Leaderboard
-            if(screenWidth <= 480) {
-                numAds = 2;
-            } else if(screenWidth <= 960) {
-                numAds = 4;
-            } else if(screenWidth > 960) {
-                numAds = 5;
-            }
+            numAds = 4;
 
             apiKey = 'xUW9N6alquSbevlEwDxW0rEP_UahXpmuH1pBkgh-';
         }
