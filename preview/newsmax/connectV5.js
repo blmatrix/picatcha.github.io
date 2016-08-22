@@ -1,283 +1,402 @@
 (function() {
 
-    var root = this;
-    var _urlParams = null;
-    var _nm = {};
+    var root = this,
+        _nm = {};
+
+    _nm.ArticleSelector = '';
+    _nm.ArticleAdContainer = 'NmWgInstream';
 
     root.NM = _nm;
 
-    var widgetLookupUrl = window.location.protocol + "//www.newsmaxfeednetwork.com/CMSPages/NewsMax/NMXChanges/widget.ashx";
-
-    if (!Object.keys) Object.keys = function(o) {
-        if (o !== Object(o))
-            throw new TypeError('Object.keys called on a non-object');
-        var k = [],
-            p;
-        for (p in o)
-            if (Object.prototype.hasOwnProperty.call(o, p)) k.push(p);
-        return k;
+    _AdRenderOpts = {
+        adUnits: []
     };
-
-    // _nm.init = function (param) {
-    //     var key = Object.keys(param)[0];
-    //     var val = param[key]
-    //     var widgetData = _nm.lookup_widget(key, val)
-
-    //     if (param.UrlParams) {
-    //         _urlParams = param.UrlParams;
-    //     }
-    // };
 
     _nm.init = function(param) {
         var key = Object.keys(param)[0],
-            val = param[key];
+            widgetId = param[key];
 
-        param.widgetID
+        // Instream widget
+        if (param.ArticleSelector) {
+            _nm.ArticleSelector = param.ArticleSelector;
+            if (_nm.ArticleSelector) {
+                _nm.insertInArticleWidget(widgetId);
+            }
+        } else {
+        // All other widgets
+            var adData = _nm.getStandardAdData(widgetId);
 
-        var containerWidth = document.getElementById('NmWg' + val).offsetWidth,
-            screenWidth = window.innerWidth,
-            numAds = 0;
+            adUnit = {
+                apiKey: adData.apiKey,
+                nativeAdElementId: 'NmWg' + widgetId
+            };
 
-        if(screenWidth <= 480) {
-            numAds = 4;
-        } else if(screenWidth <= 720) {
-            numAds = 6;
-        } else if(screenWidth > 720) {
-            numAds = (containerWidth <= 720) ? 8 : 10;
+            // Widgets requiring client side screen & container size based decisioning
+            if(adData.numAds) {
+                adUnit.numAds = adData.numAds;
+            }
+            
+            // Add unit to opts array
+            _AdRenderOpts.adUnits.push(adUnit);
         }
+        
+        // Once all the widgets "_nm.init()" has been invoked, initiate renderJS
+        _nm.insertRenderJs();
+    };
 
-        _AdsNativeOpts = {
-            apiKey: 'Ypi1vILq3qiQt5aRuLC_Meg_JULNq_Re34TQhYJW', 
-            autoPosition: true,
-            numAds: numAds,
-            nativeAdElementId: 'NmWg' + val
+    // In Article Widget
+    _nm.inArticleWidget = (function () {
+
+        var self = this,
+            content = {},
+            slots = [],
+            rules = [],
+            module = {};
+
+        // Main Selector
+        module.selector = '';
+
+        // Initializes the module
+        module.init = function (selector) {
+            module.selector = selector;
+            content = document.querySelector(selector);
+            return this;
         };
 
+        // Returns the possible insertion elements where the Slot can be appended in
+        module.addRule = function (rule, config, callback) {
+
+            rules.push({ name: rule, config: config, func: callback });
+            return this;
+        };
+
+        // Slot contains the Widgets to append
+        module.addSlot = function (slot) {
+            slots.push(slot);
+            return this;
+        };
+
+        // Return slots
+        module.getSlots = function (slot) {
+            return slots;
+        };
+
+        // Module Utils
+        module.utils = {
+            forEach: function (array, callback, scope) {
+                for (var i = 0; i < array.length; i++) {
+                    callback.call(scope, i, array[i]);
+                }
+            },
+            pushArray: function () {
+                var toPush = this.concat.apply([], arguments);
+                for (var i = 0, len = toPush.length; i < len; ++i) {
+                    this.push(toPush[i]);
+                }
+            }
+        };
+
+        // s7.0
+        // Appends Widget
+        self._append = function (slot, element) {
+            if (element.parentNode) {
+                element.parentNode.insertBefore(self._getAdTemplate(slot), element.nextSibling);
+            } else {
+                var e = content.appendChild(element);
+                e.appendChild(self._getAdTemplate(slot));
+            }
+        };
+
+        // s8.0
+        self._getAdTemplate = function (slot) {
+            var adContainer = document.createElement('div');
+            adContainer.id = slot;
+            adContainer.className = 'an-container';
+
+            return adContainer;
+        };
+
+        // s6.0
+        module.append = function () {
+
+            // Rules
+            var elems = [];
+            for (var i = 0; i < rules.length; i++) {
+                // Applies the rule and filters out unwanted elements
+                Array.prototype.push.apply(elems, rules[i].func.call(this, content, rules[i].config));
+            }
+
+            // Add placement adContainers into appropriate locations
+            if (elems.length > 0 && slots.length > 0) {
+                for (var i = 0; i < slots.length; i++) {
+                    if (elems.length > 0 && elems[i]) {
+                        // append slot
+                        self._append(slots[i], elems[i]);
+                    }
+                }
+            } else {
+                // No elements found lets try and append just one slot
+                if (slots.length > 0) {
+                    // append slot
+                    self._append(slots[0], document.createElement('div'));
+                }
+            }
+
+        };
+
+        // s5.0
+        // Plugins
+        module.Helpers = function () {
+
+            this.createRule = function (type) {
+                if (type === "Paragraph") {
+                    return ParagraphRule;
+                } else if (type === "Div") {
+                    return DivRule;
+                } else if (type === "Break") {
+                    return BreakRule;
+                }
+
+                return rule;
+            };
+
+            // Handles Paragraphs within an article
+            var ParagraphRule = function (element, config) {
+
+                if (!element)
+                    return;
+
+                var elements = [];
+                var filtered = [];
+                var all = element.querySelectorAll('p');
+                module.utils.forEach(all, function (i, node) {
+                    if (node.innerHTML.replace(/^\s+|\s+$/g, '') !== '' || node.nodeName === 'BR') {
+                        filtered.push(node);
+                    }
+                });
+
+                module.utils.forEach(filtered, function (i, node) {
+                    i++;
+                    if (i % config.appendSlotEvery === 0) {
+                        elements.push(node);
+                    }
+
+                });
+
+                return elements;
+
+            };
+
+            // Handles Divs within an article
+            var DivRule = function (element, config) {
+
+                if (!element)
+                    return;
+
+                var elements = [];
+                var filtered = [];
+                var all = element.querySelectorAll('div');
+                module.utils.forEach(all, function (i, node) {
+                    if (node.innerHTML.replace(/^\s+|\s+$/g, '') !== '') {
+                        filtered.push(node);
+                    }
+                });
+
+                module.utils.forEach(filtered, function (i, node) {
+                    i++;
+                    if (i % config.appendSlotEvery === 0) {
+                        elements.push(node);
+                    }
+                });
+
+                return elements;
+
+            };
+
+            // Handles Breaks within an article
+            var BreakRule = function (element, config) {
+
+                if (!element)
+                    return;
+
+                var elements = [];
+                var filtered = [];
+                var all = element.querySelectorAll('br');
+                module.utils.forEach(all, function (i, node) {
+                    filtered.push(node);
+                });
+
+                module.utils.forEach(filtered, function (i, node) {
+                    i++;
+                    if (i % config.appendSlotEvery === 0) {
+                        elements.push(node);
+                    }
+                });
+
+                return elements;
+            };
+        }
+
+        return module;
+
+    })();
+
+    _nm.insertInArticleWidget = function(widgetId) {
+        var adData = _nm.getInstreamData(widgetId);        
+            plugins = new _nm.inArticleWidget.Helpers(),
+            instreamWidget = _nm.inArticleWidget.init(_nm.ArticleSelector),
+            adUnits = [];
+            
+        for (var i = 0; i < adData.zoneCount; i++) {
+            instreamWidget.addSlot(_nm.ArticleAdContainer + widgetId + (i + 1));
+        }
+
+        instreamWidget.addRule('Paragraph', { appendSlotEvery: 3 }, plugins.createRule('Paragraph'));
+        instreamWidget.addRule('Div', { appendSlotEvery: 3 }, plugins.createRule('Div'));
+        instreamWidget.addRule('Break', { appendSlotEvery: 3 }, plugins.createRule('Break'));
+        instreamWidget.append();
+
+        for (var i = 0; i < adData.zoneCount; i++) {
+            var adUnit = {
+               apiKey: adData.apiKey,
+               keyValues: {widgetType: 'instream_article'},
+               nativeAdElementId: _nm.ArticleAdContainer + widgetId + (i + 1)
+            };
+
+            _AdRenderOpts.adUnits.push(adUnit);
+        }
+    };
+
+    _nm.insertRenderJs = function() {
         var antag = document.createElement('script');
         antag.async = true;
         antag.type = 'text/javascript';
-        antag.src ='http://static.adsnative.com/static/js/render.v1.src.js';
+        antag.src ='http://static.adsnative.com/static/js/render.v1.js';
+
         var node = document.getElementsByTagName('script')[0];
         node.parentNode.insertBefore(antag, node);
+    }
+
+    _nm.getStandardAdData = function(widgetId) {
+        console.log('render js : widgetId : ' + widgetId);
+
+        var numAds = 0,
+            apiKey = '',
+            containerWidth = document.getElementById('NmWg' + widgetId).offsetWidth,
+            screenWidth = window.innerWidth;
+
+        var migrationWidgets = {
+            standardImage: [
+                3667,4355,3944,4074,3726,4150,4446,212,3767,4038,4031,4301,768,3938,3683,4353,3613,370,4195,811,3983,4032,4217,259,4097,4456,4033,4090,4182,3220,3788,3626,4349,3685,3866,3740,3330,4414,4212,3703,4332,4317,3737,3496,4073,3686,4175,3819,3818,3536,4046,4215,3783,3707,3690,4199,4138,4141,4210,4286,4308,4307,4178,3658,3659,3290,3291,4048,745,803,841,3090,1035,561,4017,10,2,1,3292,3293,3520,3628,4070,3975,4442,4057,4155,3633,3952,4075,4088,3774,4152,3934,4279,3881,3742,3745,961,4221,4357,3935,3684,4176,3657,4128,4039,3583,4315,4453,3991,3704,4209,4179,4219,4440
+            ],
+            standardImage2Columns: [
+                281,4384,1038,512,251,4345,318,120,933,692,4457,746,738,398,4352,4460,4339,4058,697,157,790,760,4310,995,3192,323,4239,3577,3069,3231,1054,3162,3142,3219,570,871
+            ],
+            sidebarThumbnails: [
+                3513,3491,3464,789,3535,567,1024,661,4409,4391,4390,4427,4395,4425
+            ], // Fake widget for testing only (4567)
+            thumbnails2Columns: [
+                4567
+            ],
+            footer: [
+                4478,4466
+            ],
+            leaderboard: [
+                4055,3336,4089,4431,3651,3431,3164,3497,3337,4224,3569,3199,3747,3733,3928,3559,4407,3566,4404,4399,4203,3339,3922
+            ],
+            exit: [
+                4266,4271,3992,4272,4174,4037,3539,4216,4091,4438,4235,4172,4278,4228,4170,4232,4231,4233,4062,4167,4240,4166,4095,4238,4214,4126,4124,4342,4351,4163,4208,4382,4173,4274,4237,4319,4171,4068,4082,4328,4169,4441,4168,4443,4289,4327,4380,4222,4424,4341,4220,4439
+            ]
+        };
+
+        if(migrationWidgets.standardImage.indexOf(widgetId) >= 0) { // Standard Image
+            if(screenWidth <= 480) {
+                numAds = 4;
+            } else if(screenWidth <= 720) {
+                numAds = 6;
+            } else if(screenWidth > 720) {
+                numAds = (containerWidth <= 720) ? 8 : 10;
+            }
+
+            apiKey = 'Ypi1vILq3qiQt5aRuLC_Meg_JULNq_Re34TQhYJW';
+        } else if(migrationWidgets.standardImage2Columns.indexOf(widgetId) >= 0) { // Standard Image - Mobile 2 columns
+            if(screenWidth <= 480) {
+                numAds = 8;
+            } else if(screenWidth <= 720) {
+                numAds = 6;
+            } else if(screenWidth > 720) {
+                numAds = (containerWidth <= 720) ? 8 : 10;
+            }
+
+            apiKey = '_KqFQgIsOm33tKM_DbFPi93FtUzSZG_nZQNrAHLw';
+        } else if(migrationWidgets.sidebarThumbnails.indexOf(widgetId) >= 0) { // 
+            if(screenWidth <= 480) {
+                numAds = 5;
+            } else {
+                numAds = 8;
+            }
+
+            apiKey = 'q9XdoqNG8Qxwv1eqdUsd2nO60m-T4IsCVWkZL35O';
+        } else if(migrationWidgets.thumbnails2Columns.indexOf(widgetId) >= 0) { // 
+            if(screenWidth <= 480) {
+                numAds = 5;
+            } else {
+                numAds = 10;
+            }
+
+            apiKey = 'fOfp7ReOZp66gTJZB9iKjc_hJYxJ4Mn3ajTJNnn-';
+        } else if(migrationWidgets.leaderboard.indexOf(widgetId) >= 0) { // Leaderboard
+            numAds = 4;
+
+            apiKey = 'xUW9N6alquSbevlEwDxW0rEP_UahXpmuH1pBkgh-';
+        } else if(migrationWidgets.leaderboard.indexOf(widgetId) >= 0) { // Leaderboard
+            numAds = 4;
+
+            apiKey = 'xUW9N6alquSbevlEwDxW0rEP_UahXpmuH1pBkgh-';
+        } else if(widgetId === 3333) { // Standard Text
+            apiKey = '-SFwLyLSbH1f_H6ZiEdXjAI606mHNolNwXwhZr5p';
+        } else if(widgetId === 4444) { // Standard Text - 2 Columns
+            apiKey = 'dg9JDKC97-LeELRzo6eZ6TD4A5Otq6bF2sHwJwU7';
+        } else if(widgetId === 5555) { // Sidebar
+            apiKey = 'lVvZTxC5JO5r9lRGRjnNE3Y8kXrZEnRiohuQzYxk';
+        } else if(widgetId === 6666) { // Sidebar - 2 Columns
+            apiKey = 'YzynlJjr6UkajtdUDdXOFuBeow4N_r4BzAU2HjPo';
+        } else if(widgetId === 7777) { // Sidebar Text 
+            apiKey = '1VkNwolbgmZK4-JUsCtcGoD-LbPs6KgmAo361o_L';
+        } else if(widgetId === 1313) { // Footer
+            apiKey = '1VkNwolbgmZK4-JUsCtcGoD-LbPs6KgmAo361o_L';
+        }
+
+        return {numAds: numAds, apiKey: apiKey};
     };
 
-    _nm.lookup_widget = function(key, val) {
-        var script = document.createElement('script');
-        script.src = widgetLookupUrl + "?" + key + "=" + val + "&callback=load_ados";
-        document.getElementsByTagName('head')[0].appendChild(script);
-    }
+    _nm.getInstreamData = function(widgetId) {
+        var apiKey = '',
+            zoneCount = 0;
 
-    root.load_ados = function(widgetData) {
-
-        var delayAd = false;
-
-        if (widgetData["isBot"] && widgetData["isBot"].toLowerCase() == "true") {
-            console.log("FeedNetwork: this is a bot hit");
-            return;
-        }
-
-        params = widgetData["UrlParams"];
-        paramString = "";
-        for (var key in params) {
-            if (paramString != "") {
-                paramString += "&";
-            }
-            paramString += key + "=" + window.params[key];
-        }
-        paramString = "&" + paramString;
-
-        window["widget" + widgetData["WgID"] + "urlparams"] = paramString;
-        window["widget" + widgetData["WgID"] + "isDescriptionWidget"] = widgetData["WidgetType"] == "Description";
-        window["widget" + widgetData["WgID"] + "linkTarget"] = widgetData["LinkTarget"];
-        window["widget" + widgetData["WgID"] + "nofollow"] = widgetData["nofollow"].toLowerCase() == "true";
-
-        var widget = document.getElementById("NmWg" + widgetData["WgID"]);
-        if (!widget) {
-            widget = document.getElementById("nmWidgetContainer");
-        }
-        div = document.createElement("div");
-        div.id = "azkWidget" + widgetData["WgID"];
-        widget.appendChild(div, widget);
-
-        var widgetTemplateType = widgetData["WidgetTemplateType"];
-        switch (widgetTemplateType) {
-            case "Modal Widget":
-                delayAd = true
-                widget.style.display = 'none';
-            default:
-        }
-
-        _nm.loadScript("//static.adzerk.net/ados.js", function() {
-            if (!delayAd) {
-                _nm.make_adzerk_call(widgetData)
-            } else {
-                _nm.make_delayed_adzerk_call(widgetData)
-            }
-        });
-    }
-
-    _nm.make_adzerk_call = function(widgetData) {
-        var ados = ados || {};
-        ados.isAsync = true;
-        ados.writeInLine = false;
-
-        var networkId = 9650;
-
-        ados_add_placement(networkId, widgetData["SiteID"], "azkWidget" + widgetData["WgID"], 163).setZone(widgetData["WgZoneID"]);
-
-        var linkZone = widgetData["FlZoneIDs"];
-        for (var i = 0; i < linkZone.length; i++) {
-            ados_add_placement(networkId, widgetData["SiteID"], "azk" + widgetData["WgID"] + (i + 1), 13).setZone(linkZone[i]);
-        }
-        keywords = widgetData["Keywords"];
-        ados_keywords = keywords["PropertyDemo"] + "," + keywords["PropertyKeywords"] + "," + keywords["FeedKeywords"];
-
-        if ((/iphone|ipod|android|ie|blackberry|fennec/).test(navigator.userAgent.toLowerCase())) {
-            ados_keywords += ",mobile";
-        }
-
-        ados_setKeywords(ados_keywords);
-        ados_setDomain('engine.newsmaxfeednetwork.com');
-        ados_load();
-    }
-
-    _nm.make_delayed_adzerk_call = function(widgetData) {
-
-        var old_move = 0;
-        var delayedCalled = false;
-        var widget = document.getElementById("NmWg" + widgetData["WgID"]);
-        var cookieName = "NmWg" + widgetData["WgID"]
-
-        if (!widget) return;
-
-        document.documentElement.onmousemove = function(evt) {
-            var new_move = evt.clientY;
-            if (new_move < old_move && evt.clientY <= 15) {
-                if (delayedCalled === false) {
-                    _nm.make_adzerk_call(widgetData)
-                    delayedCalled = true
-                }
-
-                var c = document.cookie.match('(^|;) ?' + cookieName + '=([^;]*)(;|$)');
-                c = c ? c[2] : null;
-                if (!c) {
-                    widget.style.display = 'block';
-                } else {
-                    widget.style.display = 'none';
-                }
-            }
-            old_move = new_move;
+        var migrationWidgets = {
+            instreamNative: [
+                4285,4479,4465,4473,4472,4469
+            ], // Fake widget for testing only (5678)
+            instreamNativeSingle: [
+                5678
+            ],
+            instreamText: [
+                4071,3668,3377,3968,4356,3258,3306,4093,3265,4420,3324,3444,4063,4300,3386,4302,4387,4325,3434,4234,4267,4118,4061,4447,3487,4094,3279,3463,4455,3264,3376,3266,3920,4343,4143,3344,3624,4463,3225,3275,3387,4149,3308,3418,3282,4112,4326,3310,3322,3820,4122,3222,3320,4159,4370,3311,3281,4309,4410,3470,4402,4398,4044,4346,4419,3267,4125,3354,3323
+            ]
         };
 
-        widget.onclick = function(evt) {
-            if (!evt.target.hasAttribute('href')) {
-                widget.style.display = 'none';
-
-                var d = new Date;
-                d.setTime(d.getTime() + 60 * 60 * 1000);
-                document.cookie = cookieName + "=true;path=/;expires=" + d.toGMTString();
-            }
-        };
-
-    }
-
-    _nm.loadScript = function(url, callback) {
-        var head = document.getElementsByTagName("head")[0];
-        var script = document.createElement("script");
-        script.src = url;
-        var done = false;
-        script.onload = script.onreadystatechange = function() {
-            if (!done && (!this.readyState || this.readyState == "loaded" || this.readyState == "complete")) { done = true;
-                callback();
-                script.onload = script.onreadystatechange = null;
-                head.removeChild(script); } };
-        head.appendChild(script);
-    }
-
-    _nm.insertAfter = function(newElement, targetElement) {
-        var parent = targetElement.parentNode;
-        if (parent.lastchild == targetElement) {
-            parent.appendChild(newElement);
-        } else {
-            parent.insertBefore(newElement, targetElement.nextSibling);
+        if(migrationWidgets.instreamNative.indexOf(widgetId) >= 0) { // Instream Native
+            apiKey = 'V4iMbIJBp90urCcKW6tJ-1P912NtUNQ-aNtoB7FZ';
+            zoneCount = 2;
+        } else if(migrationWidgets.instreamNativeSingle.indexOf(widgetId) >= 0) { // Instream Native Single
+            apiKey = 'UNFVE-r4MA_VnXFyVlbSWKiAiTWyry2OuKNjBt1v';
+            zoneCount = 1;
+        } else if(migrationWidgets.instreamText.indexOf(widgetId) >= 0) { // Instream Native Text
+            apiKey = 'PDrlWfG46MxggK80h-wSZxBU4sprxhOq7pkNn_Ed';
+            zoneCount = 2;
         }
-    }
 
-    _nm.addDescriptionToLink = function(element) {
-        if (element.getElementsByTagName("a")[0]) {
-            link = element.getElementsByTagName("a")[0];
-            newlink = document.createElement("a");
-            newlink.href = link.href;
-            newlink.setAttribute("rel", "nofollow");
-            newlink.setAttribute("target", "_top");
-            if (element.getElementsByTagName("a")[1]) {
-                link2 = element.getElementsByTagName("a")[1];
-                newlink.innerHTML = '<p>' + link2.title + '</p>';
-                if (newlink.innerHTML != "<p></p>")
-                    _nm.insertAfter(newlink, link2);
-                _nm.insertAfter(document.createElement('br'), link2);
-            } else {
-                newlink.innerHTML = link.title;
-                _nm.insertAfter(newlink, link);
-            }
-        } else {
-            return setTimeout((function() {
-                return addDescriptionToLink(element);
-            }), 100);
-        }
-    }
-
-    root.updateLink = function(element, target, isNofollow) {
-        if (element && element.getElementsByTagName("a")[0]) {
-            as = element.getElementsByTagName("a");
-            for (i = 0; i < as.length; i++) {
-                if (isNofollow) {
-                    as[i].rel = "nofollow";
-                }
-                as[i].target = target;
-
-                if (_urlParams) {
-                    var userParams = '&' + Object.keys(_urlParams).map(function(k) {
-                        return encodeURIComponent(k) + '=' + encodeURIComponent(_urlParams[k])
-                    }).join('&');
-
-                    as[i].href = as[i].href + userParams
-                }
-            }
-        } else {
-            return setTimeout((function() {
-                return root.updateLink(element, target, isNofollow);
-            }), 100);
-        }
-    }
-
-    root.loadWidgetParams = function(element, params) {
-        if (element && element.getElementsByTagName("a")[0]) {
-            link = element.getElementsByTagName("a")[0];
-            link.href = link.href + params;
-            if (element.getElementsByTagName("a")[1]) {
-                link2 = element.getElementsByTagName("a")[1];
-                link2.href = link2.href + params
-            }
-        } else {
-            return setTimeout((function() {
-                return root.loadWidgetParams(element, params);
-            }), 100);
-        }
-    }
-
-    if (root.NMClientInit != undefined) {
-        root.NMClientInit();
-    }
-
-    window._comscore = window._comscore || [];
-    window._comscore.push({ c1: "7", c2: "9248945", c3: "100000" });
-    (function() {
-        var s = document.createElement("script"),
-            el = document.getElementsByTagName("script")[0];
-        s.async = true;
-        s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
-        el.parentNode.insertBefore(s, el);
-    })();
-
+        return {apiKey: apiKey, zoneCount: zoneCount};
+    };
 })();
