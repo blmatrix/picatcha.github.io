@@ -8,9 +8,7 @@
 
     root.NM = _nm;
 
-    _AdRenderOpts = {
-        adUnits: []
-    };
+    _AdRenderOpts = {};
 
     _nm.init = function(param) {
         var key = Object.keys(param)[0],
@@ -37,7 +35,8 @@
             }
             
             // Add unit to opts array
-            _AdRenderOpts.adUnits.push(adUnit);
+            // _AdRenderOpts.adUnits.push(adUnit);
+            _AdRenderOpts = adUnit;
         }
         
         // Once all the widgets "_nm.init()" has been invoked, initiate renderJS
@@ -256,6 +255,7 @@
         instreamWidget.addRule('Break', { appendSlotEvery: 3 }, plugins.createRule('Break'));
         instreamWidget.append();
 
+        _AdRenderOpts.adUnits = [];
         for (var i = 0; i < adData.zoneCount; i++) {
             var adUnit = {
                apiKey: adData.apiKey,
