@@ -271,7 +271,7 @@
         var antag = document.createElement('script');
         antag.async = true;
         antag.type = 'text/javascript';
-        antag.src ='http://static.adsnative.com/static/js/render.v1.js';
+        antag.src ='http://s.newsmaxfeednetwork.com/static/js/render.v1.js';
 
         var node = document.getElementsByTagName('script')[0];
         node.parentNode.insertBefore(antag, node);
