@@ -1,0 +1,13 @@
+document.write('<scr'+'ipt type=\'text/javascript\'>\n');
+document.write('<!--\n');
+document.write('var sm_random = Math.ceil(1000000*Math.random());\n');
+document.write('var u = \'\';\n');
+document.write('var r = \'\';\n');
+document.write('try\n');
+document.write('{\n');
+document.write('u = encodeURIComponent(document.location);\n');
+document.write('r = encodeURIComponent(document.referrer);\n');
+document.write('}catch(e){}\n');
+document.write('document.write("<scr"+"ipt type=\'text/javascript\' src=\'//x.vindicosuite.com/imp/?l=496544&t=j&u="+u+"&r="+r+"&rnd="+sm_random+"\'></scr"+"ipt>");\n');
+document.write('//-->\n');
+document.write('</scr'+'ipt>');
