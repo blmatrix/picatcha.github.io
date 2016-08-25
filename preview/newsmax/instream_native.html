@@ -2189,58 +2189,6 @@ var rcds = document.getElementById("rcjsload_25c012"); rcds.appendChild(rcel);
             });
         };
 
-        (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {
-                return;
-            }
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            //js.src = "//connect.facebook.net/en_US/all.js";
-            //fjs.parentNode.insertBefore(js, fjs); // ! not required if already loading fb sdk directly or by other plugin
-        }(document, 'script', 'facebook-jssdk'));
-
-        $(document).ready(function() {
-
-            $('.fb-authorization').on('click', function() {
-                var id = $(this).data('id');
-
-                // todo
-                FB.login(function(r) {
-                    handleFbUser();
-
-                    $('.fb-authorization').hide();
-                    $('.commentsid[data-id="' + id + '"]').find('.fb-comments').show();
-                }, {
-                    scope: 'email, user_friends'
-                });
-            });
-
-            /*
-	    $('body').delegate('.comments-viewcomments', 'click', function () {
-	        console.log('clicked comments view');
-	
-	        var id = $(this).data('id');
-	
-	        $('.commentdarklink[data-id="' + id + '"]').toggle();
-	
-	        var container = $('.commentsid[data-id="' + id + '"]');
-	        container.toggleClass('specialHide');
-	
-	        FB.getLoginStatus(function (r) {
-	            if (r.status !== 'connected') {
-	                container.find('.fb-comments').show();
-	                container.find('.fb-authorization').show();
-	                return false;
-	            }
-	        });
-	    });
-		 */
-            $(document).ajaxComplete(function() {
-                FB.XFBML.parse();
-            });
-
 
         });
     });

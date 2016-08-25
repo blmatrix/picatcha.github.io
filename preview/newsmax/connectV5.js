@@ -4,43 +4,31 @@
         _nm = {};
 
     _nm.ArticleSelector = '';
-    _nm.ArticleAdContainer = 'NmWgInstream';
+    _nm.ArticleAdContainerPrefix = 'NmWgInstream';
+    _nm.AdContainerPrefix = 'NmWg';
 
     root.NM = _nm;
 
     _AdRenderOpts = {};
 
     _nm.init = function(param) {
-        var key = Object.keys(param)[0],
-            widgetId = param[key];
+        var widgetId = param.WidgetID,
+            template = param.Template;
 
         // Instream widget
         if (param.ArticleSelector) {
             _nm.ArticleSelector = param.ArticleSelector;
             if (_nm.ArticleSelector) {
-                _nm.insertInArticleWidget(widgetId);
+                _nm.insertInArticleWidget(widgetId, template);
             }
         } else {
-        // All other widgets
-            var adData = _nm.getStandardAdData(widgetId);
-
-            adUnit = {
-                apiKey: adData.apiKey,
-                nativeAdElementId: 'NmWg' + widgetId
-            };
-
-            // Widgets requiring client side screen & container size based decisioning
-            if(adData.numAds) {
-                adUnit.numAds = adData.numAds;
-            }
-            
-            // Add unit to opts array
-            // _AdRenderOpts.adUnits.push(adUnit);
-            _AdRenderOpts = adUnit;
+            _nm.insertStandardWidget(widgetId, template)
         }
         
         // Once all the widgets "_nm.init()" has been invoked, initiate renderJS
-        _nm.insertRenderJs();
+        document.addEventListener("DOMContentLoaded", function(event) {
+            _nm.insertRenderJs();
+        });
     };
 
     // In Article Widget
@@ -96,18 +84,17 @@
         };
 
         // s7.0
-        // Appends Widget
-        self._append = function (slot, element) {
+        self._appendInStreamAdContainer = function (slot, element) {
             if (element.parentNode) {
-                element.parentNode.insertBefore(self._getAdTemplate(slot), element.nextSibling);
+                element.parentNode.insertBefore(self._getInStreamAdContainer(slot), element.nextSibling);
             } else {
                 var e = content.appendChild(element);
-                e.appendChild(self._getAdTemplate(slot));
+                e.appendChild(self._getInStreamAdContainer(slot));
             }
         };
 
         // s8.0
-        self._getAdTemplate = function (slot) {
+        self._getInStreamAdContainer = function (slot) {
             var adContainer = document.createElement('div');
             adContainer.id = slot;
             adContainer.className = 'an-container';
@@ -130,14 +117,14 @@
                 for (var i = 0; i < slots.length; i++) {
                     if (elems.length > 0 && elems[i]) {
                         // append slot
-                        self._append(slots[i], elems[i]);
+                        self._appendInStreamAdContainer(slots[i], elems[i]);
                     }
                 }
             } else {
                 // No elements found lets try and append just one slot
                 if (slots.length > 0) {
                     // append slot
-                    self._append(slots[0], document.createElement('div'));
+                    self._appendInStreamAdContainer(slots[0], document.createElement('div'));
                 }
             }
 
@@ -165,9 +152,10 @@
                 if (!element)
                     return;
 
-                var elements = [];
-                var filtered = [];
-                var all = element.querySelectorAll('p');
+                var elements = [],
+                    filtered = [],
+                    all = element.querySelectorAll('p');
+
                 module.utils.forEach(all, function (i, node) {
                     if (node.innerHTML.replace(/^\s+|\s+$/g, '') !== '' || node.nodeName === 'BR') {
                         filtered.push(node);
@@ -192,9 +180,10 @@
                 if (!element)
                     return;
 
-                var elements = [];
-                var filtered = [];
-                var all = element.querySelectorAll('div');
+                var elements = [],
+                    filtered = [],
+                    all = element.querySelectorAll('div');
+
                 module.utils.forEach(all, function (i, node) {
                     if (node.innerHTML.replace(/^\s+|\s+$/g, '') !== '') {
                         filtered.push(node);
@@ -218,9 +207,10 @@
                 if (!element)
                     return;
 
-                var elements = [];
-                var filtered = [];
-                var all = element.querySelectorAll('br');
+                var elements = [],
+                    filtered = [],
+                    all = element.querySelectorAll('br');
+
                 module.utils.forEach(all, function (i, node) {
                     filtered.push(node);
                 });
@@ -240,14 +230,14 @@
 
     })();
 
-    _nm.insertInArticleWidget = function(widgetId) {
-        var adData = _nm.getInstreamData(widgetId);        
+    _nm.insertInArticleWidget = function(widgetId, template) {
+        var adData = _nm.getInstreamData(widgetId, template);        
             plugins = new _nm.inArticleWidget.Helpers(),
             instreamWidget = _nm.inArticleWidget.init(_nm.ArticleSelector),
-            adUnits = [];
+            adUnit = null;
             
         for (var i = 0; i < adData.zoneCount; i++) {
-            instreamWidget.addSlot(_nm.ArticleAdContainer + widgetId + (i + 1));
+            instreamWidget.addSlot(_nm.ArticleAdContainerPrefix + widgetId + (i + 1));
         }
 
         instreamWidget.addRule('Paragraph', { appendSlotEvery: 3 }, plugins.createRule('Paragraph'));
@@ -255,16 +245,69 @@
         instreamWidget.addRule('Break', { appendSlotEvery: 3 }, plugins.createRule('Break'));
         instreamWidget.append();
 
-        _AdRenderOpts.adUnits = [];
+        if(typeof _AdRenderOpts.adUnits === 'undefined')
+            _AdRenderOpts.adUnits = [];
+
         for (var i = 0; i < adData.zoneCount; i++) {
-            var adUnit = {
-               apiKey: adData.apiKey,
-               keyValues: {widgetType: 'instream_article'},
-               nativeAdElementId: _nm.ArticleAdContainer + widgetId + (i + 1)
-            };
+            // Current Publishers : Backward Compatible Migration Approach
+            if(typeof template === 'undefined') {
+                adUnit = {
+                    networkKey: '5a86d53377e54819b9d1d7d92f6af887',
+                    widgetId: widgetId+'',
+                    keyValues: {widget_type: _nm.getWidgetType(adData.template)},
+                    nativeAdElementId: _nm.ArticleAdContainerPrefix + widgetId + (i + 1),
+                    categories: ['IAB1']
+                };
+            } else {
+                // New Publishers : Post Launch Approach
+                adUnit = {
+                    apiKey: widgetId,
+                    templateKey: template,
+                    keyValues: {widget_type: _nm.getWidgetType(template)},
+                    nativeAdElementId: _nm.ArticleAdContainerPrefix + widgetId + (i + 1)
+                };
+            }
 
             _AdRenderOpts.adUnits.push(adUnit);
         }
+    };
+
+    _nm.insertStandardWidget = function(widgetId, template) {
+        var adData = _nm.getStandardAdData(widgetId, template),
+            adUnit = null;
+
+        // Current Publishers : Backward Compatible Migration Approach
+        if(typeof template === 'undefined') {
+            adUnit = {
+                networkKey: '5a86d53377e54819b9d1d7d92f6af887',
+                widgetId: widgetId+'',
+                keyValues: {widget_type: _nm.getWidgetType(adData.template)},
+                nativeAdElementId: _nm.AdContainerPrefix + widgetId,
+                categories: ['IAB1']
+            };
+        } else {
+            // New Publishers : Post Launch Approach
+            adUnit = {
+                apiKey: widgetId,
+                templateKey: template,
+                keyValues: {widget_type: _nm.getWidgetType(template)},
+                nativeAdElementId: _nm.AdContainerPrefix + widgetId
+            };
+
+            // TODO : template name validation to be NM01-NM15
+        }
+
+        // Widgets requiring client side screen & container size based decisioning for numAds
+        if(adData.numAds) {
+            adUnit.numAds = adData.numAds;
+        }
+        
+        // Add unit to opts array
+        // if(typeof _AdRenderOpts.adUnits !== 'undefined') {
+        //     _AdRenderOpts.adUnits.push(adUnit);
+        // } else {
+            _AdRenderOpts = adUnit;
+        // }
     };
 
     _nm.insertRenderJs = function() {
@@ -277,11 +320,9 @@
         node.parentNode.insertBefore(antag, node);
     }
 
-    _nm.getStandardAdData = function(widgetId) {
-        console.log('render js : widgetId : ' + widgetId);
-
+    _nm.getStandardAdData = function(widgetId, template) {
         var numAds = 0,
-            apiKey = '',
+            template = template,
             containerWidth = document.getElementById('NmWg' + widgetId).offsetWidth,
             screenWidth = window.innerWidth;
 
@@ -294,7 +335,7 @@
             ],
             sidebarThumbnails: [
                 3513,3491,3464,789,3535,567,1024,661,4409,4391,4390,4427,4395,4425
-            ], // Fake widget for testing only (4567)
+            ], // Fake thumbnails2Columns widget id for testing only (4567)
             thumbnails2Columns: [
                 4567
             ],
@@ -306,10 +347,25 @@
             ],
             exit: [
                 4266,4271,3992,4272,4174,4037,3539,4216,4091,4438,4235,4172,4278,4228,4170,4232,4231,4233,4062,4167,4240,4166,4095,4238,4214,4126,4124,4342,4351,4163,4208,4382,4173,4274,4237,4319,4171,4068,4082,4328,4169,4441,4168,4443,4289,4327,4380,4222,4424,4341,4220,4439
+            ],
+            standardText: [
+                3622,3799,483,3247,276,4107,15,3798,4109,466,1055,3191,3653,4133,137,3549,3706,3175,3621,3969,4115,4116,4114,3423,3424,3576,3216,230,427,8,3212,5,7,4432,3081,3082,3083,3,560,558,556,557,559,516,4051,4049,4480,4269,253,192,4476,179,4467,3892,3888,791
+            ],
+            standardText2Columns: [
+                4386
+            ],
+            sidebar: [
+                3608,243,3492,3493,246,3645,3056,1039,3996,3144,3385,3241,3912,4366,3769,3960,3104,3200,4323,4324,3236,3606,217
+            ],
+            sidebar2Columns: [
+                338,3734,3711,597,3145,703,3644,3618,3671,285,633,3589,3768,4010,3795,1018,1021,4092,4009,4151,3766,4435,4434,4015,4105,3346,3676,4013,1037,1036,1041,1047,1048,904,4372,3468,4007,4047,884,785,3794,797,280,3457,122,757,4003,3687,4459,630,3079,4002,4096,845,3842,3784,3554,3673,117,3661,3854,3846,3850,1015,3187,3217,90,672,3617,4218,4110,3868,742,3135,3948,3865,4369,3821,3762,3761,782,931,3956,3955,4223,916,868,686,4418,3852,3822,932,3309,3177,4318,4287,4368,3863,4014,3936,4394,881,4416,4111,3951,4204,3201,3937,4333,4377,3812,4184,4164,596,3105,3765,4080,3824,3998,3728,4189,4429,4123,4428,4428,677,3792,3965,4194,3848,4412,870,893,4069,1020,4294,3810,3237,3933,4120,978,4136,3947,3586,3953,3845,3838,4132,3860,4422,3587,4019,3840,4065,4350,3764,4396,4371,3141,3062,3858,4433,3857,4430,3835,3662,3959,3954,3763,4322,4335,4383,4426,4477,4482,4468,4464,4036,368,859,4475,4492,4462,4474,568,4489,4495,4481,4487,4490,4493,4491,4470,956,591,4496,4507,4505,4506,4501,4500,4488,4504,4502,4503,4471,3887,4494,787,4485,4486,3063,967
+            ],
+            sidebarText: [
+                4008,4006,4005,4004,293,385,290,3957,3562,3993,3738,4060,4363,17,3174,621,445,842,844,209,4102,3609,3522,3568,3669,3302,59,131,3365,3548,705,3927,1008,3634,3803,781,3672,55,303,3601,49,969,299,3806,3530,310,3127,490,3394,241,3489,3488,3490,461,317,3691,112,495,185,943,37,3486,3945,206,4185,823,481,66,3319,429,944,3790,3793,3304,3660,926,213,167,3058,180,3588,406,353,474,934,4162,4299,391,3134,289,273,3756,132,262,75,144,3682,373,4389,475,3143,509,510,468,175,16,4130,3371,194,412,3462,3698,3862,3171,114,4283,325,3864,342,953,4437,3250,203,3599,452,272,399,479,3789,508,4421,3203,3332,58,3052,386,4106,3345,3347,3348,3101,294,3149,3675,324,484,3699,440,446,3388,134,3196,3437,4064,458,39,168,244,485,4180,32,3666,3071,4295,4098,411,4303,886,4445,163,1040,784,3503,891,431,3700,390,389,3552,3796,3543,3352,161,957,409,497,777,182,88,1046,3433,3620,778,321,937,43,3755,23,178,22,4021,4119,186,4313,143,3195,3555,378,264,3995,367,3442,279,416,3523,473,459,3629,158,34,155,101,4347,4388,3421,3420,4139,3485,3694,3614,4020,3443,61,4392,3494,92,176,33,3573,491,3096,266,477,3526,3527,96,792,469,329,27,116,202,4147,133,127,366,121,45,344,1034,1033,51,1000,74,3843,546,482,816,77,525,843,288,118,4454,298,4131,235,57,927,42,173,4113,3674,989,207,3855,3981,3524,3350,3847,3851,3582,3581,3103,4378,4461,840,476,3814,3093,3184,4338,3170,3221,3395,3709,3612,3119,571,3379,3183,3182,4207,3710,3787,3786,4104,4393,4297,3697,3926,4348,3495,3211,652,3242,3080,438,3797,260,4361,4025,3504,4450,4451,3514,3623,4415,3639,3649,48,3351,3867,4211,3483,936,935,4381,1011,3359,654,4192,30,765,3925,867,4362,3378,4365,3154,4367,3474,3560,3054,4027,535,4040,872,4148,3670,3533,3055,3696,4137,4129,4101,4146,4052,3853,939,3095,1029,1051,3176,3193,3053,3167,862,3809,4016,3245,3656,3770,4321,4320,3148,3422,3426,3430,437,326,327,3168,4205,3646,3153,743,3150,3111,3604,4134,3924,4086,3759,3735,4417,3869,3923,3417,4100,3206,3572,3214,863,794,4291,3475,624,3811,3230,4026,4145,3190,3558,4045,3113,3780,3498,4099,3202,3213,3550,4018,3505,3315,4142,4213,4296,4458,4448,3316,3982,564,3284,710,3413,3452,3102,4081,3210,4024,3929,3118,4436,3739,3240,653,578,4337,3303,3579,4183,4023,4316,3736,4334,3976,4364,761,3381,4056,727,659,4121,4329,4359,146,3234,3791,3695,3460,3057,866,3964,3989,4022,3849,3440,3538,4160,3133,3334,4413,4193,873,907,3349,4050,3553,4236,3510,3509,767,4087,3950,3484,3340,4292,3360,4379,547,3754,4312,3312,188,4181,3499,4298,3647,3808,4190,3743,3746,3781,3445,3185,3204,3528,3283,938,763,4344,854,3456,4140,4144,4135,3753,3508,3507,4358,3186,3940,3752,3618,3642,4042,3415,3077,3551,3844,3274,3640,3502,3529,711,3380,3839,3561,3516,3744,4336,3215,3771,3693,3801,3861,4165,3627,4423,147,4406,3472,3521,3540,3471,3841,3534,864,3469,4403,970,3525,3741,4400,3580,764,3343,3518,3605,3958,3913,436,3574,3270,444,3078,4206,3994,3859,4411,3856,865,3990,3233,708,707,706,3702,3607,3438,3439,3441,3837,3124,258,4340,3205,190,4484
             ]
         };
 
-        if(migrationWidgets.standardImage.indexOf(widgetId) >= 0) { // Standard Image
+        if(template === 'NM01' || migrationWidgets.standardImage.indexOf(widgetId) >= 0) { // Standard Image
             if(screenWidth <= 480) {
                 numAds = 4;
             } else if(screenWidth <= 720) {
@@ -318,8 +374,8 @@
                 numAds = (containerWidth <= 720) ? 8 : 10;
             }
 
-            apiKey = 'Ypi1vILq3qiQt5aRuLC_Meg_JULNq_Re34TQhYJW';
-        } else if(migrationWidgets.standardImage2Columns.indexOf(widgetId) >= 0) { // Standard Image - Mobile 2 columns
+            template = 'NM01';
+        } else if(template === 'NM02' || migrationWidgets.standardImage2Columns.indexOf(widgetId) >= 0) { // Standard Image - Mobile 2 columns
             if(screenWidth <= 480) {
                 numAds = 8;
             } else if(screenWidth <= 720) {
@@ -328,56 +384,68 @@
                 numAds = (containerWidth <= 720) ? 8 : 10;
             }
 
-            apiKey = '_KqFQgIsOm33tKM_DbFPi93FtUzSZG_nZQNrAHLw';
-        } else if(migrationWidgets.sidebarThumbnails.indexOf(widgetId) >= 0) { // 
+            template = 'NM02';
+        } else if(template === 'NM08' || migrationWidgets.sidebarThumbnails.indexOf(widgetId) >= 0) { // Sidebar Thumbnails
             if(screenWidth <= 480) {
                 numAds = 5;
             } else {
                 numAds = 8;
             }
 
-            apiKey = 'q9XdoqNG8Qxwv1eqdUsd2nO60m-T4IsCVWkZL35O';
-        } else if(migrationWidgets.thumbnails2Columns.indexOf(widgetId) >= 0) { // 
+            template = 'NM08';
+        } else if(template === 'NM09' || migrationWidgets.thumbnails2Columns.indexOf(widgetId) >= 0) { // Thumbnails 2 Columns
             if(screenWidth <= 480) {
                 numAds = 5;
             } else {
                 numAds = 10;
             }
 
-            apiKey = 'fOfp7ReOZp66gTJZB9iKjc_hJYxJ4Mn3ajTJNnn-';
-        } else if(migrationWidgets.leaderboard.indexOf(widgetId) >= 0) { // Leaderboard
+            template = 'NM09';
+        } else if(template === 'NM14' || migrationWidgets.leaderboard.indexOf(widgetId) >= 0) { // Leaderboard
             numAds = 4;
 
-            apiKey = 'xUW9N6alquSbevlEwDxW0rEP_UahXpmuH1pBkgh-';
-        } else if(migrationWidgets.leaderboard.indexOf(widgetId) >= 0) { // Leaderboard
-            numAds = 4;
+            template = 'NM14';
+        } else if(template === 'NM15' || migrationWidgets.exit.indexOf(widgetId) >= 0) { // Exit
+            if(screenWidth <= 480) {
+                numAds = 4;
+            } else {
+                numAds = 8;
+            }
 
-            apiKey = 'xUW9N6alquSbevlEwDxW0rEP_UahXpmuH1pBkgh-';
-        } else if(widgetId === 3333) { // Standard Text
-            apiKey = '-SFwLyLSbH1f_H6ZiEdXjAI606mHNolNwXwhZr5p';
-        } else if(widgetId === 4444) { // Standard Text - 2 Columns
-            apiKey = 'dg9JDKC97-LeELRzo6eZ6TD4A5Otq6bF2sHwJwU7';
-        } else if(widgetId === 5555) { // Sidebar
-            apiKey = 'lVvZTxC5JO5r9lRGRjnNE3Y8kXrZEnRiohuQzYxk';
-        } else if(widgetId === 6666) { // Sidebar - 2 Columns
-            apiKey = 'YzynlJjr6UkajtdUDdXOFuBeow4N_r4BzAU2HjPo';
-        } else if(widgetId === 7777) { // Sidebar Text 
-            apiKey = '1VkNwolbgmZK4-JUsCtcGoD-LbPs6KgmAo361o_L';
-        } else if(widgetId === 1313) { // Footer
-            apiKey = '1VkNwolbgmZK4-JUsCtcGoD-LbPs6KgmAo361o_L';
+            template = 'NM15';
+        } else if(template === 'NM03' || migrationWidgets.standardText.indexOf(widgetId) >= 0) { // Standard Text
+            numAds = 10;
+            template = 'NM03';
+        } else if(template === 'NM04' || migrationWidgets.standardText2Columns.indexOf(widgetId) >= 0) { // Standard Text - 2 Columns
+            numAds = 10;
+            template = 'NM04';
+        } else if(template === 'NM05' || migrationWidgets.sidebar.indexOf(widgetId) >= 0) { // Standard Text - 2 Columns
+            if(screenWidth <= 480) {
+                numAds = 4;
+            } else {
+                numAds = 8;
+            }
+
+            template = 'NM05';
+        } else if(template === 'NM06' || migrationWidgets.sidebar2Columns.indexOf(widgetId) >= 0) { // Sidebar - 2 Columns
+            numAds = 10;
+            template = 'NM06';
+        } else if(template === 'NM07' || migrationWidgets.sidebarText.indexOf(widgetId) >= 0) { // Sidebar Text
+            numAds = 10;
+            template = 'NM07';
         }
 
-        return {numAds: numAds, apiKey: apiKey};
+        return {numAds: numAds, template: template};
     };
 
-    _nm.getInstreamData = function(widgetId) {
-        var apiKey = '',
+    _nm.getInstreamData = function(widgetId, template) {
+        var template = template,
             zoneCount = 0;
 
         var migrationWidgets = {
             instreamNative: [
                 4285,4479,4465,4473,4472,4469
-            ], // Fake widget for testing only (5678)
+            ], // Fake instreamNativeSingle widget id for testing only (5678)
             instreamNativeSingle: [
                 5678
             ],
@@ -386,17 +454,52 @@
             ]
         };
 
-        if(migrationWidgets.instreamNative.indexOf(widgetId) >= 0) { // Instream Native
-            apiKey = 'V4iMbIJBp90urCcKW6tJ-1P912NtUNQ-aNtoB7FZ';
+        if(template === 'NM10' || migrationWidgets.instreamNative.indexOf(widgetId) >= 0) { // Instream Native
             zoneCount = 2;
-        } else if(migrationWidgets.instreamNativeSingle.indexOf(widgetId) >= 0) { // Instream Native Single
-            apiKey = 'UNFVE-r4MA_VnXFyVlbSWKiAiTWyry2OuKNjBt1v';
+            template = 'NM10';
+        } else if(template === 'NM11' || migrationWidgets.instreamNativeSingle.indexOf(widgetId) >= 0) { // Instream Native Single
             zoneCount = 1;
-        } else if(migrationWidgets.instreamText.indexOf(widgetId) >= 0) { // Instream Native Text
-            apiKey = 'PDrlWfG46MxggK80h-wSZxBU4sprxhOq7pkNn_Ed';
+            template = 'NM11';
+        } else if(template === 'NM12' || migrationWidgets.instreamText.indexOf(widgetId) >= 0) { // Instream Native Text
             zoneCount = 2;
+            template = 'NM12';
         }
 
-        return {apiKey: apiKey, zoneCount: zoneCount};
+        return {zoneCount: zoneCount, template: template};
     };
+
+    _nm.getWidgetType = function(template) {
+        var templateCategories = {
+            instreamAd: ['NM10', 'NM11', 'NM12'], // Instream Native / Instream Native Single // Instream Native Text
+            image: ['NM01', 'NM02'],
+            textFeed: ['NM03', 'NM04', 'NM05', 'NM06', 'NM07', 'NM14'], // Standard Text / Standard Text - 2 Columns / Sidebar / Sidebar Text / Leaderboard
+            contentFeed: ['NM06', 'NM08'], // Sidebar - 2 Columns / Sidebar - Thumbnails
+            exit: ['NM15'] // Exit
+        },
+        widgetType = '';
+
+        if(templateCategories.instreamAd.indexOf(template) >= 0) {
+            widgetType = 'article_instream';
+        } else if(templateCategories.image.indexOf(template) >= 0) {
+            widgetType = 'image';
+        } else if(templateCategories.textFeed.indexOf(template) >= 0) {
+            widgetType = 'text_feed';
+        } else if(templateCategories.contentFeed.indexOf(template) >= 0) {
+            widgetType = 'content_feed';
+        } else if(templateCategories.exit.indexOf(template) >= 0) {
+            widgetType = 'exit';
+        }
+
+        return widgetType;
+    };
+
+    // Comscore Pixel
+    window._comscore = window._comscore || [];
+    window._comscore.push({ c1: "7", c2: "9248945", c3: "100000" });
+    (function () {
+        var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+        s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+        el.parentNode.insertBefore(s, el);
+    })();
+
 })();
