@@ -1,0 +1,48 @@
+#tepeManset { position: relative; display: table; width: 996px; height: 120px; margin: 10px auto 10px auto; }
+	
+#tepeManset .tmnav 			{ position: absolute; top: 25px; cursor: pointer; z-index: 50; }
+#tepeManset .tmnav.prev 	{ left: 10px; }
+#tepeManset .tmnav.next 	{ right: 10px; }
+
+#tepeManset .tmList 			{ position: relative; z-index: 40; }
+#tepeManset .tmList li 			{ display: none; width: 100%; height: 120px; }
+#tepeManset .tmList li.active 	{ display: block; }
+
+#tepeManset .tmList .tml-image 		{ position: absolute; top: 0px; left: 0px; z-index: 10; }
+#tepeManset .tmList .tml-back		{ position: absolute; top: 0px; left: 0px; z-index: 20; width: 996px; height: 120px; }
+#tepeManset .tmList .tml-backimg 	{ position: absolute; top: 0px; left: 0px; z-index: 30; width: 996px; height: 120px; }
+
+#tepeManset .tmList .tml-back.TD  	{ background: url('/_img/ustmanset/turuncu_degrade5.png') no-repeat; color: #000000; }
+#tepeManset .tmList .tml-back.F  	{ color: #fcff00; }
+#tepeManset .tmList .tml-back.SD  	{ background: url('/_img/ustmanset/siyah_degrade5.png') no-repeat; color: #fcff00; }
+
+#tepeManset .tmList .tml-title { 
+	font-family: Impact; display: block; width: 78%;  
+	line-height: 54px; padding: 8px; overflow: hidden; height: 42px; 
+	float: right; font-size: 50px; margin-top:25px; }
+#tepeManset .tmList .tml-back.F .tml-title { width: 60%; float: none; margin: 0 auto; text-align: center; }
+
+.museo 	{ font-family: 'MuseoSans700', Arial, Helvetica, sans-serif; }
+.impact { font-family: Impact; }
+.lato 	{ font-family: 'Lato', sans-serif;  font-weight: 700; }
+.oswald { font-family: 'Oswald', sans-serif; font-weight: 700;  }
+.ptsans { font-family: 'PT Sans', sans-serif;  font-weight: 700; }
+
+#tepeManset .tmNumber 			{ display: table; position: absolute; bottom: 5px; right: 5px; cursor: pointer; z-index: 50; text-align: center; font-size: 16px; font-family: 'MuseoSans700', Arial, Helvetica, sans-serif; }
+#tepeManset .tmNumber li 		{ float: left; width: 20px; line-height: 20px; margin-left: 5px;  }
+#tepeManset .tmNumber li.active {  }
+
+#tepeManset .tmNumber.SD li 			{ border: 2px solid #ffffff; color: #ffffff;  }
+#tepeManset .tmNumber.SD li.active, 
+#tepeManset .tmNumber.SD li:hover		{ border-color: #cc0000; color: #cc0000; }
+#tepeManset .tmNumber.SD li a		{ border-color: #cc0000; color: #cc0000; text-decoration: none; }
+
+#tepeManset .tmNumber.TD li 			{ border: 2px solid #000000; color: #000000;  }
+#tepeManset .tmNumber.TD li.active, 
+#tepeManset .tmNumber.TD li:hover		{ border-color: #ffffff; color: #ffffff; }
+#tepeManset .tmNumber.TD li a		{ border-color: #ffffff; color: #ffffff; text-decoration: none; }
+
+#tepeManset .tmNumber.F li 				{ border: 2px solid #cc0000; color: #ffffff; background-color: #cc0000; }
+#tepeManset .tmNumber.F li.active, 
+#tepeManset .tmNumber.F li:hover		{ border-color: #ffffff; color: #cc0000; background-color: #ffffff; }
+#tepeManset .tmNumber.F li a		{ border-color: #ffffff; color: #cc0000; background-color: #ffffff;  text-decoration: none;}

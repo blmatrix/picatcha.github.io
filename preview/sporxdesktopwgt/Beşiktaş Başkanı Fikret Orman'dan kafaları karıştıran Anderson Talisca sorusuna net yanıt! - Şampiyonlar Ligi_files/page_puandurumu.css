@@ -1,0 +1,56 @@
+.pdlist {
+	font-size: 13px;
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	padding: 5px;
+	
+}
+
+.pdlist li { display: table; }
+.pdlist li span 			{ float: left; width: 19px; height: 25px; line-height: 25px; overflow: hidden; text-align: center; color: #414141; }
+.pdlist li span.pdteam 		{ width: 114px; text-align: left; border-right: 1px solid #cacaca; margin-right: 4px; font-weight: bold; }
+.pdlist li span.pdnumber 	{ font-weight: normal; font-size: 11px; }
+
+.pdAll .pdcols	{ width: 25px; font-size: 11px; }
+
+
+.pdlist .pdhead { border-bottom: 1px solid #cacaca; font-size: 14px; font-weight: bold; }
+.pdAll .pdhead .pdcols { font-size: 14px; }
+
+.pdlist li.bl1 	{ color: #008759; }
+.pdlist li.bl2 	{ color: #005196; }
+.pdlist li.bl3 	{ color: #9e0000; }
+.pdlist li.bl4 	{ color: #ff0000; }
+
+.pdlist li.bl1 a	{ color: #008759; }
+.pdlist li.bl2 a	{ color: #005196; }
+.pdlist li.bl3 a	{ color: #9e0000; }
+.pdlist li.bl4 a 	{ color: #ff0000; }
+.pdlist li a 		{ color: #414141; }
+
+
+.pdnav 			{ display: table; width: 100%; height: 30px; line-height: 30px; background-color: #ebebeb; font-size: 13px; font-weight: bold; }
+.pdnav li 		{ display: table-cell; width: 7%; text-align: center; cursor: pointer; }
+.pdnav .active 	{ color: #e34600; }
+
+
+.fslist 		{ display: inline-table; }
+.fslist li 		{ display: table; width: 100%; margin: 5px 0px; font-size: 13px; }
+.fslist li a 	{ color: #000000; }
+.fslist .fsdate 			{ background-color: #e5e5e5; height: 25px; line-height: 25px; text-align: center; font-weight: bold; }
+.fslist .fsmatch 			{}
+.fslist .fsmatch span  		{ float: left; height: 20px; line-height: 20px; overflow: hidden; } 
+.fslist .fsmatch .fsscore 	{ width: 40px; background: url('//www.sporx.com/_img/fikstur/fikstur_skor_bg.png') no-repeat; text-align: center; font-size: 11px; font-weight: bold; }
+.fslist .fsmatch .fsscore a{color:#ffffff !important;}
+
+.fslist .fsmatch .fsteam 	{ width: 120px; margin-left: 10px; }
+
+.text-white { color: #ffffff; }
+
+.fsnav 					{ display: table; padding: 10px 5px 5px 5px; font-size: 13px; font-weight: bold; color: #e34600;  }
+.fsnav img, .fsnav span { display: table-cell; height: 17px; text-align: center; }
+.fsnav img 				{ width: 11px; cursor: pointer; }
+.fsnav .fsweek 			{ width: 100%; line-height: 17px; vertical-align: middle; }
+.fsnav .prev { }
+.fsnav .next { }
+
+#finalsFixture .pdnav li { width: 25%; }
