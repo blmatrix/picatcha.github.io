@@ -1,0 +1,1 @@
+crtg_content_pixenka = ''; (function(){document.cookie = 'crtg_rta_pixenka=' + escape(crtg_content_pixenka) + '; path=/; expires=Sun, 25 Sep 2016 20:27:12 GMT; domain=sporx.com';})();
