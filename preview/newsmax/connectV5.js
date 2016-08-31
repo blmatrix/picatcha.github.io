@@ -1,34 +1,65 @@
 (function() {
 
+    // Allow only one instance of Connect JS to execute on a page 
+    if(window.connectLoaded) return;
+    window.connectLoaded = true;
+
     var root = this,
         _nm = {};
 
     _nm.ArticleSelector = '';
     _nm.ArticleAdContainerPrefix = 'NmWgInstream';
     _nm.AdContainerPrefix = 'NmWg';
+    _nm.widgetAlreadyExists = false;
+    _nm.exitWidgetShownOnce = false;
+    _nm.version = 1.004;
+    _nm.widgets = {
+        currentIndex: 0,
+        adConfigs: []
+    };
+    _nm.debug = false;
 
-    root.NM = _nm;
+    root.NMTemp = _nm;
 
     _AdRenderOpts = {};
 
-    _nm.init = function(param) {
-        var widgetId = param.WidgetID,
-            template = param.Template;
+    _nm.init = function(adConfig) {
+        _nm.log('INIT request received from publisher page with config : ', adConfig);
+        // Save Widget config object for serial processing
+        _nm.widgets.adConfigs.push(adConfig);
+
+        // First widget
+        if(!_nm.widgetAlreadyExists) {
+            _nm.loadNextWidget();
+            _nm.widgetAlreadyExists = true;
+        }
+    };
+
+    _nm.loadNextWidget = function() {
+        _nm.log('Next widget loading invoked in queue');
+
+        var adConfig = null;
+        if(_nm.widgets.currentIndex < _nm.widgets.adConfigs.length) {
+            adConfig = _nm.widgets.adConfigs[_nm.widgets.currentIndex];
+            _nm.widgets.currentIndex++;
+        }
+
+        if(!adConfig || !adConfig.WidgetID) return;
+
+        var widgetId = adConfig.WidgetID,
+            template = adConfig.Template;
 
         // Instream widget
-        if (param.ArticleSelector) {
-            _nm.ArticleSelector = param.ArticleSelector;
+        if (adConfig.ArticleSelector) {
+            _nm.log('Rendering InArticle widget : '+ widgetId);
+            _nm.ArticleSelector = adConfig.ArticleSelector;
             if (_nm.ArticleSelector) {
                 _nm.insertInArticleWidget(widgetId, template);
             }
         } else {
-            _nm.insertStandardWidget(widgetId, template)
+            _nm.log('Rendering Standard widget : '+ widgetId);
+            _nm.insertStandardWidget(widgetId, template);
         }
-        
-        // Once all the widgets "_nm.init()" has been invoked, initiate renderJS
-        document.addEventListener("DOMContentLoaded", function(event) {
-            _nm.insertRenderJs();
-        });
     };
 
     // In Article Widget
@@ -45,6 +76,7 @@
 
         // Initializes the module
         module.init = function (selector) {
+            _nm.log('InArticle widget initialized for article container : '+ selector);
             module.selector = selector;
             content = document.querySelector(selector);
             return this;
@@ -52,7 +84,6 @@
 
         // Returns the possible insertion elements where the Slot can be appended in
         module.addRule = function (rule, config, callback) {
-
             rules.push({ name: rule, config: config, func: callback });
             return this;
         };
@@ -85,6 +116,8 @@
 
         // s7.0
         self._appendInStreamAdContainer = function (slot, element) {
+            _nm.log('Append InArticle placement container : '+ slot);
+
             if (element.parentNode) {
                 element.parentNode.insertBefore(self._getInStreamAdContainer(slot), element.nextSibling);
             } else {
@@ -235,9 +268,24 @@
             plugins = new _nm.inArticleWidget.Helpers(),
             instreamWidget = _nm.inArticleWidget.init(_nm.ArticleSelector),
             adUnit = null;
-            
+
+        _nm.inArticleWidgets = {
+            currentIndex: 0,
+            placementIds: [],
+            widgetId: widgetId,
+            template: (template) ? template : adData.template
+        };
+        
+        if(adData.zoneCount == 0) {
+            _nm.log('Zero zone count for the InArticle widgetId '+widgetId+' provided');
+            return;
+        }
+
         for (var i = 0; i < adData.zoneCount; i++) {
             instreamWidget.addSlot(_nm.ArticleAdContainerPrefix + widgetId + (i + 1));
+
+            // Save the widgets for serial processing
+            _nm.inArticleWidgets.placementIds.push(_nm.ArticleAdContainerPrefix + widgetId + (i + 1));
         }
 
         instreamWidget.addRule('Paragraph', { appendSlotEvery: 3 }, plugins.createRule('Paragraph'));
@@ -248,50 +296,93 @@
         if(typeof _AdRenderOpts.adUnits === 'undefined')
             _AdRenderOpts.adUnits = [];
 
-        for (var i = 0; i < adData.zoneCount; i++) {
+        // First in article placement
+        if(_nm.inArticleWidgets.placementIds.length > 0 && !_nm.inArticleWidgets.currentIndex) {
+            _nm.insertInArticleSinglePlacement();
+        }
+    };
+
+    _nm.insertInArticleSinglePlacement = function() {
+        var currentIndex = _nm.inArticleWidgets.currentIndex;
+
+        if(currentIndex < _nm.inArticleWidgets.placementIds.length) {
             // Current Publishers : Backward Compatible Migration Approach
             if(typeof template === 'undefined') {
-                adUnit = {
+                _AdRenderOpts = {
                     networkKey: '5a86d53377e54819b9d1d7d92f6af887',
-                    widgetId: widgetId+'',
-                    keyValues: {widget_type: _nm.getWidgetType(adData.template)},
-                    nativeAdElementId: _nm.ArticleAdContainerPrefix + widgetId + (i + 1),
-                    categories: ['IAB1']
+                    widgetId: _nm.inArticleWidgets.widgetId+'',
+                    keyValues: {widget_type: _nm.getWidgetType(_nm.inArticleWidgets.template)},
+                    nativeAdElementId: _nm.inArticleWidgets.placementIds[currentIndex],
+                    categories: ['IAB1'],
+                    userCallbackOnAdLoad: function(status) {
+                        _nm.insertInArticleSinglePlacement();
+                    }
                 };
             } else {
                 // New Publishers : Post Launch Approach
-                adUnit = {
-                    apiKey: widgetId,
-                    templateKey: template,
-                    keyValues: {widget_type: _nm.getWidgetType(template)},
-                    nativeAdElementId: _nm.ArticleAdContainerPrefix + widgetId + (i + 1)
+                _AdRenderOpts = {
+                    apiKey: _nm.inArticleWidgets.widgetId,
+                    templateKey: _nm.inArticleWidgets.template,
+                    keyValues: {widget_type: _nm.getWidgetType(_nm.inArticleWidgets.template)},
+                    nativeAdElementId: _nm.inArticleWidgets.placementIds[currentIndex],
+                    userCallbackOnAdLoad: function(status) {
+                        _nm.insertInArticleSinglePlacement();
+                    }
                 };
             }
 
-            _AdRenderOpts.adUnits.push(adUnit);
+            _nm.log('Registering InArticle Placement '+(currentIndex+1), _AdRenderOpts);
+
+            // Move the placement index needle
+            _nm.inArticleWidgets.currentIndex++;
+
+            _nm.insertRenderJs();
+        } else {
+            // Continue the widget serial rendering chain after all the insrticle placements are completed
+            _nm.loadNextWidget();
         }
-    };
+
+     };
 
     _nm.insertStandardWidget = function(widgetId, template) {
         var adData = _nm.getStandardAdData(widgetId, template),
             adUnit = null;
 
+        if(!adData) return;
+
+        // Exit widget : Delay adrequest and rendering until user tries to exit page
+        if(adData.template === 'NM15') {
+            if(!_nm.exitWidgetShownOnce) {
+                _nm.insertExitWidget(widgetId, template, adData);
+                _nm.exitWidgetShownOnce = true;
+            }
+            return;
+        }
+
         // Current Publishers : Backward Compatible Migration Approach
         if(typeof template === 'undefined') {
-            adUnit = {
+            _AdRenderOpts = {
                 networkKey: '5a86d53377e54819b9d1d7d92f6af887',
                 widgetId: widgetId+'',
                 keyValues: {widget_type: _nm.getWidgetType(adData.template)},
-                nativeAdElementId: _nm.AdContainerPrefix + widgetId,
-                categories: ['IAB1']
+                cssPath: '#' + _nm.AdContainerPrefix + widgetId + ':append',
+                categories: ['IAB1'],
+                userCallbackOnAdLoad: function(status) {
+                    _nm.log('Migrated Widget loaded successfully');
+                    _nm.loadNextWidget();
+                }
             };
         } else {
             // New Publishers : Post Launch Approach
-            adUnit = {
+            _AdRenderOpts = {
                 apiKey: widgetId,
                 templateKey: template,
                 keyValues: {widget_type: _nm.getWidgetType(template)},
-                nativeAdElementId: _nm.AdContainerPrefix + widgetId
+                cssPath: '#' + _nm.AdContainerPrefix + widgetId + ':append',
+                userCallbackOnAdLoad: function(status) {
+                    _nm.log('New Publisher Widget loaded successfully');
+                    _nm.loadNextWidget();
+                }
             };
 
             // TODO : template name validation to be NM01-NM15
@@ -299,36 +390,111 @@
 
         // Widgets requiring client side screen & container size based decisioning for numAds
         if(adData.numAds) {
-            adUnit.numAds = adData.numAds;
+            _AdRenderOpts.numAds = adData.numAds;
         }
-        
-        // Add unit to opts array
-        // if(typeof _AdRenderOpts.adUnits !== 'undefined') {
-        //     _AdRenderOpts.adUnits.push(adUnit);
-        // } else {
-            _AdRenderOpts = adUnit;
-        // }
+
+         _nm.insertRenderJs();
+    };
+
+    _nm.insertExitWidget = function(widgetId, template, adData) {
+        var old_move = 0,
+            delayedAdCalled = false,
+            widget = document.getElementById(_nm.AdContainerPrefix + widgetId);
+
+        if (!widget) return;
+
+        document.documentElement.onmousemove = function (evt) {
+            var new_move = evt.clientY;
+            if (new_move < old_move && evt.clientY <= 15) {
+                if (delayedAdCalled === false) {
+                    
+                    // Current Publishers : Backward Compatible Migration Approach
+                    if(typeof template === 'undefined') {
+                        _AdRenderOpts = {
+                            networkKey: '5a86d53377e54819b9d1d7d92f6af887',
+                            widgetId: widgetId+'',
+                            keyValues: {widget_type: _nm.getWidgetType(adData.template)},
+                            cssPath: '#' + _nm.AdContainerPrefix + widgetId + ':append',
+                            categories: ['IAB1'],
+                            userCallbackOnAdLoad: function(status) {
+                                _nm.log('Exit Widget loaded successfully');
+                                _nm.addExitWidgetRemoveHandler();
+                                _nm.loadNextWidget();
+                            }
+                        };
+                    } else {
+                        // New Publishers : Post Launch Approach
+                        _AdRenderOpts = {
+                            apiKey: widgetId,
+                            templateKey: template,
+                            keyValues: {widget_type: _nm.getWidgetType(template)},
+                            cssPath: '#' + _nm.AdContainerPrefix + widgetId + ':append',
+                            userCallbackOnAdLoad: function(status) {
+                                _nm.log('New Publisher Exit loaded successfully');
+                                _nm.addExitWidgetRemoveHandler();
+                                _nm.loadNextWidget();
+                            }
+                        };
+
+                        // TODO : template name validation to be NM01-NM15
+                    }
+
+                    // Widgets requiring client side screen & container size based decisioning for numAds
+                    if(adData.numAds) {
+                        _AdRenderOpts.numAds = adData.numAds;
+                    }
+
+                     _nm.insertRenderJs();
+
+                    delayedAdCalled = true
+                }
+            }
+            old_move = new_move;
+        };
+
+        // Since Exit widget is delayed, continue the serial chain of widgets
+        _nm.loadNextWidget();
+    };
+
+    _nm.addExitWidgetRemoveHandler = function() {
+        document.querySelector('#exitContainer .close').onclick = function() {
+            document.querySelector('#exitContainer').style.display = 'none';
+        };
+
+        document.querySelector('#exitContainer').onclick = function (evt) {
+            if (!evt.target.hasAttribute('href')) {
+                document.querySelector('#exitContainer').style.display = 'none';
+            }
+        };
     };
 
     _nm.insertRenderJs = function() {
         var antag = document.createElement('script');
         antag.async = true;
         antag.type = 'text/javascript';
-        antag.src ='http://s.newsmaxfeednetwork.com/static/js/render.v1.js';
+        antag.src ='http://s.newsmaxfeednetwork.com/static/js/render.v1.js?clear';
 
         var node = document.getElementsByTagName('script')[0];
         node.parentNode.insertBefore(antag, node);
+
+        _nm.log('RenderJS invoked');
     }
 
     _nm.getStandardAdData = function(widgetId, template) {
         var numAds = 0,
             template = template,
-            containerWidth = document.getElementById('NmWg' + widgetId).offsetWidth,
+            containerWidth = null,
             screenWidth = window.innerWidth;
+
+        var widgetContainer = document.getElementById('NmWg' + widgetId);
+        if(!widgetContainer) {
+            _nm.log('Widget Container DIV with ID NmWg'+widgetId+' not found on the page');
+            return null;
+        }
 
         var migrationWidgets = {
             standardImage: [
-                3667,4355,3944,4074,3726,4150,4446,212,3767,4038,4031,4301,768,3938,3683,4353,3613,370,4195,811,3983,4032,4217,259,4097,4456,4033,4090,4182,3220,3788,3626,4349,3685,3866,3740,3330,4414,4212,3703,4332,4317,3737,3496,4073,3686,4175,3819,3818,3536,4046,4215,3783,3707,3690,4199,4138,4141,4210,4286,4308,4307,4178,3658,3659,3290,3291,4048,745,803,841,3090,1035,561,4017,10,2,1,3292,3293,3520,3628,4070,3975,4442,4057,4155,3633,3952,4075,4088,3774,4152,3934,4279,3881,3742,3745,961,4221,4357,3935,3684,4176,3657,4128,4039,3583,4315,4453,3991,3704,4209,4179,4219,4440
+                3081,3082,3083,3667,4355,3944,4074,3726,4150,4446,212,3767,4038,4031,4301,768,3938,3683,4353,3613,370,4195,811,3983,4032,4217,259,4097,4456,4033,4090,4182,3220,3788,3626,4349,3685,3866,3740,3330,4414,4212,3703,4332,4317,3737,3496,4073,3686,4175,3819,3818,3536,4046,4215,3783,3707,3690,4199,4138,4141,4210,4286,4308,4307,4178,3658,3659,3290,3291,4048,745,803,841,3090,1035,561,4017,10,2,1,3292,3293,3520,3628,4070,3975,4442,4057,4155,3633,3952,4075,4088,3774,4152,3934,4279,3881,3742,3745,961,4221,4357,3935,3684,4176,3657,4128,4039,3583,4315,4453,3991,3704,4209,4179,4219,4440
             ],
             standardImage2Columns: [
                 281,4384,1038,512,251,4345,318,120,933,692,4457,746,738,398,4352,4460,4339,4058,697,157,790,760,4310,995,3192,323,4239,3577,3069,3231,1054,3162,3142,3219,570,871
@@ -349,7 +515,7 @@
                 4266,4271,3992,4272,4174,4037,3539,4216,4091,4438,4235,4172,4278,4228,4170,4232,4231,4233,4062,4167,4240,4166,4095,4238,4214,4126,4124,4342,4351,4163,4208,4382,4173,4274,4237,4319,4171,4068,4082,4328,4169,4441,4168,4443,4289,4327,4380,4222,4424,4341,4220,4439
             ],
             standardText: [
-                3622,3799,483,3247,276,4107,15,3798,4109,466,1055,3191,3653,4133,137,3549,3706,3175,3621,3969,4115,4116,4114,3423,3424,3576,3216,230,427,8,3212,5,7,4432,3081,3082,3083,3,560,558,556,557,559,516,4051,4049,4480,4269,253,192,4476,179,4467,3892,3888,791
+                3622,3799,483,3247,276,4107,15,3798,4109,466,1055,3191,3653,4133,137,3549,3706,3175,3621,3969,4115,4116,4114,3423,3424,3576,3216,230,427,8,3212,5,7,4432,3,560,558,556,557,559,516,4051,4049,4480,4269,253,192,4476,179,4467,3892,3888,791
             ],
             standardText2Columns: [
                 4386
@@ -371,7 +537,7 @@
             } else if(screenWidth <= 720) {
                 numAds = 6;
             } else if(screenWidth > 720) {
-                numAds = (containerWidth <= 720) ? 8 : 10;
+                numAds = (containerWidth <= 720) ? 6 : 6;
             }
 
             template = 'NM01';
@@ -401,6 +567,16 @@
             }
 
             template = 'NM09';
+        } else if(template === 'NM13' || migrationWidgets.footer.indexOf(widgetId) >= 0) { // Footer
+            if(screenWidth <= 480) {
+                numAds = 1;
+            } else if(screenWidth <= 720) {
+                numAds = 2;
+            } else if(screenWidth > 720) {
+                numAds = 4;
+            }
+
+            template = 'NM13';
         } else if(template === 'NM14' || migrationWidgets.leaderboard.indexOf(widgetId) >= 0) { // Leaderboard
             numAds = 4;
 
@@ -493,6 +669,26 @@
         return widgetType;
     };
 
+    _nm.getParameterByName =  function(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    };
+
+    _nm.log = function(msg, value) {
+        if(typeof console !== 'undefined') {
+            if(!value) {
+                console.log(msg);
+            } else {
+                console.log(msg, value);
+            }
+        }
+    };
+
     // Comscore Pixel
     window._comscore = window._comscore || [];
     window._comscore.push({ c1: "7", c2: "9248945", c3: "100000" });
@@ -501,5 +697,11 @@
         s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
         el.parentNode.insertBefore(s, el);
     })();
+
+    if(_nm.getParameterByName('newsmax_preview')) {
+        _nm.debug = true;
+    }
+
+    _nm.log('Connect V5 version : '+ _nm.version + ' loaded');
 
 })();

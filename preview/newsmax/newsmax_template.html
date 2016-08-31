@@ -1,0 +1,192 @@
+<html>
+
+<head>
+    <title>Newsmax Widgets</title>
+    <style>
+    .grey {
+        background-color: #ccc;
+    }
+    
+    .header,
+    .footer {
+        height: 10em;
+        background-color: #ADD8e6;
+    }
+    
+    .header .logo {
+        width: 40%;
+        margin: 0 auto;
+        display: block;
+        padding-top: 2em;
+    }
+    
+    .main {
+        width: 70%;
+        float: left;
+    }
+    
+    .right-rail {
+        width: 29%;
+        margin-left: 1%;
+        float: left;
+    }
+    
+    .right-rail .grey {
+        background-color: #aaa;
+    }
+    
+    p {
+        margin: .2em 0;
+        font-size: 5em;
+    }
+    
+    .clear {
+        clear: both;
+    }
+    
+    .block {
+        margin: 1em 0;
+        height: 8em;
+    }
+    
+    .double {
+        height: 16em;
+    }
+    
+    @media screen and (max-width: 768px) {
+        .header .logo {
+            width: 50%;
+        }
+    }
+    
+    @media screen and (max-width: 425px) {
+        .header .logo {
+            width: 80%;
+        }
+        .main {
+            float: none;
+            width: 100%;
+        }
+        .right-rail {
+            float: none;
+            width: 100%;
+            margin: 0;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <script type="text/javascript" src="connectV5.js"></script>
+    <div class="wrapper">
+        <div class="header grey">
+            <img src="newsmax_logo.png" class="logo">
+        </div>
+        <div class="content">
+            <div class="main" id="articleContainer">
+                <div id='NmWg4055'></div>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <div id='NmWg3247'></div>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <div id='NmWg1035'></div>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <div id='NmWg4384'></div>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <div id='NmWg4386'></div>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <div id='NmWg4567'></div>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <div id='NmWg4266'></div>
+            </div>
+            <div class="right-rail">
+                <div class="block grey"></div>
+                <div class="block double grey"></div>
+                <div id='NmWg3608'></div>
+                <div class="block grey"></div>
+                <div class="block grey"></div>
+                <div id='NmWg3734'></div>
+                <div class="block grey"></div>
+                <div class="block grey"></div>
+                <div id='NmWg3513'></div>
+                <div class="block grey"></div>
+                <div class="block grey"></div>
+                <div id='NmWg4008'></div>
+                <div class="block grey"></div>
+                <div class="block double grey"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div id='NmWg4478'></div>
+        <div class="footer grey"></div>
+    </div>
+    <script type="text/javascript">
+    // Standard Widgets
+    NMTemp.init({
+        WidgetID: 4055
+    }); // Leaderboard. Done
+    NMTemp.init({
+        WidgetID: 3608
+    }); // Sidebar. Done
+    NMTemp.init({
+        WidgetID: 1035
+    }); // Standard Image. Done
+    NMTemp.init({
+        WidgetID: 4384
+    }); // Standard Image - 2 Columns. Done
+    NMTemp.init({
+        WidgetID: 3247
+    }); // Standard Text. Done
+    NMTemp.init({
+        WidgetID: 4386
+    }); // Standard Text - 2 Columns. Done
+    NMTemp.init({
+        WidgetID: 3734
+    }); // Sidebar - 2 Columns. Done
+    NMTemp.init({
+        WidgetID: 4266
+    }); // Exit. Done
+    NMTemp.init({
+        WidgetID: 4008
+    }); // Sidebar Text // No Disc bullet shown
+    NMTemp.init({
+        WidgetID: 3513
+    }); // Sidebar Thumbnails. Done
+    NMTemp.init({
+        WidgetID: 4567
+    }); // Thumbnails - 2 Columns // horizontal spacing
+    // NMTemp.init({
+    //     WidgetID: 4478
+    // }); // Footer. Done
+
+    // Instream Widgets
+    NMTemp.init({
+        WidgetID: 4285,
+        ArticleSelector: '#articleContainer'
+    }); // Instream Native
+    NMTemp.init({
+        WidgetID: 5678,
+        ArticleSelector: '#articleContainer'
+    }); // Instream Native Single
+    NMTemp.init({
+        WidgetID: 4071,
+        ArticleSelector: '#articleContainer'
+    }); // Instream Native Text
+    </script>
+</body>
+
+</html>
