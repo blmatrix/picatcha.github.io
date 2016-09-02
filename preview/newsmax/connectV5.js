@@ -19,7 +19,7 @@
     };
     _nm.debug = false;
 
-    root.NMTemp = _nm;
+    root.NM = _nm;
 
     _AdRenderOpts = {};
 
@@ -42,11 +42,11 @@
         if(_nm.widgets.currentIndex < _nm.widgets.adConfigs.length) {
             adConfig = _nm.widgets.adConfigs[_nm.widgets.currentIndex];
             _nm.widgets.currentIndex++;
-        }
+        } 
 
         if(!adConfig) return;
 
-        var widgetId, template, articleSelector;
+        var widgetId, template, articleSelector = null;
 
         if(adConfig.WidgetID)
             widgetId = adConfig.WidgetID;
@@ -66,6 +66,14 @@
         if(!widgetId) {
             _nm.log('No valid widgetId is passed in the adConfig');
             return;
+        }
+
+        // Disable widget DIV ID prefix for new integrations
+        if(template) {
+            _nm.log('New publisher Integration');
+            _nm.AdContainerPrefix = '';
+        } else {
+            _nm.log('Old migrated publisher Integration');
         }
 
         // Instream widget
@@ -350,7 +358,7 @@
                 };
             }
 
-            _nm.log('Registering InArticle Placement '+(currentIndex+1), _AdRenderOpts);
+            _nm.log('Add call placed for single InArticle Placement '+(currentIndex+1), _AdRenderOpts);
 
             // Move the placement index needle
             _nm.inArticleWidgets.currentIndex++;
@@ -378,6 +386,11 @@
             return;
         }
 
+        // Footer widget : Hide the widget below screen bottom
+        if(adData.template === 'NM13') {
+            document.getElementById(_nm.AdContainerPrefix + widgetId).className = 'nmFooterContainer';
+        }
+
         // Current Publishers : Backward Compatible Migration Approach
         if(typeof template === 'undefined') {
             _AdRenderOpts = {
@@ -388,7 +401,12 @@
                 categories: ['IAB1'],
                 userCallbackOnAdLoad: function(status) {
                     _nm.log('Migrated Widget loaded successfully');
-                    _nm.loadNextWidget();
+                    _nm.loadNextWidget(_nm.AdContainerPrefix + widgetId);
+
+                    // Footer widget
+                    if(adData.template === 'NM13') {
+                        _nm.handleFooterScrolling();
+                    }
                 }
             };
         } else {
@@ -401,6 +419,11 @@
                 userCallbackOnAdLoad: function(status) {
                     _nm.log('New Publisher Widget loaded successfully');
                     _nm.loadNextWidget();
+
+                    // Footer widget
+                    if(adData.template === 'NM13') {
+                        _nm.handleFooterScrolling(_nm.AdContainerPrefix + widgetId);
+                    }
                 }
             };
 
@@ -487,6 +510,18 @@
         };
     };
 
+    // Footer widget
+    _nm.handleFooterScrolling = function(widgetContainerId) {
+        var footerContainer = document.getElementById(widgetContainerId);
+        window.onscroll = function() {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                footerContainer.setAttribute('data-sticky-footer', '1');
+            } else {
+                footerContainer.removeAttribute('data-sticky-footer');
+            }
+        };
+    };
+
     _nm.insertRenderJs = function() {
         var antag = document.createElement('script');
         antag.async = true;
@@ -505,9 +540,9 @@
             containerWidth = null,
             screenWidth = window.innerWidth;
 
-        var widgetContainer = document.getElementById('NmWg' + widgetId);
+        var widgetContainer = document.getElementById(_nm.AdContainerPrefix + widgetId);
         if(!widgetContainer) {
-            _nm.log('Widget Container DIV with ID NmWg'+widgetId+' not found on the page');
+            _nm.log('Widget Container DIV with ID ' + _nm.AdContainerPrefix + widgetId +' not found on the page');
             return null;
         }
 
