@@ -329,12 +329,12 @@
         }
     };
 
-    _nm.insertInArticleSinglePlacement = function() {
+    _nm.insertInArticleSinglePlacement = function(widgetId, template) {
         var currentIndex = _nm.inArticleWidgets.currentIndex;
 
         if(currentIndex < _nm.inArticleWidgets.placementIds.length) {
             // Current Publishers : Backward Compatible Migration Approach
-            if(typeof _nm.inArticleWidgets.template === 'undefined') {
+            if(typeof template === 'undefined') {
                 _AdRenderOpts = {
                     networkKey: '5a86d53377e54819b9d1d7d92f6af887',
                     widgetId: _nm.inArticleWidgets.widgetId+'',
