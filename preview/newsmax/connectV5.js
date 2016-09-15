@@ -9,14 +9,153 @@
 
     _nm.ArticleSelector = '';
     _nm.ArticleAdContainerPrefix = 'NmWgInstream';
+    _nm.LEGACY_INTEGRATION = 1;
+    _nm.OLD_INTEGRATION = 2;
+    _nm.NEW_INTEGRATION = 3;
     _nm.AdContainerPrefix = 'NmWg';
     _nm.widgetAlreadyExists = false;
     _nm.exitWidgetShownOnce = false;
-    _nm.version = 1.8;
+    _nm.version = 1.91;
     _nm.widgets = {
         currentIndex: 0,
         adConfigs: []
     };
+    _nm.legacyClientIdMappingTable = {
+        '1126': '1',
+        '1': '3',
+        '88': '5',
+        '669': '7',
+        '12': '15',
+        '578': '17',
+        '48': '22',
+        '1163': '27',
+        '90': '30',
+        '105': '32',
+        '103': '33',
+        '111': '34',
+        '163': '37',
+        '6': '39',
+        '120': '42',
+        '126': '43',
+        '119': '45',
+        '140': '48',
+        '136': '49',
+        '139': '51',
+        '191': '57',
+        '199': '58',
+        '1263': '59',
+        '897': '66',
+        '258': '74',
+        '252': '75',
+        '271': '77',
+        '345': '92',
+        '319': '96',
+        '380': '101',
+        '211': '112',
+        '437': '117',
+        '11': '118',
+        '438': '121',
+        '401': '122',
+        '492': '131',
+        '464': '133',
+        '528': '137',
+        '543': '143',
+        '407': '144',
+        '566': '146',
+        '1278': '147',
+        '604': '155',
+        '646': '157',
+        '1277': '158',
+        '642': '163',
+        '706': '168',
+        '127': '175',
+        '645': '176',
+        '233': '178',
+        '683': '179',
+        '272': '182',
+        '780': '186',
+        '679': '188',
+        '512': '192',
+        '8': '206',
+        '472': '209',
+        '244': '213',
+        '13': '217',
+        '916': '239',
+        '152': '241',
+        '923': '243',
+        '926': '244',
+        '895': '246',
+        '913': '253',
+        '224': '258',
+        '959': '260',
+        '22': '262',
+        '458': '264',
+        '925': '272',
+        '9': '273',
+        '23': '276',
+        '93': '279',
+        '104': '280',
+        '1054': '288',
+        '1066': '289',
+        '240': '293',
+        '230': '294',
+        '1061': '298',
+        '409': '299',
+        '1074': '310',
+        '1075': '311',
+        '548': '317',
+        '1098': '325',
+        '1425': '326',
+        '1057': '327',
+        '728': '329',
+        '606': '338',
+        '1155': '342',
+        '947': '344',
+        '1192': '353',
+        '878': '366',
+        '1204': '367',
+        '1222': '373',
+        '1212': '378',
+        '465': '385',
+        '826': '389',
+        '1258': '390',
+        '299': '391',
+        '1291': '399',
+        '1303': '409',
+        '220': '411',
+        '21': '412',
+        '1330': '431',
+        '1317': '436',
+        '1121': '437',
+        '1316': '438',
+        '1233': '440',
+        '436': '444',
+        '1341': '445',
+        '1338': '446',
+        '1348': '458',
+        '1346': '461',
+        '1062': '466',
+        '1358': '469',
+        '1357': '475',
+        '1359': '476',
+        '481': '478',
+        '1184': '481',
+        '743': '482',
+        '785': '483',
+        '1363': '484',
+        '1230': '485',
+        '1239': '490',
+        '1243': '491',
+        '1387': '508',
+        '1403': '525',
+        '1416': '535',
+        '81': '556',
+        '85': '557',
+        '80': '558',
+        '86': '559',
+        '89': '561'
+    };
+
     _nm.debug = false;
 
     root.NM = _nm;
@@ -42,16 +181,24 @@
         if(_nm.widgets.currentIndex < _nm.widgets.adConfigs.length) {
             adConfig = _nm.widgets.adConfigs[_nm.widgets.currentIndex];
             _nm.widgets.currentIndex++;
-        } 
+        }
 
         if(!adConfig) return;
 
-        var widgetId, template, articleSelector = null;
+        var widgetId, clientId, template, articleSelector, integration = null;
 
         if(adConfig.WidgetID)
             widgetId = adConfig.WidgetID;
         else if(adConfig.widgetId)
             widgetId = adConfig.widgetId;
+        else if(adConfig.ClientID) {
+            integration = _nm.LEGACY_INTEGRATION;
+            if(_nm.legacyClientIdMappingTable[adConfig.ClientID+'']) {
+                widgetId = parseInt(_nm.legacyClientIdMappingTable[adConfig.ClientID+'']);
+            } else {
+                _nm.log('Client ID -> Widget ID mapping not found');
+            }
+        }
 
         if(adConfig.Template)
             template = adConfig.Template;
@@ -64,16 +211,20 @@
             articleSelector = adConfig.articleSelector;
 
         if(!widgetId) {
-            _nm.log('No valid widgetId is passed in the adConfig');
+            _nm.log('No valid widgetId is passed in the adConfig / not found in client id mapping');
             return;
         }
 
         // Disable widget DIV ID prefix for new integrations
         if(template) {
-            _nm.log('New publisher Integration');
-            _nm.AdContainerPrefix = '';
+            integration = _nm.NEW_INTEGRATION;
+            _nm.log('New Direct AN ID publisher Integration');
+        } else if(adConfig.ClientID) {
+            integration = _nm.LEGACY_INTEGRATION;
+            _nm.log('Legacy Newsmax Client ID -> Widget ID Integration');
         } else {
-            _nm.log('Old migrated publisher Integration');
+            integration = _nm.OLD_INTEGRATION;
+            _nm.log('Old Newsmax Widget ID -> AN ID Integration');
         }
 
         // Instream widget
@@ -81,11 +232,11 @@
             _nm.log('Rendering InArticle widget : '+ widgetId);
             _nm.ArticleSelector = articleSelector;
             if (_nm.ArticleSelector) {
-                _nm.insertInArticleWidget(widgetId, template);
+                _nm.insertInArticleWidget(widgetId, template, integration);
             }
         } else {
             _nm.log('Rendering Standard widget : '+ widgetId);
-            _nm.insertStandardWidget(widgetId, template);
+            _nm.insertStandardWidget(widgetId, template, integration);
         }
     };
 
@@ -290,7 +441,7 @@
 
     })();
 
-    _nm.insertInArticleWidget = function(widgetId, template) {
+    _nm.insertInArticleWidget = function(widgetId, template, integration) {
         var adData = _nm.getInstreamData(widgetId, template);        
             plugins = new _nm.inArticleWidget.Helpers(),
             instreamWidget = _nm.inArticleWidget.init(_nm.ArticleSelector),
@@ -300,7 +451,8 @@
             currentIndex: 0,
             placementIds: [],
             widgetId: widgetId,
-            template: (template) ? template : adData.template
+            template: (template) ? template : adData.template,
+            integration: integration
         };
         
         if(adData.zoneCount == 0) {
@@ -325,11 +477,11 @@
 
         // First in article placement
         if(_nm.inArticleWidgets.placementIds.length > 0 && !_nm.inArticleWidgets.currentIndex) {
-            _nm.insertInArticleSinglePlacement(widgetId, template);
+            _nm.insertInArticleSinglePlacement(template);
         }
     };
 
-    _nm.insertInArticleSinglePlacement = function(widgetId, template) {
+    _nm.insertInArticleSinglePlacement = function(template) {
         var currentIndex = _nm.inArticleWidgets.currentIndex;
 
         if(currentIndex < _nm.inArticleWidgets.placementIds.length) {
@@ -342,7 +494,10 @@
                     nativeAdElementId: _nm.inArticleWidgets.placementIds[currentIndex],
                     categories: ['IAB1'],
                     userCallbackOnAdLoad: function(status) {
-                        _nm.insertInArticleSinglePlacement();
+                        if(_nm.inArticleWidgets.currentIndex === 1 || _nm.inArticleWidgets.template === 'NM11') {
+                            _nm.log('Migrated Instream Widget loaded successfully');
+                        }
+                        _nm.insertInArticleSinglePlacement(template);
                     }
                 };
             } else {
@@ -353,7 +508,10 @@
                     keyValues: {widget_type: _nm.getWidgetType(_nm.inArticleWidgets.template)},
                     nativeAdElementId: _nm.inArticleWidgets.placementIds[currentIndex],
                     userCallbackOnAdLoad: function(status) {
-                        _nm.insertInArticleSinglePlacement();
+                        if(_nm.inArticleWidgets.currentIndex === 1 || _nm.inArticleWidgets.template === 'NM11') {
+                            _nm.log('New Publisher Instream Widget loaded successfully');
+                        }
+                        _nm.insertInArticleSinglePlacement(template);
                     }
                 };
             }
@@ -371,16 +529,32 @@
 
      };
 
-    _nm.insertStandardWidget = function(widgetId, template) {
-        var adData = _nm.getStandardAdData(widgetId, template),
-            adUnit = null;
+    _nm.insertStandardWidget = function(widgetId, template, integration) {
+        var adData, adUnit, adContainerId = null;
+
+        // Each integration version has different adcontainer ID
+        if(integration === _nm.LEGACY_INTEGRATION) {
+            adContainerId = 'nmWidgetContainer';
+        } else if(integration === _nm.OLD_INTEGRATION) {
+            adContainerId = _nm.AdContainerPrefix + widgetId;
+        } else if(integration === _nm.NEW_INTEGRATION) {
+            adContainerId = widgetId;
+        }
+
+        var widgetContainer = document.getElementById(adContainerId);
+        if(!widgetContainer) {
+            _nm.log('Widget Container DIV with ID ' + adContainerId +' not found on the page');
+            return null;
+        }
+
+        adData = _nm.getStandardAdData(widgetId, template)
 
         if(!adData) return;
 
         // Exit widget : Delay adrequest and rendering until user tries to exit page
         if(adData.template === 'NM15') {
             if(!_nm.exitWidgetShownOnce) {
-                _nm.insertExitWidget(widgetId, template, adData);
+                _nm.insertExitWidget(widgetId, template, adData, adContainerId);
                 _nm.exitWidgetShownOnce = true;
             }
             return;
@@ -388,7 +562,7 @@
 
         // Footer widget : Hide the widget below screen bottom
         if(adData.template === 'NM13') {
-            document.getElementById(_nm.AdContainerPrefix + widgetId).className = 'nmFooterContainer';
+            document.getElementById(adContainerId).className = 'nmFooterContainer';
         }
 
         // Current Publishers : Backward Compatible Migration Approach
@@ -397,15 +571,15 @@
                 networkKey: '5a86d53377e54819b9d1d7d92f6af887',
                 widgetId: widgetId+'',
                 keyValues: {widget_type: _nm.getWidgetType(adData.template)},
-                cssPath: '#' + _nm.AdContainerPrefix + widgetId + ':append',
+                cssPath: '#' + adContainerId + ':append',
                 categories: ['IAB1'],
                 userCallbackOnAdLoad: function(status) {
                     _nm.log('Migrated Widget loaded successfully');
-                    _nm.loadNextWidget(_nm.AdContainerPrefix + widgetId);
+                    _nm.loadNextWidget();
 
                     // Footer widget
                     if(adData.template === 'NM13') {
-                        _nm.handleFooterScrolling();
+                        _nm.handleFooterScrolling(adContainerId);
                     }
                 }
             };
@@ -415,14 +589,14 @@
                 apiKey: widgetId,
                 templateKey: template,
                 keyValues: {widget_type: _nm.getWidgetType(template)},
-                cssPath: '#' + _nm.AdContainerPrefix + widgetId + ':append',
+                cssPath: '#' + adContainerId + ':append',
                 userCallbackOnAdLoad: function(status) {
                     _nm.log('New Publisher Widget loaded successfully');
                     _nm.loadNextWidget();
 
                     // Footer widget
                     if(adData.template === 'NM13') {
-                        _nm.handleFooterScrolling(_nm.AdContainerPrefix + widgetId);
+                        _nm.handleFooterScrolling(adContainerId);
                     }
                 }
             };
@@ -438,10 +612,10 @@
          _nm.insertRenderJs();
     };
 
-    _nm.insertExitWidget = function(widgetId, template, adData) {
+    _nm.insertExitWidget = function(widgetId, template, adData, adContainerId) {
         var old_move = 0,
             delayedAdCalled = false,
-            widget = document.getElementById(_nm.AdContainerPrefix + widgetId);
+            widget = document.getElementById(adContainerId);
 
         if (!widget) return;
 
@@ -456,7 +630,7 @@
                             networkKey: '5a86d53377e54819b9d1d7d92f6af887',
                             widgetId: widgetId+'',
                             keyValues: {widget_type: _nm.getWidgetType(adData.template)},
-                            cssPath: '#' + _nm.AdContainerPrefix + widgetId + ':append',
+                            cssPath: '#' + adContainerId + ':append',
                             categories: ['IAB1'],
                             userCallbackOnAdLoad: function(status) {
                                 _nm.log('Exit Widget loaded successfully');
@@ -470,7 +644,7 @@
                             apiKey: widgetId,
                             templateKey: template,
                             keyValues: {widget_type: _nm.getWidgetType(template)},
-                            cssPath: '#' + _nm.AdContainerPrefix + widgetId + ':append',
+                            cssPath: '#' + adContainerId + ':append',
                             userCallbackOnAdLoad: function(status) {
                                 _nm.log('New Publisher Exit loaded successfully');
                                 _nm.addExitWidgetRemoveHandler();
@@ -526,7 +700,12 @@
         var antag = document.createElement('script');
         antag.async = true;
         antag.type = 'text/javascript';
-        antag.src ='http://s.newsmaxfeednetwork.com/static/js/render.v1.js?clear';
+
+        if (window.location.protocol != "https:") {
+            antag.src ='http://s.newsmaxfeednetwork.com/static/js/render.v1.js';
+        } else {
+            antag.src ='https://s.newsmaxfeednetwork.com/static/js/render.v1.js';
+        }
 
         var node = document.getElementsByTagName('script')[0];
         node.parentNode.insertBefore(antag, node);
@@ -539,12 +718,6 @@
             template = template,
             containerWidth = null,
             screenWidth = window.innerWidth;
-
-        var widgetContainer = document.getElementById(_nm.AdContainerPrefix + widgetId);
-        if(!widgetContainer) {
-            _nm.log('Widget Container DIV with ID ' + _nm.AdContainerPrefix + widgetId +' not found on the page');
-            return null;
-        }
 
         var migrationWidgets = {
             standardImage: [
@@ -581,7 +754,7 @@
                 338,3734,3711,597,3145,703,3644,3618,3671,285,633,3589,3768,4010,3795,1018,1021,4092,4009,4151,3766,4435,4434,4015,4105,3346,3676,4013,1037,1036,1041,1047,1048,904,4372,3468,4007,4047,884,785,3794,797,280,3457,122,757,4003,3687,4459,630,3079,4002,4096,845,3842,3784,3554,3673,117,3661,3854,3846,3850,1015,3187,3217,90,672,3617,4218,4110,3868,742,3135,3948,3865,4369,3821,3762,3761,782,931,3956,3955,4223,916,868,686,4418,3852,3822,932,3309,3177,4318,4287,4368,3863,4014,3936,4394,881,4416,4111,3951,4204,3201,3937,4333,4377,3812,4184,4164,596,3105,3765,4080,3824,3998,3728,4189,4429,4123,4428,4428,677,3792,3965,4194,3848,4412,870,893,4069,1020,4294,3810,3237,3933,4120,978,4136,3947,3586,3953,3845,3838,4132,3860,4422,3587,4019,3840,4065,4350,3764,4396,4371,3141,3062,3858,4433,3857,4430,3835,3662,3959,3954,3763,4322,4335,4383,4426,4477,4482,4468,4464,4036,368,859,4475,4492,4462,4474,568,4489,4495,4481,4487,4490,4493,4491,4470,956,591,4496,4507,4505,4506,4501,4500,4488,4504,4502,4503,4471,3887,4494,787,4485,4486,3063,967,4375,4373,4311
             ],
             sidebarText: [
-                4008,4006,4005,4004,293,385,290,3957,3562,3993,3738,4060,4363,17,3174,621,445,842,844,209,4102,3609,3522,3568,3669,3302,59,131,3365,3548,705,3927,1008,3634,3803,781,3672,55,303,3601,49,969,299,3806,3530,310,3127,490,3394,241,3489,3488,3490,461,317,3691,112,495,185,943,37,3486,3945,206,4185,823,481,66,3319,429,944,3790,3793,3304,3660,926,213,167,3058,180,3588,406,353,474,934,4162,4299,391,3134,289,273,3756,132,262,75,144,3682,373,4389,475,3143,509,510,468,175,16,4130,3371,194,412,3462,3698,3862,3171,114,4283,325,3864,342,953,4437,3250,203,3599,452,272,399,479,3789,508,4421,3203,3332,58,3052,386,4106,3345,3347,3348,3101,294,3149,3675,324,484,3699,440,446,3388,134,3196,3437,4064,458,39,168,244,485,4180,32,3666,3071,4295,4098,411,4303,886,4445,163,1040,784,3503,891,431,3700,390,389,3552,3796,3543,3352,161,957,409,497,777,182,88,1046,3433,3620,778,321,937,43,3755,23,178,22,4021,4119,186,4313,143,3195,3555,378,264,3995,367,3442,279,416,3523,473,459,3629,158,34,155,101,4347,4388,3421,3420,4139,3485,3694,3614,4020,3443,61,4392,3494,92,176,33,3573,491,3096,266,477,3526,3527,96,792,469,329,27,116,202,4147,133,127,366,121,45,344,1034,1033,51,1000,74,3843,546,482,816,77,525,843,288,118,4454,298,4131,235,57,927,42,173,4113,3674,989,207,3855,3981,3524,3350,3847,3851,3582,3581,3103,4378,4461,840,476,3814,3093,3184,4338,3170,3221,3395,3709,3612,3119,571,3379,3183,3182,4207,3710,3787,3786,4104,4393,4297,3697,3926,4348,3495,3211,652,3242,3080,438,3797,260,4361,4025,3504,4450,4451,3514,3623,4415,3639,3649,48,3351,3867,4211,3483,936,935,4381,1011,3359,654,4192,30,765,3925,867,4362,3378,4365,3154,4367,3474,3560,3054,4027,535,4040,872,4148,3670,3533,3055,3696,4137,4129,4101,4146,4052,3853,939,3095,1029,1051,3176,3193,3053,3167,862,3809,4016,3245,3656,3770,4321,4320,3148,3422,3426,3430,437,326,327,3168,4205,3646,3153,743,3150,3111,3604,4134,3924,4086,3759,3735,4417,3869,3923,3417,4100,3206,3572,3214,863,794,4291,3475,624,3811,3230,4026,4145,3190,3558,4045,3113,3780,3498,4099,3202,3213,3550,4018,3505,3315,4142,4213,4296,4458,4448,3316,3982,564,3284,710,3413,3452,3102,4081,3210,4024,3929,3118,4436,3739,3240,653,578,4337,3303,3579,4183,4023,4316,3736,4334,3976,4364,761,3381,4056,727,659,4121,4329,4359,146,3234,3791,3695,3460,3057,866,3964,3989,4022,3849,3440,3538,4160,3133,3334,4413,4193,873,907,3349,4050,3553,4236,3510,3509,767,4087,3950,3484,3340,4292,3360,4379,547,3754,4312,3312,188,4181,3499,4298,3647,3808,4190,3743,3746,3781,3445,3185,3204,3528,3283,938,763,4344,854,3456,4140,4144,4135,3753,3508,3507,4358,3186,3940,3752,3618,3642,4042,3415,3077,3551,3844,3274,3640,3502,3529,711,3380,3839,3561,3516,3744,4336,3215,3771,3693,3801,3861,4165,3627,4423,147,4406,3472,3521,3540,3471,3841,3534,864,3469,4403,970,3525,3741,4400,3580,764,3343,3518,3605,3958,3913,436,3574,3270,444,3078,4206,3994,3859,4411,3856,865,3990,3233,708,707,706,3702,3607,3438,3439,3441,3837,3124,258,4340,3205,190,4484,
+                1019, 4008,4006,4005,4004,293,385,290,3957,3562,3993,3738,4060,4363,17,3174,621,445,842,844,209,4102,3609,3522,3568,3669,3302,59,131,3365,3548,705,3927,1008,3634,3803,781,3672,55,303,3601,49,969,299,3806,3530,310,3127,490,3394,241,3489,3488,3490,461,317,3691,112,495,185,943,37,3486,3945,206,4185,823,481,66,3319,429,944,3790,3793,3304,3660,926,213,167,3058,180,3588,406,353,474,934,4162,4299,391,3134,289,273,3756,132,262,75,144,3682,373,4389,475,3143,509,510,468,175,16,4130,3371,194,412,3462,3698,3862,3171,114,4283,325,3864,342,953,4437,3250,203,3599,452,272,399,479,3789,508,4421,3203,3332,58,3052,386,4106,3345,3347,3348,3101,294,3149,3675,324,484,3699,440,446,3388,134,3196,3437,4064,458,39,168,244,485,4180,32,3666,3071,4295,4098,411,4303,886,4445,163,1040,784,3503,891,431,3700,390,389,3552,3796,3543,3352,161,957,409,497,777,182,88,1046,3433,3620,778,321,937,43,3755,23,178,22,4021,4119,186,4313,143,3195,3555,378,264,3995,367,3442,279,416,3523,473,459,3629,158,34,155,101,4347,4388,3421,3420,4139,3485,3694,3614,4020,3443,61,4392,3494,92,176,33,3573,491,3096,266,477,3526,3527,96,792,469,329,27,116,202,4147,133,127,366,121,45,344,1034,1033,51,1000,74,3843,546,482,816,77,525,843,288,118,4454,298,4131,235,57,927,42,173,4113,3674,989,207,3855,3981,3524,3350,3847,3851,3582,3581,3103,4378,4461,840,476,3814,3093,3184,4338,3170,3221,3395,3709,3612,3119,571,3379,3183,3182,4207,3710,3787,3786,4104,4393,4297,3697,3926,4348,3495,3211,652,3242,3080,438,3797,260,4361,4025,3504,4450,4451,3514,3623,4415,3639,3649,48,3351,3867,4211,3483,936,935,4381,1011,3359,654,4192,30,765,3925,867,4362,3378,4365,3154,4367,3474,3560,3054,4027,535,4040,872,4148,3670,3533,3055,3696,4137,4129,4101,4146,4052,3853,939,3095,1029,1051,3176,3193,3053,3167,862,3809,4016,3245,3656,3770,4321,4320,3148,3422,3426,3430,437,326,327,3168,4205,3646,3153,743,3150,3111,3604,4134,3924,4086,3759,3735,4417,3869,3923,3417,4100,3206,3572,3214,863,794,4291,3475,624,3811,3230,4026,4145,3190,3558,4045,3113,3780,3498,4099,3202,3213,3550,4018,3505,3315,4142,4213,4296,4458,4448,3316,3982,564,3284,710,3413,3452,3102,4081,3210,4024,3929,3118,4436,3739,3240,653,578,4337,3303,3579,4183,4023,4316,3736,4334,3976,4364,761,3381,4056,727,659,4121,4329,4359,146,3234,3791,3695,3460,3057,866,3964,3989,4022,3849,3440,3538,4160,3133,3334,4413,4193,873,907,3349,4050,3553,4236,3510,3509,767,4087,3950,3484,3340,4292,3360,4379,547,3754,4312,3312,188,4181,3499,4298,3647,3808,4190,3743,3746,3781,3445,3185,3204,3528,3283,938,763,4344,854,3456,4140,4144,4135,3753,3508,3507,4358,3186,3940,3752,3618,3642,4042,3415,3077,3551,3844,3274,3640,3502,3529,711,3380,3839,3561,3516,3744,4336,3215,3771,3693,3801,3861,4165,3627,4423,147,4406,3472,3521,3540,3471,3841,3534,864,3469,4403,970,3525,3741,4400,3580,764,3343,3518,3605,3958,3913,436,3574,3270,444,3078,4206,3994,3859,4411,3856,865,3990,3233,708,707,706,3702,3607,3438,3439,3441,3837,3124,258,4340,3205,190,4484,
             ]
         };
 
