@@ -1,5 +1,6 @@
 .str-adunit {
     cursor: pointer;
+    z-index: 100;
 }
 
 #floating-ad-container {
@@ -14,7 +15,7 @@
     left: 0px;
     opacity: 0;
     background: white;
-    visibility: hidden;
+    z-index: 10;
 }
 
 #floating-ad-container.clicked {
