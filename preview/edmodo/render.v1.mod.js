@@ -56,6 +56,11 @@ String.prototype.positiveIntegerHash = function() {
 
 //IE Quirks: End ****************
 
+
+/*
+    AdsNative version of subset of JQuery utility functions
+*/
+
 (function() {
 var an_jQuery = function( selector, context ) {
     },
@@ -152,8 +157,58 @@ function doScrollCheck() {
 window.an_jQuery = window.$an = an_jQuery;
 })();
 
-
 (function(){
+
+/*(function () {
+    "use strict";
+
+    function getStackTraceString() {
+      var callstack_string = '';
+      var isCallstackPopulated = false;
+      try {
+        i.dont.exist+=0; //doesn't exist- that's the point
+      } catch(e) {
+        if (e.stack) { //Firefox
+            callstack_string = e.stack;
+            isCallstackPopulated = true;
+        }
+        else if (window.opera && e.message) { //Opera
+            callstack_string = e.message;
+            isCallstackPopulated = true;
+        }
+      }
+      if (!isCallstackPopulated) { //IE and Safari
+        callstack_string = ''
+      }
+      return callstack_string;
+    }
+
+    var doc = document,
+    nativeDocWrite = document.write;
+    doc.write = function () {
+        var stackTraceString = getStackTraceString();
+        var index = -1;
+        if(typeof window.an_doc_write_scripts !== "undefined" && window.an_doc_write_scripts){
+            for(var i=0;i<window.an_doc_write_scripts.length;i++){
+                if(stackTraceString.indexOf(window.an_doc_write_scripts[i]) > -1){
+                    index=i;
+                    break;
+                }
+            }
+        }
+        if(index > -1){
+            var markup = Array.prototype.slice.call(arguments).join("");
+            utils.dropTags(window.an_doc_write_referenceElement[index], markup);
+        } else {
+            nativeDocWrite.apply(doc, arguments);
+        }
+    };
+}());*/
+
+
+/*
+    Utility functions
+*/
 
 var utils = new function() {
     'use strict';
@@ -164,8 +219,7 @@ var utils = new function() {
     this.activeWindow = function(){
         var win = window;
         try {
-            //this.isPreview() is to check for adsnative mobile immulator, which uses iframe
-            if(window.top.document && !this.isPreview() && window.top != window.self){
+            if(window.top.document && window.top != window.self){
                 win = window.top;
                 //Access the document just to force check the access
                 var doc = win.document;
@@ -284,7 +338,7 @@ var utils = new function() {
                 }
             }
         }
-        return null
+        return this.urlPrefix() + "//api.adsnative.com";
     };
 
     this.getURLParams = function() {
@@ -300,6 +354,10 @@ var utils = new function() {
             query = this.activeWindow().location.search.substring(1);
         } catch(err){
             query = window.location.search.substring(1);
+        }
+
+        if (!query && ref.indexOf('?') > 0) {
+            query = ref.substring(ref.indexOf('?') + 1);
         }
 
         urlParams = {};
@@ -465,7 +523,7 @@ var utils = new function() {
         for(var i=0,j=0;tags.length && j<tags.length;i++){
             var currentTag = tags[j];
             if(currentTag.tagName == 'IMG'){
-                currentTag.style.cssText = 'margin:0;padding:0;height:1px;width:1px;border:none;float:left;display:block;';
+                currentTag.style.cssText = 'margin:0;padding:0;height:1px;width:1px;border:none;float:left;display:none;';
                 referenceElement.appendChild(currentTag);
             } else if(currentTag.tagName == 'SCRIPT'){
                 renderScript(referenceElement, currentTag);
@@ -643,54 +701,491 @@ var utils = new function() {
     this.sendPostMessage = function(ifrm, url, msg){
         ifrm.contentWindow.postMessage(msg, url);
     }
-
 }
 
-/*(function () {
-    "use strict";
 
-    function getStackTraceString() {
-      var callstack_string = '';
-      var isCallstackPopulated = false;
-      try {
-        i.dont.exist+=0; //doesn't exist- that's the point
-      } catch(e) {
-        if (e.stack) { //Firefox
-            callstack_string = e.stack;
-            isCallstackPopulated = true;
-        }
-        else if (window.opera && e.message) { //Opera
-            callstack_string = e.message;
-            isCallstackPopulated = true;
-        }
-      }
-      if (!isCallstackPopulated) { //IE and Safari
-        callstack_string = ''
-      }
-      return callstack_string;
-    }
+var async = new function(){
 
-    var doc = document,
-    nativeDocWrite = document.write;
-    doc.write = function () {
-        var stackTraceString = getStackTraceString();
-        var index = -1;
-        if(typeof window.an_doc_write_scripts !== "undefined" && window.an_doc_write_scripts){
-            for(var i=0;i<window.an_doc_write_scripts.length;i++){
-                if(stackTraceString.indexOf(window.an_doc_write_scripts[i]) > -1){
-                    index=i;
-                    break;
+    this.postRequest = function(url, params, success, failure){
+        var xmlhttp;
+
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 ) {
+                if(xmlhttp.status == 200){
+                    if(arguments.length > 2)
+                        success(xmlhttp.responseText);
+                }
+                else {
+                    if(arguments.length > 3)
+                        failure();
                 }
             }
         }
-        if(index > -1){
-            var markup = Array.prototype.slice.call(arguments).join("");
-            utils.dropTags(window.an_doc_write_referenceElement[index], markup);
-        } else {
-            nativeDocWrite.apply(doc, arguments);
-        }
+        xmlhttp.open("POST", url, true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send(params);
     };
-}());*/
+
+    this.getJSONP = function(url, callback, callback_handle) {
+        var rand;
+        if(arguments.length > 2){
+            rand = callback_handle;
+        } else {
+            //For concealing callback function so no one else can intecept it
+            rand = Math.floor((Math.random()*1000000000) + 10000 );
+        }
+
+        window['an_callback_'+rand] = function(data){
+            callback(data);
+        }
+
+        var script = document.createElement('script');
+        script.src = url + '&callback=an_callback_' + rand;
+        document.getElementsByTagName('head')[0].appendChild(script);
+    };
+};
+
+/*
+    Ad viewability tracking
+*/
+
+// TODO: Track untrackable viewability metric
+
+function OpenAdViewability() {
+
+    /*
+        This implementation is according to MRC Viewability guidelines - 
+        http://mediaratingcouncil.org/081815%20Viewable%20Ad%20Impression%20Guideline_v2.0_Final.pdf
+    */
+
+    var geometryViewabilityCalculator = new OAVGeometryViewabilityCalculator();
+    var effectiveWindow = window;
+
+    var check = {
+        percentObscured: 0,
+        percentViewable: 0,
+        acceptedViewablePercentage: 50,
+        viewabiltyAchieved: false,
+        inView: false,
+        duration: 0
+    };
+
+    this.DEBUG_MODE = false;
+
+    this.checkViewability = function(ad, callbackOnViewabilityAchived, callbackInViewToggleInstant, contextWindow){
+        if(arguments.length > 2)
+            effectiveWindow = contextWindow;
+        var count = 0;
+        var that = this;
+        var timer = setInterval(function() {
+            if (checkViewable(ad)) {
+                count++;
+                if(!check.inView){
+                    check.inView = true;
+                    callbackInViewToggleInstant(true);
+                }
+            } else {
+                count = 0;
+                if(check.inView){
+                    check.inView = false;
+                    callbackInViewToggleInstant(false);
+                }
+            }
+            check.duration = count*100;
+            if (count >= 9) {
+                if(!check.viewabiltyAchieved){
+                    check.viewabiltyAchieved = true;
+                    callbackOnViewabilityAchived();
+                }
+            }
+        }, 100);
+    }
+
+    var checkViewable = function(ad) {
+        var adRect = ad.getBoundingClientRect();
+        var totalArea = adRect.width * adRect.height;
+        // According to MRC standards, larget ad unit size have only 30% viewable requirements
+        if(totalArea >= 242500)
+            check.acceptedViewablePercentage = 30;
+
+        if (checkCssInvisibility(ad) === true){
+            return false;
+        }
+
+        if (checkDomObscuring(ad) === true){
+            return false;
+        }
+
+        checkGeometry(ad);
+
+        if(check.percentViewable && check.percentViewable < check.acceptedViewablePercentage){
+            return false;
+        }
+
+        if(!check.percentViewable)
+            return false;
+
+        return true;
+    };
+
+    /**
+    * Performs the geometry technique to determine viewability. First gathers
+    * information on the viewport and on the ad. Then compares the two to
+    * determine what percentage, if any, of the ad is within the bounds
+    * of the viewport.
+    * @param {Element} ad The HTML Element to measure
+    */
+    var checkGeometry = function (ad) {
+        check.percentObscured = check.percentObscured || 0; 
+        var viewabilityResult = geometryViewabilityCalculator.getViewabilityState(ad, effectiveWindow);
+        if (!viewabilityResult.error) {
+            check.percentViewable = viewabilityResult.percentViewable - check.percentObscured;
+        }
+        return viewabilityResult;
+    };
+
+    /**
+     * Checks if the ad is made invisible by css attribute 'visibility:hidden'
+     * or 'display:none'.
+     * Is so, viewability at the time of this check is 'not viewable' and no further check
+     * is required.
+     * These properties are inherited, so no need to parse up the DOM hierarchy.
+     * If the ad is in an iframe inheritance is restricted to elements within
+     * the DOM of the iframe document
+     * @param {Element} ad The HTML Element to measure
+     */
+    var checkCssInvisibility = function (ad) {
+        var style = effectiveWindow.getComputedStyle(ad, null);
+        var visibility = style.getPropertyValue('visibility');
+        var display = style.getPropertyValue('display');
+        if ( visibility == 'hidden' || display == 'none' ){
+            return true;
+        }
+        return false;
+    };
+
+    /**
+     * Checks if the ad is more then 50% obscured by another dom element.
+     * Is so, viewability at the time of this check is 'not viewable' and no further check
+     * is required.
+     * If the ad is in an iframe this check is restricted to elements within
+     * the DOM of the iframe document
+     * @param {Element} ad The HTML Element to measure
+     */
+    var checkDomObscuring = function(ad){
+        var adRect = ad.getBoundingClientRect(),
+            offset = 12, // This offset apparently eliminates parent element of the ad
+            xLeft = adRect.left+offset,
+            xRight = adRect.right-offset,
+            yTop = adRect.top+offset,
+            yBottom = adRect.bottom-offset,
+            xCenter = Math.floor(adRect.left+adRect.width/2),
+            yCenter = Math.floor(adRect.top+adRect.height/2),
+            testPoints = [
+                { x:xLeft,   y:yTop },
+                { x:xCenter, y:yTop },
+                { x:xRight,  y:yTop },
+                { x:xLeft,   y:yCenter },
+                { x:xCenter, y:yCenter },
+                { x:xRight,  y:yCenter },
+                { x:xLeft,   y:yBottom },
+                { x:xCenter, y:yBottom },
+                { x:xRight,  y:yBottom }
+            ];
+
+        for (var p in testPoints) {
+            if (testPoints[p] && testPoints[p].x >= 0 && testPoints[p].y >= 0) {
+                elem = document.elementFromPoint(testPoints[p].x, testPoints[p].y);
+
+                if (elem != null && elem != ad && !ad.contains(elem)) {
+                    overlappingArea = overlapping(adRect, elem.getBoundingClientRect());
+                    if (overlappingArea > 0) {
+                        check.percentObscured = 100 * overlapping(adRect, elem.getBoundingClientRect());
+                        if (check.percentObscured > check.acceptedViewablePercentage) {
+                            check.percentViewable = 100 - check.percentObscured;
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    var overlapping = function(adRect, elem ){
+        var adArea = adRect.width * adRect.height;
+        var  x_overlap = Math.max(0, Math.min(adRect.right, elem.right) - Math.max(adRect.left, elem.left));
+        var  y_overlap = Math.max(0, Math.min(adRect.bottom, elem.bottom) - Math.max(adRect.top, elem.top));
+        return (x_overlap * y_overlap) / adArea;
+    }
+
+}
+
+
+function OAVGeometryViewabilityCalculator() {
+
+    this.getViewabilityState = function (element, contextWindow) {
+        var minViewPortSize = getMinViewPortSize(),
+            viewablePercentage;
+        if (minViewPortSize.area == Infinity) {
+            return { error: 'Failed to determine viewport'};
+        }
+        var assetRect = element.getBoundingClientRect();
+        var adArea = assetRect.width * assetRect.height;
+        var viewPortSize = {};
+        viewPortSize.width = null;
+        viewPortSize.height = null;
+        if ((minViewPortSize.area / adArea) < 0.5) {
+            // no position testing required if viewport is less than half the area of the ad
+            viewablePercentage = Math.floor(100 * minViewPortSize.area / adArea);
+        }else{
+            try {
+                viewPortSize = getViewPortSize(window.top),
+                visibleAssetSize = getAssetVisibleDimension(element, contextWindow);
+                //var viewablePercentage = getAssetViewablePercentage(assetSize, viewPortSize);
+                //Height within viewport:
+                if ( visibleAssetSize.bottom > viewPortSize.height ) {
+                    //Partially below the bottom
+                    visibleAssetSize.height -= (visibleAssetSize.bottom - viewPortSize.height);
+                }
+                if ( visibleAssetSize.top < 0 ) {
+                    //Partially above the top
+                    visibleAssetSize.height += visibleAssetSize.top;
+                }
+                if ( visibleAssetSize.left < 0 ) {
+                    visibleAssetSize.width += visibleAssetSize.left;
+                }
+                if ( visibleAssetSize.right > viewPortSize.width ) {
+                    visibleAssetSize.width -= ( visibleAssetSize.right - viewPortSize.width );
+                }
+                // Viewable percentage is the portion of the ad that's visible divided by the size of the ad
+                viewablePercentage = Math.floor( 100 * ( visibleAssetSize.width * visibleAssetSize.height ) / adArea );
+            } catch(err){
+
+            }
+        }
+        /*
+        //Get ad dimensions:
+        var assetRect = element.getBoundingClientRect();
+        */
+        return {
+            clientWidth: viewPortSize.width,
+            clientHeight: viewPortSize.height,
+            objTop: assetRect.top,
+            objBottom: assetRect.bottom,
+            objLeft: assetRect.left,
+            objRight: assetRect.right,
+            percentViewable: viewablePercentage
+        };
+    };
+
+    ///////////////////////////////////////////////////////////////////////////
+    // PRIVATE FUNCTIONS
+    ///////////////////////////////////////////////////////////////////////////
+
+    // Check nested iframes
+    var getMinViewPortSize = function (){
+        var minViewPortSize = getViewPortSize(window),
+            minViewPortArea = minViewPortSize.area,
+            currentWindow = window;
+
+        while (currentWindow != window.top){
+            currentWindow = currentWindow.parent;
+            viewPortSize = getViewPortSize(currentWindow);
+            if (viewPortSize.area < minViewPortArea){
+                minViewPortArea = viewPortSize.area;
+                minViewPortSize = viewPortSize;
+            }
+        }
+        return minViewPortSize;
+    }
+
+
+    /**
+     * Get the viewport size by taking the smallest dimensions
+     */
+    var getViewPortSize = function (contextWindow) {
+        var viewPortSize = {
+            width: Infinity,
+            height: Infinity,
+            area:Infinity
+        };
+
+        //document.body  - Handling case where viewport is represented by documentBody
+        //.width
+        if (!isNaN(contextWindow.document.body.clientWidth) && contextWindow.document.body.clientWidth > 0) {
+            viewPortSize.width = contextWindow.document.body.clientWidth;
+        }
+        //.height
+        if (!isNaN(contextWindow.document.body.clientHeight) && contextWindow.document.body.clientHeight > 0) {
+            viewPortSize.height = contextWindow.document.body.clientHeight;
+        }
+        //document.documentElement - Handling case where viewport is represented by documentElement
+        //.width
+        if (!!contextWindow.document.documentElement && !!contextWindow.document.documentElement.clientWidth && !isNaN(contextWindow.document.documentElement.clientWidth)) {
+            viewPortSize.width = contextWindow.document.documentElement.clientWidth;
+        }
+        //.height
+        if (!!contextWindow.document.documentElement && !!contextWindow.document.documentElement.clientHeight && !isNaN(contextWindow.document.documentElement.clientHeight)) {
+            viewPortSize.height = contextWindow.document.documentElement.clientHeight;
+        }
+        //window.innerWidth/Height - Handling case where viewport is represented by window.innerH/W
+        //.innerWidth
+        if (!!contextWindow.innerWidth && !isNaN(contextWindow.innerWidth)) {
+            viewPortSize.width = Math.min(viewPortSize.width, contextWindow.innerWidth);
+        }
+        //.innerHeight
+        if (!!contextWindow.innerHeight && !isNaN(contextWindow.innerHeight)) {
+            viewPortSize.height = Math.min(viewPortSize.height, contextWindow.innerHeight);
+        }
+        viewPortSize.area = viewPortSize.height * viewPortSize.width;
+        return viewPortSize;
+    };
+
+    /**
+     * Recursive function that return the asset (element) visible dimension
+     * @param {element} The element to get his visible dimension
+     * @param {contextWindow} The relative window
+     */
+
+    var getAssetVisibleDimension = function (element, contextWindow) {
+        var currWindow = contextWindow;
+        //Set parent window for recursive call
+        var parentWindow = contextWindow.parent;
+        var resultDimension = { width: 0, height: 0, left: 0, right: 0, top: 0, bottom: 0 };
+
+        if (element) {
+            var elementRect = getPositionRelativeToViewPort(element, contextWindow);
+            elementRect.width = elementRect.right - elementRect.left;
+            elementRect.height = elementRect.bottom - elementRect.top;
+            resultDimension = elementRect;
+            //Calculate the relative element dimension if we clime to a parent window
+            if (currWindow != parentWindow) {
+                //Recursive call to get the relative element dimension from the parent window
+                var parentDimension = getAssetVisibleDimension(currWindow.frameElement, parentWindow);
+                //The asset is partially below the parent window (asset bottom is below the visible window)
+                if (parentDimension.bottom < resultDimension.bottom) {
+                    if (parentDimension.bottom < resultDimension.top) {
+                        //The entire asset is below the parent window
+                        resultDimension.top = parentDimension.bottom;
+                    }
+                    //Set the asset bottom to be the visible part
+                    resultDimension.bottom = parentDimension.bottom;
+                }
+                //The asset is partially right to the parent window
+                if (parentDimension.right < resultDimension.right) {
+                    if (parentDimension.right < resultDimension.left) {
+                        //The entire asset is to the right of the parent window
+                        resultDimension.left = parentDimension.right;
+                    }
+                    //Set the asset right to be the visible
+                    resultDimension.right = parentDimension.right;
+                }
+
+                resultDimension.width = resultDimension.right - resultDimension.left;
+                resultDimension.height = resultDimension.bottom - resultDimension.top;
+            }
+        }
+        return resultDimension;
+    };
+
+    var getPositionRelativeToViewPort = function (element, contextWindow) {
+        var currWindow = contextWindow;
+        var parentWindow = contextWindow.parent;
+        var resultPosition = { left: 0, right: 0, top: 0, bottom: 0 };
+
+        if (element) {
+            var elementRect = element.getBoundingClientRect();
+            if (currWindow != parentWindow) {
+                resultPosition = getPositionRelativeToViewPort(currWindow.frameElement, parentWindow);
+            }
+                resultPosition = {
+                    left: elementRect.left + resultPosition.left,
+                    right: elementRect.right + resultPosition.left,
+                    top: elementRect.top + resultPosition.top,
+                    bottom: elementRect.bottom + resultPosition.top
+                };
+        }
+        return resultPosition;
+    };
+    /**
+     * Calculate asset viewable percentage given the asset size and the viewport
+     * @param {effectiveAssetRect} the asset viewable rect; effectiveAssetRect = {left :, top :,bottom:,right:,}
+     * @param {viewPortSize} the browser viewport size;
+     */
+    var getAssetViewablePercentage = function (effectiveAssetRect, viewPortSize) {
+        // holds the asset viewable surface
+        var assetVisibleHeight = 0, assetVisibleWidth = 0;
+        var asset = {
+            width: effectiveAssetRect.right - effectiveAssetRect.left,
+            height: effectiveAssetRect.bottom - effectiveAssetRect.top
+        };
+
+        // Ad is 100% out off-view
+        if (effectiveAssetRect.bottom < 0 // the entire asset is above the viewport
+            || effectiveAssetRect.right < 0 // the entire asset is left to the viewport
+            || effectiveAssetRect.top > viewPortSize.height // the entire asset bellow the viewport
+            || effectiveAssetRect.left > viewPortSize.width // the entire asset is right to the viewport
+            || asset.width <= 0 // the asset width is zero
+            || asset.height <= 0)  // the asset height is zero
+        {
+            return 0;
+        }
+        // ---- Handle asset visible height ----
+        // the asset is partially above the viewport
+        if (effectiveAssetRect.top < 0) {
+            // take the visible part
+            assetVisibleHeight = asset.height + effectiveAssetRect.top;
+            //if the asset height is larger then the viewport height, set the asset height to be the viewport height
+            if (assetVisibleHeight > viewPortSize.height) {
+                assetVisibleHeight = viewPortSize.height;
+            }
+        }
+        // the asset is partially below the viewport
+        else if (effectiveAssetRect.top + asset.height > viewPortSize.height) {
+            // take the visible part
+            assetVisibleHeight = viewPortSize.height - effectiveAssetRect.top;
+        }
+        // the asset is in the viewport
+        else {
+            assetVisibleHeight = asset.height;
+        }
+        // ---- Handle asset visible width ----
+        // the asset is partially left to the viewport
+        if (effectiveAssetRect.left < 0) {
+            // take the visible part
+            assetVisibleWidth = asset.width + effectiveAssetRect.left;
+            //if the asset width is larger then the viewport width, set the asset width to be the viewport width
+            if (assetVisibleWidth > viewPortSize.width) {
+                assetVisibleWidth = viewPortSize.width;
+            }
+        }
+        // the asset is partially right to the viewport
+        else if (effectiveAssetRect.left + asset.width > viewPortSize.width) {
+            // take the visible part
+            assetVisibleWidth = viewPortSize.width - effectiveAssetRect.left;
+        }
+        // the asset is in the viewport
+        else {
+            assetVisibleWidth = asset.width;
+        }
+        // Divied the visible asset area by the full asset area to the the visible percentage
+        return Math.round((((assetVisibleWidth * assetVisibleHeight)) / (asset.width * asset.height)) * 100);
+    };
+}
+
+
+/*
+    Ad behavior related classes
+*/
 
 var expander = new function(){
 
@@ -867,60 +1362,11 @@ var lightbox = new function(){
     }
 };
 
-var async = new function(){
-
-    this.postRequest = function(url, params, success, failure){
-        var xmlhttp;
-
-        if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-
-        xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState == 4 ) {
-                if(xmlhttp.status == 200){
-                    if(arguments.length > 2)
-                        success(xmlhttp.responseText);
-                }
-                else {
-                    if(arguments.length > 3)
-                        failure();
-                }
-            }
-        }
-        xmlhttp.open("POST", url, true);
-        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xmlhttp.send(params);
-    };
-
-    this.getJSONP = function(url, callback, callback_handle) {
-        var rand;
-        if(arguments.length > 2){
-            rand = callback_handle;
-        } else {
-            //For concealing callback function so no one else can intecept it
-            rand = Math.floor((Math.random()*1000000000) + 10000 );
-        }
-
-        window['an_callback_'+rand] = function(data){
-            callback(data);
-        }
-
-        var script = document.createElement('script');
-        script.src = url + '&callback=an_callback_' + rand;
-        document.getElementsByTagName('head')[0].appendChild(script);
-    };
-};
-
 var AdsNativeCookieDrop = new function(){
     this.dropCookieMatchingPixel = function(){
         var pixel = document.createElement('img');
         pixel.src = utils.urlPrefix() + '//rudy.adsnative.com/cm.gif';
-        pixel.style.cssText = 'height:1px;width:1px;border:none;display:block;';
+        pixel.style.cssText = 'height:1px;width:1px;border:none;display:none;';
         if(document.getElementsByTagName('body').length)
             document.getElementsByTagName('body')[0].appendChild(pixel);
         else {
@@ -945,7 +1391,7 @@ var AdsNativeMaster = function(_options) {
         apiData: null,
         staticUrl: utils.urlPrefix() + '//static.adsnative.com/static/',
         version: '1.0',
-        subversion: '1.411',
+        subversion: '1.443',
         onready: null,
         userCallbackOnAdLoad: null,
         processNativeAdElement: null,
@@ -979,6 +1425,25 @@ var AdsNativeMaster = function(_options) {
         apiData: null,
         adUnits: {}
     };
+
+    var constants = {
+
+        whitelisted_networks: ['ntent_feed', 'aol_feed', 'ebay_feed',
+            'gravity_feed', 'inmobi_feed', 'kixer_feed', 'triple_lift', 'federated_media',
+            'kixer', 'saymedia', 'contentad', 'connatix', 'outbrain',
+            'sharethrough', 'taboola', 'nativo', 'other', 'admarketplace_feed',
+            'medianet', 'dianomi', 'criteo_feed', 'criteo_secondary', 'openx', 'mobilemajority', 'nativeads',
+            'urx','rubiconproject', 'answermedia', 'distroscale', 'motiveinteractive',
+            'aol_marketplace', 'virool'],
+
+        standard_integrations: ['openx', 'mobilemajority', 'nativeads',
+            'kixer', 'urx', 'rubiconproject', 'answermedia', 'distroscale',
+            'motiveinteractive', 'aol_marketplace', 'zergnet', 'taboola', 'virool',
+            'criteo_secondary', 'google_dfp', 'optimatic', 'allscreen', 'genesis'],
+
+        feedsArray: ["ntent_feed", "inmobi_feed", "aol_feed", "ebay_feed",
+            "gravity_feed", "kixer_feed", "admarketplace_feed", "criteo_feed"]
+    }
 
     var logger = new function(){
 
@@ -1039,123 +1504,6 @@ var AdsNativeMaster = function(_options) {
         };
     };
 
-    var tracker = new function(){
-        function _isElementInViewport(el) {
-            // Original solution from http://stackoverflow.com/a/7557433/5628
-            // Mod:  Return true if el is 50% in view port.
-            var rect = el.getBoundingClientRect();
-
-            var area = rect.height * rect.width;
-            var inview_height = Math.min(rect.height, rect.bottom, (window.innerHeight || document.documentElement.clientHeight) - rect.top);
-            var inview_width = Math.min(rect.width, rect.right, (window.innerWidth || document.documentElement.clientWidth) - rect.left);
-
-            var inview_area = inview_height * inview_width;
-            return ((inview_area / area) >= 0.5);
-        };
-
-        function _isVisible(el, t, r, b, l, w, h) {
-            var p = el.parentNode,
-                    VISIBLE_PADDING = 2;
-
-            if ( !_elementInDocument(el) ) {
-                return false;
-            }
-
-            //-- Return true for document node
-            if ( "BODY" === p.tagName ) {
-                return true;
-            }
-
-            //-- Return false if our element is invisible
-            if (
-                 '0' === _getStyle(el, 'opacity') ||
-                 'none' === _getStyle(el, 'display') ||
-                 'hidden' === _getStyle(el, 'visibility')
-            ) {
-                return false;
-            }
-
-            if (
-                'undefined' === typeof(t) ||
-                'undefined' === typeof(r) ||
-                'undefined' === typeof(b) ||
-                'undefined' === typeof(l) ||
-                'undefined' === typeof(w) ||
-                'undefined' === typeof(h)
-            ) {
-                t = el.offsetTop;
-                l = el.offsetLeft;
-                b = t + el.offsetHeight;
-                r = l + el.offsetWidth;
-                w = el.offsetWidth;
-                h = el.offsetHeight;
-            }
-            //-- If we have a parent, let's continue:
-            if ( p ) {
-                //-- Check if the parent can hide its children.
-                if ( ('hidden' === _getStyle(p, 'overflow') || 'scroll' === _getStyle(p, 'overflow')) ) {
-                    //-- Only check if the offset is different for the parent
-                    if (
-                        //-- If the target element is to the right of the parent elm
-                        l + VISIBLE_PADDING > p.offsetWidth + p.scrollLeft ||
-                        //-- If the target element is to the left of the parent elm
-                        l + w - VISIBLE_PADDING < p.scrollLeft ||
-                        //-- If the target element is under the parent elm
-                        t + VISIBLE_PADDING > p.offsetHeight + p.scrollTop ||
-                        //-- If the target element is above the parent elm
-                        t + h - VISIBLE_PADDING < p.scrollTop
-                    ) {
-                        //-- Our target element is out of bounds:
-                        return false;
-                    }
-                }
-                //-- Add the offset parent's left/top coords to our element's offset:
-                if ( el.offsetParent === p ) {
-                    l += p.offsetLeft;
-                    t += p.offsetTop;
-                }
-                //-- Let's recursively check upwards:
-                return _isVisible(p, t, r, b, l, w, h);
-            }
-            return true;
-        }
-
-        //-- Cross browser method to get style properties:
-        function _getStyle(el, property) {
-            if ( window.getComputedStyle ) {
-                return document.defaultView.getComputedStyle(el,null)[property];
-            }
-            if ( el.currentStyle ) {
-                return el.currentStyle[property];
-            }
-        }
-
-        function _elementInDocument(element) {
-            while (element = element.parentNode) {
-                if (element == document) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        this.inViewCheck = function(el, viewTag) {
-            var count = 0;
-            var timer = setInterval(function() {
-                if (_isElementInViewport(el) && _isVisible(el)) {
-                    count++;
-                } else {
-                    count = 0;
-                }
-                if (count >= 9) {
-                    utils.dropTags(el, viewTag);
-                    clearInterval(timer);
-                    logger.log('console', 'view logged!');
-                }
-            }, 100);
-        };
-    };
-
     // private constructor
     var __construct = function() {
         settings = utils.extend(settings, _options);
@@ -1189,11 +1537,20 @@ var AdsNativeMaster = function(_options) {
                 session.forceBidVersion = session.urlParams['bid_version'];
         }
 
+        if(settings.currentPageUrl)
+            settings.currentPageUrl = decodeURIComponent(settings.currentPageUrl);
+
     }();
 
     function isMobile(){
         return (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) || settings.forceMobile);
     }
+
+
+
+    /*
+        Placement Processor
+    */
 
     function PlacementProcessor(_content){
         this.status = false;
@@ -1227,8 +1584,6 @@ var AdsNativeMaster = function(_options) {
         // private constructor
         var __construct = function(that) {
             that.content = _content;
-
-            //logger.log('console', that.content);
 
             if(that.content.hasOwnProperty('zid'))
                 that.apiKey = that.content.zid;
@@ -1317,7 +1672,10 @@ var AdsNativeMaster = function(_options) {
         }
     };
 
-    PlacementProcessor.prototype.outputAd = function(ad){
+    PlacementProcessor.prototype.outputAd = function(ad, wrapperRefElem){
+        var refElem = this.referenceElement;
+        if(arguments.length > 1)
+            refElem = wrapperRefElem;
         var tempElement = document.createElement('div');
         tempElement.innerHTML = ad.html;
         var nativeAdElement;
@@ -1326,13 +1684,13 @@ var AdsNativeMaster = function(_options) {
             if (ad.backgroundColor) {
                 nativeAdElement.style.backgroundColor = ad.backgroundColor;
             }
-            this.referenceElement.parentNode.insertBefore(nativeAdElement, this.referenceElement);
+            refElem.parentNode.insertBefore(nativeAdElement, refElem);
         } else {
             nativeAdElement = tempElement.firstChild;
             if (ad.backgroundColor) {
                 nativeAdElement.style.backgroundColor = ad.backgroundColor;
             }
-            this.referenceElement.parentNode.insertBefore(nativeAdElement, this.referenceElement);
+            refElem.parentNode.insertBefore(nativeAdElement, refElem);
         }
 
         if(ad.hasOwnProperty('trackingTags'))
@@ -1382,12 +1740,25 @@ var AdsNativeMaster = function(_options) {
         this.setupClick(ad, nativeAdElement);
 
         //Track viewability
-        if(ad.hasOwnProperty('viewableTags') && !(settings.inviewEvent && settings.outviewEvent))
-            tracker.inViewCheck(nativeAdElement, ad.viewableTags);
+        var that = this;
+        if(ad.hasOwnProperty('viewableTags') && !(settings.inviewEvent && settings.outviewEvent)){
+            var oav = new OpenAdViewability();
+            oav.checkViewability(nativeAdElement, function() {
+                    utils.dropTags(nativeAdElement, ad.viewableTags);
+                    logger.log('console', that.apiKey + ': Viewable!');
+                }, function(status){
+                    if(status){
+                        utils.sendPostMessage(that.nativeAdElement.getElementsByTagName('iframe')[0], utils.getPreviewModeHost(), 'adsnative.mrc50.view:in');
+                    } else {
+                        utils.sendPostMessage(that.nativeAdElement.getElementsByTagName('iframe')[0], utils.getPreviewModeHost(), 'adsnative.mrc50.view:out');
+                    }
+                }, utils.activeWindow());
+        }
 
         this.nativeAdElement = nativeAdElement;
 
         this.addVideoDetectiveListner(nativeAdElement);
+
     };
 
     PlacementProcessor.prototype.setupClick = function(ad, adElement){
@@ -1456,7 +1827,7 @@ var AdsNativeMaster = function(_options) {
     };
 
     PlacementProcessor.prototype.outputHTML = function(html){
-        var tempElement = document.createElement('div');
+        var tempElement = utils.activeWindowDocument().createElement('div');
         tempElement.innerHTML = html;
         for(var i=0;i<tempElement.childNodes.length;i++){
             var htmlElement = tempElement.childNodes[i];
@@ -1464,79 +1835,66 @@ var AdsNativeMaster = function(_options) {
         }
     };
 
-    PlacementProcessor.prototype.renderNativeAd = function(){
+    PlacementProcessor.prototype.renderNativePlacement = function(){
         if(this.content.hasOwnProperty('ads') && !utils.isEmpty(this.content.ads)){
             this.applyCommonStyle(this.content.ads[0].ad.style);
-            this.outputHTML(this.content.htmlWrapperTop)
+            var wrapperHTML = this.content.htmlWrapperTop + "<div id='wrapper-"+ this.apiKey + "'></div>" + this.content.htmlWrapperBottom;
+            this.outputHTML(wrapperHTML);
+            var wrapperRefElem = utils.activeWindowDocument().getElementById("wrapper-" + this.apiKey);
             for(var i=0;i<this.content.ads.length;i++){
-                this.outputAd(this.content.ads[i].ad);
+                this.outputAd(this.content.ads[i].ad, wrapperRefElem);
             }
-            this.outputHTML(this.content.htmlWrapperBottom)
+            wrapperRefElem.parentNode.removeChild(wrapperRefElem);
         } else if(this.content.hasOwnProperty('ad') && Object.getOwnPropertyNames(this.content.ad).length) {
             this.applyCommonStyle(this.content.ad.style);
             this.outputAd(this.content.ad);
         }
         this.filledWithAdsNativeAd = true;
+        this.finish();
     };
 
     PlacementProcessor.prototype.renderNetworkAd = function(ad){
         var that = this;
         var triplelift_fallback = false, fm_fallback = false, sharethrough_network_filled = false,
             saymedia_fallback = false, nativo_fallback = false;
-        var feedsArray = ["ntent_feed", "inmobi_feed", "aol_feed", "ebay_feed",
-                "gravity_feed", "kixer_feed", "admarketplace_feed", "criteo_feed"];
 
         this.thirdPartyElement = document.createElement('div');
         this.referenceElement.parentNode.insertBefore(this.thirdPartyElement, this.referenceElement);
         this.nativeAdElement = this.thirdPartyElement;
 
-        var whitelisted_networks = ['ntent_feed', 'aol_feed', 'ebay_feed',
-            'gravity_feed', 'inmobi_feed', 'kixer_feed', 'triple_lift', 'federated_media',
-            'kixer', 'saymedia', 'contentad', 'connatix', 'outbrain',
-            'sharethrough', 'taboola', 'nativo', 'other', 'admarketplace_feed',
-            'medianet', 'dianomi', 'criteo_feed', 'openx', 'mobilemajority', 'nativeads', 'urx',
-            'rubiconproject', 'answermedia', 'distroscale', 'motiveinteractive',
-            'aol_marketplace'];
-
-        var standard_integrations = ['openx', 'mobilemajority', 'nativeads',
-            'kixer', 'urx', 'rubiconproject', 'answermedia', 'distroscale',
-            'motiveinteractive', 'aol_marketplace', 'zergnet', 'taboola'];
-
-        if(utils.indexOf.call(whitelisted_networks, ad.providerName) > -1){
-            var tagHTML = '<img src="'+ ad.trackingUrls.requests[0] +'" height="1" width="1" style="margin:0;padding:0;height:1px;width:1px;border:none;display:block;"/>';
-            utils.dropTags(this.thirdPartyElement, tagHTML);
-        }
+        var tagHTML = '<img src="'+ ad.trackingUrls.requests[0] +'" height="1" width="1" style="margin:0;padding:0;height:1px;width:1px;border:none;display:none;"/>';
+        utils.dropTags(this.thirdPartyElement, tagHTML);
 
         /* Not an ideal implementation since we dont know for which placement
             this callback was called for.
         */
         window._an_adFill = function(network_handle){
-            if(utils.indexOf.call(standard_integrations, network_handle) > -1 && network_handle == ad.providerName){
-                logger.log('console', 'filled and done: ' + that.current_network_index + ' - ' + ad.providerName + ' (zid: ' + that.apiKey + ')');
-                if(ad.hasOwnProperty('trackingTags'))
-                    utils.dropTags(that.thirdPartyElement, ad.trackingTags);
+            if(utils.indexOf.call(constants.standard_integrations, network_handle) > -1 
+                && network_handle == ad.providerName) {
+                
                 network_response_flag = true;
-                that.finish();
+                that.networkAdFillListerner(network_handle);
             }
         }
 
         window._an_adNoFill = function(network_handle){
-            if(utils.indexOf.call(standard_integrations, network_handle) > -1 && network_handle == ad.providerName){
-                logger.log('console', 'fallback: ' + that.current_network_index + ' - ' + ad.providerName + ' (zid: ' + that.apiKey + ')');
+            if(utils.indexOf.call(constants.standard_integrations, network_handle) > -1 
+                && network_handle == ad.providerName) {
+
                 network_response_flag = true;
-                that.fallbackNetwork();
+                that.fallbackNetwork(network_handle);
             }
         }
 
-        if(utils.indexOf.call(standard_integrations, ad.providerName) > -1){
-            var network_response_flag = false;
+        if(utils.indexOf.call(constants.standard_integrations, ad.providerName) > -1){
+            var network_response_flag = false,
+                network_response_timeout = (ad.providerData && ad.providerData.timeout) ? ad.providerData.timeout : 1000;
             setTimeout(function(){
                 /* Fallback regardless if we don't hear back from the network */
                 if(!network_response_flag){
-                    logger.log('console', 'fallback: ' + that.current_network_index + ' - ' + ad.providerName + ' (zid: ' + that.apiKey + ')');
-                    that.fallbackNetwork();
+                    that.networkTimedout();
                 }
-            }, 1000);
+            }, network_response_timeout);
         }
 
         var add_script_attribute = null;
@@ -1548,21 +1906,17 @@ var AdsNativeMaster = function(_options) {
             }
 
             utils.bindEvent(window, 'connatix_no_content', function() {
-                logger.log('console', 'fallback: ' + that.current_network_index + ' - ' + ad.providerName + ' (zid: ' + that.apiKey + ')');
-                that.fallbackNetwork();
+                that.fallbackNetwork('connatix');
             });
 
             utils.bindEvent(window, 'connatix_content_fill', function() {
-                logger.log('console', 'filled and done: ' + that.current_network_index + ' - ' + ad.providerName + ' (zid: ' + that.apiKey + ')');
-                if(ad.hasOwnProperty('trackingTags'))
-                    utils.dropTags(that.thirdPartyElement, ad.trackingTags)
-                that.finish();
+                that.networkAdFillListerner('connatix');
             });
 
             add_script_attribute = { 'data-connatix-event': 'connatix_content_fill' };
         }
 
-        if(feedsArray.indexOf(ad.providerName) > -1) {
+        if(constants.feedsArray.indexOf(ad.providerName) > -1) {
             var custom_fields = {};
             if(ad.hasOwnProperty('customFields') && !utils.isEmpty(ad.customFields)) {
                 custom_fields = ad.customFields;
@@ -1571,113 +1925,62 @@ var AdsNativeMaster = function(_options) {
         } else {
             utils.dropTags(this.thirdPartyElement, ad.html, function(){
                 if(ad.providerName == 'medianet' || ad.providerName == 'dianomi'){
-                    logger.log('console', 'filled and done: ' + that.current_network_index + ' - ' + ad.providerName + ' (zid: ' + that.apiKey + ')')
-                    if(ad.hasOwnProperty('trackingTags'))
-                        utils.dropTags(that.thirdPartyElement, ad.trackingTags)
-                    that.finish();
+                    that.networkAdFillListerner(ad.providerName);
                 } else if(ad.providerName == 'kixer'){
                     if (typeof __kx_ad_start == 'function') {
                         __kx_ad_start();
-                        if(ad.hasOwnProperty('trackingTags'))
-                            utils.dropTags(that.thirdPartyElement, ad.trackingTags)
+                        that.networkAdFillListerner('kixer');
                     }
                 } else if(ad.providerName == 'triple_lift'){
-                    // tlif_1: Presumably, _1 signifies the placement sequence number, if there are multiple placements
-                    // then there could be more than one iframes on the page
-                    if(document.getElementById('tlif_' + String(window._tl.getTlSN()))) {
-                        var win = document.getElementById('tlif_1').contentWindow || document.getElementById('tlif_1');
-                        var tl_no_ad_callback = win.serveDefault;
-                        //When there is no fill TL calls this
-                        win.serveDefault = function(){
-                            logger.log('console', 'fallback: ' + that.current_network_index + ' - ' + ad.providerName + ' (zid: ' + that.apiKey + ')');
-                            that.fallbackNetwork();
-                            triplelift_fallback = true;
-                            tl_no_ad_callback.apply(this, arguments);
-
-                        }
-                        var tl_ad_fill_callback = win.generic_get_unit;
-                        var tl_ad_filled = false;
-                        //When there is an ad to be served TL calls this
-                        win.generic_get_unit = function(){
-                            if(!triplelift_fallback){
-                                logger.log('console', 'filled and done: ' + that.current_network_index + ' - ' + ad.providerName + ' (zid: ' + that.apiKey + ')')
-                                tl_ad_filled = true;
-                                if(ad.hasOwnProperty('trackingTags'))
-                                    utils.dropTags(that.thirdPartyElement, ad.trackingTags)
-                                that.finish();
-                                tl_ad_fill_callback.apply(this, arguments);
-                            }
-                        }
-
-                        // When a campaign is forced (for TL) this function is called
-                        var tl_ad_fill_callback2 = win.tl_advertiser_json;
-                        win.tl_advertiser_json = function(){
-                            if(!tl_ad_filled && !triplelift_fallback){
-                                logger.log('console', 'filled and done: ' + that.current_network_index + ' - ' + ad.providerName + ' (zid: ' + that.apiKey + ')')
-                                if(ad.hasOwnProperty('trackingTags'))
-                                    utils.dropTags(that.thirdPartyElement, ad.trackingTags)
-                                that.finish();
-                            }
-                            tl_ad_fill_callback2.apply(this, arguments);
-                        }
-
-                    } else {
-                        logger.log('console', 'filled and done: ' + that.current_network_index + ' - ' + ad.providerName + ' (zid: ' + that.apiKey + ')')
-                        if(ad.hasOwnProperty('trackingTags'))
-                            utils.dropTags(that.thirdPartyElement, ad.trackingTags)
-                        that.finish();
+                    window._an_noTripleLiftAdFill = function(){
+                        triplelift_fallback = true;
+                        that.fallbackNetwork('triple_lift');
                     }
+
+                    setTimeout(function(){
+                        if(!triplelift_fallback){
+                            that.networkAdFillListerner('triple_lift');
+                        }
+                    }, 2000);
                 }
                 else if(ad.providerName == 'federated_media'){
                     setTimeout(function(){
                         if(!fm_fallback){
-                            logger.log('console', 'filled and done: ' + that.current_network_index + ' - ' + ad.providerName + ' (zid: ' + that.apiKey + ')')
-                            if(ad.hasOwnProperty('trackingTags'))
-                                utils.dropTags(that.thirdPartyElement, ad.trackingTags)
                             // We don't know for sure that FM didnt fill the inventory yet. Finishing for safety reasons though
-                            that.finish();
+                            that.networkAdFillListerner('federated_media');
                         }
                     }, 2000);
                 }
                 else if(ad.providerName == 'saymedia'){
                     setTimeout(function(){
                         if(!saymedia_fallback){
-                            logger.log('console', 'filled and done: ' + that.current_network_index + ' - ' + ad.providerName + ' (zid: ' + that.apiKey + ')')
-                            if(ad.hasOwnProperty('trackingTags'))
-                                utils.dropTags(that.thirdPartyElement, ad.trackingTags)
                             // We don't know for sure that SM didnt fill the inventory yet. Finishing for safety reasons though
-                            that.finish();
+                            that.networkAdFillListerner('saymedia');
                         }
                     }, 2000);
                 }
                 else if(ad.providerName == 'contentad'){
-                    if(ad.hasOwnProperty('trackingTags'))
-                        utils.dropTags(that.thirdPartyElement, ad.trackingTags)
-                    that.finish();
+                    that.networkAdFillListerner('contentad');
                 }
             }, add_script_attribute)
         }
 
         if(ad.providerName == 'saymedia'){
             window._an_noSayMediaAdFill = function(){
-                logger.log('console', 'fallback: ' + that.current_network_index + ' - ' + ad.providerName + ' (zid: ' + that.apiKey + ')');
-                that.fallbackNetwork();
+                that.fallbackNetwork('saymedia');
                 saymedia_fallback = true;
             }
         }
 
         if(ad.providerName == 'federated_media'){
             window._an_noFMAdFill = function(){
-                logger.log('console', 'fallback: ' + that.current_network_index + ' - ' + ad.providerName + ' (zid: ' + that.apiKey + ')');
-                that.fallbackNetwork();
+                that.fallbackNetwork('federated_media');
                 fm_fallback = true;
             }
         }
 
         if(ad.providerName == 'other') {
-            if(ad.hasOwnProperty('trackingTags'))
-                utils.dropTags(this.thirdPartyElement, ad.trackingTags);
-            this.finish();
+            that.networkAdFillListerner('other');
         }
 
         if(ad.providerName == 'sharethrough'){
@@ -1687,14 +1990,10 @@ var AdsNativeMaster = function(_options) {
                 if(e.origin == 'http://btlr.sharethrough.com' && message){
                     var message_json = (window.JSON && window.JSON.parse) ? window.JSON.parse( message.trim() ) : (new Function("return " + message.trim()))();
                     if(message_json.response.creatives.length){
-                        logger.log('console', 'filled and done: ' + that.current_network_index + ' - ' + ad.providerName + ' (zid: ' + that.apiKey + ')')
-                        if(ad.hasOwnProperty('trackingTags'))
-                            utils.dropTags(that.thirdPartyElement, ad.trackingTags)
-                        that.finish();
+                        that.networkAdFillListerner('sharethrough');
                         sharethrough_network_filled = true;
                     } else {
-                        logger.log('console', 'fallback: ' + that.current_network_index + ' - ' + ad.providerName + ' (zid: ' + that.apiKey + ')');
-                        that.fallbackNetwork();
+                        that.fallbackNetwork('sharethrough');
                     }
                 }
             };
@@ -1711,20 +2010,14 @@ var AdsNativeMaster = function(_options) {
             utils.dropTags(document.getElementsByTagName('head')[0], ad.headerTags, function(){
                 //Check if done
                 if(ad.providerName == 'outbrain' || ad.providerName == 'taboola'){
-                    logger.log('console', 'filled and done: ' + that.current_network_index + ' - ' + ad.providerName + ' (zid: ' + that.apiKey + ')')
-                    if(ad.hasOwnProperty('trackingTags'))
-                        utils.dropTags(that.thirdPartyElement, ad.trackingTags)
-                    that.finish();
+                    that.networkAdFillListerner(ad.providerName);
                 } else if(ad.providerName == 'nativo') {
                     var _an_nativo_fallback = _pr.prototype.Render_TemplateAd;
                     that.an_nativo_fill = false;
                     _pr.prototype.Render_TemplateAd = function(a){
                         if(!nativo_fallback && !that.placement_finished_processing){
                             that.an_nativo_fill = true;
-                            logger.log('console', 'filled and done: ' + that.current_network_index + ' - ' + ad.providerName + ' (zid: ' + that.apiKey + ')');
-                            if(ad.hasOwnProperty('trackingTags'))
-                                utils.dropTags(that.thirdPartyElement, ad.trackingTags);
-                            that.finish();
+                            that.networkAdFillListerner('nativo');
                             _an_nativo_fallback(a);
                         }
                     }
@@ -1732,10 +2025,7 @@ var AdsNativeMaster = function(_options) {
                     _pr.prototype.PushAd = function(a){
                         if(!nativo_fallback && !that.placement_finished_processing){
                             that.an_nativo_fill = true;
-                            logger.log('console', 'filled and done: ' + that.current_network_index + ' - ' + ad.providerName + ' (zid: ' + that.apiKey + ')');
-                            if(ad.hasOwnProperty('trackingTags'))
-                                utils.dropTags(that.thirdPartyElement, ad.trackingTags);
-                            that.finish();
+                            that.networkAdFillListerner('nativo');
                             _an_nativo_fallback2.call(PostRelease, a);
                         }
                     }
@@ -1743,8 +2033,7 @@ var AdsNativeMaster = function(_options) {
                     setTimeout(function(){
                         if(!that.an_nativo_fill && !that.placement_finished_processing){
                             nativo_fallback = true;
-                            logger.log('console', 'fallback: ' + that.current_network_index + ' - ' + ad.providerName + ' (zid: ' + that.apiKey + ')');
-                            that.fallbackNetwork();
+                            that.networkTimedout('nativo');
                         }
                     }, 800);
                 }
@@ -1755,27 +2044,58 @@ var AdsNativeMaster = function(_options) {
         }
     };
 
-    PlacementProcessor.prototype.fallbackNetwork = function(){
-        if(this.content.networks){
-            var ad = this.content.networks[this.current_network_index];
-            var tagHTML = '<img src="'+ ad.trackingUrls.nofills[0] +'" height="1" width="1" style="margin:0;padding:0;height:1px;width:1px;border:none;display:block;"/>';
-            utils.dropTags(this.thirdPartyElement, tagHTML);
-        }
+    PlacementProcessor.prototype.fallbackNetwork = function(network_handle){
         // Due to race condition with network's fill and no_fill callbacks it may end up calling
         // fallbackNetwork despite the network is filled, so this is the safety check to avoid double ads
-        if(!this.placement_finished_processing){
-            if(this.content.networks &&
-                this.content.networks.length > (this.current_network_index + 1)){
-                this.cleanupNetwork();
-                this.current_network_index ++;
-                this.renderNetworkAd(this.content.networks[this.current_network_index]);
-            } else if(!utils.isEmpty(this.content.ad) && this.content.ad.hasOwnProperty('html')) {
-                this.cleanupNetwork();
-                this.renderNativeAd();
-                this.finish();
-            } else {
-                this.finish(false);
+        if(this.content.hasOwnProperty('networks') && this.content.networks && this.content.networks.length > this.current_network_index){
+            var ad = this.content.networks[this.current_network_index];
+
+            if(!this.placement_finished_processing 
+                && ad.providerName == network_handle /* this is not the best way to check current provider in waterfall */ ){
+
+                logger.log('console', 'fallback: ' + this.current_network_index + ' - ' + ad.providerName + ' (zid: ' + this.apiKey + ')');
+
+                var tagHTML = '<img src="'+ ad.trackingUrls.nofills[0] +'" height="1" width="1" style="margin:0;padding:0;height:1px;width:1px;border:none;display:none;"/>';
+                utils.dropTags(this.thirdPartyElement, tagHTML);
+                
+                if(this.content.networks.length > (this.current_network_index + 1)){
+                    this.cleanupNetwork();
+                    this.current_network_index ++;
+                    this.renderNetworkAd(this.content.networks[this.current_network_index]);
+                } else if(!utils.isEmpty(this.content.ad) && this.content.ad.hasOwnProperty('html')) {
+                    this.cleanupNetwork();
+                    this.renderNativePlacement();
+                } else {
+                    this.finish(false);
+                }
             }
+        }
+    };
+
+    PlacementProcessor.prototype.networkAdFillListerner = function(network_handle){
+        if(this.content.hasOwnProperty('networks') && this.content.networks && this.content.networks.length > this.current_network_index){
+            var ad = this.content.networks[this.current_network_index];
+
+            if(!this.placement_finished_processing 
+                && ad.providerName == network_handle){
+
+                logger.log('console', 'filled and done: ' + this.current_network_index + ' - ' + ad.providerName + ' (zid: ' + this.apiKey + ')');
+                if(ad.hasOwnProperty('trackingTags'))
+                    utils.dropTags(this.thirdPartyElement, ad.trackingTags);
+                this.finish();
+            }
+        }
+    }
+
+    PlacementProcessor.prototype.networkTimedout = function(){
+        if(this.content.networks && this.content.networks.length > this.current_network_index){        
+            var ad = this.content.networks[this.current_network_index];
+            var tagHTML = '<img src="'+ ad.trackingUrls.timeout[0] +'" height="1" width="1" style="margin:0;padding:0;height:1px;width:1px;border:none;display:none;"/>';
+            utils.dropTags(this.thirdPartyElement, tagHTML);
+
+            utils.broadcastEvent(document, ad.providerName + '_timeout');
+            logger.log('console', 'timeout: ' + this.current_network_index + ' - ' + ad.providerName + ' (zid: ' + this.apiKey + ')');
+            this.fallbackNetwork(ad.providerName);
         }
     };
 
@@ -1791,14 +2111,14 @@ var AdsNativeMaster = function(_options) {
                 that.outputAd(callbackData.ads[0]);
                 that.finish();
             } else {
-                that.fallbackNetwork();
+                that.fallbackNetwork(providerName);
             }
         };
 
         if(providerName == 'admarketplace_feed'){
             var k = utils.get_document_keywords(4);
             if(k == ''){
-                this.fallbackNetwork();
+                this.fallbackNetwork(providerName);
                 return;
             }
             custom_fields['kw'] = k;
@@ -1823,7 +2143,7 @@ var AdsNativeMaster = function(_options) {
                 if(counter == 0) profiler.start('CRITEO EXTRA WAIT TIME');
 
                 counter++;
-                if (that.apiKey in window.clientSideData){
+                if (typeof window.clientSideData !=='undefined' && that.apiKey in window.clientSideData){
                     profiler.end('CRITEO EXTRA WAIT TIME');
                     var clientAd = window.clientSideData[that.apiKey];
                     logger.log('console', clientAd);
@@ -1836,13 +2156,13 @@ var AdsNativeMaster = function(_options) {
                         return true;
                     }
                     logger.log('console', 'Criteo returned 0 ads: using fallback');
-                    that.fallbackNetwork();
+                    that.fallbackNetwork(providerName);
                     return false;
                 } else {
                     if(counter >= maxIterations) {
                         profiler.end('CRITEO EXTRA WAIT TIME');
                         logger.log('console', 'Criteo failed to respond in time: using fallback');
-                        that.fallbackNetwork();
+                        that.networkTimedout()
                         return false;
                     }
                     window.setTimeout('window.checkClientSideResponse();', sleepTime);
@@ -1864,6 +2184,7 @@ var AdsNativeMaster = function(_options) {
     };
 
     PlacementProcessor.prototype.finish = function(ad_filled_status){
+
         if(arguments.length == 0)
             var ad_filled_status = true;
         if(settings.userCallbackOnAdLoad)
@@ -1880,7 +2201,7 @@ var AdsNativeMaster = function(_options) {
         this.placement_finished_processing = true;
     };
 
-    PlacementProcessor.prototype.processAd = function(){
+    PlacementProcessor.prototype.processPlacement = function(){
         //This is for video lightbox
         //ANResponses.addResponse(content.zid, content)
 
@@ -1888,7 +2209,7 @@ var AdsNativeMaster = function(_options) {
 
         //Don't callback yet if status = OK since network ads may not fill
         if(settings.userCallbackOnAdLoad && this.content.status != 'OK'){
-            settings.userCallbackOnAdLoad(( this.content.status != 'OK'));
+            settings.userCallbackOnAdLoad(( this.content.status == 'OK'));
         }
 
         if(this.content.hasOwnProperty('zid') && session.adUnits.hasOwnProperty(this.content.zid)) {
@@ -1984,9 +2305,26 @@ var AdsNativeMaster = function(_options) {
     };
 
     PlacementProcessor.prototype.positionAdAndRender = function(cssPath){
-        var status = this.insertReferenceElement(cssPath);
+        var status = this.insertReferenceElement(cssPath),
+            that = this;
+
         if(!status) {
-            logger.log('warning', 'Configured CSS path not found on this page.');
+            that.reTryCounter = 0;
+            // If CSS path not found on first try. Retry for the next 4 seconds with 200ms intervals before giving up
+            var reTryCssPathTimer = setInterval(function() {
+                status = that.insertReferenceElement(cssPath);
+
+                if(status) {
+                    clearInterval(reTryCssPathTimer);
+                    that.startRender();
+                } else {
+                    that.reTryCounter++;
+                    if(that.reTryCounter >= 20) {
+                        clearInterval(reTryCssPathTimer);
+                        logger.log('warning', 'Configured CSS path not found on this page.');
+                    }
+                }
+            }, 200);
             return;
         }
         this.startRender();
@@ -2003,8 +2341,7 @@ var AdsNativeMaster = function(_options) {
             }
             this.fetchNetworkCreative(this.content.sid, this.content.ad.customFields.network_feed, custom_fields);
         } else {
-            this.renderNativeAd();
-            this.finish();
+            this.renderNativePlacement();
         }
     };
 
@@ -2030,6 +2367,7 @@ var AdsNativeMaster = function(_options) {
         return true;
     };
 
+    
     function _writeDummyDiv(){
         var arrScripts = document.getElementsByTagName('script');
         var currScript = arrScripts[arrScripts.length - 1];
@@ -2191,13 +2529,24 @@ var AdsNativeMaster = function(_options) {
             data.network_key = settings.networkKey;
             if(settings.safetyLevel)
                 data.safety_level = settings.safetyLevel;
-            if(settings.templateKey)
-                data.template_key = settings.templateKey;
             data.url = settings.currentPageUrl;
             for(var i=0;i<settings.categories.length;i++){
                 queryString.push('cat=' + settings.categories[i]);
             }
         }
+
+        if(settings.templateKey)
+            data.template_key = settings.templateKey;
+
+        if(settings.keyValues) {
+            for (var key in settings.keyValues) {
+                var values = settings.keyValues[key].split(",");
+                key = (key.indexOf('ck_') === 0) ? key : 'ck_' + key;
+                for(var i=0;i<values.length;i++)
+                    queryString.push(key + '=' + values[i].trim());
+            }
+        }
+
         apiKeyQuery = queryString.join('&');
 
         if(keywords)
@@ -2256,11 +2605,11 @@ var AdsNativeMaster = function(_options) {
         if (adunits_content instanceof Array) {
             for(var i=0;i<adunits_content.length;i++){
                 var p = new PlacementProcessor(adunits_content[i]);
-                p.processAd();
+                p.processPlacement();
             }
         } else {
             var p = new PlacementProcessor(adunits_content);
-            p.processAd();
+            p.processPlacement();
         }
 
         profiler.end('TOTAL RENDER');
@@ -2292,7 +2641,7 @@ var AdsNativeMaster = function(_options) {
                 that.status = true;
                 that.adRendered = false;
             }
-            callback(that.status, that.callbackData);
+            callback(that.status);
         });
     };
 
