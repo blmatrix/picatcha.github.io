@@ -43,6 +43,11 @@
         var adContainerOffset = getViewportOffset($("#floating-ad-container"));
         $('#floating-ad-container, .floating-bg').addClass('clicked');
         floatContainer.css("top", adContainerOffset.top * -1 + 150);
+
+        // Start Video Play
+        iframe = document.getElementsByClassName('adsnative-video-iframe')[0];
+        console.log(iframe);
+        iframe.contentWindow.postMessage('adsnative.mrc50.view:in', 'http://api.adsnative.com'); 
     }
 
     function whichAnimationEvent() {
