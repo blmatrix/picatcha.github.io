@@ -7,21 +7,18 @@
             console.log('user clicked ad');
             clicked = true;
 
-            var offset = $('.str-adunit').offset();
-            $('#floating-ad-container').css({ "top": offset.top, "left": offset.left });
-            console.log('offset: top : ' + offset.top + ' left : ' + offset.left);
-            $('#floating-ad-container').on("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend", function(event) {
-                if(!clicked) return;
-                clicked = false;
-                console.log('moved to adunit pos!');
-                //$('#floating-ad-container').css("opacity", 1);
-                if($(this).hasClass('clicked')) return;
+            var adUnitOffset = $('.str-adunit').offset(),
+                floatUnitOffset = $('#floating-ad-container').offset();
+            $('#floating-ad-container').css({ "top": adUnitOffset.top, "left": adUnitOffset.left });
+            
+            if(adUnitOffset.top === floatUnitOffset.top) {
+                showFloatingContainer();
+            } else {
+                $('#floating-ad-container').on("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend", function(event) {
+                    showFloatingContainer();
+                });
+            }
 
-                $(this).addClass('clicked');
-                var adContainerOffset = getViewportOffset($("#floating-ad-container"));
-                $('#floating-ad-container, .floating-bg').addClass('clicked');
-                $('#floating-ad-container').css("top", adContainerOffset.top * -1 + 150);
-            });
         });
 
         $('.str-ico-close').click(function(e) {
@@ -33,6 +30,20 @@
         });
     }
 
+    function showFloatingContainer() {
+        if(!clicked) return;
+        clicked = false;
+
+        var floatContainer = $('#floating-ad-container');
+        console.log('moved to adunit pos!');
+
+        if(floatContainer.hasClass('clicked')) return;
+        floatContainer.addClass('clicked');
+
+        var adContainerOffset = getViewportOffset($("#floating-ad-container"));
+        $('#floating-ad-container, .floating-bg').addClass('clicked');
+        floatContainer.css("top", adContainerOffset.top * -1 + 150);
+    }
 
     function whichAnimationEvent() {
         var t,
