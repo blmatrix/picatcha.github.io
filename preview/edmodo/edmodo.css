@@ -89,6 +89,11 @@
     position: relative;
 }
 
+#floating-ad-container.content .str-embed-container {
+    padding-bottom: 0px !important;
+    height: calc(100% - 120px) !important;
+}
+
 #floating-ad-container iframe.str-embed-video {
     position: absolute;
     top: 0px;
