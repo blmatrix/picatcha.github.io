@@ -34,6 +34,7 @@ function showFloatingContainer() {
 
     var floatContainer = $('#floating-ad-container');
     console.log('moved to adunit pos!');
+    if(floatContainer.hasClass('install')) return;
 
     // Increase height for Content Ad
     if(floatContainer.hasClass('content')) floatContainer.css('height', $('.str-adunit').height() + 'px');
