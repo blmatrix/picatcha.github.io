@@ -15,7 +15,9 @@
     _nm.AdContainerPrefix = 'NmWg';
     _nm.widgetAlreadyExists = false;
     _nm.exitWidgetShownOnce = false;
-    _nm.version = 1.91;
+    _nm.queueEnded = false;
+    _nm.version = 1.95;
+    _nm.instreamTemplates = ['NM10', 'NM11', 'NM12'];
     _nm.widgets = {
         currentIndex: 0,
         adConfigs: []
@@ -174,13 +176,17 @@
         }
     };
 
-    _nm.loadNextWidget = function() {
+    _nm.loadNextWidget = function(chainCall) {
         _nm.log('Next widget loading invoked in queue');
 
         var adConfig = null;
         if(_nm.widgets.currentIndex < _nm.widgets.adConfigs.length) {
             adConfig = _nm.widgets.adConfigs[_nm.widgets.currentIndex];
             _nm.widgets.currentIndex++;
+            _nm.log('Found next Adunit in queue');
+        } else if(_nm.widgets.currentIndex >= _nm.widgets.adConfigs.length && chainCall) {
+            _nm.widgetAlreadyExists = false;
+            _nm.log('Adunit processing queue is clear');
         }
 
         if(!adConfig) return;
@@ -209,6 +215,8 @@
             articleSelector = adConfig.ArticleSelector;
         else if(adConfig.articleSelector)
             articleSelector = adConfig.articleSelector;
+        else if(adConfig.articleContainer)
+            articleSelector = adConfig.articleContainer;
 
         if(!widgetId) {
             _nm.log('No valid widgetId is passed in the adConfig / not found in client id mapping');
@@ -457,6 +465,7 @@
         
         if(adData.zoneCount == 0) {
             _nm.log('Zero zone count for the InArticle widgetId '+widgetId+' provided');
+            _nm.loadNextWidget(true);
             return;
         }
 
@@ -524,7 +533,7 @@
             _nm.insertRenderJs();
         } else {
             // Continue the widget serial rendering chain after all the insrticle placements are completed
-            _nm.loadNextWidget();
+            _nm.loadNextWidget(true);
         }
 
      };
@@ -542,8 +551,9 @@
         }
 
         var widgetContainer = document.getElementById(adContainerId);
-        if(!widgetContainer) {
+        if(!widgetContainer && _nm.instreamTemplates.indexOf(template) < 0) {
             _nm.log('Widget Container DIV with ID ' + adContainerId +' not found on the page');
+            _nm.loadNextWidget(true);
             return null;
         }
 
@@ -575,7 +585,7 @@
                 categories: ['IAB1'],
                 userCallbackOnAdLoad: function(status) {
                     _nm.log('Migrated Widget loaded successfully');
-                    _nm.loadNextWidget();
+                    _nm.loadNextWidget(true);
 
                     // Footer widget
                     if(adData.template === 'NM13') {
@@ -592,7 +602,7 @@
                 cssPath: '#' + adContainerId + ':append',
                 userCallbackOnAdLoad: function(status) {
                     _nm.log('New Publisher Widget loaded successfully');
-                    _nm.loadNextWidget();
+                    _nm.loadNextWidget(true);
 
                     // Footer widget
                     if(adData.template === 'NM13') {
@@ -635,7 +645,7 @@
                             userCallbackOnAdLoad: function(status) {
                                 _nm.log('Exit Widget loaded successfully');
                                 _nm.addExitWidgetRemoveHandler();
-                                _nm.loadNextWidget();
+                                _nm.loadNextWidget(true);
                             }
                         };
                     } else {
@@ -648,7 +658,7 @@
                             userCallbackOnAdLoad: function(status) {
                                 _nm.log('New Publisher Exit loaded successfully');
                                 _nm.addExitWidgetRemoveHandler();
-                                _nm.loadNextWidget();
+                                _nm.loadNextWidget(true);
                             }
                         };
 
@@ -669,7 +679,7 @@
         };
 
         // Since Exit widget is delayed, continue the serial chain of widgets
-        _nm.loadNextWidget();
+        _nm.loadNextWidget(true);
     };
 
     _nm.addExitWidgetRemoveHandler = function() {
