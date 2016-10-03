@@ -1,0 +1,342 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head></head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <div id='lead-ad-modal'>
+        <div id='lead-ad-container' class='one show'>
+            <div id='header-image'></div>
+            <img class='brand-logo' src="https://bookscouter.com/img/vendors/logo-chegg.png">
+            <p class='brand-name'>Chegg Tutors</p>
+            <p class='brand-desc'>Specializes in online textbook rentals (both in physical and digital formats), homework help, online tutoring, scholarships and internship matching. It is meant to help students in high school and college. The company was created in the United States by three Iowa State University students in 2001</p>
+            <div class='cta-action'>
+                <a class='cancel' href="javascript:void(0);">Cancel</a> or
+                <a class='action' href="javascript:void(0);" target="_blank">Sign Up</a>
+            </div>
+        </div>
+        <div id='lead-ad-container' class='two'>
+            <img class='brand-logo' src="https://bookscouter.com/img/vendors/logo-chegg.png">
+            <p class='brand-name'>Chegg Tutors</p>
+            <p class='brand-desc'>It's easy. And fast. Start working with a great tutor in under 5 minutes.</p>
+            <input id='lead-name' type="text" placeholder="Your name" />
+            <input id='lead-email' type="text" placeholder="Email Address" />
+            <p class='brand-comment'>Students love us 97% of reviewed lessons received a positive review. We will be in touch with you shortly.</p>
+            <div class='cta-action'>
+                <a class='cancel' href="javascript:void(0);">Cancel</a> or
+                <a class='action' href="javascript:void(0);" target="_blank">Submit</a>
+            </div>
+        </div>
+        <div id='lead-ad-container' class='three'>
+            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle class="circle" cx="26" cy="26" r="25" fill="none" />
+                <path class="check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+            </svg>
+            <p class='brand-name'>Success</p>
+            <img class='brand-logo' src="https://bookscouter.com/img/vendors/logo-chegg.png">
+            <p class='brand-desc'>Thanks for signing up! We will be in touch with you shortly!</p>
+            <div class='cta-action'>
+                <a class='action' href="javascript:void(0);" target="_blank">Close</a>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+      $(document).ready(function() {
+          var screenOne = $('#lead-ad-container.one'),
+              screenTwo = $('#lead-ad-container.two'),
+              screenThree = $('#lead-ad-container.three');
+
+          console.log(screenOne, screenTwo, screenThree);
+
+          $('#lead-ad-container.one .action').on('click', function() {
+              console.log('clicked screen one');
+              screenOne.removeClass('show');
+              screenTwo.addClass('show');
+          });
+
+          $('#lead-ad-container.two .action').on('click', function() {
+              console.log('clicked screen two');
+              screenTwo.removeClass('show');
+              screenThree.addClass('show');
+              saveLead();
+              screenThree.find('.circle').show();
+              screenThree.find('.check').show();
+          });
+
+          saveLeadStatusReceived = function(status) {
+              if (status.result === 'success') {
+                  console.log('Lead data was saved successfully. Row : ' + status.row);
+              } else {
+                  console.log('Lead save failed : ' + status.error);
+              }
+          }
+
+          function saveLead() {
+              var url = 'https://script.google.com/a/macros/adsnative.com/s/AKfycbxQBq29J7AMmHrER6nC5Fnair6p4reM8y2ZmcMJzM-HKkjmM-k/exec?callback=saveLeadStatusReceived',
+                  leadName = document.getElementById('lead-name').value,
+                  leadEmail = document.getElementById('lead-email').value;
+
+              console.log("API call : ", url + '&leadName=' + leadName + '&leadEmail=' + leadEmail);
+
+              var request = $.ajax({
+                  crossDomain: true,
+                  url: url + '&leadName=' + leadName + '&leadEmail=' + leadEmail,
+                  method: "GET",
+                  dataType: "jsonp"
+              });
+          }
+      });
+    </script>
+    <style type="text/css">
+    body {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        margin: 0px !important;
+    }
+    
+    #lead-ad-modal {
+        /*width: 565px;
+        height: 550px;*/
+        width: 100%;
+        height: 100%;
+        position: relative;
+        margin: 0 auto;
+    }
+    
+    #lead-ad-container {
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+        border: 1px solid white;
+        background-color: white;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        opacity: 0;
+        visibility: hidden;
+        transition: visibility 1s ease-in-out, opacity 1s ease-in-out;
+        -webkit-transition: visibility 1s ease-in-out, opacity 1s ease-in-out;
+        -moz-transition: visibility 1s ease-in-out, opacity 1s ease-in-out;
+        -o-transition: visibility 1s ease-in-out, opacity 1s ease-in-out;
+    }
+    
+    #lead-ad-container.one {
+        z-index: 30;
+    }
+    
+    #lead-ad-container.one {
+        z-index: 20;
+    }
+    
+    #lead-ad-container.one {
+        z-index: 10;
+    }
+    
+    .show {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    #header-image {
+        background-image: url('http://cdn.adsnative.com/media/13294/8d318dba-1dea-4e15-a848-982039e04bbe.jpg');
+        width: 100%;
+        height: 56.5%;
+        display: block;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    
+    .brand-logo {
+        background-image: url('https://bookscouter.com/img/vendors/logo-chegg.png');
+        width: 10%;
+        display: block;
+        margin: 5% auto 0px auto;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    
+    .two .brand-logo {
+        margin-top: 15%;
+        width: 15%;
+    }
+    
+    .three .brand-logo {
+        margin-top: 5%;
+        width: 18%;
+    }
+    
+    #lead-ad-container .brand-name {
+        font-size: 13px !important;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        color: #3784d3;
+        margin: 1.5% auto 0px auto;
+        padding: 0;
+        line-height: 20px;
+        text-align: center;
+    }
+    
+    #lead-ad-container.two .brand-name {
+        margin-top: 4%;
+    }
+    
+    #lead-ad-container .brand-desc,
+    #lead-ad-container .brand-comment {
+        font-size: 12px;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        color: #839096;
+        margin: 1.5% auto 0px auto;
+        padding: 0px 5%;
+        line-height: 20px;
+        text-align: center;
+    }
+    
+    .two .brand-desc {
+        color: #000000 !important;
+        font-size: 14px !important;
+        width: 50%;
+        margin: 3.5% auto 20px auto !important;
+    }
+    
+    .two .brand-comment {
+        font-size: 14px !important;
+        width: 90%;
+        margin-top: 8% !important;
+    }
+    
+    .three .brand-desc {
+        color: #000000 !important;
+        font-size: 14px !important;
+        width: 50%;
+        margin: 3.5% auto 20px auto !important;
+    }
+    
+    #lead-ad-container.two input {
+        border-radius: 5px;
+        border: 1px solid #dcdcdc;
+        padding: 10px;
+        width: 50%;
+        font-size: 16px;
+        transition: all 0.2s ease;
+        margin: 15px auto;
+        box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.15);
+        outline: none;
+        transition: 300ms all ease;
+        display: block;
+        background-color: #f5f5f5;
+    }
+    
+    #lead-ad-container.two input:focus {
+        box-shadow: 0 0 5px #000000;
+        border: 1px solid #dcdcdc;
+    }
+    
+    #lead-ad-container .cta-action {
+        font-size: 12px !important;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        float: right;
+        color: #839096;
+        margin: 30px 10px;
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+    }
+    
+    #lead-ad-container.two .cta-action {
+        margin-top: 15%;
+    }
+    
+    #lead-ad-container .cta-action .cancel {
+        color: #3784d3;
+        padding: 0;
+        line-height: 20px;
+    }
+    
+    #lead-ad-container .cta-action .action {
+        background: #2077cf !important;
+        /* #2bba9a : Green #2077cf : Blue*/
+        padding: 8px 16px !important;
+        color: white !important;
+        letter-spacing: 0.3px;
+        font-weight: 200;
+        margin: 5px !important;
+        text-decoration: none;
+        border-radius: 3px;
+    }
+    
+    #lead-ad-container.three .checkmark {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        display: block;
+        stroke-width: 2;
+        stroke: #2077cf;
+        stroke-miterlimit: 10;
+        margin: 10% auto;
+        box-shadow: inset 0px 0px 0px #2077cf;
+        animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+        -webkit-animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+        /* Safari 4+ */
+        -moz-animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+        /* Fx 5+ */
+        -o-animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+    }
+    
+    #lead-ad-container.three .checkmark .circle {
+        stroke-dasharray: 166;
+        stroke-dashoffset: 166;
+        stroke-width: 2;
+        stroke-miterlimit: 10;
+        stroke: #2077cf;
+        fill: none;
+        animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        -webkit-animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        /* Safari 4+ */
+        -moz-animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        /* Fx 5+ */
+        -o-animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        display: none;
+    }
+    
+    #lead-ad-container.three .checkmark .check {
+        transform-origin: 50% 50%;
+        stroke-dasharray: 48;
+        stroke-dashoffset: 48;
+        animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        -webkit-animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        /* Safari 4+ */
+        -moz-animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        /* Fx 5+ */
+        -o-animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        display: none;
+    }
+    
+    @keyframes stroke {
+        100% {
+            stroke-dashoffset: 0;
+        }
+    }
+    
+    @keyframes scale {
+        0%,
+        100% {
+            transform: none;
+        }
+        50% {
+            transform: scale3d(1.1, 1.1, 1);
+        }
+    }
+    
+    @keyframes fill {
+        100% {
+            box-shadow: inset 0px 0px 0px 30px #FFFFFF;
+        }
+    }
+    </style>
+    <!-- Modal -->
+</body>
+
+</html>

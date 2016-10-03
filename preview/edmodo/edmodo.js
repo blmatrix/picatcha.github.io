@@ -44,7 +44,7 @@ function showFloatingContainer() {
 
     var adContainerOffset = getViewportOffset($("#floating-ad-container"));
     $('#floating-ad-container, .floating-bg').addClass('clicked');
-    floatContainer.css("top", adContainerOffset.top * -1 + 150);
+    floatContainer.css("top", "150px");
 
     // Start Video Play
     iframe = document.getElementsByClassName('adsnative-video-iframe')[0];
