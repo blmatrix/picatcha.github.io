@@ -1,10 +1,10 @@
 var clicked = false;
 function initFloatingAd() {
     $(document.body).append($('#floating-items').detach());
-    $('.str-adunit, #floating-ad-container').click(function(e) {
+    $('.str-adunit .adsnative-cta-button').click(function(e) {
+        e.stopPropagation();
         console.log('user clicked ad');
         clicked = true;
-
         var adUnitOffset = $('.str-adunit').offset(),
             floatUnitOffset = $('#floating-ad-container').offset();
         $('#floating-ad-container').css({ "top": adUnitOffset.top, "left": adUnitOffset.left });
@@ -16,10 +16,9 @@ function initFloatingAd() {
                 showFloatingContainer();
             });
         }
-
     });
 
-    $('.str-ico-close').click(function(e) {
+    $('.str-ico-close, .floating-bg').click(function(e) {
         e.stopPropagation();
         console.log('user closed ad');
         var offset = $('.str-adunit').offset();

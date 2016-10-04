@@ -57,16 +57,16 @@
 
           $('#lead-ad-container.two .action').on('click', function() {
               console.log('clicked screen two');
-              screenTwo.removeClass('show');
-              screenThree.addClass('show');
               saveLead();
-              screenThree.find('.circle').show();
-              screenThree.find('.check').show();
           });
 
           saveLeadStatusReceived = function(status) {
               if (status.result === 'success') {
                   console.log('Lead data was saved successfully. Row : ' + status.row);
+                  screenTwo.removeClass('show');
+                  screenThree.addClass('show');
+                  screenThree.find('.circle').show();
+                  screenThree.find('.check').show();
               } else {
                   console.log('Lead save failed : ' + status.error);
               }
