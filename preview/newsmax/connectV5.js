@@ -16,7 +16,7 @@
     _nm.widgetAlreadyExists = false;
     _nm.exitWidgetShownOnce = false;
     _nm.queueEnded = false;
-    _nm.version = 1.95;
+    _nm.version = 1.96;
     _nm.instreamTemplates = ['NM10', 'NM11', 'NM12'];
     _nm.widgets = {
         currentIndex: 0,
@@ -864,7 +864,7 @@
             ],
             instreamText: [
                 4071,3668,3377,3968,4356,3258,3306,4093,3265,4420,3324,3444,4063,4300,3386,4302,4387,4325,3434,4234,4267,4118,4061,4447,3487,4094,3279,3463,4455,3264,3376,3266,3920,4343,4143,3344,3624,4463,3225,3275,3387,4149,3308,3418,3282,4112,4326,3310,3322,3820,4122,3222,3320,4159,4370,3311,3281,4309,4410,3470,4402,4398,4044,4346,4419,3267,4125,3354,3323,729
-            ]
+            ]            
         };
 
         if(template === 'NM10' || migrationWidgets.instreamNative.indexOf(widgetId) >= 0) { // Instream Native
@@ -876,6 +876,9 @@
         } else if(template === 'NM12' || migrationWidgets.instreamText.indexOf(widgetId) >= 0) { // Instream Native Text
             zoneCount = 2;
             template = 'NM12';
+        } else if(template === 'NM16') { // Instream Text Single
+            zoneCount = 1;
+            template = 'NM16';
         }
 
         return {zoneCount: zoneCount, template: template};
