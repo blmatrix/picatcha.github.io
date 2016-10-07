@@ -1,26 +1,32 @@
 var clicked = false;
 function initFloatingAd() {
     $(document.body).append($('#floating-items').detach());
-    $('.str-adunit .adsnative-cta-button').click(function(e) {
-        e.stopPropagation();
+    $('.str-adunit').click(function(e) {
         console.log('user clicked ad');
         clicked = true;
-        var adUnitOffset = $('.str-adunit').offset(),
-            floatUnitOffset = $('#floating-ad-container').offset();
-        // Start moving the floating container to overlap infeed unit
-        $('#floating-ad-container').css({ "top": adUnitOffset.top, "left": adUnitOffset.left });
 
-        if(adUnitOffset.top === floatUnitOffset.top) {
-            showFloatingContainer();
-        } else {
-            $('#floating-ad-container').on("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend", function(event) {
+        // Only for Content and Leadgen Ads
+        if($('#floating-ad-container').length) {
+            var adUnitOffset = $('.str-adunit').offset(),
+                floatUnitOffset = $('#floating-ad-container').offset();
+            // Start moving the floating container to overlap infeed unit
+            $('#floating-ad-container').css({ "top": adUnitOffset.top, "left": adUnitOffset.left });
+
+            if(adUnitOffset.top === floatUnitOffset.top) {
                 showFloatingContainer();
-            });
+            } else {
+                $('#floating-ad-container').on("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend", function(event) {
+                    showFloatingContainer();
+                });
+            }
+
+            return false;
         }
     });
 
     $('.str-ico-close, .floating-bg').click(function(e) {
         e.stopPropagation();
+        e.preventDefault();
         console.log('user closed ad');
         var offset = $('.str-adunit').offset();
         $('#floating-ad-container, .floating-bg').removeClass('clicked');
