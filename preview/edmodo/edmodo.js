@@ -7,8 +7,9 @@ function initFloatingAd() {
         clicked = true;
         var adUnitOffset = $('.str-adunit').offset(),
             floatUnitOffset = $('#floating-ad-container').offset();
+        // Start moving the floating container to overlap infeed unit
         $('#floating-ad-container').css({ "top": adUnitOffset.top, "left": adUnitOffset.left });
-        
+
         if(adUnitOffset.top === floatUnitOffset.top) {
             showFloatingContainer();
         } else {
@@ -43,7 +44,13 @@ function showFloatingContainer() {
 
     var adContainerOffset = getViewportOffset($("#floating-ad-container"));
     $('#floating-ad-container, .floating-bg').addClass('clicked');
-    floatContainer.css("top", "150px");
+
+    // Onclick move FC to full height of viewport
+    if($('.str-adunit.content-ad').length) {
+        floatContainer.css("top", "0px");
+    } else {
+        floatContainer.css("top", "150px");
+    }
 
     // Start Video Play
     iframe = document.getElementsByClassName('adsnative-video-iframe')[0];
