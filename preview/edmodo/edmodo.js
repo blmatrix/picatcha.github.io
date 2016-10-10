@@ -1,7 +1,12 @@
 function initFloatingAd() {
-    $(document.body).append($('#floating-items').detach());
+    var floatingItems = document.getElementById('floating-items'),
+        parent = floatingItems.parentNode;
+
+    if (!parent) { return; }
+    parent.removeChild(floatingItems);
+    document.body.appendChild(floatingItems);
+
     var adUnit = document.getElementsByClassName('str-adunit')[0];
-    console.log(adUnit);
     adUnit.onclick = function(e) {
         e.stopPropagation();
         userClicked = true;
@@ -12,8 +17,7 @@ function initFloatingAd() {
             console.log('Remove animation from floating unit');
             removeClass(floatingUnit, 'animate');
         }
-        overlapFloatingContainer(document.getElementsByClassName('str-adunit')[0]);
-        showFloatingContainer();
+        overlapFloatingContainer(e.currentTarget, showFloatingContainer);
     }
 
     if(document.getElementsByClassName('str-ico-close').length) {
@@ -43,12 +47,7 @@ function showFloatingContainer() {
 
     // Animate floating container and add listener
     var transtionEvent = whichTransitionEvent();
-    transtionEvent && floatingUnit.addEventListener(transtionEvent, function() {
-        if(!hasClass(floatingUnit.querySelector('#content-container'), 'clicked')) {
-            console.log('Float ad container animation complete. Show iframe');
-            addClass(floatingUnit.querySelector('#content-container'), 'clicked');
-        }
-    });
+    transtionEvent && floatingUnit.addEventListener(transtionEvent, floatTransitionComplete, false);
 
     addClass(floatingUnit, 'clicked');
     addClass(document.getElementsByClassName('floating-bg')[0], 'clicked');
@@ -56,12 +55,21 @@ function showFloatingContainer() {
     if(document.querySelector('.str-adunit.content-ad')) {
         floatingUnit.style.top = "0px";
     } else {
-        floatingUnit.style.top = "150px";
+        floatingUnit.style.top = "10%";
     }
 
     // Start Video Play
-    iframe = document.getElementsByClassName('adsnative-video-iframe')[0];
-    if(iframe) iframe.contentWindow.postMessage('adsnative.mrc50.view:in', 'http://api.adsnative.com');
+    iframe = document.getElementsByClassName('adsnative-video-iframe');
+    if(iframe.length) iframe[0].contentWindow.postMessage('adsnative.mrc50.view:in', 'http://api.adsnative.com');
+}
+
+function floatTransitionComplete() {
+    var floatingUnit = document.getElementById('floating-ad-container');
+    if(!hasClass(floatingUnit.querySelector('#content-container'), 'clicked')) {
+        addClass(floatingUnit.querySelector('#content-container'), 'clicked');
+    }
+    var transtionEvent = whichTransitionEvent();
+    transtionEvent && floatingUnit.removeEventListener(transtionEvent, floatTransitionComplete, false);
 }
 
 function adClosed(e) {
@@ -75,7 +83,7 @@ function adClosed(e) {
     removeClass(floatingUnit.querySelector('#content-container'), 'clicked');
 }
 
-function overlapFloatingContainer(adUnit) {
+function overlapFloatingContainer(adUnit, callback) {
     var floatingUnit = document.getElementById('floating-ad-container');
     if(!floatingUnit) return;
 
@@ -83,6 +91,13 @@ function overlapFloatingContainer(adUnit) {
     floatingUnit.style.left = adUnit.getBoundingClientRect().left;
 
     console.log('Overlapped at Top : ', floatingUnit.style.top, 'Left : ', floatingUnit.style.left);
+
+    // Put positioning back in callstack
+    if(callback) {
+        setTimeout(function() {
+            callback();
+        }, 1);
+    }
 }
 
 function hasClass(el, className) {
