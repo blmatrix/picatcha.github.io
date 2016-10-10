@@ -47,16 +47,12 @@
               screenTwo = $('#lead-ad-container.two'),
               screenThree = $('#lead-ad-container.three');
 
-          console.log(screenOne, screenTwo, screenThree);
-
           $('#lead-ad-container.one .action').on('click', function() {
-              console.log('clicked screen one');
               screenOne.removeClass('show');
               screenTwo.addClass('show');
           });
 
           $('#lead-ad-container.two .action').on('click', function() {
-              console.log('clicked screen two');
               saveLead();
           });
 
