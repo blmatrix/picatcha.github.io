@@ -1,0 +1,70 @@
+/* Panedia Player - Required once per page*/ (function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = "//embed.panedia.com/panedia-players.min.js?version=v3";fjs.parentNode.insertBefore(js, fjs);}(document, "script", "panedia-js"));;
+(function ($) {
+
+  $( window ).load(function() {
+
+    $(document.body).on('click', '.ab-banner-link', function(pageCollapse){
+
+      // changed .hover to .each
+      $('div').each(function() {
+        var a = Math.random() * 10 - 5;
+        $(this).css('transform', 'rotate(' + a + 'deg)');
+      });
+
+      //all images get hinge
+      $('img').each(function(i) {
+        var $li = $(this);
+        setTimeout(function() {
+          $li.addClass('animated hinge');
+        }, i*300); // delay 100 ms
+      });
+
+      //all left rail artciles get bounce
+      $($('.article-list div').get().reverse()).each(function(i){
+        var $li = $(this);
+        setTimeout(function() {
+          $li.addClass('animated bounce');
+        }, i*50); // delay 100 ms
+      });
+
+      //turn on ad-blocker-modal after a few seconds
+      setTimeout(function(){ $('#ad-blocker-modal').show(); }, 4000);
+
+      //Do Reverse
+      $('#ad-blocker-modal').click(function(){
+        $('#ad-blocker-modal').hide();
+
+        $('div').each(function() {
+          $(this).css('transform', 'rotate(' + 0 + 'deg)');
+        });
+
+        //all images get hinge
+        $('img').each(function(i) {
+          var $li = $(this);
+          setTimeout(function() {
+            $li.removeClass('animated hinge');
+          }, i*300); // delay 100 ms
+        });
+
+        //all left rail articles get bounce
+        $($('.article-list div').get().reverse()).each(function(i){
+          var $li = $(this);
+          setTimeout(function() {
+            $li.removeClass('animated bounce');
+          }, i*50); // delay 100 ms
+        });
+
+        $('.left-rail-topper').css({'top': '0', 'position': 'fixed'});
+
+        $('.left-rail').css('padding-top', '0');
+
+        // auto-refresh page to render regular ads
+        window.location.reload();
+
+      });
+
+    });
+
+  });
+
+})(jQuery);;
