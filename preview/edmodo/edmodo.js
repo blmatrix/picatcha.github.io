@@ -109,7 +109,7 @@ function showFloatingContainer() {
 }
 
 function addCTAText(position, floatType) {
-    var ctaButton = document.querySelector('.' + position + ' .cta-cutton-container .cta-button');
+    var ctaButton = document.querySelector('.' + position + ' .cta-button-container .cta-button');
 
     if(!ctaButton) return;
 
@@ -161,7 +161,7 @@ function updateShareURLs(position) {
 
     title = adUnit.querySelector('.an-title').innerHTML;
     summary = adUnit.querySelector('.an-description').innerHTML;
-    clickUrl = floatingUnit.querySelector('.cta-cutton-container .cta-button').href;
+    clickUrl = floatingUnit.querySelector('.cta-button-container .cta-button').href;
 
     // Set Values
     fb.href = 'http://www.facebook.com/sharer.php?u=' + encodeURI(clickUrl);
