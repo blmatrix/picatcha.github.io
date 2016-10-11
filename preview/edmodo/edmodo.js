@@ -1,6 +1,6 @@
 // position : in-feed / right-rail
 // floatType : lead-gen / content-ad
-function initFloatingAd(position, floatType) {
+function initAdUnit(position, floatType) {
     if(!position || !floatType) return;
 
     var el = (position === 'in-feed') ? 'main-column' : 'right-column',
@@ -16,7 +16,7 @@ function initFloatingAd(position, floatType) {
     addCTAText(position, floatType);
 
     if(floatingItems) parent = floatingItems.parentNode;
-    if (!parent) { return; }
+    if (!parent || floatType === 'install' || floatType === 'video') { return; }
     parent.removeChild(floatingItems);
     document.body.appendChild(floatingItems);
 
@@ -109,7 +109,7 @@ function showFloatingContainer() {
 }
 
 function addCTAText(position, floatType) {
-    var ctaButton = document.querySelector('.' + position + ' .an-button .adsnative-cta-button');
+    var ctaButton = document.querySelector('.' + position + ' .cta-cutton-container .cta-button');
 
     if(!ctaButton) return;
 
@@ -119,6 +119,8 @@ function addCTAText(position, floatType) {
         ctaButton.innerHTML = 'Sign Up';
     } else if(floatType === 'install') {
         ctaButton.innerHTML = 'Use App';
+    } else if(floatType === 'video') {
+        ctaButton.innerHTML = 'Learn More';
     }
 }
 
@@ -159,7 +161,7 @@ function updateShareURLs(position) {
 
     title = adUnit.querySelector('.an-title').innerHTML;
     summary = adUnit.querySelector('.an-description').innerHTML;
-    clickUrl = floatingUnit.querySelector('.adsnative-cta-button').href;
+    clickUrl = floatingUnit.querySelector('.cta-cutton-container .cta-button').href;
 
     // Set Values
     fb.href = 'http://www.facebook.com/sharer.php?u=' + encodeURI(clickUrl);
