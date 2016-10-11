@@ -1,9 +1,11 @@
 // position : in-feed / right-rail
 // floatType : lead-gen / content-ad
-function initAdUnit(position, floatType) {
-    if(!position || !floatType) return;
+function initAdUnit(adData) {
+    if(!adData.position || !adData.floatType) return;
 
-    var el = (position === 'in-feed') ? 'main-column' : 'right-column',
+    var position = adData.position,
+        floatType = adData.floatType,
+        el = (position === 'in-feed') ? 'main-column' : 'right-column',
         floatingItems = document.getElementsByClassName(el)[0].querySelector('.floating-items'),
         adUnit = document.getElementsByClassName(el)[0].querySelector('.str-adunit');
 
@@ -149,6 +151,7 @@ function updateShareURLs(position) {
     var floatingUnit = document.querySelector('.floating-items.' + position),
         adUnit = document.querySelector('.str-adunit.' + position);
     if(!hasClass(floatingUnit, 'content-ad')) return;
+    if(!hasClass(floatingUnit, 'in-feed')) return;
 
     var fb = floatingUnit.querySelector('.str-footer .str-facebook-share'),
         tw = floatingUnit.querySelector('.str-footer .str-twitter-share'),
@@ -161,7 +164,7 @@ function updateShareURLs(position) {
 
     title = adUnit.querySelector('.an-title').innerHTML;
     summary = adUnit.querySelector('.an-description').innerHTML;
-    clickUrl = floatingUnit.querySelector('.cta-button-container .cta-button').href;
+    clickUrl = floatingUnit.querySelector('.str-footer .adsnative-cta-button').href;
 
     // Set Values
     fb.href = 'http://www.facebook.com/sharer.php?u=' + encodeURI(clickUrl);
