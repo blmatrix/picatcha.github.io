@@ -46,7 +46,7 @@ function loadAdUnit(adUnitConfig) {
     if(floatType === 'content-ad') updateShareURLs(position);
 
     adUnit.onclick = function(e) {
-        if((e.target.parentNode && hasClass(e.target.parentNode, 'user_fb__list')) || (e.target.parentNode.parentNode || hasClass(e.target.parentNode.parentNode, 'user_fb__list'))) return;
+        if((e.target.parentNode && hasClass(e.target.parentNode, 'user_fb__list')) || (e.target.parentNode.parentNode && hasClass(e.target.parentNode.parentNode, 'user_fb__list'))) return;
         e.stopPropagation();
         userClicked = true;
 
