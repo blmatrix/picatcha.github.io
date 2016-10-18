@@ -1,13 +1,31 @@
+function initAdUnit(adPosition, adData) {
+    var adUnitConfig = {};
+    adUnitConfig.position = adPosition;
+    if(adData.type === "story" && adData.customFields && adData.customFields.contentUrl) {
+        adUnitConfig.floatType = 'content-ad';
+        adUnitConfig.contentUrl = adData.customFields.contentUrl;
+    } else if(adData.type === "lead_gen" && adData.leadGenUrl) {
+        adUnitConfig.floatType = 'lead-gen';
+        adUnitConfig.leadGenUrl = adData.leadGenUrl;
+    } else if(adData.type === "video") {
+        adUnitConfig.floatType = 'video';
+    } else if(adData.type === "app_install") {
+        adUnitConfig.floatType = 'click-out'
+    }
+    loadAdUnit(adUnitConfig);
+}
+
 // position : in-feed / right-rail
 // floatType : lead-gen / content-ad
-function initAdUnit(adData) {
-    if(!adData.position || !adData.floatType) return;
+function loadAdUnit(adUnitConfig) {
+    console.log('adConfig', adUnitConfig);
+    if(!adUnitConfig.position || !adUnitConfig.floatType) return;
 
-    var position = adData.position,
-        floatType = adData.floatType,
-        el = (position === 'in-feed') ? 'main-column' : 'right-column',
-        floatingItems = document.getElementsByClassName(el)[0].querySelector('.floating-items'),
-        adUnit = document.getElementsByClassName(el)[0].querySelector('.str-adunit');
+    var position = adUnitConfig.position,
+        floatType = adUnitConfig.floatType,
+        columnContainer = (position === 'in-feed') ? document.getElementsByClassName('main-column')[0] : document.getElementsByClassName('right-column')[0],
+        floatingItems = columnContainer.querySelector('.floating-items'),
+        adUnit = columnContainer.querySelector('.str-adunit');
 
     addClass(floatingItems, position);
     addClass(floatingItems, floatType);
@@ -18,17 +36,17 @@ function initAdUnit(adData) {
     addCTAText(position, floatType);
 
     if(floatingItems) parent = floatingItems.parentNode;
-    if (!parent || floatType === 'install' || floatType === 'video') { return; }
+    if (!parent || floatType === 'click-out' || floatType === 'video') { return; }
     parent.removeChild(floatingItems);
     document.body.appendChild(floatingItems);
 
     // Add iframe based on floatType
-    var sourceUrl = null;
-    addiFrameContent(position, floatType, sourceUrl);
+    addiFrameContent(adUnitConfig);
 
     if(floatType === 'content-ad') updateShareURLs(position);
 
     adUnit.onclick = function(e) {
+        if((e.target.parentNode && hasClass(e.target.parentNode, 'user_fb__list')) || (e.target.parentNode.parentNode || hasClass(e.target.parentNode.parentNode, 'user_fb__list'))) return;
         e.stopPropagation();
         userClicked = true;
 
@@ -38,19 +56,49 @@ function initAdUnit(adData) {
             adUnit = document.querySelector('.str-adunit.' + position);
 
         if(hasClass(floatingItems, 'animate')) removeClass(floatingItems, 'animate');
-        overlapFloatingContainer(adUnit, floatingItems, showFloatingContainer);
+        overlapFloatingContainer(adUnit, position, showFloatingContainer);
     }
 
-    if(document.getElementsByClassName('str-ico-close').length) {
-        document.getElementsByClassName('str-ico-close')[0].onclick = adClosed;
+    var closeButton = floatingItems.querySelector('.str-ico-close'),
+        background = floatingItems.querySelector('.floating-bg');
+    if(closeButton) {
+        closeButton.addEventListener("click", function(e) {
+            adClosed(e, position);
+        });
     }
-    if(document.getElementsByClassName('floating-bg').length) {
-        document.getElementsByClassName('floating-bg')[0].onclick = adClosed;
+    if(background) {
+        background.addEventListener("click", function(e) {
+            adClosed(e, position);
+        });
     }
+
+    adUnit.querySelector('.c-button').addEventListener("click", function(e) {
+        e.stopPropagation();
+        var dropdownContainer = e.currentTarget.parentNode;
+        if(hasClass(dropdownContainer, 'is-open'))
+            removeClass(dropdownContainer, 'is-open');
+        else
+            addClass(dropdownContainer, 'is-open');
+    });
+
+    adUnit.querySelector('.user_fb__item.hide_ad').addEventListener("click", function(e) {
+        e.stopPropagation();
+        adUnit.style.display = "none";
+    });
+
+    document.addEventListener("click", function(e) {
+        var dropdownContainer = e.currentTarget.parentNode;
+        if(dropdownContainer === null || !hasClass(dropdownContainer, 'js-dropdown')) {
+            dropdownContainers = document.getElementsByClassName('js-dropdown');
+            for(i=0; i<dropdownContainers.length; i++) {
+                removeClass(dropdownContainers[i], 'is-open');
+            }
+        }
+    });
 }
 
-function floatTransitionComplete() {
-    var floatingUnit = document.getElementById('floating-ad-container');
+function floatTransitionComplete(position) {
+    var floatingUnit = document.querySelector('.floating-items.' + position + ' #floating-ad-container');
     if(!hasClass(floatingUnit.querySelector('#content-container'), 'view')) {
         addClass(floatingUnit.querySelector('#content-container'), 'view');
     }
@@ -59,17 +107,22 @@ function floatTransitionComplete() {
 }
 
 // TD
-function adClosed(e) {
+function adClosed(e, position) {
     e.stopPropagation();
-    var floatingUnit = document.getElementById('floating-ad-container');
-    overlapFloatingContainer(document.getElementsByClassName('str-adunit')[0], document.getElementsByClassName('floating-items')[0]);
+    var position = (hasClass(e.currentTarget.parentNode, 'in-feed')) ? 'in-feed' : 'right-rail',
+        floatingItems = document.querySelector('.floating-items.' + position),
+        floatingUnit = floatingItems.querySelector('#floating-ad-container');
+
+    overlapFloatingContainer(document.querySelector('.str-adunit.' + position), position);
     removeClass(floatingUnit.querySelector('#content-container'), 'view');
-    removeClass(document.getElementsByClassName('floating-items')[0], 'clicked');
+    removeClass(floatingItems, 'clicked');
 }
 
 // TD
-function overlapFloatingContainer(adUnit, floatingItems, callback) {
-    var floatingUnit = floatingItems.querySelector('#floating-ad-container');
+function overlapFloatingContainer(adUnit, position, callback) {
+    var floatingItems = document.querySelector('.floating-items.' + position),
+        floatingUnit = floatingItems.querySelector('#floating-ad-container');
+
     floatingUnit.style.top = adUnit.getBoundingClientRect().top;
     floatingUnit.style.left = adUnit.getBoundingClientRect().left;
 
@@ -78,16 +131,17 @@ function overlapFloatingContainer(adUnit, floatingItems, callback) {
     // Put positioning back in callstack
     if(callback) {
         setTimeout(function() {
-            callback();
+            callback(position);
         }, 1);
     }
 }
 
-function showFloatingContainer() {
+function showFloatingContainer(position) {
     if(!userClicked) return;
     userClicked = false;
 
-    var floatingItems = document.querySelector('.floating-items');//document.getElementById('floating-ad-container');
+    var floatingItems = document.querySelector('.floating-items.' + position);
+
     if(hasClass(floatingItems, 'install')) return;
 
     // Add animation to floating container
@@ -101,7 +155,9 @@ function showFloatingContainer() {
 
     // Animate floating container and add listener
     var transtionEvent = whichTransitionEvent();
-    transtionEvent && floatingItems.addEventListener(transtionEvent, floatTransitionComplete, false);
+    transtionEvent && floatingItems.addEventListener(transtionEvent, function() {
+        floatTransitionComplete(position)
+    }, false);
 
     addClass(floatingItems, 'clicked');
 
@@ -119,27 +175,29 @@ function addCTAText(position, floatType) {
         ctaButton.innerHTML = 'Read More';
     } else if(floatType === 'lead-gen') {
         ctaButton.innerHTML = 'Sign Up';
-    } else if(floatType === 'install') {
+    } else if(floatType === 'click-out') {
         ctaButton.innerHTML = 'Use App';
     } else if(floatType === 'video') {
         ctaButton.innerHTML = 'Learn More';
     }
 }
 
-function addiFrameContent(position, floatType, sourceUrl) {
+function addiFrameContent(adUnitConfig) {
     var ifrm = document.createElement("iframe"),
-        floatingUnit = document.querySelector('.' + position + ' #floating-ad-container');
+        floatingUnit = document.querySelector('.' + adUnitConfig.position + ' #floating-ad-container');
 
-    ifrm.setAttribute("src", sourceUrl);
+    ifrm.setAttribute("src", "");
     ifrm.id = "content-container";
     ifrm.style.width = "100%";
     ifrm.style.height = "100%";
 
-    if(floatType === 'content-ad') {
-        ifrm.src = "http://www.dogonews.com/2016/10/5/whales-mourn-their-loved-ones-just-like-you-and-me";
+    if(adUnitConfig.floatType === 'content-ad' && adUnitConfig.contentUrl) {
+        // Example : "http://www.dogonews.com/2016/10/5/whales-mourn-their-loved-ones-just-like-you-and-me"
+        ifrm.src = adUnitConfig.contentUrl;
         floatingUnit.querySelector('.str-embed-wrapper').appendChild(ifrm);
-    } else if(floatType === 'lead-gen') {
-        ifrm.src = "http://docs.adsnative.com/preview/edmodo/lead_gen_iframe.html";
+    } else if(adUnitConfig.floatType === 'lead-gen' && adUnitConfig.leadGenUrl) {
+        // Example : "http://docs.adsnative.com/preview/edmodo/lead-gen_iframe.html"
+        ifrm.src = adUnitConfig.leadGenUrl;
         floatingUnit.appendChild(ifrm);
     }
 }
