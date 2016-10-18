@@ -32,6 +32,31 @@ function loadAdUnit(adUnitConfig) {
     addClass(adUnit, position);
     addClass(adUnit, floatType);
 
+    // User feedback interaction
+    adUnit.querySelector('.c-button').addEventListener("click", function(e) {
+        e.stopPropagation();
+        var dropdownContainer = e.currentTarget.parentNode;
+        if(hasClass(dropdownContainer, 'is-open'))
+            removeClass(dropdownContainer, 'is-open');
+        else
+            addClass(dropdownContainer, 'is-open');
+    });
+
+    adUnit.querySelector('.user_fb__item.hide_ad').addEventListener("click", function(e) {
+        e.stopPropagation();
+        adUnit.style.display = "none";
+    });
+
+    document.addEventListener("click", function(e) {
+        var dropdownContainer = e.currentTarget.parentNode;
+        if(dropdownContainer === null || !hasClass(dropdownContainer, 'js-dropdown')) {
+            dropdownContainers = document.getElementsByClassName('js-dropdown');
+            for(i=0; i<dropdownContainers.length; i++) {
+                removeClass(dropdownContainers[i], 'is-open');
+            }
+        }
+    });
+    
     // CTA Text
     addCTAText(position, floatType);
 
@@ -71,30 +96,6 @@ function loadAdUnit(adUnitConfig) {
             adClosed(e, position);
         });
     }
-
-    adUnit.querySelector('.c-button').addEventListener("click", function(e) {
-        e.stopPropagation();
-        var dropdownContainer = e.currentTarget.parentNode;
-        if(hasClass(dropdownContainer, 'is-open'))
-            removeClass(dropdownContainer, 'is-open');
-        else
-            addClass(dropdownContainer, 'is-open');
-    });
-
-    adUnit.querySelector('.user_fb__item.hide_ad').addEventListener("click", function(e) {
-        e.stopPropagation();
-        adUnit.style.display = "none";
-    });
-
-    document.addEventListener("click", function(e) {
-        var dropdownContainer = e.currentTarget.parentNode;
-        if(dropdownContainer === null || !hasClass(dropdownContainer, 'js-dropdown')) {
-            dropdownContainers = document.getElementsByClassName('js-dropdown');
-            for(i=0; i<dropdownContainers.length; i++) {
-                removeClass(dropdownContainers[i], 'is-open');
-            }
-        }
-    });
 }
 
 function floatTransitionComplete(position) {
