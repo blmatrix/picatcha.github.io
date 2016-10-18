@@ -1000,8 +1000,8 @@
                                                     </div>
 
                                                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-                                                    <!-- <script type="text/javascript" src="http://docs.adsnative.com/preview/edmodo/edmodo.js"></script> -->
-                                                    <script type="text/javascript" src="http://localhost:8888/picatcha.github.io/preview/edmodo/edmodo.js"></script>
+                                                    <script type="text/javascript" src="http://docs.adsnative.com/preview/edmodo/edmodo.js"></script>
+                                                    <!-- <script type="text/javascript" src="http://localhost:8888/picatcha.github.io/preview/edmodo/edmodo.js"></script> -->
                                                     <!-- <link rel="stylesheet" type="text/css" href="http://localhost:9000/picatcha.github.io/preview/edmodo/edmodo.css"> -->
                                                     <div id="in-feed-ad-container"></div>
 
@@ -1860,34 +1860,6 @@
         <p></p>
     </div>
     <div id="dropdown-overlay" class="dropdown-overlay"></div>
-    <!-- Begin ADSNATIVE Code -->
-<!--   <script type="text/javascript">
-    var _AdsNativeOpts = {
-        adUnits: [{
-            apiKey: 'YakQF2IPg4_V0Cyedn-pI-vXksXQwPECHxVpCRGR',
-            callback: function(status, adData) {
-                console.log(adData);
-                _AdsNativeOpts.adUnits[0].adData = adData;
-            },
-        }],
-        userCallbackOnAdLoad: function(status) {
-            var adData = _AdsNativeOpts.adUnits[0].adData;
-            // Content Ad
-            if(adData.type === "story" && adData.customFields && adData.customFields.contentUrl) {
-                initAdUnit({position: 'in-feed', floatType: 'content-ad'});
-            } else if(adData.type === "video") {
-                initAdUnit({position: 'right-rail', floatType: 'video'});
-            } else if(adData.type === "lead_gen") {
-                initAdUnit({position: 'right-rail', floatType: 'lead-gen'});
-            } else if(adData.type === "app_install") {
-                initAdUnit({position: 'right-rail', floatType: 'lead-gen'});
-            }
-        },
-        autoPosition: true
-    };
-  </script>
-  <script type="text/javascript" src="//static.adsnative.com/static/js/render.v1.js"></script>
-<!-- End ADSNATIVE Code --> -->
 
     <!-- Begin ADSNATIVE Code -->
     <script type="text/javascript">
@@ -1898,7 +1870,13 @@
     <script type="text/javascript" src="//static.adsnative.com/static/js/render.v1.js"></script>
 
     <script type="text/javascript">
-    var infeedPlacement = new AdsNative('wmz8pH9XxPWu7dtu0HEh4n5c6UmgtxaiqigcH0d6', []);
+    var keyValues = {
+        ck_audience_type: "students",
+        ck_languages: "english, spanish",
+        ck_grades: "fifth"
+    };
+
+    var infeedPlacement = new AdsNative('wmz8pH9XxPWu7dtu0HEh4n5c6UmgtxaiqigcH0d6', [], keyValues);
     infeedPlacement.fetchAd(function(status, adData) {
         console.log('Ad fetched : ', adData);
         if(status && adData) { // If returned a valid campaign to display
@@ -1912,7 +1890,7 @@
         }
     });
 
-    var rightRailPlacement = new AdsNative('YakQF2IPg4_V0Cyedn-pI-vXksXQwPECHxVpCRGR', []);
+    var rightRailPlacement = new AdsNative('YakQF2IPg4_V0Cyedn-pI-vXksXQwPECHxVpCRGR', [], keyValues);
     rightRailPlacement.fetchAd(function(status, adData) {
         console.log('Ad fetched : ', adData);
         if(status && adData) { // If returned a valid campaign to display
