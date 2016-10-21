@@ -1,0 +1,2367 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0032)https://m.bolumsonucanavari.com/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="tr"><head id="ctl00_head1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="google-site-verification" content="yCz_N4DL-cK1jGNoittzTKXg9MIUoVSVUFZQC405F78"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport"><meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0"><title>
+	BSC Mobil Sürüm | Bölüm Sonu Canavarı
+</title><link href="https://statik.donanimhaber.com/cssbscm/img/mobil-iphone-favicon.png" rel="apple-touch-icon"><link href="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/stylebscmobil3.css" rel="stylesheet" type="text/css"><script async="async" defer="defer" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/xgemius.js"></script><script type="text/javascript" async="" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/ga.js"></script><script src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/bscmobilj.js" type="text/javascript" charset="utf-8"></script><link id="ctl00_canonical" rel="canonical"></head>
+    <body style="">
+        <script>
+            
+            
+                //Create the XHR object.
+                function createCORSRequest(method, url) {
+                    var xhr = new XMLHttpRequest();
+                    if ("withCredentials" in xhr) {
+                        // XHR for Chrome/Firefox/Opera/Safari.
+                        xhr.open(method, url, true);
+                    } else if (typeof XDomainRequest != "undefined") {
+                        // XDomainRequest for IE.
+                        xhr = new XDomainRequest();
+                        xhr.open(method, url);
+                    } else {
+                        // CORS not supported.
+                        xhr = null;
+                    }
+                    return xhr;
+                }
+
+                //Make the actual CORS request.
+                function makeCorsRequest2(service_url) {
+                    //All HTML5 Rocks properties support CORS.
+                    var url = service_url;
+
+                    var xhr = createCORSRequest('GET', url);
+                    if (!xhr) {
+                        console.log('CORS not supported');
+                        return;
+                    }
+
+                    //Response handlers.
+                    xhr.onload = function () {
+                        var text = xhr.responseText;
+                        //alert('Response from CORS request to ' + url + ': ' + text);
+
+                        eval("var arr = " + text);
+
+                        if (arr.data[0].Login != "" && arr.data[0].Password != "") {
+                            $.ajax({
+                                type: "POST",
+                                url: '/autologin.aspx',
+                                data: "Login=" + encodeURIComponent(arr.data[0].Login) + "&Password=" + encodeURIComponent(arr.data[0].Password),
+                                success: function (data) {
+                                    //alert(data);
+                                    if (data.indexOf("OK") > -1) {
+                                        location.reload();
+                                    }
+                                }
+                            });
+                        }
+                    };
+
+                    xhr.onerror = function () {
+                        console.log('Woops, there was an error making the request.');
+                    };
+                    xhr.withCredentials = true;
+                    xhr.send();
+                }
+
+                makeCorsRequest2("https://dhgiris.com/CheckCookies.aspx?site=10");
+            
+
+            function createCookie(name, value, days) {
+                if (days) {
+                    var date = new Date();
+                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                    var expires = "; expires=" + date.toGMTString();
+                }
+                else var expires = "";
+                document.cookie = name + "=" + value + expires + "; path=/";
+            }
+
+        </script>
+        <form name="aspnetForm" method="post" action="https://m.bolumsonucanavari.com/" id="aspnetForm">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTIxMzA1MzQ5NjdkZK8SQkG1HDpjjL2rF61O8l1FgHtN">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<div style="display: none;">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="CA0B0334">
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAe3MCcvG4RR235QU36yLLuX4+3WpZQNb82rzs2KnT3rh7bFm9MOLYoS8IfMeI+n3batOZbEVYinT+/gvOYVrOtK1KArdCeDbmR1jVuyQuOhp0kWVVLTtWhMf1FTZvy9og3li9lwggltGSlyGAgzsMLnQ9L8EBVYhAQEfqXxaUFKP+SBNAw=">
+</div>
+            <div id="hidden-menu" class="hidden-menu" style="display:none;">
+	            <a href="https://m.bolumsonucanavari.com/">
+                    Anasayfa
+                </a>
+	            <a href="https://m.bolumsonucanavari.com/mVideoIncelemeler-0.htm">
+                    BSC Videoları
+                </a>
+	            <a href="https://m.bolumsonucanavari.com/mVideolar-0.htm">
+                    Oyun Videoları
+                </a>
+	            <a href="https://m.bolumsonucanavari.com/diziprogramlar.htm">
+                    Oyun Serisi
+                </a>
+	            <a href="https://m.bolumsonucanavari.com/mHaberler-0.htm">
+                    Haberler
+                </a>
+	            <a href="https://m.bolumsonucanavari.com/mOyunlar-1.htm">
+                    Oyunlar
+                </a>
+	            <a href="https://m.bolumsonucanavari.com/mIncelemeler-0.htm">
+                    İncelemeler
+                </a>
+	            <a href="https://m.bolumsonucanavari.com/mOnIncelemeler-0.htm">
+                    Ön İncelemeler
+                </a>
+	            <a href="https://m.bolumsonucanavari.com/mYeniOyunlar-0.htm">
+                    Çıkış Tarihleri
+                </a>
+	            <a href="https://m.bolumsonucanavari.com/mDosyaKonulari-0.htm">
+                    Dosya Konuları
+                </a>
+	            <a href="https://m.bolumsonucanavari.com/mTamCozumler-0.htm">
+                    Tam Çözümler
+                </a>
+	            <a href="http://mobile.bolumsonucanavari.com/">
+                    Forumlar
+                </a>
+                
+            </div>
+            <div id="header" class="header">
+	            <a onclick="javascript:document.getElementById(&#39;menu&#39;).style.display=&#39;&#39;;document.getElementById(&#39;menu-link-kapat&#39;).style.display=&#39;&#39;;document.getElementById(&#39;menu-link&#39;).style.display=&#39;none&#39;;" class="menuac">
+                    <i class="icon-menu"></i>
+                </a>
+	            <a href="https://m.bolumsonucanavari.com/" class="logo">
+                    <img src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/logo-bsc.png" id="ctl00_imgLogo" alt="BSC Mobil Sürüm | Bölüm Sonu Canavarı">
+                </a>
+                <a href="https://m.bolumsonucanavari.com/#account-login" id="ctl00_linkGirisUst" onclick="javascript:document.getElementById(&#39;account-login&#39;).style.display=&#39;&#39;;document.getElementById(&#39;bottom-buttons&#39;).style.display=&#39;none&#39;;" class="link loginout">
+                    <span>
+                        Giriş
+                    </span>
+                    <span class="icon-enter" style="float:right; margin:4px 0 0 4px;"></span>
+                </a>
+            </div>
+            <div class="navigation">
+                <a href="https://m.bolumsonucanavari.com/">
+                    <span>
+                        <i class="icon-home"></i> Anasayfa
+                    </span>
+                </a>
+                <a href="https://m.bolumsonucanavari.com/mVideoIncelemeler-0.htm">
+                    <span>
+                        <i class="icon-play"></i> Videolar
+                    </span>
+                </a>
+                <a href="https://m.bolumsonucanavari.com/mHaberler-0.htm">
+                    <span>
+                        <i class="icon-file-text"></i> Haberler
+                    </span>
+                </a>
+                
+                <a onclick="javascript:document.getElementById(&#39;search&#39;).style.display=&#39;&#39;;javascript:document.getElementById(&#39;divSearch&#39;).style.display=&#39;none&#39;;" class="ara">
+                    &nbsp;<i class="icon-search"></i>&nbsp;
+                </a>
+            </div>
+            <div id="search" class="search" style="display:none;">
+	            
+                <span class="bar">
+                    <input name="ctl00$txtSearch" type="text" id="ctl00_txtSearch" class="box" style="width:98%;">
+                    <input type="submit" name="ctl00$btnAra" value="ARA" id="ctl00_btnAra" class="button">
+                </span>
+            </div>
+            <a id="menu-link-kapat" onclick="javascript:document.getElementById(&#39;menu&#39;).style.display=&#39;none&#39;;document.getElementById(&#39;menu-link-kapat&#39;).style.display=&#39;none&#39;;document.getElementById(&#39;menu-link&#39;).style.display=&#39;inline-block&#39;;" class="menukapat" style="display:none;"></a>
+            <nav id="menu" style="min-height:1400px; display:none;">
+                <span class="menutitle">
+                    Hızlı Erişim
+                </span>
+                <a id="menu-x" onclick="javascript:document.getElementById(&#39;menu&#39;).style.display=&#39;none&#39;;document.getElementById(&#39;menu-link-kapat&#39;).style.display=&#39;none&#39;;document.getElementById(&#39;menu-link&#39;).style.display=&#39;inline-block&#39;;" class="menuX">
+                    X
+                </a>
+                <ul>
+                    <li>
+                        <a href="https://m.bolumsonucanavari.com/?ref=anasayfa">
+                            <span>
+                                <i class="icon-home"></i> Anasayfa
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://m.bolumsonucanavari.com/search.aspx?ref=ara">
+                            <span>
+                                <i class="icon-search"></i> Arama
+                            </span>
+                        </a>
+                    </li>
+                    <li id="ctl00_liDhGiris">
+                        <div class="label">
+                            <span>
+                                DH GİRİŞ
+                            </span>
+                            <a href="https://m.bolumsonucanavari.com/#top" class="menuTop">
+                                <i class="icon-chevron-up"></i>
+                            </a>
+                        </div>
+                    </li>
+                    <li id="ctl00_liLogin">
+                        <a href="https://m.bolumsonucanavari.com/#account-login">
+                            <span>
+                                <strong>
+                                    <i class="icon-key"></i> Oturum Aç
+                                </strong>
+                            </span>
+                        </a>
+                    </li>
+                    <li id="ctl00_liRegister">
+                        <a href="https://dhgiris.com/Register.aspx">
+                            <span>
+                                <i class="icon-user"></i> Yeni Hesap Oluştur
+                            </span>
+                        </a>
+                    </li>
+                    <li id="ctl00_liSosyalAgIleBaglan">
+                        <div class="label">
+                            <span>
+                                SOSYAL AĞ İLE BAĞLAN
+                            </span>
+                            <a href="https://m.bolumsonucanavari.com/#top" class="menuTop">
+                                <i class="icon-chevron-up"></i>
+                            </a>
+                        </div>
+                    </li>
+                    <li id="ctl00_liFacebookLogin">
+                        <a href="https://dhgiris.com/FB.aspx?referer=http://m.bolumsonucanavari.com/">
+                            <span>
+                                <i class="icon-facebook"></i> Facebook ile Bağlan
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <div class="label">
+                            <span>
+                                İÇERİK TÜRLERİ
+                            </span>
+                            <a href="https://m.bolumsonucanavari.com/#top" class="menuTop">
+                                <i class="icon-chevron-up"></i>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="https://m.bolumsonucanavari.com/mVideoIncelemeler-0.htm?ref=videoinceleme">
+                            <span>
+                                <i class="icon-play"></i> BSC Videoları
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://m.bolumsonucanavari.com/mHaberler-0.htm?ref=haber">
+                            <span>
+                                <i class="icon-file-text"></i> Haberler
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://m.bolumsonucanavari.com/mVideolar-0.htm?ref=video">
+                            <span>
+                                <i class="icon-play"></i> Oyun Videoları
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://m.bolumsonucanavari.com/diziprogramlar.htm?ref=diziprogram">
+                            <span>
+                                <i class="icon-folder-open"></i> Oyun Serisi
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://m.bolumsonucanavari.com/mOyunlar-1.htm?ref=oyun">
+                            <span>
+                                <i class="icon-game-controller"></i> Oyunlar
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://m.bolumsonucanavari.com/mIncelemeler-0.htm?ref=inceleme">
+                            <span>
+                                <i class="icon-game-controller"></i> İncelemeler
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://m.bolumsonucanavari.com/mOnIncelemeler-0.htm?ref=oninceleme">
+                            <span>
+                                <i class="icon-game-controller"></i> Ön İncelemeler
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://m.bolumsonucanavari.com/mYeniOyunlar-0.htm?ref=cikistarihleri">
+                            <span>
+                                <i class="icon-calendar"></i> Çıkış Tarihleri
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://m.bolumsonucanavari.com/mDosyaKonulari-0.htm?ref=dosyakonusu">
+                            <span>
+                                <i class="icon-file"></i> Dosya Konuları
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://m.bolumsonucanavari.com/mTamCozumler-0.htm?ref=tamcozum">
+                            <span>
+                                <i class="icon-file-text"></i> Tam Çözümler
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <div class="label">
+                            <span>
+                                DİĞER
+                            </span>
+                            <a href="https://m.bolumsonucanavari.com/#top" class="menuTop">
+                                <i class="icon-chevron-up"></i>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="http://mobile.bolumsonucanavari.com/">
+                            <span>
+                                <i class="icon-bubbles"></i> Forum
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.bolumsonucanavari.com/freetoplay/">
+                            <span>
+                                <i class="icon-coffee"></i> Free to Play
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.bolumsonucanavari.com/Rss/BSC.htm">
+                            <span>
+                                <i class="icon-feed"></i> RSS Abonelik
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="label">
+                            <span>
+                                KÜNYE
+                            </span>
+                            <a href="https://m.bolumsonucanavari.com/#top" class="menuTop">
+                                <i class="icon-chevron-up"></i>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="https://m.bolumsonucanavari.com/hakkimizda.htm?ref=hakkimizda">
+                            <span>
+                                <i class="icon-briefcase"></i> Hakkımızda
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://m.bolumsonucanavari.com/hakkimizda.htm?ref=bizeulasin">
+                            <span>
+                                <i class="icon-envelope"></i> Bize Ulaşın
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/bolumsonucanavari" target="_blank">
+                            <span>
+                                <i class="icon-facebook"></i> Facebook
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://twitter.com/BSCLive" target="_blank">
+                            <span>
+                                <i class="icon-twitter"></i> Twitter
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.twitch.tv/bolumsonucanavari" target="_blank">
+                            <span>
+                                <i class="icon-video-camera"></i> Twitch
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.youtube.com/user/bolumsonu" target="_blank">
+                            <span>
+                                <i class="icon-youtube"></i> Youtube
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <!--
+                    <li>
+                        <span class="label">SOSYAL AĞ HESABINI BAĞLA</span>
+                        <a href="#top" class="menuTop"><i class="icon-chevron-up"></i></a></div>
+                    </li>
+                    <li>
+                        <a><i class="icon-facebook"></i> Facebook'a Bağla</a>
+                    </li>
+                    <li>
+                        <a><i class="icon-google-plus"></i> Google+'a Bağla</a>
+                    </li>
+                    <li>
+                        <a><i class="icon-twitter"></i> Twitter'a Bağla</a>
+                    </li>
+                    -->
+                </ul>
+            </nav>
+            
+    <script type="text/javascript">
+
+        (function (d, h) { "function" === typeof define && define.amd ? define(h) : "object" === typeof exports ? module.exports = h() : d.Blazy = h() })(this, function () { function d(b) { if (!document.querySelectorAll) { var g = document.createStyleSheet(); document.querySelectorAll = function (b, a, e, d, f) { f = document.all; a = []; b = b.replace(/\[for\b/gi, "[htmlFor").split(","); for (e = b.length; e--; ) { g.addRule(b[e], "k:v"); for (d = f.length; d--; ) f[d].currentStyle.k && a.push(f[d]); g.removeRule(0) } return a } } m = !0; k = []; e = {}; a = b || {}; a.error = a.error || !1; a.offset = a.offset || 100; a.success = a.success || !1; a.selector = a.selector || ".b-lazy"; a.separator = a.separator || "|"; a.container = a.container ? document.querySelectorAll(a.container) : !1; a.errorClass = a.errorClass || "b-error"; a.breakpoints = a.breakpoints || !1; a.successClass = a.successClass || "b-loaded"; a.src = r = a.src || "data-src"; u = 1 < window.devicePixelRatio; e.top = 0 - a.offset; e.left = 0 - a.offset; f = v(w, 25); t = v(x, 50); x(); n(a.breakpoints, function (b) { if (b.width >= window.screen.width) return r = b.src, !1 }); h() } function h() { y(a.selector); m && (m = !1, a.container && n(a.container, function (b) { p(b, "scroll", f) }), p(window, "resize", t), p(window, "resize", f), p(window, "scroll", f)); w() } function w() { for (var b = 0; b < l; b++) { var g = k[b], c = g.getBoundingClientRect(); if (c.right >= e.left && c.bottom >= e.top && c.left <= e.right && c.top <= e.bottom || -1 !== (" " + g.className + " ").indexOf(" " + a.successClass + " ")) d.prototype.load(g), k.splice(b, 1), l--, b-- } 0 === l && d.prototype.destroy() } function z(b, g) { if (g || 0 < b.offsetWidth && 0 < b.offsetHeight) { var c = b.getAttribute(r) || b.getAttribute(a.src); if (c) { var c = c.split(a.separator), d = c[u && 1 < c.length ? 1 : 0], c = new Image; n(a.breakpoints, function (a) { b.removeAttribute(a.src) }); b.removeAttribute(a.src); c.onerror = function () { a.error && a.error(b, "invalid"); b.className = b.className + " " + a.errorClass }; c.onload = function () { "img" === b.nodeName.toLowerCase() ? b.src = d : b.style.backgroundImage = 'url("' + d + '")'; b.className = b.className + " " + a.successClass; a.success && a.success(b) }; c.src = d } else a.error && a.error(b, "missing"), b.className = b.className + " " + a.errorClass } } function y(b) { b = document.querySelectorAll(b); for (var a = l = b.length; a--; k.unshift(b[a])); } function x() { e.bottom = (window.innerHeight || document.documentElement.clientHeight) + a.offset; e.right = (window.innerWidth || document.documentElement.clientWidth) + a.offset } function p(b, a, c) { b.attachEvent ? b.attachEvent && b.attachEvent("on" + a, c) : b.addEventListener(a, c, !1) } function q(b, a, c) { b.detachEvent ? b.detachEvent && b.detachEvent("on" + a, c) : b.removeEventListener(a, c, !1) } function n(a, d) { if (a && d) for (var c = a.length, e = 0; e < c && !1 !== d(a[e], e); e++); } function v(a, d) { var c = 0; return function () { var e = +new Date; e - c < d || (c = e, a.apply(k, arguments)) } } var r, a, e, k, l, u, m, f, t; d.prototype.revalidate = function () { h() }; d.prototype.load = function (b, d) { -1 === (" " + b.className + " ").indexOf(" " + a.successClass + " ") && z(b, d) }; d.prototype.destroy = function () { a.container && n(a.container, function (a) { q(a, "scroll", f) }); q(window, "scroll", f); q(window, "resize", f); q(window, "resize", t); l = 0; k.length = 0; m = !0 }; return d });
+
+    </script>
+    <div id="manset" class="manset-yatay">
+        <div class="kutular">
+            	
+                    <div class="tek">
+                        <a href="https://m.bolumsonucanavari.com/VideoIncelemeler-2si1_Sipidir_Teknoloji_ve_Oyun_Programi-14804.htm" id="ctl00_ContentPlaceHolder1_rptrSlide_ctl00_linkSlide" class="onizleme">
+                            <img id="ctl00_ContentPlaceHolder1_rptrSlide_ctl00_slideImg" class="b-lazy b-loaded" alt="2si1 &quot;Sıpidır&quot; Teknoloji ve Oyun Programı" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/14804_600x338.jpg">
+                            <span id="ctl00_ContentPlaceHolder1_rptrSlide_ctl00_lblDate" class="zaman">1 Saat önce</span>
+                            <p id="ctl00_ContentPlaceHolder1_rptrSlide_ctl00_pPlay" class="icon-play3"></p>
+                        </a>
+                        <a href="https://m.bolumsonucanavari.com/VideoIncelemeler-2si1_Sipidir_Teknoloji_ve_Oyun_Programi-14804.htm" id="ctl00_ContentPlaceHolder1_rptrSlide_ctl00_linkHeader" class="baslik">2si1 "Sıpidır" Teknoloji ve Oyun Programı</a>
+                        <div class="bilgi">
+                            <span id="ctl00_ContentPlaceHolder1_rptrSlide_ctl00_lblViewCount" class="izlenme">379 izlenme</span>
+				            
+                        </div>
+                    </div>
+                	
+                    <div class="tek">
+                        <a href="https://m.bolumsonucanavari.com/VideoIncelemeler-Video_Haber_Sonunda_Red_Dead_Redemption_2nin_ilk_Videosu_Geldi-14803.htm" id="ctl00_ContentPlaceHolder1_rptrSlide_ctl01_linkSlide" class="onizleme">
+                            <img id="ctl00_ContentPlaceHolder1_rptrSlide_ctl01_slideImg" class="b-lazy b-loaded" alt="Video Haber: Sonunda Red Dead Redemption 2&#39;nin İlk Videosu Geldi!" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/14803_600x338.jpg">
+                            <span id="ctl00_ContentPlaceHolder1_rptrSlide_ctl01_lblDate" class="zaman">20 Ekim</span>
+                            <p id="ctl00_ContentPlaceHolder1_rptrSlide_ctl01_pPlay" class="icon-play3"></p>
+                        </a>
+                        <a href="https://m.bolumsonucanavari.com/VideoIncelemeler-Video_Haber_Sonunda_Red_Dead_Redemption_2nin_ilk_Videosu_Geldi-14803.htm" id="ctl00_ContentPlaceHolder1_rptrSlide_ctl01_linkHeader" class="baslik">Video Haber: Sonunda Red Dead Redemption 2'nin İlk Videosu Geldi!</a>
+                        <div class="bilgi">
+                            <span id="ctl00_ContentPlaceHolder1_rptrSlide_ctl01_lblViewCount" class="izlenme">3520 izlenme</span>
+				            
+                        </div>
+                    </div>
+                	
+                    <div class="tek">
+                        <a href="https://m.bolumsonucanavari.com/VideoIncelemeler-Video_Haber_Nintendonun_Yeni_Konsolu_Switch_Video_Esliginde_Duyuruldu-14802.htm" id="ctl00_ContentPlaceHolder1_rptrSlide_ctl02_linkSlide" class="onizleme">
+                            <img id="ctl00_ContentPlaceHolder1_rptrSlide_ctl02_slideImg" class="b-lazy" alt="Video Haber: Nintendo&#39;nun Yeni Konsolu Switch Video Eşliğinde Duyuruldu" data-src="https://cache.donanimhaber.com/bsc/20161020232954/4/3/1/0/videoreview/14802_600x338.jpg">
+                            <span id="ctl00_ContentPlaceHolder1_rptrSlide_ctl02_lblDate" class="zaman">20 Ekim</span>
+                            <p id="ctl00_ContentPlaceHolder1_rptrSlide_ctl02_pPlay" class="icon-play3"></p>
+                        </a>
+                        <a href="https://m.bolumsonucanavari.com/VideoIncelemeler-Video_Haber_Nintendonun_Yeni_Konsolu_Switch_Video_Esliginde_Duyuruldu-14802.htm" id="ctl00_ContentPlaceHolder1_rptrSlide_ctl02_linkHeader" class="baslik">Video Haber: Nintendo'nun Yeni Konsolu Switch Video Eşliğinde Duyuruldu</a>
+                        <div class="bilgi">
+                            <span id="ctl00_ContentPlaceHolder1_rptrSlide_ctl02_lblViewCount" class="izlenme">3168 izlenme</span>
+				            
+                        </div>
+                    </div>
+                	
+                    <div class="tek">
+                        <a href="https://m.bolumsonucanavari.com/VideoIncelemeler-Canavar_Hareketler__Bolum_109-14801.htm" id="ctl00_ContentPlaceHolder1_rptrSlide_ctl03_linkSlide" class="onizleme">
+                            <img id="ctl00_ContentPlaceHolder1_rptrSlide_ctl03_slideImg" class="b-lazy" alt="Canavar Hareketler - Bölüm 109" data-src="https://cache.donanimhaber.com/bsc/20161019185654/4/3/1/0/videoreview/14801_600x338.jpg">
+                            <span id="ctl00_ContentPlaceHolder1_rptrSlide_ctl03_lblDate" class="zaman">19 Ekim</span>
+                            <p id="ctl00_ContentPlaceHolder1_rptrSlide_ctl03_pPlay" class="icon-play3"></p>
+                        </a>
+                        <a href="https://m.bolumsonucanavari.com/VideoIncelemeler-Canavar_Hareketler__Bolum_109-14801.htm" id="ctl00_ContentPlaceHolder1_rptrSlide_ctl03_linkHeader" class="baslik">Canavar Hareketler - Bölüm 109</a>
+                        <div class="bilgi">
+                            <span id="ctl00_ContentPlaceHolder1_rptrSlide_ctl03_lblViewCount" class="izlenme">1610 izlenme</span>
+				            
+                        </div>
+                    </div>
+                	
+                    <div class="tek">
+                        <a href="https://m.bolumsonucanavari.com/VideoIncelemeler-Gears_of_War_4_Video_inceleme-14800.htm" id="ctl00_ContentPlaceHolder1_rptrSlide_ctl04_linkSlide" class="onizleme">
+                            <img id="ctl00_ContentPlaceHolder1_rptrSlide_ctl04_slideImg" class="b-lazy" alt="Gears of War 4 Video İnceleme" data-src="https://cache.donanimhaber.com/bsc/20161018180657/4/3/1/0/videoreview/14800_600x338.jpg">
+                            <span id="ctl00_ContentPlaceHolder1_rptrSlide_ctl04_lblDate" class="zaman">18 Ekim</span>
+                            <p id="ctl00_ContentPlaceHolder1_rptrSlide_ctl04_pPlay" class="icon-play3"></p>
+                        </a>
+                        <a href="https://m.bolumsonucanavari.com/VideoIncelemeler-Gears_of_War_4_Video_inceleme-14800.htm" id="ctl00_ContentPlaceHolder1_rptrSlide_ctl04_linkHeader" class="baslik">Gears of War 4 Video İnceleme</a>
+                        <div class="bilgi">
+                            <span id="ctl00_ContentPlaceHolder1_rptrSlide_ctl04_lblViewCount" class="izlenme">2845 izlenme</span>
+				            
+                        </div>
+                    </div>
+                	
+                    <div class="tek">
+                        <a href="https://m.bolumsonucanavari.com/VideoIncelemeler-ilk_izlenim_Outlast_2-14799.htm" id="ctl00_ContentPlaceHolder1_rptrSlide_ctl05_linkSlide" class="onizleme">
+                            <img id="ctl00_ContentPlaceHolder1_rptrSlide_ctl05_slideImg" class="b-lazy" alt="İlk İzlenim: Outlast 2" data-src="https://cache.donanimhaber.com/bsc/20161016134249/4/3/1/0/videoreview/14799_600x338.jpg">
+                            <span id="ctl00_ContentPlaceHolder1_rptrSlide_ctl05_lblDate" class="zaman">16 Ekim</span>
+                            <p id="ctl00_ContentPlaceHolder1_rptrSlide_ctl05_pPlay" class="icon-play3"></p>
+                        </a>
+                        <a href="https://m.bolumsonucanavari.com/VideoIncelemeler-ilk_izlenim_Outlast_2-14799.htm" id="ctl00_ContentPlaceHolder1_rptrSlide_ctl05_linkHeader" class="baslik">İlk İzlenim: Outlast 2</a>
+                        <div class="bilgi">
+                            <span id="ctl00_ContentPlaceHolder1_rptrSlide_ctl05_lblViewCount" class="izlenme">4387 izlenme</span>
+				            
+                        </div>
+                    </div>
+                	
+                    <div class="tek">
+                        <a href="https://m.bolumsonucanavari.com/VideoIncelemeler-2si1_once_insan_sonra_Teknoloji_ve_Oyun_Programi-14798.htm" id="ctl00_ContentPlaceHolder1_rptrSlide_ctl06_linkSlide" class="onizleme">
+                            <img id="ctl00_ContentPlaceHolder1_rptrSlide_ctl06_slideImg" class="b-lazy" alt="2si1 &quot;önce insan sonra&quot; Teknoloji ve Oyun Programı" data-src="https://cache.donanimhaber.com/bsc/20161014230043/4/3/1/0/videoreview/14798_600x338.jpg">
+                            <span id="ctl00_ContentPlaceHolder1_rptrSlide_ctl06_lblDate" class="zaman">14 Ekim</span>
+                            <p id="ctl00_ContentPlaceHolder1_rptrSlide_ctl06_pPlay" class="icon-play3"></p>
+                        </a>
+                        <a href="https://m.bolumsonucanavari.com/VideoIncelemeler-2si1_once_insan_sonra_Teknoloji_ve_Oyun_Programi-14798.htm" id="ctl00_ContentPlaceHolder1_rptrSlide_ctl06_linkHeader" class="baslik">2si1 "önce insan sonra" Teknoloji ve Oyun Programı</a>
+                        <div class="bilgi">
+                            <span id="ctl00_ContentPlaceHolder1_rptrSlide_ctl06_lblViewCount" class="izlenme">2683 izlenme</span>
+				            
+                        </div>
+                    </div>
+                
+            <div class="tek daha">
+                <a href="https://m.bolumsonucanavari.com/onecikanicerikler.htm" class="onizleme"><span class="icon-arrow-right"></span></a>
+                <a href="https://m.bolumsonucanavari.com/onecikanicerikler.htm" class="baslik">Öne Çıkan İçerikler Arşivini Göster</a>
+            </div>
+        </div>
+    </div>
+    <div class="advertorial">
+       <div id="madvertiseBanner" class="area">
+           <script src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/qn.aspx" async=""></script>
+           <div id="dha_13_0_5093_1_1"><iframe width="100%" height="110" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/q2.html"></iframe></div>
+       </div>
+    </div>
+    
+    <a class="content-type">
+	    <span class="title">
+            Popüler İçerik
+        </span>
+        <span class="dark">
+            Son 3 Gün
+        </span>
+    </a>
+    <div class="content-list popular-content">
+        
+	            <a href="https://m.bolumsonucanavari.com/Haberler-Red_Dead_Redemption_2nin_ilk_Tanitim_Videosu_Paylasildi-85151.htm" id="ctl00_ContentPlaceHolder1_rptrPopulerIcerik_ctl00_linkIcerik" class="single" title="Rockstar Games söz verdiği gibi 20 Ekim saat 18:00&#39;da Red Dead Redemption 2&#39;nin ilk tanıtım videosunu paylaştı. İyi seyirler.">
+    	            <span class="thumbnail">
+                        <img src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/85151_320x180.jpg" id="ctl00_ContentPlaceHolder1_rptrPopulerIcerik_ctl00_imgKapak" class="lazy" width="117" height="70">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            Red Dead Redemption 2'nin İlk Tanıtım Videosu Payl...
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrPopulerIcerik_ctl00_lblPopulerHaberYorum" class="info">97 yorum</span>
+                    </span>
+                    <span class="type">
+                        HABER
+                    </span>
+                </a>
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Haberler-Nintendo_Yenilikci_Yeni_Konsolu_Switchin_ilk_Tanitim_Videosunu_Paylasti-85150.htm" id="ctl00_ContentPlaceHolder1_rptrPopulerIcerik_ctl01_linkIcerik" class="single" title="Nintendo uzun süredir sır gibi sakladığı yeni konsolunu nihayet gösterdi. Konsolun ilk tanıtım videosunu kaçırmayın.">
+    	            <span class="thumbnail">
+                        <img src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/85150_320x180.jpg" id="ctl00_ContentPlaceHolder1_rptrPopulerIcerik_ctl01_imgKapak" class="lazy" width="117" height="70">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            Nintendo Yenilikçi Yeni Konsolu Switch'in İlk Tanı...
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrPopulerIcerik_ctl01_lblPopulerHaberYorum" class="info">163 yorum</span>
+                    </span>
+                    <span class="type">
+                        HABER
+                    </span>
+                </a>
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Haberler-Red_Dead_Redemption_2_Duyuruldu-85127.htm" id="ctl00_ContentPlaceHolder1_rptrPopulerIcerik_ctl02_linkIcerik" class="single" title="PlayStation 4 ve Xbox One&#39;a geliyor.">
+    	            <span class="thumbnail">
+                        <img src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/85127_320x180.jpg" id="ctl00_ContentPlaceHolder1_rptrPopulerIcerik_ctl02_imgKapak" class="lazy" width="117" height="70">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            Red Dead Redemption 2 Duyuruldu
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrPopulerIcerik_ctl02_lblPopulerHaberYorum" class="info">381 yorum</span>
+                    </span>
+                    <span class="type">
+                        HABER
+                    </span>
+                </a>
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Haberler-Red_Dead_Redemption_2nin_PCye_Gelmesi_icin_imza_Kampanyasi_Baslatildi-85128.htm" id="ctl00_ContentPlaceHolder1_rptrPopulerIcerik_ctl03_linkIcerik" class="single" title="2017 yılının sonbahar döneminde PlayStation 4&#39;e ve Xbox One&#39;a gelecek yapımın PC&#39;ye de çıkması için imza kampanyası başlatıldı." style="display: none;">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rptrPopulerIcerik_ctl03_imgKapak" class="lazy" width="117" height="70" data-original="https://cache.donanimhaber.com/bsc/1/4/3/1/0/news/85128_320x180.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            Red Dead Redemption 2'nin PC'ye Gelmesi için İmza ...
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrPopulerIcerik_ctl03_lblPopulerHaberYorum" class="info">130 yorum</span>
+                    </span>
+                    <span class="type">
+                        HABER
+                    </span>
+                </a>
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Haberler-Mount__Blade_II_Bannerlordun_Steam_Sayfasi_Acildi-85140.htm" id="ctl00_ContentPlaceHolder1_rptrPopulerIcerik_ctl04_linkIcerik" class="single" title="TaleWorlds Entertainment, Mount &amp; Blade II: Bannerlord&#39;un Steam sayfasını aktif etti. Oyunun minimum sistem gereksinimleri de göründü." style="display: none;">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rptrPopulerIcerik_ctl04_imgKapak" class="lazy" width="117" height="70" data-original="https://cache.donanimhaber.com/bsc/1/4/3/1/0/news/85140_320x180.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            Mount &amp; Blade II: Bannerlord'un Steam Sayfası Açıl...
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrPopulerIcerik_ctl04_lblPopulerHaberYorum" class="info">17 yorum</span>
+                    </span>
+                    <span class="type">
+                        HABER
+                    </span>
+                </a>
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Haberler-PlayStation_ve_Rockstar_Games_Red_Dead_Redemption_2_icin_Ortakligini_Duyurdu-85152.htm" id="ctl00_ContentPlaceHolder1_rptrPopulerIcerik_ctl05_linkIcerik" class="single" title="İki firma partnerlik antlaşması imzaladıklarını duyurdu. İlk Red Dead Redemption PlayStation Now sistemine geliyor." style="display: none;">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rptrPopulerIcerik_ctl05_imgKapak" class="lazy" width="117" height="70" data-original="https://cache.donanimhaber.com/bsc/1/4/3/1/0/news/85152_320x180.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            PlayStation ve Rockstar Games, Red Dead Redemption...
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrPopulerIcerik_ctl05_lblPopulerHaberYorum" class="info">73 yorum</span>
+                    </span>
+                    <span class="type">
+                        HABER
+                    </span>
+                </a>
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Haberler-Red_Dead_Redemption_2nin_15_Milyondan_Fazla_Satacagi_Tahmin_Ediliyor-85133.htm" id="ctl00_ContentPlaceHolder1_rptrPopulerIcerik_ctl06_linkIcerik" class="single" title="Analistler oyunun ne kadar satacağı konusunda tahmin yürütüyor." style="display: none;">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rptrPopulerIcerik_ctl06_imgKapak" class="lazy" width="117" height="70" data-original="https://cache.donanimhaber.com/bsc/1/4/3/1/0/news/85133_320x180.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            Red Dead Redemption 2'nin 15 Milyondan Fazla Satac...
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrPopulerIcerik_ctl06_lblPopulerHaberYorum" class="info">30 yorum</span>
+                    </span>
+                    <span class="type">
+                        HABER
+                    </span>
+                </a>
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Haberler-PlayStation_4_Proda_Ekstradan_1GB_RAM_Bulunuyor-85160.htm" id="ctl00_ContentPlaceHolder1_rptrPopulerIcerik_ctl07_linkIcerik" class="single" title="IGN ile röportaj yapan Mark Cerny, PlayStation 4 Pro&#39;ya ekstradan 1GB DDR3 RAM koyduklarını açıkladı." style="display: none;">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rptrPopulerIcerik_ctl07_imgKapak" class="lazy" width="117" height="70" data-original="https://cache.donanimhaber.com/bsc/1/4/3/1/0/news/85160_320x180.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            PlayStation 4 Pro'da Ekstradan 1GB RAM Bulunuyor
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrPopulerIcerik_ctl07_lblPopulerHaberYorum" class="info">111 yorum</span>
+                    </span>
+                    <span class="type">
+                        HABER
+                    </span>
+                </a>
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Haberler-Skyrim_Remastered_icin_Oynanis_Goruntuleri_Paylasildi-85153.htm" id="ctl00_ContentPlaceHolder1_rptrPopulerIcerik_ctl08_linkIcerik" class="single" title="The Elder Scrolls V: Skyrim Special Edition önümüzdeki hafta çıkış yapacak." style="display: none;">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rptrPopulerIcerik_ctl08_imgKapak" class="lazy" width="117" height="70" data-original="https://cache.donanimhaber.com/bsc/1/4/3/1/0/news/85153_320x180.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            Skyrim Remastered için Oynanış Görüntüleri Paylaşı...
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrPopulerIcerik_ctl08_lblPopulerHaberYorum" class="info">13 yorum</span>
+                    </span>
+                    <span class="type">
+                        HABER
+                    </span>
+                </a>
+                
+                
+            
+    </div>
+    <a id="morepopular" onclick="getMoreP(&#39;ctl00_ContentPlaceHolder1_rptrPopulerIcerik&#39;,&#39;9&#39;, this);" class="content-more" style="cursor:pointer;">
+	    <span class="type">
+            Daha Fazla Popüler İçerik
+        </span>
+        <span class="arrow">
+            <span class="icon-chevron-down"></span>
+        </span>
+    </a>
+    <a href="https://m.bolumsonucanavari.com/mHaberler-0.htm" class="content-type">
+	    <span class="title">
+            Haberler
+        </span>
+        <span class="arrow">
+            <span class="icon-chevron-right"></span>
+        </span>
+    </a>
+    <div class="content-list news">
+        
+	            <a href="https://m.bolumsonucanavari.com/Haberler-The_Last_Guardianin_Yapimi_Tamamlandi_Guncelleme-85164.htm" id="ctl00_ContentPlaceHolder1_rGameNews_ctl00_lnkHaberResim" class="single">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rGameNews_ctl00_imgGameImage" class="lazy" width="140" height="84" data-original="https://cache.donanimhaber.com/bsc/1/4/3/1/0/news/85164_320x180.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/85164_320x180.jpg" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl00_lblHaberBaslik" class="title">The Last Guardian'ın Yapımı Tamamlandı [Güncelleme]</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl00_lblNewsDate" class="info">3 Saat önce</span>
+                    </span>
+                </a>
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Haberler-The_Witcherin_9_Yil_Donumu_Serefine_The_Witcher_Oyunlarinda_indirime_Gidildi-85163.htm" id="ctl00_ContentPlaceHolder1_rGameNews_ctl01_lnkHaberResim" class="single">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rGameNews_ctl01_imgGameImage" class="lazy" width="140" height="84" data-original="https://cache.donanimhaber.com/bsc/1/4/3/1/0/news/85163_320x180.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/85163_320x180.jpg" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl01_lblHaberBaslik" class="title">The Witcher'ın 9. Yıl Dönümü Şerefine The Witcher Oyunlarında İndirime Gidildi</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl01_lblNewsDate" class="info">3 Saat önce</span>
+                    </span>
+                </a>
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Haberler-Nintendo_Switchin_Donanim_Ozelliklerini_Bu_Yil_icerisinde_Ogrenemeyecegiz-85162.htm" id="ctl00_ContentPlaceHolder1_rGameNews_ctl02_lnkHaberResim" class="single">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rGameNews_ctl02_imgGameImage" class="lazy" width="140" height="84" data-original="https://cache.donanimhaber.com/bsc/1/4/3/1/0/news/85162_320x180.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/85162_320x180.jpg" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl02_lblHaberBaslik" class="title">Nintendo Switch'in Donanım Özelliklerini Bu Yıl İçerisinde Öğrenemeyeceğiz</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl02_lblNewsDate" class="info">4 Saat önce</span>
+                    </span>
+                </a>
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Haberler-EvilBane_Kuzgunlarin_Yukselisinde_200_Gune_Ozel_Kutlama-85161.htm" id="ctl00_ContentPlaceHolder1_rGameNews_ctl03_lnkHaberResim" class="single">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rGameNews_ctl03_imgGameImage" class="lazy" width="140" height="84" data-original="https://cache.donanimhaber.com/bsc/1/4/3/1/0/news/85161_320x180.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/85161_320x180.jpg" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl03_lblHaberBaslik" class="title">EvilBane: Kuzgunların Yükselişi’nde 200. Güne Özel Kutlama</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl03_lblNewsDate" class="info">7 Saat önce</span>
+                    </span>
+                </a>
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Haberler-PlayStation_4_Proda_Ekstradan_1GB_RAM_Bulunuyor-85160.htm" id="ctl00_ContentPlaceHolder1_rGameNews_ctl04_lnkHaberResim" class="single">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rGameNews_ctl04_imgGameImage" class="lazy" width="140" height="84" data-original="https://cache.donanimhaber.com/bsc/1/4/3/1/0/news/85160_320x180.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/85160_320x180.jpg" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl04_lblHaberBaslik" class="title">PlayStation 4 Pro'da Ekstradan 1GB RAM Bulunuyor</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl04_lblNewsDate" class="info">9 Saat önce</span>
+                    </span>
+                </a>
+                
+                <script src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/qn(1).aspx" async=""></script><div id="dha_13_0_5098_1_0" style="width:100%;"><iframe width="100%" height="0" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/q2(1).html"></iframe></div>
+            
+	            <a href="https://m.bolumsonucanavari.com/Haberler-Razer_Oyuncu_Masaustunu_Dizustune_Sigdirdi-85159.htm" id="ctl00_ContentPlaceHolder1_rGameNews_ctl05_lnkHaberResim" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rGameNews_ctl05_imgGameImage" class="lazy" width="140" height="84" data-original="https://cache.donanimhaber.com/bsc/1/4/3/1/0/news/85159_320x180.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl05_lblHaberBaslik" class="title">Razer, Oyuncu Masaüstünü Dizüstüne Sığdırdı</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl05_lblNewsDate" class="info">11 Saat önce</span>
+                    </span>
+                </a>
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Haberler-Star_Trek_Bridge_Crew_Ertelendi-85158.htm" id="ctl00_ContentPlaceHolder1_rGameNews_ctl06_lnkHaberResim" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rGameNews_ctl06_imgGameImage" class="lazy" width="140" height="84" data-original="https://cache.donanimhaber.com/bsc/1/4/3/1/0/news/85158_320x180.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl06_lblHaberBaslik" class="title">Star Trek: Bridge Crew Ertelendi</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl06_lblNewsDate" class="info">12 Saat önce</span>
+                    </span>
+                </a>
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Haberler-Xbox_Live_Uye_Sayisi_Bir_Onceki_Ceyrege_Gore_2_Milyonluk_Dusus_Yasadi-85157.htm" id="ctl00_ContentPlaceHolder1_rGameNews_ctl07_lnkHaberResim" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rGameNews_ctl07_imgGameImage" class="lazy" width="140" height="84" data-original="https://cache.donanimhaber.com/bsc/1/4/3/1/0/news/85157_320x180.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl07_lblHaberBaslik" class="title">Xbox Live Üye Sayısı Bir Önceki Çeyreğe Göre 2 Milyonluk Düşüş Yaşadı</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl07_lblNewsDate" class="info">12 Saat önce</span>
+                    </span>
+                </a>
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Haberler-HalfLife_2_Xbox_Onein_Geriye_Uyumluluk_Sistemine_Eklendi-85156.htm" id="ctl00_ContentPlaceHolder1_rGameNews_ctl08_lnkHaberResim" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rGameNews_ctl08_imgGameImage" class="lazy" width="140" height="84" data-original="https://cache.donanimhaber.com/bsc/1/4/3/1/0/news/85156_320x180.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl08_lblHaberBaslik" class="title">Half-Life 2, Xbox One'ın Geriye Uyumluluk Sistemine Eklendi</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl08_lblNewsDate" class="info">13 Saat önce</span>
+                    </span>
+                </a>
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Haberler-Skyrim_Henuz_Nintendo_Switch_icin_Onaylanmamis-85155.htm" id="ctl00_ContentPlaceHolder1_rGameNews_ctl09_lnkHaberResim" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rGameNews_ctl09_imgGameImage" class="lazy" width="140" height="84" data-original="https://cache.donanimhaber.com/bsc/1/4/3/1/0/news/85155_320x180.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl09_lblHaberBaslik" class="title">Skyrim, Henüz Nintendo Switch için Onaylanmamış</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl09_lblNewsDate" class="info">13 Saat önce</span>
+                    </span>
+                </a>
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Haberler-Ubisoft_Nintendonun_Oyun_Oynamanin_Yollarini_Yeniden_Tanimlayabilecegini_Soyluyor-85154.htm" id="ctl00_ContentPlaceHolder1_rGameNews_ctl10_lnkHaberResim" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rGameNews_ctl10_imgGameImage" class="lazy" width="140" height="84" data-original="https://cache.donanimhaber.com/bsc/1/4/3/1/0/news/85154_320x180.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl10_lblHaberBaslik" class="title">Ubisoft, Nintendo'nun Oyun Oynamanın Yollarını "Yeniden Tanımlayabileceğini" Söylüyor</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl10_lblNewsDate" class="info">14 Saat önce</span>
+                    </span>
+                </a>
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Haberler-Skyrim_Remastered_icin_Oynanis_Goruntuleri_Paylasildi-85153.htm" id="ctl00_ContentPlaceHolder1_rGameNews_ctl11_lnkHaberResim" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rGameNews_ctl11_imgGameImage" class="lazy" width="140" height="84" data-original="https://cache.donanimhaber.com/bsc/1/4/3/1/0/news/85153_320x180.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl11_lblHaberBaslik" class="title">Skyrim Remastered için Oynanış Görüntüleri Paylaşıldı</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl11_lblNewsDate" class="info">14 Saat önce</span>
+                    </span>
+                </a>
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Haberler-PlayStation_ve_Rockstar_Games_Red_Dead_Redemption_2_icin_Ortakligini_Duyurdu-85152.htm" id="ctl00_ContentPlaceHolder1_rGameNews_ctl12_lnkHaberResim" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rGameNews_ctl12_imgGameImage" class="lazy" width="140" height="84" data-original="https://cache.donanimhaber.com/bsc/1/4/3/1/0/news/85152_320x180.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl12_lblHaberBaslik" class="title">PlayStation ve Rockstar Games, Red Dead Redemption 2 için Ortaklığını Duyurdu</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl12_lblNewsDate" class="info">20 Ekim</span>
+                    </span>
+                </a>
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Haberler-Red_Dead_Redemption_2nin_ilk_Tanitim_Videosu_Paylasildi-85151.htm" id="ctl00_ContentPlaceHolder1_rGameNews_ctl13_lnkHaberResim" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rGameNews_ctl13_imgGameImage" class="lazy" width="140" height="84" data-original="https://cache.donanimhaber.com/bsc/1/4/3/1/0/news/85151_320x180.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl13_lblHaberBaslik" class="title">Red Dead Redemption 2'nin İlk Tanıtım Videosu Paylaşıldı</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl13_lblNewsDate" class="info">20 Ekim</span>
+                    </span>
+                </a>
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Haberler-Nintendo_Yenilikci_Yeni_Konsolu_Switchin_ilk_Tanitim_Videosunu_Paylasti-85150.htm" id="ctl00_ContentPlaceHolder1_rGameNews_ctl14_lnkHaberResim" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rGameNews_ctl14_imgGameImage" class="lazy" width="140" height="84" data-original="https://cache.donanimhaber.com/bsc/1/4/3/1/0/news/85150_320x180.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl14_lblHaberBaslik" class="title">Nintendo Yenilikçi Yeni Konsolu Switch'in İlk Tanıtım Videosunu Paylaştı</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rGameNews_ctl14_lblNewsDate" class="info">20 Ekim</span>
+                    </span>
+                </a>
+                
+                
+            
+    </div>
+    <a id="morenews" onclick="getMoreN(&#39;ctl00_ContentPlaceHolder1_rGameNews&#39;,&#39;15&#39;, this);" class="content-more" style="cursor:pointer;">
+	    <span class="type">
+            Daha Fazla Haber
+        </span>
+        <span class="arrow">
+            <span class="icon-chevron-down"></span>
+        </span>
+    </a>
+    <a id="linkDahaFazlaHaber" href="https://m.bolumsonucanavari.com/mHaberler-1.htm" class="content-more" style="cursor:pointer; display:none;">
+	    <span class="type">
+            Daha Fazla Haber
+        </span>
+        <span class="arrow">
+            <span class="icon-chevron-right"></span>
+        </span>
+    </a>
+    <div class="advertorial">
+       <div id="madvertiseBanner" class="area">
+           <script src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/qn(2).aspx" async=""></script>
+           <div id="dha_13_0_5094_1_1"><iframe width="100%" height="110" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/q2(2).html"></iframe></div>
+       </div>
+    </div>
+    <a href="https://m.bolumsonucanavari.com/mVideoIncelemeler-0.htm" class="content-type">
+	    <span class="title">
+            BSC Videoları
+        </span>
+        <span class="arrow">
+            <span class="icon-chevron-right"></span>
+        </span>
+    </a>
+    <div class="content-list bsc-videos">
+        
+	            <a href="https://m.bolumsonucanavari.com/VideoIncelemeler-2si1_Sipidir_Teknoloji_ve_Oyun_Programi-14804.htm" id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl00_linkVideoInceleme" class="single">
+    	            <span class="thumbnail">
+                        <p class="icon-play"></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl00_imgGameImage" class="lazy" width="164" height="92" data-original="https://img.bolumsonucanavari.com/images/videoreview/14804_320x180.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/14804_320x180.jpg" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl00_lblHeader" class="title">2si1 "Sıpidır" Teknoloji ve Oyun Programı</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl00_lblNewsDate" class="info">1 Saat önce</span>
+                    </span>
+                    
+                    
+                    
+                </a>
+            
+	            <a href="https://m.bolumsonucanavari.com/VideoIncelemeler-Video_Haber_Sonunda_Red_Dead_Redemption_2nin_ilk_Videosu_Geldi-14803.htm" id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl01_linkVideoInceleme" class="single">
+    	            <span class="thumbnail">
+                        <p class="icon-play"></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl01_imgGameImage" class="lazy" width="164" height="92" data-original="https://img.bolumsonucanavari.com/images/videoreview/14803_320x180.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/14803_320x180.jpg" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl01_lblHeader" class="title">Video Haber: Sonunda Red Dead Redemption 2'nin İlk Videosu Geldi!</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl01_lblNewsDate" class="info">20 Ekim</span>
+                    </span>
+                    
+                    
+                    
+                </a>
+            
+	            <a href="https://m.bolumsonucanavari.com/VideoIncelemeler-Video_Haber_Nintendonun_Yeni_Konsolu_Switch_Video_Esliginde_Duyuruldu-14802.htm" id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl02_linkVideoInceleme" class="single">
+    	            <span class="thumbnail">
+                        <p class="icon-play"></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl02_imgGameImage" class="lazy" width="164" height="92" data-original="https://img.bolumsonucanavari.com/images/videoreview/14802_320x180.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/14802_320x180.jpg" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl02_lblHeader" class="title">Video Haber: Nintendo'nun Yeni Konsolu Switch Video Eşliğinde Duyuruldu</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl02_lblNewsDate" class="info">20 Ekim</span>
+                    </span>
+                    
+                    
+                    
+                </a>
+            
+	            <a href="https://m.bolumsonucanavari.com/VideoIncelemeler-Canavar_Hareketler__Bolum_109-14801.htm" id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl03_linkVideoInceleme" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <p class="icon-play"></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl03_imgGameImage" class="lazy" width="164" height="92" data-original="https://img.bolumsonucanavari.com/images/videoreview/14801_320x180.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl03_lblHeader" class="title">Canavar Hareketler - Bölüm 109</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl03_lblNewsDate" class="info">19 Ekim</span>
+                    </span>
+                    
+                    
+                    
+                </a>
+            
+	            <a href="https://m.bolumsonucanavari.com/VideoIncelemeler-Gears_of_War_4_Video_inceleme-14800.htm" id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl04_linkVideoInceleme" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <p class="icon-play"></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl04_imgGameImage" class="lazy" width="164" height="92" data-original="https://img.bolumsonucanavari.com/images/videoreview/14800_320x180.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl04_lblHeader" class="title">Gears of War 4 Video İnceleme</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl04_lblNewsDate" class="info">18 Ekim</span>
+                    </span>
+                    
+                    
+                    
+                </a>
+            
+	            <a href="https://m.bolumsonucanavari.com/VideoIncelemeler-ilk_izlenim_Outlast_2-14799.htm" id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl05_linkVideoInceleme" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <p class="icon-play"></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl05_imgGameImage" class="lazy" width="164" height="92" data-original="https://img.bolumsonucanavari.com/images/videoreview/14799_320x180.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl05_lblHeader" class="title">İlk İzlenim: Outlast 2</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl05_lblNewsDate" class="info">16 Ekim</span>
+                    </span>
+                    
+                    
+                    
+                </a>
+            
+	            <a href="https://m.bolumsonucanavari.com/VideoIncelemeler-2si1_once_insan_sonra_Teknoloji_ve_Oyun_Programi-14798.htm" id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl06_linkVideoInceleme" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <p class="icon-play"></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl06_imgGameImage" class="lazy" width="164" height="92" data-original="https://img.bolumsonucanavari.com/images/videoreview/14798_320x180.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl06_lblHeader" class="title">2si1 "önce insan sonra" Teknoloji ve Oyun Programı</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl06_lblNewsDate" class="info">14 Ekim</span>
+                    </span>
+                    
+                    
+                    
+                </a>
+            
+	            <a href="https://m.bolumsonucanavari.com/VideoIncelemeler-Canavar_Hareketler__Bolum_108-14797.htm" id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl07_linkVideoInceleme" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <p class="icon-play"></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl07_imgGameImage" class="lazy" width="164" height="92" data-original="https://img.bolumsonucanavari.com/images/videoreview/14797_320x180.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl07_lblHeader" class="title">Canavar Hareketler - Bölüm 108</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl07_lblNewsDate" class="info">13 Ekim</span>
+                    </span>
+                    
+                    
+                    
+                </a>
+            
+	            <a href="https://m.bolumsonucanavari.com/VideoIncelemeler-VR_ile_Zindanlari_Talan_Edelim-14796.htm" id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl08_linkVideoInceleme" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <p class="icon-play"></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl08_imgGameImage" class="lazy" width="164" height="92" data-original="https://img.bolumsonucanavari.com/images/videoreview/14796_320x180.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl08_lblHeader" class="title">VR ile Zindanları Talan Edelim</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rptrVideoInceleme_ctl08_lblNewsDate" class="info">12 Ekim</span>
+                    </span>
+                    
+                    
+                    
+                </a>
+            
+    </div>
+    <a id="morebscvideos" onclick="getMoreV(&#39;ctl00_ContentPlaceHolder1_rptrVideoInceleme&#39;,&#39;9&#39;, this);" class="content-more bsc-video" style="cursor:pointer;">
+	    <span class="type">
+            Daha Fazla BSC Videosu
+        </span>
+        <span class="arrow">
+            <span class="icon-chevron-down"></span>
+        </span>
+    </a>
+    <a id="linkBscVideo" href="https://m.bolumsonucanavari.com/mVideoIncelemeler-1.htm" class="content-more bsc-video" style="cursor:pointer; display:none;">
+	    <span class="type">
+            Daha Fazla BSC Videosu
+        </span>
+        <span class="arrow">
+            <span class="icon-chevron-down"></span>
+        </span>
+    </a>
+    <a href="https://m.bolumsonucanavari.com/mvideolar-0.htm" class="content-type">
+	    <span class="title">
+            Oyun Videoları
+        </span>
+        <span class="arrow">
+            <span class="icon-chevron-right"></span>
+        </span>
+    </a>
+    <div class="content-list game-videos">
+        
+	            <a href="https://m.bolumsonucanavari.com/Videolar-BSC_Ozel_Lise_Ogrencileriyle_Bulusan_TOGED_Baskani_Ali_Erkin_ile_Konustuk-14785.htm" id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl00_linkVideo" class="single">
+    	            <span class="thumbnail">
+                        <p class="icon-play"></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl00_imgGameImage" class="lazy" width="164" height="92" data-original="https://img.bolumsonucanavari.com/images/videoreview/14785_320x180.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/14785_320x180.jpg" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl00_lblHeader" class="title">BSC Özel: Lise Öğrencileriyle Buluşan TOGED Başkanı Ali Erkin ile Konuştuk</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl00_lblNewsDate" class="info">04 Ekim</span>
+                    </span>
+                </a>
+                
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Videolar-Uncharted_4_Bir_Hirsizin_Sonu__Turkce_Dublaj_Hikaye_Tanitim_Videosu-14523.htm" id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl01_linkVideo" class="single">
+    	            <span class="thumbnail">
+                        <p class="icon-play"></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl01_imgGameImage" class="lazy" width="164" height="92" data-original="https://img.bolumsonucanavari.com/images/videoreview/14523_320x180.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/14523_320x180.jpg" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl01_lblHeader" class="title">Uncharted 4: Bir Hırsızın Sonu - Türkçe Dublaj Hikaye Tanıtım Videosu </span>
+        	            <span id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl01_lblNewsDate" class="info">24 Şubat</span>
+                    </span>
+                </a>
+                
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Videolar-Tom_Clancys_The_Division__Yesterday_TV_Spot-14504.htm" id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl02_linkVideo" class="single">
+    	            <span class="thumbnail">
+                        <p class="icon-play"></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl02_imgGameImage" class="lazy" width="164" height="92" data-original="https://img.bolumsonucanavari.com/images/videoreview/14504_320x180.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/14504_320x180.jpg" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl02_lblHeader" class="title">Tom Clancy’s The Division - "Yesterday" TV Spot</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl02_lblNewsDate" class="info">17 Şubat</span>
+                    </span>
+                </a>
+                
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Videolar-Far_Cry_Primal__Efsanevi_Mamut_Tanitim_Videosu-14501.htm" id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl03_linkVideo" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <p class="icon-play"></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl03_imgGameImage" class="lazy" width="164" height="92" data-original="https://img.bolumsonucanavari.com/images/videoreview/14501_320x180.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl03_lblHeader" class="title">Far Cry Primal - Efsanevi Mamut Tanıtım Videosu</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl03_lblNewsDate" class="info">16 Şubat</span>
+                    </span>
+                </a>
+                
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Videolar-IS_Defense_Gameplay_Trailer-14490.htm" id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl04_linkVideo" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <p class="icon-play"></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl04_imgGameImage" class="lazy" width="164" height="92" data-original="https://img.bolumsonucanavari.com/images/videoreview/14490_320x180.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl04_lblHeader" class="title">IS Defense Gameplay Trailer</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl04_lblNewsDate" class="info">10 Şubat</span>
+                    </span>
+                </a>
+                
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Videolar-Call_of_Duty_Black_Ops_III__Black_Market_Guncellemesi-14489.htm" id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl05_linkVideo" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <p class="icon-play"></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl05_imgGameImage" class="lazy" width="164" height="92" data-original="https://img.bolumsonucanavari.com/images/videoreview/14489_320x180.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl05_lblHeader" class="title">Call of Duty: Black Ops III - Black Market Güncellemesi</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl05_lblNewsDate" class="info">10 Şubat</span>
+                    </span>
+                </a>
+                
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Videolar-Fallout_4e_Witcher_Modu-14485.htm" id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl06_linkVideo" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <p class="icon-play"></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl06_imgGameImage" class="lazy" width="164" height="92" data-original="https://img.bolumsonucanavari.com/images/videoreview/14485_320x180.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl06_lblHeader" class="title">Fallout 4'e Witcher Modu</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl06_lblNewsDate" class="info">09 Şubat</span>
+                    </span>
+                </a>
+                
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Videolar-Superhot_Cikis_Videosu-14474.htm" id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl07_linkVideo" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <p class="icon-play"></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl07_imgGameImage" class="lazy" width="164" height="92" data-original="https://img.bolumsonucanavari.com/images/videoreview/14474_320x180.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl07_lblHeader" class="title">Superhot Çıkış Videosu</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl07_lblNewsDate" class="info">02 Şubat</span>
+                    </span>
+                </a>
+                
+                
+                
+            
+	            <a href="https://m.bolumsonucanavari.com/Videolar-Fire_Emblem_FatesYeni_Tanitim_Videosu-14467.htm" id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl08_linkVideo" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <p class="icon-play"></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl08_imgGameImage" class="lazy" width="164" height="92" data-original="https://img.bolumsonucanavari.com/images/videoreview/14467_320x180.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl08_lblHeader" class="title">Fire Emblem Fates-Yeni Tanıtım Videosu</span>
+        	            <span id="ctl00_ContentPlaceHolder1_rptrTumVideolar_ctl08_lblNewsDate" class="info">30 Ocak</span>
+                    </span>
+                </a>
+                
+                
+                
+            
+    </div>
+    <a id="morevideos" onclick="getMoreTV(&#39;ctl00_ContentPlaceHolder1_rptrTumVideolar&#39;,&#39;9&#39;, this);" class="content-more" style="cursor:pointer;">
+	    <span class="type">
+            Daha Fazla Oyun Videosu
+        </span>
+        <span class="arrow">
+            <span class="icon-chevron-down"></span>
+        </span>
+    </a>
+    <a id="linkVideo" href="https://m.bolumsonucanavari.com/mvideolar-1.htm" class="content-more" style="cursor:pointer; display:none;">
+	    <span class="type">
+            Daha Fazla Oyun Videosu
+        </span>
+        <span class="arrow">
+            <span class="icon-chevron-right"></span>
+        </span>
+    </a>
+    <a class="content-type">
+	    <span class="title">
+            Dizi Programlar
+        </span>
+        <span class="arrow">
+            <span class="icon-chevron-right"></span>
+        </span>
+    </a>
+    <div class="content-list bsc-videos">
+        
+	            <a href="https://m.bolumsonucanavari.com/diziprogramdetay-Canavar_Hareketler__Bolum_109-14801-27.htm" id="ctl00_ContentPlaceHolder1_rptrAltBar_ctl00_aLink" class="single">
+    	            <span class="thumbnail">
+                        <p class="icon-play"></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrAltBar_ctl00_imgGameImage" class="lazy" width="164" height="92" data-original="https://img.bolumsonucanavari.com/images/videoreview/14801_600x338.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/14801_600x338.jpg" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            Canavar Hareketler - Bölüm 109
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrAltBar_ctl00_spanGun" class="info">Her Çarşamba</span>
+                    </span>
+                </a>
+            
+	            <a href="https://m.bolumsonucanavari.com/diziprogramdetay-2si1_Sipidir_Teknoloji_ve_Oyun_Programi-14804-22.htm" id="ctl00_ContentPlaceHolder1_rptrAltBar_ctl01_aLink" class="single">
+    	            <span class="thumbnail">
+                        <p class="icon-play"></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrAltBar_ctl01_imgGameImage" class="lazy" width="164" height="92" data-original="https://img.bolumsonucanavari.com/images/videoreview/14804_600x338.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/14804_600x338(1).jpg" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            2si1 "Sıpidır" Teknoloji ve Oyun Programı
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrAltBar_ctl01_spanGun" class="info">Her Cuma</span>
+                    </span>
+                </a>
+            
+	            <a href="https://m.bolumsonucanavari.com/diziprogramdetay-The_Flame_in_the_Flood__Final__Talha-14591-21.htm" id="ctl00_ContentPlaceHolder1_rptrAltBar_ctl02_aLink" class="single">
+    	            <span class="thumbnail">
+                        <p class="icon-play"></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrAltBar_ctl02_imgGameImage" class="lazy" width="164" height="92" data-original="https://img.bolumsonucanavari.com/images/videoreview/14591_600x338.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/14591_600x338.jpg" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            The Flame in the Flood - Final / Talha
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrAltBar_ctl02_spanGun" class="info">Her Cumartesi</span>
+                    </span>
+                </a>
+            
+	            <a href="https://m.bolumsonucanavari.com/diziprogramdetay-Oyundayiz_DayZ_3_Sezon__Bolum_2-14291-21.htm" id="ctl00_ContentPlaceHolder1_rptrAltBar_ctl03_aLink" class="single">
+    	            <span class="thumbnail">
+                        <p class="icon-play"></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrAltBar_ctl03_imgGameImage" class="lazy" width="164" height="92" data-original="https://img.bolumsonucanavari.com/images/videoreview/14291_600x338.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/14291_600x338.jpg" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            Oyundayız: DayZ 3. Sezon - Bölüm 2
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrAltBar_ctl03_spanGun" class="info">Her Cumartesi</span>
+                    </span>
+                </a>
+            
+    </div>
+    <a href="https://m.bolumsonucanavari.com/diziprogramlar.htm" class="content-type">
+	    <span class="title">
+            Oyun Serileri
+        </span>
+        <span class="arrow">
+            <span class="icon-chevron-right"></span>
+        </span>
+    </a>
+    <div class="content-list game-videos">
+        
+	            <a href="https://m.bolumsonucanavari.com/diziprogramdetay-Oyundayiz_DayZ_3_Sezon__Bolum_2-14291-21.htm" id="ctl00_ContentPlaceHolder1_rptrDiziProgramlar_ctl00_aLink" class="single">
+    	            <span class="thumbnail">
+                        <p class="icon-play"></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrDiziProgramlar_ctl00_imgGameImage" class="lazy" width="164" height="92" data-original="https://img.bolumsonucanavari.com/images/videoreview/14291_600x338.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/14291_600x338.jpg" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            Oyundayız: DayZ 3. Sezon - Bölüm 2
+                        </span>
+        	            <span class="info">
+                            35:03
+                        </span>
+                    </span>
+                </a>
+            
+	            <a href="https://m.bolumsonucanavari.com/diziprogramdetay-Oyundayiz_DayZ_3_Sezon__Bolum_1-14254-21.htm" id="ctl00_ContentPlaceHolder1_rptrDiziProgramlar_ctl01_aLink" class="single">
+    	            <span class="thumbnail">
+                        <p class="icon-play"></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrDiziProgramlar_ctl01_imgGameImage" class="lazy" width="164" height="92" data-original="https://img.bolumsonucanavari.com/images/videoreview/14254_600x338.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/14254_600x338.jpg" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            Oyundayız: DayZ 3. Sezon - Bölüm 1
+                        </span>
+        	            <span class="info">
+                            31:22
+                        </span>
+                    </span>
+                </a>
+            
+	            <a href="https://m.bolumsonucanavari.com/diziprogramdetay-Oyun_Serisi__Batman_Arkham_Knight_Bolum2_Arkham_Knight_Geldi-13779-26.htm" id="ctl00_ContentPlaceHolder1_rptrDiziProgramlar_ctl02_aLink" class="single">
+    	            <span class="thumbnail">
+                        <p class="icon-play"></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrDiziProgramlar_ctl02_imgGameImage" class="lazy" width="164" height="92" data-original="https://img.bolumsonucanavari.com/images/videoreview/13779_600x338.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/13779_600x338.jpg" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            Oyun Serisi - Batman Arkham Knight Bölüm2: Ar...
+                        </span>
+        	            <span class="info">
+                            39:15
+                        </span>
+                    </span>
+                </a>
+            
+    </div>
+    <a href="https://m.bolumsonucanavari.com/diziprogramlar.htm" class="content-more">
+	    <span class="type">
+            Daha Fazla Oyun Serisi
+        </span>
+        <span class="arrow">
+            <span class="icon-chevron-down"></span>
+        </span>
+    </a>
+    <a class="content-type">
+	    <span class="title">
+            Çıkış Tarihleri
+        </span>
+        <span class="arrow">
+            <span class="icon-chevron-right"></span>
+        </span>
+    </a>
+    <div class="content-list release-date">
+        
+                <a href="https://m.bolumsonucanavari.com/Oyunlar-Darksiders_Warmastered_Edition-6489.htm" class="single">
+    	            <span class="thumbnail">
+                        <p></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrTumuHaftaya_ctl00_imgGameImage" class="lazy" height="80" data-original="https://cache.donanimhaber.com/ImageThumbnail2.aspx?t=1&amp;size=4&amp;bound=3&amp;border=1&amp;resolution=0&amp;path=https://img.bolumsonucanavari.com/images/game/6489_600x140.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/ImageThumbnail2.aspx" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+                    <span class="day">
+                        <span class="icon-clock"></span>
+                        
+                        (25 Ekim)
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            <span class="platform">
+                                ÇOKLU PLATFORM
+                            </span>
+                            Darksiders Warmastered Edition
+                        </span>
+                    </span>
+                </a>
+            
+                <a href="https://m.bolumsonucanavari.com/Oyunlar-Titanfall_2-6461.htm" class="single">
+    	            <span class="thumbnail">
+                        <p></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrTumuHaftaya_ctl01_imgGameImage" class="lazy" height="80" data-original="https://cache.donanimhaber.com/ImageThumbnail2.aspx?t=1&amp;size=4&amp;bound=3&amp;border=1&amp;resolution=0&amp;path=https://img.bolumsonucanavari.com/images/game/6461_600x140.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/ImageThumbnail2(1).aspx" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+                    <span class="day">
+                        <span class="icon-clock"></span>
+                        
+                        (28 Ekim)
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            <span class="platform">
+                                PC, PS3, XBOX 360
+                            </span>
+                            Titanfall 2
+                        </span>
+                    </span>
+                </a>
+            
+                <a href="https://m.bolumsonucanavari.com/Oyunlar-Call_of_Duty_Infinite_Warfare-6447.htm" class="single">
+    	            <span class="thumbnail">
+                        <p></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrTumuHaftaya_ctl02_imgGameImage" class="lazy" height="80" data-original="https://cache.donanimhaber.com/ImageThumbnail2.aspx?t=1&amp;size=4&amp;bound=3&amp;border=1&amp;resolution=0&amp;path=https://img.bolumsonucanavari.com/images/game/6447_600x140.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/ImageThumbnail2(2).aspx" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+                    <span class="day">
+                        <span class="icon-clock"></span>
+                        
+                        (4 Kasım)
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            <span class="platform">
+                                PC, PS3, XBOX 360
+                            </span>
+                            Call of Duty: Infinite Warfare
+                        </span>
+                    </span>
+                </a>
+            
+        <div class="bracket">
+    	    <span class="left">
+                <span class="icon-level-up"></span>
+                Yakında Çıkanlar
+            </span>
+    	    <span class="right">
+                En Son Çıkanlar
+                <span class="icon-level-down"></span>
+            </span>
+        </div>
+        
+	            <a href="https://m.bolumsonucanavari.com/Oyunlar-Battlefield_1-6446.htm" class="single right">
+    	            <span class="thumbnail">
+                        <p></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrTumuBuHafta_ctl00_imgGameImage" class="lazy" height="80" data-original="https://cache.donanimhaber.com/ImageThumbnail2.aspx?t=1&amp;size=4&amp;bound=3&amp;border=1&amp;resolution=0&amp;path=https://img.bolumsonucanavari.com/images/game/6446_600x140.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/ImageThumbnail2(3).aspx" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+                    <span class="day">
+                        <span class="icon-clock"></span>
+                        Bugün
+                        (21 Ekim)
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            <span class="platform">
+                                PC, PS3, XBOX 360
+                            </span>
+                            Battlefield 1
+                        </span>
+                    </span>
+                </a>
+            
+	            <a href="https://m.bolumsonucanavari.com/Oyunlar-Civilization_VI-6454.htm" class="single right">
+    	            <span class="thumbnail">
+                        <p></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrTumuBuHafta_ctl01_imgGameImage" class="lazy" height="80" data-original="https://cache.donanimhaber.com/ImageThumbnail2.aspx?t=1&amp;size=4&amp;bound=3&amp;border=1&amp;resolution=0&amp;path=https://img.bolumsonucanavari.com/images/game/6454_600x140.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/ImageThumbnail2(4).aspx" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+                    <span class="day">
+                        <span class="icon-clock"></span>
+                        Bugün
+                        (21 Ekim)
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            <span class="platform">
+                                PC
+                            </span>
+                            Civilization VI
+                        </span>
+                    </span>
+                </a>
+            
+	            <a href="https://m.bolumsonucanavari.com/Oyunlar-Gears_of_War_4-4370.htm" class="single right">
+    	            <span class="thumbnail">
+                        <p></p>
+                        <img id="ctl00_ContentPlaceHolder1_rptrTumuBuHafta_ctl02_imgGameImage" class="lazy" height="80" data-original="https://cache.donanimhaber.com/ImageThumbnail2.aspx?t=1&amp;size=4&amp;bound=3&amp;border=1&amp;resolution=0&amp;path=https://img.bolumsonucanavari.com/images/game/4370_600x140.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/ImageThumbnail2(5).aspx" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+                    <span class="day">
+                        <span class="icon-clock"></span>
+                        Bu ay
+                        (11 Ekim)
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            <span class="platform">
+                                XBOX 360, PC
+                            </span>
+                            Gears of War 4
+                        </span>
+                    </span>
+                </a>
+            
+    </div>
+    <a class="content-more">
+	    <span class="type">
+            Tüm Çıkış Tarihleri
+        </span>
+        <span class="arrow">
+            <span class="icon-chevron-right"></span>
+        </span>
+    </a>
+    <div class="content-type">
+	    <span class="title">
+            <a href="https://m.bolumsonucanavari.com/mIncelemeler-1.htm">
+                İnceleme 
+            </a>
+            ve 
+            <a href="https://m.bolumsonucanavari.com/mOnIncelemeler-1.htm">
+                Ön İncelemeler
+            </a>
+        </span>
+        <span class="arrow">
+            <span class="icon-chevron-right"></span>
+        </span>
+    </div>
+    <div class="content-list review">
+        
+	            <a href="https://m.bolumsonucanavari.com/Incelemeler-Pixel_Piracy-419.htm" id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl00_linkIncelemeOnIncelemeResim" class="single">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl00_imgGameReviewImage" class="lazy" width="117" height="70" data-original="https://img.bolumsonucanavari.com/images/review/419_100x100.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/419_100x100.jpg" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            Pixel Piracy
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl00_labelReviewDate" class="info">22 Eylül 2014 Pazartesi</span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl00_spanReviewsPreviewsPuan" class="score">7,0</span>
+                    </span>
+                    <span id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl00_spanReviewsPreviewsTur" class="tur inceleme"></span>
+                </a>
+            
+	            <a href="https://m.bolumsonucanavari.com/OnIncelemeler-World_of_Warships_On_inceleme-415.htm" id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl01_linkIncelemeOnIncelemeResim" class="single">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl01_imgGameReviewImage" class="lazy" width="117" height="70" data-original="https://img.bolumsonucanavari.com/images/review/415_100x100.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/415_100x100.jpg" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            World of Warships Ön İnceleme
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl01_labelReviewDate" class="info">18 Eylül 2014 Perşembe</span>
+                        
+                    </span>
+                    <span id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl01_spanReviewsPreviewsTur" class="tur oninceleme"></span>
+                </a>
+            
+	            <a href="https://m.bolumsonucanavari.com/Incelemeler-Tales_of_Symphonia_Chronicles-414.htm" id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl02_linkIncelemeOnIncelemeResim" class="single">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl02_imgGameReviewImage" class="lazy" width="117" height="70" data-original="https://img.bolumsonucanavari.com/images/review/414_100x100.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/414_100x100.jpg" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            Tales of Symphonia Chronicles
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl02_labelReviewDate" class="info">25 Mart 2014 Salı</span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl02_spanReviewsPreviewsPuan" class="score">8,0</span>
+                    </span>
+                    <span id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl02_spanReviewsPreviewsTur" class="tur inceleme"></span>
+                </a>
+            
+	            <a href="https://m.bolumsonucanavari.com/Incelemeler-World_of_Tanks_Xbox_360_Surumu-413.htm" id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl03_linkIncelemeOnIncelemeResim" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl03_imgGameReviewImage" class="lazy" width="117" height="70" data-original="https://img.bolumsonucanavari.com/images/review/413_100x100.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            World of Tanks (Xbox 360 Sürümü)
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl03_labelReviewDate" class="info">26 Şubat 2014 Çarşamba</span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl03_spanReviewsPreviewsPuan" class="score">7,5</span>
+                    </span>
+                    <span id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl03_spanReviewsPreviewsTur" class="tur inceleme"></span>
+                </a>
+            
+	            <a href="https://m.bolumsonucanavari.com/OnIncelemeler-Tha_Banner_Saga-411.htm" id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl04_linkIncelemeOnIncelemeResim" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl04_imgGameReviewImage" class="lazy" width="117" height="70" data-original="https://img.bolumsonucanavari.com/images/review/411_100x100.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            Tha Banner Saga
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl04_labelReviewDate" class="info">24 Aralık 2013 Salı</span>
+                        
+                    </span>
+                    <span id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl04_spanReviewsPreviewsTur" class="tur oninceleme"></span>
+                </a>
+            
+	            <a href="https://m.bolumsonucanavari.com/OnIncelemeler-World_of_Tanks_Xbox_360_Edition_Beta_inceleme-410.htm" id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl05_linkIncelemeOnIncelemeResim" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl05_imgGameReviewImage" class="lazy" width="117" height="70" data-original="https://img.bolumsonucanavari.com/images/review/410_100x100.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            World of Tanks Xbox 360 Edition: Beta İnceleme
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl05_labelReviewDate" class="info">2 Aralık 2013 Pazartesi</span>
+                        
+                    </span>
+                    <span id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl05_spanReviewsPreviewsTur" class="tur oninceleme"></span>
+                </a>
+            
+	            <a href="https://m.bolumsonucanavari.com/Incelemeler-Football_Manager_2014-409.htm" id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl06_linkIncelemeOnIncelemeResim" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl06_imgGameReviewImage" class="lazy" width="117" height="70" data-original="https://img.bolumsonucanavari.com/images/review/409_100x100.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            Football Manager 2014
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl06_labelReviewDate" class="info">7 Kasım 2013 Perşembe</span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl06_spanReviewsPreviewsPuan" class="score">7,5</span>
+                    </span>
+                    <span id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl06_spanReviewsPreviewsTur" class="tur inceleme"></span>
+                </a>
+            
+	            <a href="https://m.bolumsonucanavari.com/Incelemeler-Dragons_Crown-408.htm" id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl07_linkIncelemeOnIncelemeResim" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl07_imgGameReviewImage" class="lazy" width="117" height="70" data-original="https://img.bolumsonucanavari.com/images/review/408_100x100.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            Dragon's Crown
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl07_labelReviewDate" class="info">13 Ağustos 2013 Salı</span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl07_spanReviewsPreviewsPuan" class="score">8,8</span>
+                    </span>
+                    <span id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl07_spanReviewsPreviewsTur" class="tur inceleme"></span>
+                </a>
+            
+	            <a href="https://m.bolumsonucanavari.com/Incelemeler-Defiance-407.htm" id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl08_linkIncelemeOnIncelemeResim" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl08_imgGameReviewImage" class="lazy" width="117" height="70" data-original="https://img.bolumsonucanavari.com/images/review/407_100x100.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            Defiance
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl08_labelReviewDate" class="info">24 Mayıs 2013 Cuma</span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl08_spanReviewsPreviewsPuan" class="score">6,5</span>
+                    </span>
+                    <span id="ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews_ctl08_spanReviewsPreviewsTur" class="tur inceleme"></span>
+                </a>
+            
+    </div>
+    <a id="moreIVOI" onclick="getMoreIVOI(&#39;ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews&#39;,&#39;9&#39;, this);" class="content-more" style="cursor:pointer;">
+	    <span class="type">
+            Daha Fazla İnceleme ve Ön İnceleme
+        </span>
+        <span class="arrow">
+            <span class="icon-chevron-down"></span>
+        </span>
+    </a>
+    <a id="linkInceleme" href="https://m.bolumsonucanavari.com/mIncelemeler-1.htm" class="content-more" style="cursor:pointer; display:none;">
+	    <span class="type">
+            Daha Fazla İnceleme
+        </span>
+        <span class="arrow">
+            <span class="icon-chevron-right"></span>
+        </span>
+    </a>
+    <a id="linkOnInceleme" href="https://m.bolumsonucanavari.com/mOnIncelemeler-1.htm" class="content-more" style="cursor:pointer; display:none;">
+	    <span class="type">
+            Daha Fazla Ön İnceleme
+        </span>
+        <span class="arrow">
+            <span class="icon-chevron-right"></span>
+        </span>
+    </a>
+    <div class="content-type">
+	    <span class="title">
+            <a href="https://m.bolumsonucanavari.com/mDosyaKonulari-1.htm">
+                Dosya Konusu 
+            </a>
+            ve 
+            <a href="https://m.bolumsonucanavari.com/mTamCozumler-1.htm">
+                Tam Çözümler
+            </a>
+        </span>
+        <span class="arrow">
+            <span class="icon-chevron-right"></span>
+        </span>
+    </div>
+    <div class="content-list guides">
+        
+                <a href="https://m.bolumsonucanavari.com/tamcozumler-Hearts_of_Iron_IV_Tam_Cozum_ve_Rehber-67.htm" id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl00_linkDkTcResim" class="single">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl00_imgGameDkTcImage" class="lazy" width="117" height="70" data-original="https://img.bolumsonucanavari.com/images/tamcozumdosyakonusu/67_100x100.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/67_100x100.jpg" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            Hearts of Iron IV Tam Çözüm ve Rehber
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl00_labelDkTcDate" class="info">18 Ağustos 2016 Perşembe</span>
+                    </span>
+                    <span id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl00_spanDkTcTur" class="tur tamcozum"></span>
+                </a>
+            
+                <a href="https://m.bolumsonucanavari.com/dosyakonulari-Survarium_Yapimcisi_Andriyash_Kozlovsky_ile_Ozel_Roportaj-70.htm" id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl01_linkDkTcResim" class="single">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl01_imgGameDkTcImage" class="lazy" width="117" height="70" data-original="https://img.bolumsonucanavari.com/images/tamcozumdosyakonusu/70_100x100.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/70_100x100.jpg" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            Survarium Yapımcısı Andriyash Kozlovsky ile Özel Röportaj
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl01_labelDkTcDate" class="info">15 Ağustos 2016 Pazartesi</span>
+                    </span>
+                    <span id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl01_spanDkTcTur" class="tur dosyakonusu"></span>
+                </a>
+            
+                <a href="https://m.bolumsonucanavari.com/dosyakonulari-2015_Hediye_Satin_Alma_Rehberi-66.htm" id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl02_linkDkTcResim" class="single">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl02_imgGameDkTcImage" class="lazy" width="117" height="70" data-original="https://img.bolumsonucanavari.com/images/tamcozumdosyakonusu/66_100x100.jpg" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/66_100x100.jpg" style="display: inline;">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            2015 Hediye Satın Alma Rehberi
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl02_labelDkTcDate" class="info">16 Aralık 2014 Salı</span>
+                    </span>
+                    <span id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl02_spanDkTcTur" class="tur dosyakonusu"></span>
+                </a>
+            
+                <a href="https://m.bolumsonucanavari.com/dosyakonulari-Yeni_Nesil_GTA_V_Hakkinda_Bilmeniz_Gereken_Her_Sey-65.htm" id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl03_linkDkTcResim" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl03_imgGameDkTcImage" class="lazy" width="117" height="70" data-original="https://img.bolumsonucanavari.com/images/tamcozumdosyakonusu/65_100x100.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            Yeni Nesil GTA V Hakkında Bilmeniz Gereken Her Şey
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl03_labelDkTcDate" class="info">17 Kasım 2014 Pazartesi</span>
+                    </span>
+                    <span id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl03_spanDkTcTur" class="tur dosyakonusu"></span>
+                </a>
+            
+                <a href="https://m.bolumsonucanavari.com/dosyakonulari-Ucretsiz_Bir_Sekilde_Oynayabileceginiz_En_iyi_110_Oyun-64.htm" id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl04_linkDkTcResim" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl04_imgGameDkTcImage" class="lazy" width="117" height="70" data-original="https://img.bolumsonucanavari.com/images/tamcozumdosyakonusu/64_100x100.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            Ücretsiz Bir Şekilde Oynayabileceğiniz En İyi 110 Oyun
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl04_labelDkTcDate" class="info">11 Kasım 2014 Salı</span>
+                    </span>
+                    <span id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl04_spanDkTcTur" class="tur dosyakonusu"></span>
+                </a>
+            
+                <a href="https://m.bolumsonucanavari.com/dosyakonulari-Oyunlarda_Can_Tazelemenin_10_ilginc_Yolu-63.htm" id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl05_linkDkTcResim" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl05_imgGameDkTcImage" class="lazy" width="117" height="70" data-original="https://img.bolumsonucanavari.com/images/tamcozumdosyakonusu/63_100x100.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            Oyunlarda Can Tazelemenin 10 İlginç Yolu
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl05_labelDkTcDate" class="info">11 Ekim 2014 Cumartesi</span>
+                    </span>
+                    <span id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl05_spanDkTcTur" class="tur dosyakonusu"></span>
+                </a>
+            
+                <a href="https://m.bolumsonucanavari.com/dosyakonulari-Ayni_Ekrandan_Oynayabileceginiz_17_Coop_Oyun-62.htm" id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl06_linkDkTcResim" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl06_imgGameDkTcImage" class="lazy" width="117" height="70" data-original="https://img.bolumsonucanavari.com/images/tamcozumdosyakonusu/62_100x100.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            Aynı Ekrandan Oynayabileceğiniz 17 Co-op Oyun
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl06_labelDkTcDate" class="info">6 Ekim 2014 Pazartesi</span>
+                    </span>
+                    <span id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl06_spanDkTcTur" class="tur dosyakonusu"></span>
+                </a>
+            
+                <a href="https://m.bolumsonucanavari.com/dosyakonulari-Oyun_Dunyasinin_Onemli_23_Olayi-61.htm" id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl07_linkDkTcResim" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl07_imgGameDkTcImage" class="lazy" width="117" height="70" data-original="https://img.bolumsonucanavari.com/images/tamcozumdosyakonusu/61_100x100.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            Oyun Dünyasının Önemli 23 Olayı
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl07_labelDkTcDate" class="info">29 Eylül 2014 Pazartesi</span>
+                    </span>
+                    <span id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl07_spanDkTcTur" class="tur dosyakonusu"></span>
+                </a>
+            
+                <a href="https://m.bolumsonucanavari.com/dosyakonulari-Oyun_Dunyasina_Yon_Vermis_20_Oyun-60.htm" id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl08_linkDkTcResim" class="single" style="display: none;">
+    	            <span class="thumbnail">
+                        <img id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl08_imgGameDkTcImage" class="lazy" width="117" height="70" data-original="https://img.bolumsonucanavari.com/images/tamcozumdosyakonusu/60_100x100.jpg">
+                        <span class="imgshadow"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                            Oyun Dünyasına Yön Vermiş 20 Oyun
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl08_labelDkTcDate" class="info">22 Eylül 2014 Pazartesi</span>
+                    </span>
+                    <span id="ctl00_ContentPlaceHolder1_rptrGameDkTc_ctl08_spanDkTcTur" class="tur dosyakonusu"></span>
+                </a>
+            
+    </div>
+    <a id="moreTCDK" onclick="getMoreTCDK(&#39;ctl00_ContentPlaceHolder1_rptrGameDkTc&#39;,&#39;9&#39;, this);" class="content-more" style="cursor:pointer;">
+	    <span class="type">
+            Daha Fazla Dosya Konusu ve Tam Çözüm
+        </span>
+        <span class="arrow">
+            <span class="icon-chevron-down"></span>
+        </span>
+    </a>
+    <a id="linkDosyaKonusu" href="https://m.bolumsonucanavari.com/mDosyaKonulari-1.htm" class="content-more" style="cursor:pointer; display:none;">
+	    <span class="type">
+            Daha Fazla Dosya Konusu
+        </span>
+        <span class="arrow">
+            <span class="icon-chevron-right"></span>
+        </span>
+    </a>
+    <a id="linkTamCozum" href="https://m.bolumsonucanavari.com/mTamCozumler-1.htm" class="content-more" style="cursor:pointer; display:none;">
+	    <span class="type">
+            Daha Fazla Tam Çözüm
+        </span>
+        <span class="arrow">
+            <span class="icon-chevron-right"></span>
+        </span>
+    </a>
+    <a href="http://mobile.bolumsonucanavari.com/trends.asp" class="content-type" style="display:none;">
+	    <span class="title">
+            Forumdan Popüler Başlıklar
+        </span>
+        <span class="arrow">
+            <span class="icon-chevron-right"></span>
+        </span>
+    </a>
+    <div class="content-list forums" style="display:none;">
+        
+                <a href="https://mobile.bolumsonucanavari.com/showTopic.asp?m=107958707" id="ctl00_ContentPlaceHolder1_rptrEnPopuler5BscForumKonu_ctl00_linkForum" target="_blank" class="single">
+    	            <span class="thumbnail">
+                        <span class="icon-bubbles"></span>
+                    </span>
+    	            <span class="summary">
+        	            <span class="title">
+                             Satılık Heroes And Generals Hesapları
+                        </span>
+                        <span id="ctl00_ContentPlaceHolder1_rptrEnPopuler5BscForumKonu_ctl00_lblDate" class="info">14 Ekim tarihinde</span>
+                    </span>
+                </a>
+            
+    </div>
+    
+    <a id="linkForum" href="http://mobile.bolumsonucanavari.com/trends.asp" class="content-more" style="cursor:pointer; display:none;">
+	    <span class="type">
+            Daha Fazla Başlık
+        </span>
+        <span class="arrow">
+            <span class="icon-chevron-right"></span>
+        </span>
+    </a>
+    
+    <input id="popularButtonPressCount" type="hidden" name="popularButtonPressCount" value="1">
+    <input id="newsButtonPressCount" type="hidden" name="newsButtonPressCount" value="1">
+    <input id="videoBscButtonPressCount" type="hidden" name="videoBscButtonPressCount" value="1">
+    <input id="videoButtonPressCount" type="hidden" name="videoButtonPressCount" value="1">
+    <input id="IVOIButtonPressCount" type="hidden" name="IVOIButtonPressCount" value="1">
+    <input id="TCDKButtonPressCount" type="hidden" name="TCDKButtonPressCount" value="1">
+    <input id="FButtonPressCount" type="hidden" name="FButtonPressCount" value="1">
+    <script>
+
+        var popularpage = 0;
+        var newspage = 0;
+        var videopage = 0;
+        var tumvideopage = 0;
+        var IVOIpage = 0;
+        var TCDKpage = 0;
+        var Fpage = 0;
+
+        $(document).ready(function () {
+            popularpage = parseInt($('#popularButtonPressCount').val()) - 1;
+
+            getMoreP('ctl00_ContentPlaceHolder1_rptrPopulerIcerik', '9', $('#morepopular')[0]);
+        });
+
+        $(document).ready(function () {
+            newspage = parseInt($('#newsButtonPressCount').val()) - 1;
+
+            getMoreN('ctl00_ContentPlaceHolder1_rGameNews', '15', $('#morenews')[0]);
+        });
+
+        $(document).ready(function () {
+            videopage = parseInt($('#videoBscButtonPressCount').val()) - 1;
+
+            getMoreV('ctl00_ContentPlaceHolder1_rptrVideoInceleme', '9', $('#morebscvideos')[0]);
+        });
+
+        $(document).ready(function () {
+            tumvideopage = parseInt($('#videoButtonPressCount').val()) - 1;
+
+            getMoreTV('ctl00_ContentPlaceHolder1_rptrTumVideolar', '9', $('#morevideos')[0]);
+        });
+
+        $(document).ready(function () {
+            IVOIpage = parseInt($('#IVOIButtonPressCount').val()) - 1;
+
+            getMoreIVOI('ctl00_ContentPlaceHolder1_rptrGameReviewsPreviews', '9', $('#moreIVOI')[0]);
+        });
+
+        $(document).ready(function () {
+            TCDKpage = parseInt($('#TCDKButtonPressCount').val()) - 1;
+
+            getMoreTCDK('ctl00_ContentPlaceHolder1_rptrGameDkTc', '9', $('#moreTCDK')[0]);
+        }); 
+
+        function getMoreP(control, size, btn) 
+        {
+            popularpage++;
+
+            $('#popularButtonPressCount').val(popularpage)
+
+            var sayi = 0;
+
+            if ((popularpage * 3) >= size) 
+            {
+                btn.style.display = 'none';
+            }
+
+            for (var i = 0; i < size; i++) 
+            {
+                sayi = i;
+                if (sayi <= 9) {
+                    sayi = "0" + sayi;
+                }
+                document.getElementById(control + "_ctl" + sayi + "_linkIcerik").style.display = 'none';
+            }
+
+            for (var i = 0; i < (popularpage * 3); i++) 
+            {
+                sayi = i;
+                if (sayi <= 9) {
+                    sayi = "0" + sayi;
+                }
+                document.getElementById(control + "_ctl" + sayi + "_linkIcerik").style.display = '';
+            }
+        }
+
+        function getMoreN(control, size, btn) 
+        {
+            newspage++;
+
+            $('#newsButtonPressCount').val(newspage)
+
+            var sayi = 0;
+
+            if ((newspage * 5) >= size) {
+                btn.style.display = 'none';
+                document.getElementById("linkDahaFazlaHaber").style.display = '';
+            }
+            for (var i = 0; i < size; i++) {
+                sayi = i;
+                if (sayi <= 9) {
+                    sayi = "0" + sayi;
+                }
+                document.getElementById(control + "_ctl" + sayi + "_lnkHaberResim").style.display = 'none';
+            }
+
+            for (var i = 0; i < (newspage * 5); i++) 
+            {
+                sayi = i;
+                if (sayi <= 9) {
+                    sayi = "0" + sayi;
+                }
+                document.getElementById(control + "_ctl" + sayi + "_lnkHaberResim").style.display = '';
+            }
+        }
+
+        function getMoreV(control, size, btn) {
+            videopage++;
+
+            $('#videoBscButtonPressCount').val(videopage)
+
+            var sayi = 0;
+
+            if ((videopage * 3) >= size) {
+                btn.style.display = 'none';
+                document.getElementById("linkVideoInceleme").style.display = '';
+            }
+
+            for (var i = 0; i < size; i++) {
+                sayi = i;
+                if (sayi <= 9) {
+                    sayi = "0" + sayi;
+                }
+                document.getElementById(control + "_ctl" + sayi + "_linkVideoInceleme").style.display = 'none';
+            }
+
+            for (var i = 0; i < (videopage * 3); i++) {
+                sayi = i;
+                if (sayi <= 9) {
+                    sayi = "0" + sayi;
+                }
+                document.getElementById(control + "_ctl" + sayi + "_linkVideoInceleme").style.display = '';
+            }
+        }
+
+        function getMoreTV(control, size, btn) 
+        {
+            tumvideopage++;
+
+            $('#videoButtonPressCount').val(tumvideopage)
+
+            var sayi = 0;
+
+            if ((tumvideopage * 3) >= size) {
+                btn.style.display = 'none';
+                document.getElementById("linkVideo").style.display = '';
+            }
+
+            for (var i = 0; i < size; i++) {
+                sayi = i;
+                if (sayi <= 9) {
+                    sayi = "0" + sayi;
+                }
+                document.getElementById(control + "_ctl" + sayi + "_linkVideo").style.display = 'none';
+            }
+
+            for (var i = 0; i < (tumvideopage * 3); i++) {
+                sayi = i;
+                if (sayi <= 9) {
+                    sayi = "0" + sayi;
+                }
+                document.getElementById(control + "_ctl" + sayi + "_linkVideo").style.display = '';
+            }
+        }
+
+        function getMoreIVOI(control, size, btn) 
+        {
+            IVOIpage++;
+
+            $('#IVOIButtonPressCount').val(IVOIpage)
+
+            var sayi = 0;
+
+            if ((IVOIpage * 3) >= size) {
+                btn.style.display = 'none';
+                document.getElementById("linkInceleme").style.display = '';
+                document.getElementById("linkOnInceleme").style.display = '';
+            }
+
+            for (var i = 0; i < size; i++) {
+                sayi = i;
+                if (sayi <= 9) {
+                    sayi = "0" + sayi;
+                }
+                document.getElementById(control + "_ctl" + sayi + "_linkIncelemeOnIncelemeResim").style.display = 'none';
+            }
+
+            for (var i = 0; i < (IVOIpage * 3); i++) {
+                sayi = i;
+                if (sayi <= 9) {
+                    sayi = "0" + sayi;
+                }
+                document.getElementById(control + "_ctl" + sayi + "_linkIncelemeOnIncelemeResim").style.display = '';
+            }
+        }
+
+        function getMoreTCDK(control, size, btn) 
+        {
+            TCDKpage++;
+
+            $('#TCDKButtonPressCount').val(TCDKpage)
+
+            var sayi = 0;
+
+            if ((TCDKpage * 3) >= size) {
+                btn.style.display = 'none';
+                document.getElementById("linkDosyaKonusu").style.display = '';
+                document.getElementById("linkTamCozum").style.display = '';
+            }
+
+            for (var i = 0; i < size; i++) {
+                sayi = i;
+                if (sayi <= 9) {
+                    sayi = "0" + sayi;
+                }
+                document.getElementById(control + "_ctl" + sayi + "_linkDkTcResim").style.display = 'none';
+            }
+
+            for (var i = 0; i < (TCDKpage * 3); i++) {
+                sayi = i;
+                if (sayi <= 9) {
+                    sayi = "0" + sayi;
+                }
+                document.getElementById(control + "_ctl" + sayi + "_linkDkTcResim").style.display = '';
+            }
+        }
+
+    </script>
+    <script type="text/javascript" charset="utf-8">
+
+        try {
+            var bLazy = new Blazy({
+                container: '#manset'
+            });
+            bLazy.load();
+        }
+        catch (e)
+        { }
+
+    </script>
+
+            <div class="advertorial">
+               <div id="madvertiseBanner" class="area" style="width:300px;height:250px;">
+                   <script src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/qn(3).aspx" async=""></script>
+                   <div id="dha_13_0_5095_1_1"><iframe width="100%" height="260" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/q2(3).html"></iframe></div>
+               </div>
+            </div>
+            <div id="bottom-buttons" class="bottom-buttons">
+	            <a href="https://m.bolumsonucanavari.com/#account-login" id="ctl00_linkUyeGirisi" onclick="javascript:document.getElementById(&#39;account-login&#39;).style.display=&#39;&#39;;document.getElementById(&#39;bottom-buttons&#39;).style.display=&#39;none&#39;;" class="login-button">
+                    Üye Girişi
+                </a>
+	            <a href="https://m.bolumsonucanavari.com/#search" class="search-button" onclick="javascript:document.getElementById(&#39;search&#39;).style.display=&#39;&#39;;">
+                    <span class="icon-search"></span>
+                </a>
+            </div>
+            <div id="account-login" class="account-login" style="display:none;">
+                <div class="line">
+    	            <span class="verilen">
+                        Kullanıcı Adı
+                    </span>
+                    <span class="istenen">
+                        <input name="ctl00$txtBxKullaniciAdi" type="text" id="ctl00_txtBxKullaniciAdi">
+                    </span>
+                </div>
+                <div class="line">
+    	            <span class="verilen">
+                        Parola
+                    </span>
+                    <span class="istenen">
+                        <input name="ctl00$txtBxSifre" type="password" id="ctl00_txtBxSifre">
+                    </span>
+                </div>
+                <div class="line">
+    	            <a href="https://dhgiris.com/Forgot.aspx">
+                        Şifre Hatırlatma
+                    </a>
+    	            <a href="http://dhgiris.com/Register.aspx" id="ctl00_linkYeniKayit">Yeni Kayıt</a>
+                    <input type="submit" name="ctl00$btnLogin" value="Giriş Yap" id="ctl00_btnLogin" class="login">
+                </div>
+                <div class="line">
+    	            <span class="baglanbilgi">
+                        Bağlan:
+                    </span>
+    	            <a href="https://dhgiris.com/FB.aspx?referer=http://m.bolumsonucanavari.com/" class="sosyalbaglanti fb">
+                        Facebook
+                    </a>
+    	            <a href="https://dhgiris.com/GP.aspx?referer=http://m.bolumsonucanavari.com/" class="sosyalbaglanti gp" style="display:none;">
+                        Google+
+                    </a>
+    	            <a href="https://dhgiris.com/TW.aspx?referer=http://m.bolumsonucanavari.com/" class="sosyalbaglanti tw" style="display:none;">
+                        Twitter
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-menu">
+                <a id="ctl00_lnkNormalBscyeGit" href="javascript:__doPostBack(&#39;ctl00$lnkNormalBscyeGit&#39;,&#39;&#39;)">
+                    <span>
+                        Standart Site Görünümü
+                    </span>
+                    <span class="arrow icon-chevron-right"> </span>
+                </a>
+                <a href="https://m.bolumsonucanavari.com/hakkimizda.htm">
+                    <span>
+                        Hakkımızda
+                    </span>
+                    <span class="arrow icon-chevron-right"> </span>
+                </a>
+                <a href="https://m.bolumsonucanavari.com/#header" class="top">
+                    <span>
+                        Yukarı
+                    </span>
+                    <span class="arrow icon-chevron-up"> </span>
+                </a>
+            </div>
+            <div class="copyright">
+                Telif Hakkı © 2016
+                <a href="http://www.bolumsonucanavari.com/action.aspx?mod=fullv">
+                    Bölüm Sonu Canavarı
+                </a>
+                <div style="width:100%; text-align:center;">
+                    <span id="ctl00_lblPageGenerationTime">0,343</span>
+                </div>
+            </div>
+            
+            <div id="mobilAnaYapi" style="display:none;">
+                <div class="mobilUst">
+                    <div class="navYeni">
+                        <a href="https://m.bolumsonucanavari.com/" class="nAnasayfa" style="float:left;" title="Anasayfa">
+                            ANASAYFA
+                        </a>
+                        <a href="https://m.bolumsonucanavari.com/mHaberler-0.htm" class="nHaberler" style="float:left;" title="Haberler">
+                            HABERLER
+                        </a>
+                        <br>
+                        <a href="https://m.bolumsonucanavari.com/mVideoIncelemeler-0.htm" class="nVideoIncelemeler" style="float:right;" title="Bsc Video">
+                            VİDEO İNCELEME
+                        </a>
+                        <a href="https://m.bolumsonucanavari.com/mVideolar-0.htm" class="nVideolar" style="float:left;" title="Videolar">
+                            VİDEOLAR
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <script>
+
+            $(document).ready(function () {
+                $('#__EVENTVALIDATION').parent().css('display', 'none');
+            });
+
+        </script>
+        <script type="text/javascript" charset="utf-8">
+
+            $(function () {
+                $("img").lazyload();
+            });
+
+        </script>
+        <script type="text/javascript" language="javascript">
+
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-8720465-4']);
+            _gaq.push(['_trackPageview']);
+
+            (function () {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+
+        </script>
+        <!-- (C)2000-2014 Gemius SA - gemiusAudience / bolumsonucanavari.com / Mobile -->
+        <script type="text/javascript">
+
+        <!--    //--><![CDATA[//><!--
+            var pp_gemius_identifier = '.XeQ0usGN42_yxFVqqZ5QGYm7_yBr88eD5AQfztd6cX.07';
+            // lines below shouldn't be edited
+            function gemius_pending(i) { window[i] = window[i] || function () { var x = window[i + '_pdata'] = window[i + '_pdata'] || []; x[x.length] = arguments; }; };
+            gemius_pending('gemius_hit'); gemius_pending('gemius_event'); gemius_pending('pp_gemius_hit'); gemius_pending('pp_gemius_event');
+            (function (d, t) {
+                try {
+                    var gt = d.createElement(t), s = d.getElementsByTagName(t)[0], l = 'http' + ((location.protocol == 'https:') ? 's' : ''); gt.setAttribute('async', 'async');
+                    gt.setAttribute('defer', 'defer'); gt.src = l + '://gatr.hit.gemius.pl/xgemius.js'; s.parentNode.insertBefore(gt, s);
+                } catch (e) { } 
+            })(document, 'script');
+            //--><!]]>
+
+        </script>
+    
+<div id="viewPortSize" class="bottom_right" style="background-color: rgb(0, 0, 0); color: rgb(255, 255, 255); font-size: 12px; display: none;">Inner: 1280 x 592<br>Outer: 1280 x 773</div><iframe id="gemius_hcconn_1477080723570_53511624" name="lsgetframe" width="0" height="0" scrolling="no" src="./BSC Mobil Sürüm _ Bölüm Sonu Canavarı_files/lsget.html" style="display: none; visibility: hidden;"></iframe><div id="window-resizer-tooltip" style="display: block;"><a href="https://m.bolumsonucanavari.com/#" title="Edit settings"></a><span class="tooltipTitle">Window size: </span><span class="tooltipWidth" id="winWidth">1280</span> x <span class="tooltipHeight" id="winHeight">773</span><br><span class="tooltipTitle">Viewport size: </span><span class="tooltipWidth" id="vpWidth">1280</span> x <span class="tooltipHeight" id="vpHeight">592</span></div>
+<!-- Begin ADSNATIVE Code -->
+  <script type="text/javascript">
+    var _AdsNativeOpts = {
+      apiKey: 'q2dBHlGopYRzl_WDmec9SwVsEjgaNR2a_crRy1MJ',
+      autoPosition: true,
+    };
+  </script>
+  <script type="text/javascript" src="//static.adsnative.com/static/js/render.v1.js"></script>
+<!-- End ADSNATIVE Code -->
+
+</body></html>
