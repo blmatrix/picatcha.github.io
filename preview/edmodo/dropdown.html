@@ -3144,7 +3144,13 @@ function removeClass(el, className) {
     <script type="text/javascript" src="//static.adsnative.com/static/js/render.v1.js"></script><img src="http://rudy.adsnative.com/cm.gif" style="height: 1px; width: 1px; border: none; display: none;">
 
     <script type="text/javascript">
-    var infeedPlacement = new AdsNative('wmz8pH9XxPWu7dtu0HEh4n5c6UmgtxaiqigcH0d6', []);
+    var keyValues = {
+        ck_audience_type: "students",
+        ck_languages: "english, spanish",
+        ck_grades: "fifth"
+    }
+
+    var infeedPlacement = new AdsNative('wmz8pH9XxPWu7dtu0HEh4n5c6UmgtxaiqigcH0d6', [], keyValues);
     infeedPlacement.fetchAd(function(status, adData) {
         console.log('Ad fetched : ', adData);
         if(status && adData) { // If returned a valid campaign to display
@@ -3158,7 +3164,7 @@ function removeClass(el, className) {
         }
     });
 
-    var rightRailPlacement = new AdsNative('YakQF2IPg4_V0Cyedn-pI-vXksXQwPECHxVpCRGR', []);
+    var rightRailPlacement = new AdsNative('YakQF2IPg4_V0Cyedn-pI-vXksXQwPECHxVpCRGR', [], keyValues);
     rightRailPlacement.fetchAd(function(status, adData) {
         console.log('Ad fetched : ', adData);
         if(status && adData) { // If returned a valid campaign to display
@@ -3171,6 +3177,7 @@ function removeClass(el, className) {
             }
         }
     });
+
   </script>
            
 

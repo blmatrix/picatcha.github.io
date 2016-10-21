@@ -1000,8 +1000,6 @@
                                                     </div>
 
                                                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-                                                    <script type="text/javascript" src="http://docs.adsnative.com/preview/edmodo/edmodo.js"></script>
-                                                    <!-- <script type="text/javascript" src="http://localhost:8888/picatcha.github.io/preview/edmodo/edmodo.js"></script> -->
                                                     <!-- <link rel="stylesheet" type="text/css" href="http://localhost:9000/picatcha.github.io/preview/edmodo/edmodo.css"> -->
                                                     <div id="in-feed-ad-container"></div>
 
@@ -1869,6 +1867,9 @@
     </script>
     <script type="text/javascript" src="//static.adsnative.com/static/js/render.v1.js"></script>
 
+    <!-- <script type="text/javascript" src="http://docs.adsnative.com/preview/edmodo/edmodo.js"></script> -->
+    <script type="text/javascript" src="http://localhost:8888/picatcha.github.io/preview/edmodo/edmodo.js"></script>
+
     <script type="text/javascript">
     var keyValues = {
         ck_audience_type: "students",
@@ -1885,7 +1886,7 @@
                 console.log('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
             } else {
                 console.log('Ad Did display');
-                initAdUnit('in-feed', adData);
+                window.AnEdmodo.initAdUnit('in-feed', adData);
             }
         }
     });
@@ -1899,7 +1900,7 @@
                 console.log('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
             } else {
                 console.log('Right rail Ad Did display');
-                initAdUnit('right-rail', adData);
+                window.AnEdmodo.initAdUnit('right-rail', adData);
             }
         }
     });
