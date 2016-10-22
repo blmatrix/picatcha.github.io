@@ -1,0 +1,20 @@
+document.write("<!--\n");
+document.write("  WST_CA_ALLD_ALLZ_NOSEG_QNTCSTCP_MO_BAN_PR_3MORE_NOGEN_CPM_AS_TRST_NON_NORES_300x50_General-Algorithm-NonSubs-MobileWeb-ML\n");
+document.write("  Campaign: COMW_WSDV_70075_GM_BASE_16_1234_ACQ_Core-Acq\n");
+document.write("  App/Site: Quantcast - Site\n");
+document.write("  300 x 50\n");
+document.write("-->\n");
+
+document.write("<div class=\"MEDIALETS_AD_TAG\">\n");
+(function(s,n,u,o,i,d){
+d=document;for(i in o)o.hasOwnProperty(i)&&(u+='&'+i+'='+encodeURIComponent(o[i]));i=d.createElement('script');i.id='MEDIALETS_AD_TAG_'+o.tagID;'https:'==location.protocol?i.src=s+u:(i.src=n+u)+(i.onerror=function(){d.head.removeChild(i);n=d.createElement('script');n.id=i.id;n.src=s+u;d.head.appendChild(n)});d.head.appendChild(i);
+}('https://s-cdn-tag.medialytics.com','http://tag.medialytics.com','/tag?format=aj',{
+tagID: "sf62d590cbbc44f7482d5c3cc7f9dc012",
+click: "https%3A//adserver.adtechus.com/adlink%2F5399%2F3131112%2F0%2F711%2FAdId%3D8791384%3BBnId%3D1%3Bitime%3D82926974%3Bkvexch%3Dgoogle%3Bkvp36%3Dp36%2D05cfseeevn69c10t%3Bkva%3Dp%2Dg84dhbkxmcuet%3Bkr14135%3D2386188%3Bkvc%3D863134%3Bkvi%3Dwap2lqad418klnjoqqv84a%3Bkr11092%3D2453183%3Bkvl%3D265469%3Bkvs%3D300x50%3Bkp%3D1274587%3Blink%3Dhttps%3A%2F%2Fadclick%2Eg%2Edoubleclick%2Enet%2Faclk%3Fsa%3Dl%26ai%3DCUI4rlXYKWN%5FGD87k2QTg%2Da%5FICq%5FA8ZRG3r23lq8BwI23ARABIABgyfb4hsijoBmCARdjYS1wdWItMjk3MzEzMzEzODc2MzIzOKAB0JTA8wPIAQmoAwGqBKMBT9AX2V2at%2D4SDKsHtMDSIj6ypuVGji0hpafCk6%2DNiRbFeO7atnwNOEZ4YFiqF17cO%2DzQ6%2Dzlfu8HkD5%5FoPC4BVRcJ8lqqXpHYfTBQchGMk8G%2DKR%5F0d%2Di9Oa9xd6E8OnV%2DPMnHd%2DlQ06B1hj6aAxFx7Jibe6YDiPWS3dCxcr8cLrH8alaeOlzAoLeG6SVSi7n5ORPQl09DCGn%2DagjDNyCbqW2NoAG59ilv77s59%2D2AaAGIagHpr4b2AcA0ggFCIBhEAE%26num%3D1%26sig%3DAOD64%5F0gcux3ETTZt42AiDo2Yy5UK5h62A%26client%3Dca%2Dpub%2D2973133138763238%26adurl%3Dhttp%3A%2F%2Fexch%2Equantserve%2Ecom%2Fr%3Fa%3Dp%2DG84dHbkXmCUEt%3Blabels%3D%5Fqc%2Eclk%2C%5Fclick%2Eadserver%2Ertb%2C%5Fclick%2Erand%2E21010%3Brtbip%3D192%2E184%2E68%2E200%3Brtbdata2%3DEAAaJUNvbWNhc3RSZXNpZGVudGlhbF9XZXN0Q29yZUFDUV9RMTIwMTYg1J4XKP2ZEDCe1zQ6H2h0dHBzOi8vbS5ib2x1bXNvbnVjYW5hdmFyaS5jb21aKHo3MDJCcG16TXdIWDZEVlJ5YnA5Qk1MclpGUFg3bWdGbkw5RE1Jem91irlFPoABvL%2DBhA2gAQGoAezBiAO6AR1DQUVTRUd2OHYxSXh1a3g3LW1VNTFwaEs0ZHM6McAB5LYPyAGI7%5FzG%5FiraARZXQXAybFFBRDQxOEtsbkpPcVF2ODRB5QGEYxg%5F6AEymAKOuBKoAgWoAgawAgi6AgTAuETIwAICyAIA0ALe9baMj4Cos%2DoB4AIA%3Bredirecturl2%3D$$_DESTINATION_URL_$$",
+ex: "google",
+pubimpid: "wap2lqad418klnjoqqv84a",
+imppx: ""
+}));
+document.write("</div>\n");
+
+
