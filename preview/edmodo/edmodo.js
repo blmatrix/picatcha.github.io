@@ -1,6 +1,7 @@
 (function( AnEdmodo ) {
     // position : in-feed / right-rail
     // floatType : lead-gen / content-ad
+    var version = 0.8;
 
     // Public Methods
     AnEdmodo.initAdUnit = function(adPosition, adData) {
@@ -265,7 +266,7 @@
         var reg = new RegExp('(\\s|^)' + className + '(\\s|$)')
         el.className=el.className.replace(reg, ' ')
       }
-    }
+    }   
 
     function whichTransitionEvent() {
         var t;
