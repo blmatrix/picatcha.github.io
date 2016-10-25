@@ -88,8 +88,12 @@
         if(floatType === 'content-ad') updateShareURLs(position);
 
         adUnit.onclick = function(e) {
+            // Brand Name
+            if(hasClass(e.target, 'messageinfo1')) return;
+            // Feedback dropdown
             if((e.target.parentNode && hasClass(e.target.parentNode, 'user_fb__list')) || (e.target.parentNode.parentNode && hasClass(e.target.parentNode.parentNode, 'user_fb__list'))) return;
             e.stopPropagation();
+
             userClicked = true;
 
             // Only for Content and Leadgen Ads
