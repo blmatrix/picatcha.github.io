@@ -1,7 +1,7 @@
 (function( AnEdmodo ) {
     // position : in-feed / right-rail
     // floatType : lead-gen / content-ad
-    var version = 0.8;
+    var version = 0.81;
 
     // Public Methods
     AnEdmodo.initAdUnit = function(adPosition, adData) {
@@ -243,11 +243,12 @@
         title = adUnit.querySelector('.an-title').innerHTML;
         summary = adUnit.querySelector('.an-description').innerHTML;
         clickUrl = floatingUnit.querySelector('.str-footer .adsnative-cta-button').href;
+        clickUrl = getParameterByName('url', clickUrl);
 
         // Set Values
         fb.href = 'http://www.facebook.com/sharer.php?u=' + encodeURI(clickUrl);
-        tw.href = 'https://twitter.com/intent/tweet?text=' + encodeURI(title) + '&url=' + encodeURI(clickUrl);
-        em.href = 'mailto:?subject=' + encodeURI(title) + '&body=' + encodeURI(summary);
+        tw.href = 'https://twitter.com/intent/tweet?url=' + encodeURI(clickUrl);
+        em.href = 'mailto:?subject=' + encodeURI(title) + '&body=' + encodeURI(summary) + ". Read More : " + clickUrl;
     }
 
     function hasClass(el, className) {
@@ -271,6 +272,18 @@
         el.className=el.className.replace(reg, ' ')
       }
     }   
+
+    function getParameterByName(name, url) {
+        if (!url) {
+          url = window.location.href;
+        }
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
 
     function whichTransitionEvent() {
         var t;
