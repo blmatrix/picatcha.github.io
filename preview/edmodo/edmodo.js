@@ -1,7 +1,7 @@
 (function( AnEdmodo ) {
     // position : in-feed / right-rail
     // floatType : lead-gen / content-ad
-    var version = 0.81;
+    var version = 0.9;
 
     // Public Methods
     AnEdmodo.initAdUnit = function(adPosition, adData) {
@@ -64,13 +64,16 @@
             }
         });
 
+        // Clicking on "Why am I seeing this" should redirect to edmodo custom page.
+        adUnit.querySelector('.user_fb__item.why_ad').addEventListener("click", function(e) {
+            e.stopPropagation();
+            hideUserFeedback();
+        });
+        
         document.addEventListener("click", function(e) {
             var dropdownContainer = e.currentTarget.parentNode;
             if(dropdownContainer === null || !hasClass(dropdownContainer, 'js-dropdown')) {
-                dropdownContainers = document.getElementsByClassName('js-dropdown');
-                for(i=0; i<dropdownContainers.length; i++) {
-                    removeClass(dropdownContainers[i], 'is-open');
-                }
+                hideUserFeedback();
             }
         });
 
@@ -78,14 +81,30 @@
         addCTAText(position, floatType);
 
         if(floatingItems) parent = floatingItems.parentNode;
-        if (!parent || floatType === 'click-out' || floatType === 'video') { return; }
+        // Clicking anywhere on click-out should be handled by renderjs by default
+        if (!parent || floatType === 'click-out') return;
+
+        // Clicking on video ad should be conditionally handled by renderjs/edmodojs
+        if(floatType === 'video') { 
+
+            // Take over render js click through
+            adUnit.onclick = function(e) {
+                // Brand Name : Let render js redirect to clickthrough URL
+                if(hasClass(e.target, 'messageinfo1') || hasClass(e.target, 'cta-button')) return;
+                // Feedback dropdown
+                if((e.target.parentNode && hasClass(e.target.parentNode, 'user_fb__list')) || (e.target.parentNode.parentNode && hasClass(e.target.parentNode.parentNode, 'user_fb__list'))) return;
+                e.stopPropagation();
+            }
+
+            return; 
+        }
+
+        // Programmatically move floating container to end of body to takeover page
         parent.removeChild(floatingItems);
         document.body.appendChild(floatingItems);
 
         // Add iframe based on floatType
-        addiFrameContent(adUnitConfig);
-
-        if(floatType === 'content-ad') updateShareURLs(position);
+        addCustomCreativeContent(adUnitConfig);
 
         adUnit.onclick = function(e) {
             // Brand Name
@@ -138,6 +157,13 @@
         overlapFloatingContainer(document.querySelector('.str-adunit.' + position), position);
         removeClass(floatingUnit.querySelector('#content-container'), 'view');
         removeClass(floatingItems, 'clicked');
+    }
+
+    function hideUserFeedback() {
+        dropdownContainers = document.getElementsByClassName('js-dropdown');
+        for(i=0; i<dropdownContainers.length; i++) {
+            removeClass(dropdownContainers[i], 'is-open');
+        }
     }
 
     // TD
@@ -202,7 +228,9 @@
         }
     }
 
-    function addiFrameContent(adUnitConfig) {
+    function addCustomCreativeContent(adUnitConfig) {
+        if(adUnitConfig.floatType != 'content-ad' && adUnitConfig.floatType != 'lead-gen') return;
+
         var ifrm = document.createElement("iframe"),
             floatingUnit = document.querySelector('.' + adUnitConfig.position + ' #floating-ad-container');
 
@@ -215,6 +243,8 @@
             // Example : "http://www.dogonews.com/2016/10/5/whales-mourn-their-loved-ones-just-like-you-and-me"
             ifrm.src = adUnitConfig.contentUrl;
             floatingUnit.querySelector('.str-embed-wrapper').appendChild(ifrm);
+
+            updateShareURLs(adUnitConfig.position);
         } else if(adUnitConfig.floatType === 'lead-gen' && adUnitConfig.leadGenUrl) {
             // Example : "http://docs.adsnative.com/preview/edmodo/lead-gen_iframe.html"
             ifrm.src = adUnitConfig.leadGenUrl;
