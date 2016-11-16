@@ -1,0 +1,131 @@
+
+<html>
+<head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+
+        function urlPrefix(){
+            if(location.protocol == 'https:')
+                return 'https:';
+            else
+                return 'http:';
+        }
+
+        var IVA_CheckViewabilityInterval;
+
+        $(document).ready(function(){
+            // window.vd_timer = setInterval(function(){
+            //     getCurrentPlayerInfo();
+            // }, 100);
+
+            // check every 100 milliseconds to see if the player is in view
+            IVA_CheckViewabilityInterval = setInterval(function () {
+                _checkIVAViewability();
+                //console.log("IVA:: Interval of 1 second. Sending checkViewability.");
+            }, 100);
+        });
+
+        function getCurrentPlayerInfo() {
+            sendMessage('GetCurrentPlayerInfo');
+        }
+
+        function sendMessage(msg) {
+            var ifrm = document.getElementsByClassName("adsnative-video-iframe")[0],
+                server = getParameterByName('server');
+
+            if(server === 'dev') {
+                ifrm.contentWindow.postMessage(msg, "http://dev-api.adsnative.com");
+            } else if(server === 'stage') {
+                ifrm.contentWindow.postMessage(msg, "http://stage-api.adsnative.com");
+            } else {
+                ifrm.contentWindow.postMessage(msg, "http://api.adsnative.com");
+            }
+        }
+
+        function isElementInViewport(el) {
+            // Original solution from http://stackoverflow.com/a/7557433/5628
+            // Mod:  Return true if el is 50% in view port.
+            var rect = el.getBoundingClientRect();
+
+            var area = rect.height * rect.width;
+            var inview_height = Math.min(rect.height, rect.bottom, (window.innerHeight || document.documentElement.clientHeight) - rect.top);
+            var inview_width = Math.min(rect.width, rect.right, (window.innerWidth || document.documentElement.clientWidth) - rect.left);
+
+            var inview_area = inview_height * inview_width;
+            return ((inview_area / area) >= 0.5);
+        };
+
+        var visibleOnce = false,   //only send Play event once.
+            hiddenOnce = true,
+            publisher = getParameterByName('publisher');
+
+        function _checkIVAViewability() {
+            //console.log("IVA:: checkIVAViewability called. visibleOnce = " + visibleOnce);
+            //if (visibleOnce == true) { return;}
+            var my_element = document.getElementsByClassName("adsnative-video-iframe")[0];
+            if (my_element && isElementInViewport(my_element)) {
+                //console.log("IVA:: isInViewport = true");
+                if (visibleOnce == false) {
+                    console.log('Video scrolled in 50%');
+                    sendMessage((publisher === 'disqus') ? 'disqus.view:50in' : 'adsnative.mrc50.view:in');
+
+                    visibleOnce = true;
+                    hiddenOnce = false;
+                    //clearInterval(IVA_CheckViewabilityInterval);
+                }
+            } else {
+                if(hiddenOnce == false){
+                    console.log('Video scrolled out 50%');
+                    sendMessage((publisher === 'disqus') ? 'disqus.view:50out' : 'adsnative.mrc50.view:out');
+                    visibleOnce = false;
+                    hiddenOnce = true;
+                }
+            }
+        }
+
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            url = url.toLowerCase(); // This is just to avoid case sensitiveness  
+            name = name.replace(/[\[\]]/g, "\\$&").toLowerCase();// This is just to avoid case sensitiveness for query parameter name
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        var forceZoneId = getParameterByName('zid');
+    </script>
+    <style type="text/css">
+    #content { margin: 40px auto; width:1000px; font-size: 120%; line-height: 130%; }
+
+    h2 {
+        text-align: center;
+        font-size: 40px;
+    }
+    </style>
+</head>
+<body>
+<div id="content">
+<h2>Autoplay Scroll Inview (Video + Native Story) Preview</h2>
+
+<p>
+    Lorem ipsum dolor sit amet, ludus possim atomorum mel te, vis inani corrumpit te. Eripuit scaevola explicari sed ea. Everti melius luptatum ius ea. Omnis dicam vivendum vis in, no partem mollis sed. Volutpat consulatu posidonium vim ut, ut exerci habemus eos. An sint vero verear per. Zril munere in mea. Cum te reque falli phaedrum, vim eu zril veniam facilisis. Dico sint pro cu, per in iudico primis. Modo prima velit at qui, prima suavitate te per. Affert interesset et pro, at duo alia oratio omnesque, eu est dictas erroribus persequeris. Case referrentur nec ad, est vocibus deleniti et, at aliquid elaboraret neglegentur mea. Ea modus deleniti apeirian sea. Cum quod tantas consectetuer cu. Sed ad ceteros consectetuer, falli scaevola per at. Mea ei vitae nusquam efficiendi. Qui euismod verterem facilisi ad. Mel cu corpora scriptorem, eum epicuri deserunt sensibus no. Vel et nonumes complectitur, option platonem nec ea. No insolens qualisque dissentiunt eum, sea dolorum mentitum ad. Eam omnes comprehensam definitionem no, nam in facete pericula. In vis liber inermis elaboraret. Ne copiosae tincidunt </br></br> sit. Eam assum graece audiam ut, duo atqui sanctus et. Id sea regione delicatissimi signiferumque, vix dicat convenire repudiare ei. Legere iriure eleifend vix ad, sed nonumy ignota regione in, omnium accusamus eos ex. Lorem ipsum dolor sit amet, ludus possim atomorum mel te, vis inani corrumpit te. Eripuit scaevola explicari sed ea. Everti melius luptatum ius ea. Omnis dicam vivendum vis in, no partem mollis sed. Volutpat consulatu posidonium vim ut, ut exerci habemus eos. An sint vero verear per. Zril munere in mea. Cum te reque falli phaedrum, vim eu zril veniam facilisis. Dico sint pro cu, per in iudico primis. Modo prima velit at qui, prima suavitate te per. Affert interesset et pro, at duo alia oratio omnesque, eu est dictas erroribus persequeris. Case referrentur nec ad, est vocibus deleniti et, at aliquid elaboraret neglegentur mea. Ea modus deleniti apeirian sea. Cum quod tantas consectetuer cu. Sed ad ceteros consectetuer, falli scaevola per at. Mea ei vitae nusquam efficiendi. Qui euismod verterem facilisi ad. Mel cu corpora scriptorem, eum epicuri deserunt sensibus no. Vel et nonumes complectitur, option platonem nec ea. No insolens qualisque dissentiunt eum, sea dolorum mentitum ad. Eam omnes comprehensam definitionem no, nam in facete pericula. In vis liber inermis elaboraret. Ne copiosae tincidunt sit. Eam assum graece audiam ut, </br></br> duo atqui sanctus et. Id sea regione delicatissimi signiferumque, vix dicat convenire repudiare ei. Legere iriure eleifend vix ad, sed nonumy ignota regione in, omnium accusamus eos ex. Lorem ipsum dolor sit amet, ludus possim atomorum mel te, vis inani corrumpit te. Eripuit scaevola explicari sed ea. Everti melius luptatum ius ea. Omnis dicam vivendum vis in, no partem mollis sed. Volutpat consulatu posidonium vim ut, ut exerci habemus eos. An sint vero verear per. Zril munere in mea. Cum te reque falli phaedrum, vim eu zril veniam facilisis. Dico sint pro cu, per in iudico primis. Modo prima velit at qui, prima suavitate te per. Affert interesset et pro, at duo alia oratio omnesque, eu est </br></br>dictas erroribus persequeris. Case referrentur nec ad, est vocibus deleniti et, at aliquid elaboraret neglegentur mea. Ea modus deleniti apeirian sea. Cum quod tantas consectetuer cu. Sed ad ceteros consectetuer, falli scaevola per at. Mea ei vitae nusquam efficiendi. Qui euismod verterem facilisi ad. Mel cu corpora scriptorem, eum epicuri deserunt sensibus no. Vel et nonumes complectitur, option platonem nec ea. No insolens qualisque dissentiunt eum, sea dolorum mentitum ad. Eam omnes comprehensam definitionem no, nam in facete pericula. In vis liber inermis elaboraret. Ne copiosae tincidunt sit. Eam assum graece audiam ut, duo atqui sanctus et. Id sea regione delicatissimi signiferumque, vix dicat convenire repudiare ei. Legere iriure eleifend vix ad, sed nonumy ignota regione in, omnium accusamus eos ex. </br></br>Lorem ipsum dolor sit amet, ludus possim atomorum mel te, vis inani corrumpit te. Eripuit scaevola explicari sed ea. Everti melius luptatum ius ea. Omnis dicam vivendum vis in, no partem mollis sed. Volutpat consulatu posidonium vim ut, ut exerci habemus eos. An sint vero verear per. Zril munere in mea. Cum te reque falli phaedrum, vim eu zril veniam facilisis. Dico sint pro cu, per in iudico primis. Modo prima velit at qui, prima suavitate te per. Affert interesset et pro, at duo alia oratio omnesque, eu est dictas erroribus persequeris. Case referrentur nec ad, est vocibus deleniti et, at aliquid elaboraret neglegentur mea. Ea modus deleniti apeirian sea. Cum quod tantas consectetuer cu. Sed ad ceteros consectetuer, falli scaevola per at. Mea ei vitae nusquam efficiendi. Qui euismod verterem facilisi ad. Mel cu corpora scriptorem, eum epicuri deserunt sensibus no. Vel et nonumes complectitur, option platonem nec ea. No insolens qualisque dissentiunt eum, sea dolorum mentitum ad. Eam omnes comprehensam definitionem no, nam in facete pericula. In vis liber inermis elaboraret. Ne copiosae tincidunt sit. Eam assum graece audiam ut, duo atqui sanctus et. Id sea regione delicatissimi signiferumque, vix dicat convenire repudiare ei. Legere iriure eleifend vix ad, sed nonumy ignota regione in, omnium accusamus eos ex.
+</p>
+
+<script type="text/javascript">
+var _AdsNativeOpts = {
+    apiKey: (forceZoneId) ? forceZoneId : 'AaLZ2XyMYTYaMfDTv4WmCQOOl30kAszkzg0AXnnQ',
+};
+</script>
+<script type="text/javascript" src="//static.adsnative.com/static/js/render.v1.js"></script>
+</script>
+
+<p>
+    Lorem ipsum dolor sit amet, ludus possim atomorum mel te, vis inani corrumpit te. Eripuit scaevola explicari sed ea. Everti melius luptatum ius ea. Omnis dicam vivendum vis in, no partem mollis sed. Volutpat consulatu posidonium vim ut, ut exerci habemus eos. An sint vero verear per. Zril munere in mea. Cum te reque falli phaedrum, vim eu zril veniam facilisis. Dico sint pro cu, per in iudico primis. Modo prima velit at qui, prima suavitate te per. Affert interesset et pro, at duo alia oratio omnesque, eu est dictas erroribus persequeris. Case referrentur nec ad, est vocibus deleniti et, at aliquid elaboraret neglegentur mea. Ea modus deleniti apeirian sea. Cum quod tantas consectetuer cu. Sed ad ceteros consectetuer, falli scaevola per at. Mea ei vitae nusquam efficiendi. Qui euismod verterem facilisi ad. Mel cu corpora scriptorem, eum epicuri </br></br>deserunt sensibus no. Vel et nonumes complectitur, option platonem nec ea. No insolens qualisque dissentiunt eum, sea dolorum mentitum ad. Eam omnes comprehensam definitionem no, nam in facete pericula. In vis liber inermis elaboraret. Ne copiosae tincidunt sit. Eam assum graece audiam ut, duo atqui sanctus et. Id sea regione delicatissimi signiferumque, vix dicat convenire repudiare ei. Legere iriure eleifend vix ad, sed nonumy ignota regione in, omnium accusamus eos ex. Lorem ipsum dolor sit amet, ludus possim atomorum mel te, vis inani corrumpit te. Eripuit scaevola explicari sed ea. Everti melius luptatum ius ea. Omnis dicam vivendum vis in, no partem mollis sed. Volutpat consulatu posidonium vim ut, ut exerci habemus eos. An sint vero verear per. Zril munere in mea. Cum te reque falli phaedrum, vim eu zril veniam facilisis. Dico sint pro cu, per in iudico primis. Modo prima velit at qui, prima suavitate te per. Affert interesset et pro, at duo alia oratio omnesque, eu est dictas erroribus persequeris. Case referrentur nec ad, est vocibus deleniti et, at aliquid elaboraret neglegentur mea. </br></br>Ea modus deleniti apeirian sea. Cum quod tantas consectetuer cu. Sed ad ceteros consectetuer, falli scaevola per at. Mea ei vitae nusquam efficiendi. Qui euismod verterem facilisi ad. Mel cu corpora scriptorem, eum epicuri deserunt sensibus no. Vel et nonumes complectitur, option platonem nec ea. No insolens qualisque dissentiunt eum, sea dolorum mentitum ad. Eam omnes comprehensam definitionem no, nam in facete pericula. In vis liber inermis elaboraret. Ne copiosae tincidunt sit. Eam assum graece audiam ut, duo atqui sanctus et. Id sea regione delicatissimi signiferumque, vix dicat convenire repudiare ei. Legere iriure eleifend vix ad, sed nonumy ignota regione in, omnium accusamus eos ex. Lorem ipsum dolor sit amet, ludus possim atomorum mel te, vis inani corrumpit te. Eripuit scaevola explicari sed ea. Everti melius luptatum ius ea. Omnis </br></br>dicam vivendum vis in, no partem mollis sed. Volutpat consulatu posidonium vim ut, ut exerci habemus eos. An sint vero verear per. Zril munere in mea. Cum te reque falli phaedrum, vim eu zril veniam facilisis. Dico sint pro cu, per in iudico primis. Modo prima velit at qui, prima suavitate te per. Affert interesset et pro, at duo alia oratio omnesque, eu est dictas erroribus persequeris. Case referrentur nec ad, est vocibus deleniti et, at aliquid elaboraret neglegentur mea. Ea modus deleniti apeirian sea. Cum quod tantas consectetuer cu. Sed ad ceteros consectetuer, falli scaevola per at. Mea ei vitae nusquam efficiendi. Qui euismod verterem facilisi ad. Mel cu corpora scriptorem, eum epicuri deserunt sensibus no. Vel et nonumes complectitur, option platonem nec ea. No insolens qualisque dissentiunt eum, sea dolorum mentitum ad. Eam omnes comprehensam definitionem no, nam in facete pericula. In vis liber inermis elaboraret. Ne copiosae tincidunt sit. Eam assum graece audiam ut, duo atqui sanctus et. Id sea regione delicatissimi signiferumque,</br></br> vix dicat convenire repudiare ei. Legere iriure eleifend vix ad, sed nonumy ignota regione in, omnium accusamus eos ex. Lorem ipsum dolor sit amet, ludus possim atomorum mel te, vis inani corrumpit te. Eripuit scaevola explicari sed ea. Everti melius luptatum ius ea. Omnis dicam vivendum vis in, no partem mollis sed. Volutpat consulatu posidonium vim ut, ut exerci habemus eos. An sint vero verear per. Zril munere in mea. Cum te reque falli phaedrum, vim eu zril veniam facilisis. Dico sint pro cu, per in iudico primis. Modo prima velit at qui, prima suavitate te per. Affert interesset et pro, at duo alia oratio omnesque, eu est dictas erroribus persequeris. Case referrentur nec ad, est vocibus deleniti et, at aliquid elaboraret neglegentur mea. Ea modus deleniti apeirian sea. Cum quod tantas consectetuer cu. Sed ad ceteros consectetuer, falli scaevola per at.</br></br> Mea ei vitae nusquam efficiendi. Qui euismod verterem facilisi ad. Mel cu corpora scriptorem, eum epicuri deserunt sensibus no. Vel et nonumes complectitur, option platonem nec ea. No insolens qualisque dissentiunt eum, sea dolorum mentitum ad. Eam omnes comprehensam definitionem no, nam in facete pericula. In vis liber inermis elaboraret. Ne copiosae tincidunt sit. Eam assum graece audiam ut, duo atqui sanctus et. Id sea regione delicatissimi signiferumque, vix dicat convenire repudiare ei. Legere iriure eleifend vix ad, sed nonumy ignota regione in, omnium accusamus eos ex.
+</p>
+
+
+</div>
+</body>
+</html>
