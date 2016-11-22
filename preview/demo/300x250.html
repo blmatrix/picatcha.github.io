@@ -8,6 +8,16 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script>
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            url = url.toLowerCase(); // This is just to avoid case sensitiveness  
+            name = name.replace(/[\[\]]/g, "\\$&").toLowerCase();// This is just to avoid case sensitiveness for query parameter name
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
 
         function urlPrefix(){
             if(location.protocol == 'https:')
@@ -90,19 +100,7 @@
     </script>
 
 <script type="text/javascript">
-function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    url = url.toLowerCase(); // This is just to avoid case sensitiveness  
-    name = name.replace(/[\[\]]/g, "\\$&").toLowerCase();// This is just to avoid case sensitiveness for query parameter name
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
-}
-
 var forceZoneId = getParameterByName('zid');
-
 var _AdsNativeOpts = {
     apiKey: (forceZoneId) ? forceZoneId : 'AaLZ2XyMYTYaMfDTv4WmCQOOl30kAszkzg0AXnnQ'
 };
