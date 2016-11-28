@@ -29,15 +29,21 @@
         var IVA_CheckViewabilityInterval;
 
         $(document).ready(function(){
-            // window.vd_timer = setInterval(function(){
-            //     getCurrentPlayerInfo();
-            // }, 100);
-
-            // check every 100 milliseconds to see if the player is in view
-            IVA_CheckViewabilityInterval = setInterval(function () {
-                _checkIVAViewability();
-                //console.log("IVA:: Interval of 1 second. Sending checkViewability.");
+            window.iframeReadyTimer = setInterval(function(){
+                if(document.getElementsByClassName("adsnative-video-iframe").length) {
+                    clearInterval(window.iframeReadyTimer);
+                    $(document.getElementsByClassName("adsnative-video-iframe")[0].contentWindow.document).ready(function() {
+                        IVA_CheckViewabilityInterval = setInterval(function () {
+                            _checkIVAViewability();
+                            //console.log("IVA:: Interval of 1 second. Sending checkViewability.");
+                        }, 500);
+                    });
+                }
             }, 100);
+            // $(document.getElementsByClassName("adsnative-video-iframe")[0].contentWindow.document).ready(function() {
+                // check every 100 milliseconds to see if the player is in view
+                
+            // });
         });
 
         // function getCurrentPlayerInfo() {
@@ -86,7 +92,7 @@
 
                     visibleOnce = true;
                     hiddenOnce = false;
-                    //clearInterval(IVA_CheckViewabilityInterval);
+                    clearInterval(IVA_CheckViewabilityInterval);
                 }
             } else {
                 if(hiddenOnce == false){
