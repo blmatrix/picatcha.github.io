@@ -1,0 +1,93 @@
+<html><!-- If you need to update this file, you need to have ops invalidate the cloudfront cache for this file --><head>
+
+  <link rel="stylesheet" type="text/css" href="https://assets.edmodo.com/e10.landing.css.all.82c97f189dca08bc.css">
+  <link rel="stylesheet" type="text/css" href="https://assets.edmodo.com/e10.core.css.teacher.fb9e0b84b47b7054.css">
+  <link rel="stylesheet" type="text/css" href="https://assets.edmodo.com/e10.e1.css.teacher.35e703dee31e115a.css">
+  <link rel="stylesheet" type="text/css" href="https://assets.edmodo.com/e10.e2.css.teacher.d776b748b605a9dd.css">
+  <link rel="stylesheet" type="text/css" href="https://assets.edmodo.com/e11.billygoat.css.all.97835efacd5d9b89.css">
+
+</head>
+
+<body>
+
+<div class="main-column">
+    <div id="ad-container"></div>
+</div>
+
+<script type="text/javascript">
+  var _AdsNativeOpts = {
+    blockAdLoad: true
+  };
+</script>
+<script type="text/javascript" src="https://static.adsnative.com/static/js/render.v1.js"></script>
+<!-- <script type="text/javascript" src="https://static.adsnative.com/static/js/an-edmodo.js"></script>  -->
+<script type="text/javascript" src="edmodo.js"></script>
+
+<script>
+
+var setupPipe = function(e) {
+  // on hide ad click:
+  if (false) {
+    e.source.postMessage('ads-native:hide', e.origin); 
+  }
+
+  // Ad Blocker
+  if (typeof AdsNative == 'undefined') {
+    e.source.postMessage('ads-native:block', e.origin);
+  }
+}
+
+var handleMessage = function(e) {
+    setupPipe(e);
+    initialize(e);
+};
+
+window.addEventListener('message', handleMessage, false); 
+
+var initialize = function(e) {
+  if (typeof AdsNative == 'undefined') {
+    return;
+  }
+
+  var keyValues = JSON.parse(decodeURIComponent(getParameterByName('key_values')));
+
+  var placement_id = getParameterByName('placement_id');
+  var placement = new AdsNative(placement_id, [], keyValues);
+  var position = getParameterByName('position');
+
+  placement.fetchAd(function(status, adData) {
+    if(status && adData) { // If returned a valid campaign to display
+      var didDisplay = placement.displayAd('ad-container');
+      if(!didDisplay) {
+          console.log('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
+      } else {
+          AnEdmodo.initAdUnit(position, adData);
+      }
+    } else {
+      e.source.postMessage('ads-native:no-ad', e.origin)
+    }
+  });
+}
+
+function getParameterByName(name, url) {
+    if (!url) {
+      url = window.location.href;
+    }
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+handleMessage();
+
+</script>
+
+
+
+
+
+
+<img src="https://rudy.adsnative.com/cm.gif" style="height: 1px; width: 1px; border: none; display: none;"></body></html>

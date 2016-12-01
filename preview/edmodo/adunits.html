@@ -2,7 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 
 <head profile="http://www.w3.org/2005/10/profile">
-    <base href="https://www.edmodo.com/" target="_blank">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="keywords" content="education, classrooms, teachers, students, schools, districts, common core, teks, sol, snapshot, online, communication, collaboration, quizzes, lms, learning, tools">
     <meta name="description" content="Edmodo is an easy way to get your students connected so they can safely collaborate, get and stay organized, and access assignments, grades, and school messages.">
@@ -18,7 +17,7 @@
     <meta name="msApplication-ID" content="microsoft.build.App">
     <meta name="msApplication-PackageFamilyName" content="microsoft.build_9wzdncrdsmjn">
     <title>
-        Edmodo | RR Leadgen </title>
+        Edmodo | iFrame Ad Unit Execution </title>
     <link rel="shortcut icon" href="/edmodo_fav_final.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/images_v2/favicon/apple-touch-icon.jpg">
     <meta property="og:title" content="Edmodo | Home">
@@ -1000,8 +999,38 @@
                                                     </div>
 
                                                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-                                                    <!-- <link rel="stylesheet" type="text/css" href="http://localhost:9000/picatcha.github.io/preview/edmodo/edmodo.css"> -->
-                                                    <div id="in-feed-ad-container"></div>
+
+
+
+                                                    <!-- AdsNative iFrame integration Code START -->
+                                                    <script type="text/javascript" src="an-edmodo_parent.js"></script>
+                                                    <script type="text/javascript">
+                                                        var handleMessage = function(e) {
+                                                            switch(e.data.action) {
+                                                                case 'ads-native:hide':
+                                                                    console.log("received ads-native:hide message in parent");
+                                                                    break;
+                                                                case 'ads-native:init-floating-ad':
+                                                                    console.log('received ads-native:floating-dom message');
+                                                                    AnEdmodo.initFloatingAd(e.data);
+                                                                    break;
+                                                                case 'ads-native:user-clicked-floating-ad':
+                                                                    AnEdmodo.userClickedFloatingAd(e.data);
+                                                                    break;
+                                                            }
+                                                        };
+                                                        window.addEventListener('message', handleMessage, false);
+                                                    </script>
+                                                    <!-- AdsNative iFrame integration Code END -->
+
+
+
+
+
+                                                    <div class="stream-item str-adunit">
+                                                        <iframe class="ads-native-message-item-iframe" width="564" height="520" src="iframe_infeed.html?placement_id=wmz8pH9XxPWu7dtu0HEh4n5c6UmgtxaiqigcH0d6&position=in-feed&key_values=%7B%22ck_audience_type%22%3A%22TEACHER%22%2C%22ck_grades%22%3A%2210th%20Grade%22%2C%22ck_languages%22%3A%22en%22%2C%22ck_subjects%22%3A%22mathematics%22%2C%22ck_test%22%3A%221%22%7D" frameborder="0">Loading..</iframe>
+                                                    </div>
+
 
                                                     <div class="stream-item">
                                                         <div class="item-container">
@@ -1435,6 +1464,13 @@
                                     </ul>
                                 </div>
                             </div>
+                            <div class="section">
+                                <div class="ads-native-right-sidebar-wrapper">
+                                    <div class="stream-item str-adunit">
+                                        <iframe class="ads-native-right-sidebar-iframe" width="218" height="230" src="iframe_rr.html?placement_id=YakQF2IPg4_V0Cyedn-pI-vXksXQwPECHxVpCRGR&amp;position=right-rail&amp;key_values=%7B%22ck_audience_type%22%3A%22TEACHER%22%2C%22ck_grades%22%3A%2210th%20Grade%22%2C%22ck_languages%22%3A%22en%22%2C%22ck_subjects%22%3A%22mathematics%22%2C%22ck_test%22%3A%221%22%7D" frameborder="0">Loading..</iframe>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <span id="stream-data-container" style="display: none" data-stream="{&quot;newPostStreamOptions&quot;:{&quot;push_state&quot;:false,&quot;root&quot;:&quot;\/&quot;,&quot;mixpanel_token&quot;:&quot;0&quot;,&quot;domainRoot&quot;:&quot;https:\/\/www.edmodo.com\/&quot;,&quot;show_filter&quot;:true,&quot;filter_type&quot;:&quot;home&quot;,&quot;useZendmodoTokenFetch&quot;:true,&quot;show_direct_post_filter&quot;:true,&quot;show_by_others_post_filter&quot;:true,&quot;pin_context&quot;:null,&quot;message_state&quot;:{&quot;context&quot;:&quot;home&quot;,&quot;item_types&quot;:&quot;note,poll,assignment,quiz,app_message,template_message&quot;,&quot;template_types&quot;:&quot;basic,banner,promo&quot;,&quot;user_conversations&quot;:false,&quot;exclude_creator_id&quot;:false,&quot;page&quot;:1,&quot;per_page&quot;:10},&quot;page_context&quot;:&quot;home_page&quot;,&quot;show_replybox&quot;:true,&quot;use_pipeman&quot;:true,&quot;mentions_enabled&quot;:true,&quot;translations_enabled&quot;:true,&quot;include_sub_replies&quot;:true,&quot;reply_liking_enabled&quot;:true,&quot;for_home_page&quot;:true,&quot;stream_container_class_name&quot;:&quot;.new-stream-container&quot;,&quot;initial_stream_data&quot;:[]}}"></span>
@@ -1865,45 +1901,45 @@
           blockAdLoad: true
         };
     </script>
-    <script type="text/javascript" src="//static.adsnative.com/static/js/render.v1.js"></script>
+    <!-- <script type="text/javascript" src="//static.adsnative.com/static/js/render.v1.js"></script> -->
 
-    <script type="text/javascript" src="http://static.adsnative.com/static/js/an-edmodo.js"></script>
+    <!-- <script type="text/javascript" src="http://static.adsnative.com/static/js/an-edmodo.js"></script> -->
     <!-- <script type="text/javascript" src="http://localhost:8888/picatcha.github.io/preview/edmodo/edmodo.js"></script> -->
 
     <script type="text/javascript">
-    var keyValues = {
-        ck_audience_type: "students",
-        ck_languages: "english, spanish",
-        ck_grades: "fifth"
-    };
+    // var keyValues = {
+    //     ck_audience_type: "students",
+    //     ck_languages: "english, spanish",
+    //     ck_grades: "fifth"
+    // };
 
-    var infeedPlacement = new AdsNative('wmz8pH9XxPWu7dtu0HEh4n5c6UmgtxaiqigcH0d6', [], keyValues);
-    infeedPlacement.fetchAd(function(status, adData) {
-        console.log('Ad fetched : ', adData);
-        if(status && adData) { // If returned a valid campaign to display
-            var didDisplay = infeedPlacement.displayAd('in-feed-ad-container');
-            if(!didDisplay) {
-                console.log('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
-            } else {
-                console.log('Ad Did display');
-                window.AnEdmodo.initAdUnit('in-feed', adData);
-            }
-        }
-    });
+    // var infeedPlacement = new AdsNative('wmz8pH9XxPWu7dtu0HEh4n5c6UmgtxaiqigcH0d6', [], keyValues);
+    // infeedPlacement.fetchAd(function(status, adData) {
+    //     console.log('Ad fetched : ', adData);
+    //     if(status && adData) { // If returned a valid campaign to display
+    //         var didDisplay = infeedPlacement.displayAd('in-feed-ad-container');
+    //         if(!didDisplay) {
+    //             console.log('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
+    //         } else {
+    //             console.log('Ad Did display');
+    //             window.AnEdmodo.initAdUnit('in-feed', adData);
+    //         }
+    //     }
+    // });
 
-    var rightRailPlacement = new AdsNative('YakQF2IPg4_V0Cyedn-pI-vXksXQwPECHxVpCRGR', [], keyValues);
-    rightRailPlacement.fetchAd(function(status, adData) {
-        console.log('Ad fetched : ', adData);
-        if(status && adData) { // If returned a valid campaign to display
-            var didDisplay = rightRailPlacement.displayAd('right-rail-ad-container');
-            if(!didDisplay) {
-                console.log('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
-            } else {
-                console.log('Right rail Ad Did display');
-                window.AnEdmodo.initAdUnit('right-rail', adData);
-            }
-        }
-    });
+    // var rightRailPlacement = new AdsNative('YakQF2IPg4_V0Cyedn-pI-vXksXQwPECHxVpCRGR', [], keyValues);
+    // rightRailPlacement.fetchAd(function(status, adData) {
+    //     console.log('Ad fetched : ', adData);
+    //     if(status && adData) { // If returned a valid campaign to display
+    //         var didDisplay = rightRailPlacement.displayAd('right-rail-ad-container');
+    //         if(!didDisplay) {
+    //             console.log('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
+    //         } else {
+    //             console.log('Right rail Ad Did display');
+    //             window.AnEdmodo.initAdUnit('right-rail', adData);
+    //         }
+    //     }
+    // });
   </script>
            
 </body>

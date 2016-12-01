@@ -1,0 +1,756 @@
+<html>
+<!-- If you need to update this file, you need to have ops invalidate the cloudfront cache for this file -->
+
+<head>
+    <link rel="stylesheet" type="text/css" href="https://assets.edmodo.com/e10.landing.css.all.82c97f189dca08bc.css">
+    <link rel="stylesheet" type="text/css" href="https://assets.edmodo.com/e10.core.css.teacher.fb9e0b84b47b7054.css">
+    <link rel="stylesheet" type="text/css" href="https://assets.edmodo.com/e10.e1.css.teacher.35e703dee31e115a.css">
+    <link rel="stylesheet" type="text/css" href="https://assets.edmodo.com/e10.e2.css.teacher.d776b748b605a9dd.css">
+    <link rel="stylesheet" type="text/css" href="https://assets.edmodo.com/e11.billygoat.css.all.97835efacd5d9b89.css">
+
+    <style type="text/css">
+    div.adsnative-labels {}
+    
+    div.adsnative-powered-by {
+        margin-right: 5px !important;
+        font-size: 11px;
+        color: #777;
+        float: right;
+        text-align: right;
+        margin-right: 0px;
+    }
+    
+    div.adsnative-powered-by a {
+        text-decoration: none;
+        color: #333;
+        font-size: 14px;
+        font-family: "BenchNine", sans-serif;
+    }
+    
+    div.adsnative-powered-by a:hover {
+        color: #cc0033;
+    }
+    
+    .adsnative-sponsored-label {
+        font-size: 12px;
+        color: #999;
+        margin-bottom: 5px;
+    }
+    
+    .adsnative-share-buttons {
+        float: left;
+        margin-left: 8px;
+        margin-bottom: 5px;
+    }
+    
+    .adsnative-share-button {
+        text-decoration: none;
+        display: block;
+        height: 24px;
+        float: left;
+        margin-right: 10px;
+        padding-left: 25px;
+        line-height: 21px;
+        font-size: 14px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    
+    .adsnative-fb-share {
+        background: url(https://static.adsnative.com/static/img/facebook.png) no-repeat;
+        color: #3a5899;
+    }
+    
+    .adsnative-tw-share {
+        background: url(https://static.adsnative.com/static/img/twitter.png) no-repeat;
+        color: #40aceb;
+    }
+    
+    .adsnative-cta-button {
+        display: block;
+        float: left;
+        width: 100%;
+        margin: 8px 0px auto;
+        border-radius: 0px;
+        background: -webkit-gradient( linear, left top, left bottom, color-stop(5%, #ededed), color-stop(100%, #dfdfdf));
+        border: 1px solid #DDD;
+        padding: 8px 0;
+        font-size: 14px;
+        font-family: Helvetica, Arial, sans-serif;
+        text-decoration: none;
+        text-align: center;
+        text-shadow: none;
+        color: #004276;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 1);
+    }
+    
+    div.adsnative-reset {
+        clear: both;
+    }
+    
+    [class^="adsnative-icon-"],
+    [class*=" adsnative-icon-"] {
+        display: none;
+    }
+    
+    .an-adunit {
+        background-color: white !important;
+        overflow: hidden;
+        height: auto;
+        clear: both;
+        cursor: pointer;
+        margin-bottom: 10px;
+        position: relative;
+        padding: 7px 7px 3px 7px !important;
+    }
+    
+    .anthumbnail-wrapper {
+        position: relative;
+        width: 220px;
+        height: 175px;
+        float: none;
+        margin: 0px;
+        clear: none;
+    }
+    
+    .an-thumbnail {
+        width: 100%;
+        height: 116px !important;
+        background-size: cover;
+        background-position: 50% center;
+        background-repeat: no-repeat;
+        background-color: rgb(238, 238, 238);
+        float: none;
+        margin: auto;
+        clear: none;
+    }
+    
+    .anthumbnail-wrapper {
+        width: 100% !important;
+        height: auto !important;
+    }
+    
+    .an-description {
+        color: #839096;
+        margin: 0;
+        padding: 5px 3px 0px 4px;
+        line-height: normal;
+        line-height: 17px;
+        height: 34px;
+        overflow: hidden;
+        font-size: 12px !important;
+    }
+    
+    .an-advertiser {
+        margin: 0;
+        padding: 5px 3px 5px 4px;
+        font-size: .8em;
+        "
+
+    }
+    
+    .an-title {
+        margin: 0;
+        padding: 5px 3px 0px 4px;
+        line-height: normal;
+    }
+    
+    .adsnative-cta-button {
+        display: none !important;
+    }
+    /* Floating Container Styling */
+    
+    .str-adunit {
+        cursor: pointer;
+        z-index: 100;
+    }
+    
+    #floating-ad-container {
+        width: 469.8px;
+        height: 384.262px;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        opacity: 0;
+        background: white;
+        z-index: -10;
+    }
+    
+    .floating-items .str-header,
+    .floating-items .str-embed-wrapper,
+    .floating-items .str-footer,
+    .floating-items.install,
+    .floating-items.video {
+        display: none !important;
+    }
+    
+    .floating-items.content-ad .str-header,
+    .floating-items.content-ad .str-embed-wrapper,
+    .floating-items.content-ad .str-footer {
+        display: block !important;
+    }
+    
+    .floating-items.content-ad.clicked {
+        top: 0px !important;
+    }
+    
+    .floating-items.right-rail #floating-ad-container {
+        width: 220px;
+        height: 225px;
+    }
+    
+    #floating-ad-container #content-container {
+        opacity: 0;
+    }
+    
+    .floating-items.animate #floating-ad-container {
+        -webkit-transition: all 0.5s cubic-bezier(0, 0, 0.8, 1);
+        -moz-transition: all 0.5s cubic-bezier(0, 0, 0.8, 1);
+        -ms-transition: all 0.5s cubic-bezier(0, 0, 0.8, 1);
+        transition: all 0.5s cubic-bezier(0, 0, 0.8, 1);
+    }
+    
+    .floating-items.clicked #floating-ad-container {
+        opacity: 1;
+        z-index: 999999999;
+        box-shadow: #000 0px 0px 30px 5px;
+        margin: 0 auto;
+        visibility: visible !important;
+    }
+    
+    .floating-items.lead-gen.clicked #floating-ad-container {
+        width: 565px;
+        height: 550px;
+        top: 10%;
+    }
+    
+    .floating-items.lead-gen.right-rail.clicked #floating-ad-container {
+        left: calc((100% - 565px) / 2) !important;
+    }
+    /* Content Ad only */
+    
+    .floating-items.content-ad.clicked #floating-ad-container {
+        height: 100% !important;
+        top: 0px !important;
+    }
+    
+    .floating-items.clicked .str-footer,
+    .floating-items.clicked .str-card-wrapper,
+    .floating-items.clicked .str-embed-wrapper {
+        opacity: 1 !important;
+    }
+    /* Content & Lead gen fill width 100% */
+    
+    @media screen and (max-width:480px) {
+        .floating-items.clicked #floating-ad-container {
+            width: 100%;
+            left: 0px !important;
+        }
+    }
+    /* Content ad fill 90% */
+    
+    @media screen and (min-width:481px) and (max-width:768px) {
+        .floating-items.content-ad.clicked #floating-ad-container {
+            width: 90%;
+        }
+        .floating-items.content-ad.clicked #floating-ad-container {
+            left: 5% !important;
+        }
+        .floating-items.lead-gen.clicked #floating-ad-container {
+            left: calc((100% - 565px) / 2) !important;
+            top: 10% !important;
+        }
+    }
+    /* Content ad fill 600px . LeadGen 565*/
+    
+    @media screen and (min-width:769px) {
+        .floating-items.content-ad.in-feed #floating-ad-container,
+        .floating-items.content-ad.right-rail.clicked #floating-ad-container {
+            width: 600px;
+        }
+        .floating-items.content-ad.right-rail #floating-ad-container {
+            width: 220px;
+        }
+        .floating-items.content-ad.clicked #floating-ad-container {
+            left: calc((100% - 600px) / 2) !important;
+        }
+        .floating-items.lead-gen.clicked #floating-ad-container {
+            left: calc((100% - 565px) / 2) !important;
+            top: 10% !important;
+        }
+    }
+    
+    #floating-ad-container #content-container.view {
+        opacity: 1;
+    }
+    
+    #floating-ad-container div {
+        margin: 0px;
+        padding: 0px;
+    }
+    
+    .str-clear {
+        clear: both;
+    }
+    
+    .floating-bg {
+        -webkit-transition: opacity 0.5s ease-out;
+        -moz-transition: opacity 0.5s ease-out;
+        -ms-transition: opacity 0.5s ease-out;
+        transition: opacity 0.5s ease-out;
+        opacity: 0;
+        background: rgba(0, 0, 0, 0.8);
+        top: 0;
+        left: 0;
+        z-index: 999999998;
+        cursor: default;
+        overflow: hidden;
+    }
+    
+    .floating-items.clicked .floating-bg {
+        -webkit-transition: all 1s ease-out;
+        -moz-transition: all 1s ease-out;
+        -ms-transition: all 1s ease-out;
+        transition: all 1s ease-out;
+        opacity: 1;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+    }
+    
+    #floating-ad-container #content-container {
+        border: 0px !important;
+    }
+    
+    #floating-ad-container .str-embed-wrapper,
+    #floating-ad-container .str-details-wrapper {
+        width: 100%;
+        opacity: 0;
+    }
+    
+    #floating-ad-container .str-embed-container {
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .floating-items.content-ad .str-embed-wrapper {
+        padding-bottom: 0px !important;
+        height: calc(100% - 120px) !important;
+    }
+    
+    #floating-ad-container iframe.str-embed-video {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+    }
+    
+    #floating-ad-container .str-sharing-container {
+        margin-bottom: 3px;
+        float: left;
+    }
+    
+    #floating-ad-container .str-sharing-icon {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 50%;
+    }
+    
+    #floating-ad-container a.str-facebook-share {
+        background-color: #3c5a98;
+    }
+    
+    #floating-ad-container a.str-twitter-share {
+        background-color: #00B0ED;
+    }
+    
+    #floating-ad-container a.str-email-share {
+        background-color: #0084C6;
+    }
+    
+    #floating-ad-container a.str-custom-share {
+        background-color: #37B99A;
+    }
+    
+    #floating-ad-container.str-overlay {
+        display: none;
+        position: absolute;
+        width: 100%;
+        background: #000;
+        font-family: Helvetica Neue, Helvetica, sans-serif;
+        opacity: .5;
+        z-index: 100;
+    }
+    
+    .str-card-open {
+        overflow: visible !important;
+    }
+    
+    .brand-logo {
+        width: 23px;
+        min-width: 23px;
+        max-width: 23px;
+        height: 23px;
+        min-height: 23px;
+        max-height: 23px;
+        position: relative;
+        top: -1px;
+        display: block;
+        margin-bottom: 0;
+        border: none;
+        margin-left: 0;
+        margin-right: 5px;
+        margin: 5px auto;
+    }
+    
+    #floating-ad-container .str-embed-container.str-article-content {
+        padding-bottom: 0;
+        height: auto;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .str-card-container {
+        background: white;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        font-family: Helvetica Neue, Helvetica, sans-serif;
+        box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.4);
+        cursor: default;
+        opacity: 0;
+        overflow: hidden;
+        outline: none !important;
+    }
+    
+    .str-card-container * {
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        font-family: Helvetica Neue, Helvetica, sans-serif;
+    }
+    
+    .str-card-wrapper {
+        opacity: 0;
+    }
+    
+    .str-no-scroll {
+        overflow: hidden !important;
+        height: auto !important;
+    }
+    
+    .str-header {
+        position: relative;
+        top: 0;
+        left: 0;
+        height: 60px;
+        width: 100%;
+        text-align: center;
+        @include transition(all 500ms ease);
+    }
+    
+    #floating-ad-container .str-header .str-advertiser {
+        display: inline-block;
+        margin: 2px 0 0;
+        color: #3784d3;
+        line-height: 14px;
+        font-size: 13px;
+        font-weight: normal;
+        max-width: calc(100% - 70px);
+    }
+    
+    .str-header .ad-sub {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 400;
+        font-size: 12px;
+        color: #ababab;
+    }
+    
+    #floating-ad-container .header-controls {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        padding: 10px 20px;
+        background: #ffffff;
+        background: -moz-linear-gradient(top, #ffffff 0%, #eeeeee 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #eeeeee));
+        background: -webkit-linear-gradient(top, #ffffff 0%, #eeeeee 100%);
+        background: -o-linear-gradient(top, #ffffff 0%, #eeeeee 100%);
+        background: -ms-linear-gradient(top, #ffffff 0%, #eeeeee 100%);
+        background: linear-gradient(to bottom, #ffffff 0%, #eeeeee 100%);
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eeeeee', GradientType=0);
+        border-bottom: 1px solid #e0e0e0;
+        color: #777;
+        padding: 10px 15px;
+        z-index: 100;
+    }
+    
+    #floating-ad-container .str-footer {
+        background: white;
+        background: -moz-linear-gradient(top, #ffffff 0%, #eeeeee 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #eeeeee));
+        background: -webkit-linear-gradient(top, #ffffff 0%, #eeeeee 100%);
+        background: -o-linear-gradient(top, #ffffff 0%, #eeeeee 100%);
+        background: -ms-linear-gradient(top, #ffffff 0%, #eeeeee 100%);
+        background: linear-gradient(to bottom, #ffffff 0%, #eeeeee 100%);
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eeeeee', GradientType=0);
+        padding: 15px;
+        box-shadow: 0 -1px 0 0 #e0e0e0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        text-align: center;
+        opacity: 0;
+    }
+    
+    .str-ico-close {
+        background-repeat: no-repeat;
+        background-position: 50%;
+        display: inline-block;
+        cursor: pointer;
+        width: 24px;
+        height: 40px;
+    }
+    
+    .str-ico-close {
+        background-image: url('//native.sharethrough.com/assets/card-icon-sprite.png');
+        background-size: 185px 18px;
+        background-position: 6px 11px;
+        float: left;
+    }
+    
+    a .str-sharing-icon {
+        float: left;
+        margin: 3px 20px 0 0;
+        height: 24px;
+        width: 24px;
+    }
+    
+    #floating-ad-container a.str-facebook-share .str-sharing-icon {
+        background-image: url('//native.sharethrough.com/assets/card-icon-sprite.png');
+        background-size: 257px 24px;
+        background-position: -103px 0px;
+    }
+    
+    #floating-ad-container a.str-twitter-share .str-sharing-icon {
+        background-image: url('//native.sharethrough.com/assets/card-icon-sprite.png');
+        background-size: 257px 24px;
+        background-position: -129px 0px;
+    }
+    
+    #floating-ad-container a.str-email-share .str-sharing-icon {
+        background-image: url('//native.sharethrough.com/assets/card-icon-sprite.png');
+        background-size: 257px 24px;
+        background-position: -77px 0px;
+    }
+    
+    #floating-ad-container a.str-custom-share .str-sharing-icon {
+        background-color: #37B99A;
+    }
+    
+    #floating-ad-container.str-overlay a.str-facebook-share .str-sharing-icon {
+        background-position: -205px 0px;
+        margin-left: 15px;
+        margin-top: 5px;
+    }
+    
+    #floating-ad-container.str-overlay a.str-email-share .str-sharing-icon {
+        background-position: -179px 0px;
+        margin-top: 5px;
+    }
+    
+    #floating-ad-container.str-overlay a.str-twitter-share .str-sharing-icon {
+        background-position: -231px 0px;
+        margin-top: 5px;
+    }
+    
+    #floating-ad-container a.str-custom-share {
+        float: right;
+        height: 40px;
+        margin-top: -5px;
+        padding: 0 15px;
+        font-size: 12px;
+        line-height: 40px;
+        color: #fff;
+        border-radius: 3px;
+    }
+    
+    #floating-ad-container .str-custom-container {
+        float: right;
+    }
+    
+    #floating-ad-container .str-card-wrapper.video .str-embed-wrapper,
+    #floating-ad-container .str-card-wrapper.hosted-video .str-embed-wrapper,
+    #floating-ad-container .str-card-wrapper.autoplay .str-embed-wrapper {
+        background-color: black;
+        opacity: 0;
+    }
+    /* User Feedback */
+    
+    .right-rail .user_fb {
+        position: relative;
+        display: inline-block;
+        text-align: left;
+        width: 200px;
+        float: right;
+        right: -5px !important;
+        top: -12px !important;
+    }
+    
+    .user_fb__list {
+        margin: 5px 0 0 0;
+        padding: 6px 0;
+        list-style: none;
+        position: absolute;
+        top: 125%;
+        left: 0;
+        width: 100%;
+        opacity: 0;
+        visibility: hidden;
+        border-radius: 3px;
+        background: #fff;
+        -webkit-transition: opacity .25s linear, top .25s linear;
+        transition: opacity .25s linear, top .25s linear;
+        border: 1px solid #839096;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    
+    .user_fb.is-open .user_fb__list {
+        opacity: 1;
+        visibility: visible;
+        top: 100%;
+    }
+    
+    .user_fb__item {
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 20px;
+        cursor: pointer;
+        color: #434A54;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-transition: background-color .25s linear;
+        transition: background-color .25s linear;
+        text-decoration: none;
+    }
+    
+    .user_fb__item a {
+        color: #434A54;
+    }
+    
+    .user_fb__item:hover {
+        background-color: #2077cf;
+    }
+    
+    .user_fb__item:hover a,
+    a .user_fb__item:hover,
+    .user_fb__item:hover {
+        color: #E6E9ED;
+    }
+    
+    .c-button {
+        display: block;
+        height: 15px;
+        width: 10px;
+        background: url(//assets.edmodo.com/images_v2/sprites/sprite-site-v2.png) 1px -1340px no-repeat;
+        float: right;
+    }
+    
+    .c-button:hover,
+    .c-button:focus {
+        outline: none;
+        text-decoration: none;
+    }
+    
+    .c-button:not(:disabled) {
+        cursor: pointer;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="right-column">
+        <div id="ad-container"></div>
+    </div>
+    <script type="text/javascript">
+        var _AdsNativeOpts = {
+            blockAdLoad: true
+        };
+    </script>
+    <script type="text/javascript" src="https://static.adsnative.com/static/js/render.v1.js"></script>
+    <script type="text/javascript" src="edmodo.js"></script>
+
+    <script>
+    var setupPipe = function(e) {
+        // on hide ad click:
+        if (false) {
+            e.source.postMessage('ads-native:hide', e.origin);
+        }
+
+        // Ad Blocker
+        if (typeof AdsNative == 'undefined') {
+            e.source.postMessage('ads-native:block', e.origin);
+        }
+    }
+
+    var handleMessage = function(e) {
+        // if (e.data == "pipe") {
+            setupPipe(e);
+            initialize(e);
+        // }
+    };
+
+    // window.addEventListener('message', handleMessage, false);
+
+
+    var initialize = function(e) {
+        if (typeof AdsNative == 'undefined') {
+            return;
+        }
+
+        var keyValues = JSON.parse(decodeURIComponent(getParameterByName('key_values')));
+
+        var placement_id = getParameterByName('placement_id');
+        var placement = new AdsNative(placement_id, [], keyValues);
+        var position = getParameterByName('position');
+        placement.fetchAd(function(status, adData) {
+            if (status && adData) { // If returned a valid campaign to display
+                var didDisplay = placement.displayAd('ad-container');
+                if (!didDisplay) {
+                    console.log('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
+                } else {
+                    AnEdmodo.initAdUnit(position, adData);
+                }
+            } else {
+                e.source.postMessage('ads-native:no-ad', e.origin)
+            }
+        });
+    }
+
+    function getParameterByName(name, url) {
+        if (!url) {
+            url = window.location.href;
+        }
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
+    handleMessage();
+    </script>
+    
+
+    </body>
+
+</html>

@@ -1,46 +1,101 @@
 (function( AnEdmodo ) {
     // position : in-feed / right-rail
     // floatType : lead-gen / content-ad
-    var version = 0.9;
+    var integration_version = 1.01,
+        parentDomain = document.referrer.split('/'),
+        debug = false;
+
+    if(parentDomain.length > 2) {
+        parentDomain = parentDomain[0] + '//' + parentDomain[2];
+    } else {
+        parentDomain = null;
+    }
 
     // Public Methods
     AnEdmodo.initAdUnit = function(adPosition, adData) {
+        edLog('Init '+ adPosition +' ad unit');
+
         var adUnitConfig = {};
         adUnitConfig.position = adPosition;
         adUnitConfig.adData = adData;
-        if(adData.type === "story" && adData.customFields && adData.customFields.contentUrl) {
-            adUnitConfig.floatType = 'content-ad';
-            adUnitConfig.contentUrl = adData.customFields.contentUrl;
+        if(adData.type === "story") {
+            if(adData.customFields && adData.customFields.contentUrl) {
+                adUnitConfig.floatType = 'content-ad';
+                adUnitConfig.contentUrl = adData.customFields.contentUrl;
+            } else {
+                adUnitConfig.floatType = 'click-out';    
+            }
         } else if(adData.type === "lead_gen" && adData.leadGenUrl) {
             adUnitConfig.floatType = 'lead-gen';
             adUnitConfig.leadGenUrl = adData.leadGenUrl;
         } else if(adData.type === "video") {
-            adUnitConfig.floatType = 'video';
+        adUnitConfig.floatType = 'video';
         } else if(adData.type === "app_install") {
-            adUnitConfig.floatType = 'click-out'
+            adUnitConfig.floatType = 'click-out';
         }
+
+        edLog('Loading '+adUnitConfig.floatType+' @ '+adUnitConfig.position+' position');
         loadAdUnit(adUnitConfig);
     };
 
     //Private Methods
-
     function loadAdUnit(adUnitConfig) {
-        console.log('adConfig', adUnitConfig);
+        edLog('AdConfig object : ', adUnitConfig);
+
         if(!adUnitConfig.position || !adUnitConfig.floatType) return;
 
         var position = adUnitConfig.position,
             floatType = adUnitConfig.floatType,
-            columnContainer = (position === 'in-feed') ? document.getElementsByClassName('main-column')[0] : document.getElementsByClassName('right-column')[0],
-            floatingItems = columnContainer.querySelector('.floating-items'),
-            adUnit = columnContainer.querySelector('.str-adunit');
+            columnContainer = (position === 'in-feed') ? document.getElementsByClassName('main-column') : document.getElementsByClassName('right-column');
+
+        if(!columnContainer) {
+            edLog('Proper column container not present in DOM');
+            return;
+        }
+        
+        floatingItems = columnContainer[0].querySelector('.floating-items'),
+        adUnit = columnContainer[0].querySelector('.str-adunit');
 
         addClass(floatingItems, position);
         addClass(floatingItems, floatType);
         addClass(adUnit, position);
         addClass(adUnit, floatType);
+        
+        // POST : Clone the floating items + styling
+        tempDOMContainer = document.createElement('div');
+        tempDOMContainer.appendChild(floatingItems);
+        floatingItemsString = tempDOMContainer.innerHTML;
+        tempDOMContainer.innerHTML = null;
+        styleNode = document.head.lastChild.cloneNode(true)
+        tempDOMContainer.appendChild(styleNode)
+        floatingItemsString += tempDOMContainer.innerHTML;
+
+        // Send the DOM string to parent page
+        if(adUnitConfig.floatType === 'content-ad' || adUnitConfig.floatType === 'lead-gen') {
+            if(top && top.window && top.window.postMessage) {
+                if(floatType === 'content-ad') {
+                    var adTitle = adUnit.querySelector('.an-title');
+                    linkElem = adTitle.querySelector('.adsnative-icon-external-link');
+                    if(linkElem) adTitle.removeChild(linkElem);
+                    adUnitConfig.title = adTitle.innerHTML.trim();
+                    adUnitConfig.summary = adUnit.querySelector('.an-description').innerHTML.trim();
+                }
+
+                var floatingDOMPayload = {
+                    action: "ads-native:init-floating-ad",
+                    adElement: floatingItemsString,
+                    adUnitConfig: adUnitConfig
+                }
+
+
+                edLog('sending postmessage with floating DOM payload', floatingDOMPayload);
+                top.window.postMessage(floatingDOMPayload, parentDomain);
+            }
+        }
 
         // User feedback interaction
         adUnit.querySelector('.c-button').addEventListener("click", function(e) {
+            edLog('User clicked dropdown icon @ ', position);
             e.stopPropagation();
             var dropdownContainer = e.currentTarget.parentNode;
             if(hasClass(dropdownContainer, 'is-open'))
@@ -49,26 +104,43 @@
                 addClass(dropdownContainer, 'is-open');
         });
 
-        adUnit.querySelector('.user_fb__item.hide_ad').addEventListener("click", function(e) {
-            e.stopPropagation();
-            adUnit.style.display = "none";
+        var hideAdOption = adUnit.querySelector('.user_fb__item.hide_ad');
+        if(hideAdOption) {
+            hideAdOption.addEventListener("click", function(e) {
+                e.stopPropagation();
+                edLog('User clicked Hide Ad option');
+                adUnit.style.display = "none";
 
-            // Track custom action
-            var adData = adUnitConfig.adData;
-            if(adData && adData.actionTrackingUrls && adData.actionTrackingUrls.hide_ad) {
-                console.log('Hiding Ad!');
-                var pxl = document.createElement('img');
-                pxl.src = adData.actionTrackingUrls.hide_ad[0];
-                pxl.width = pxl.height = 0;
-                document.body.appendChild(pxl);
-            }
-        });
+                // POST : Notify edmodo about hide ad
+                if(top && top.window && top.window.postMessage) {
+                    var hideAdPayload = {
+                        action: "ads-native:hide",
+                        adPosition: adUnitConfig.position
+                    }
+                    edLog('sending postmessage with hide ad payload', hideAdPayload);
+                    top.window.postMessage(hideAdPayload, parentDomain);
+                }
+
+                // Track custom action
+                var adData = adUnitConfig.adData;
+                if(adData && adData.actionTrackingUrls && adData.actionTrackingUrls.hide_ad) {
+                    var pxl = document.createElement('img');
+                    pxl.src = adData.actionTrackingUrls.hide_ad[0];
+                    pxl.width = pxl.height = 0;
+                    document.body.appendChild(pxl);
+                }
+            });
+        }
 
         // Clicking on "Why am I seeing this" should redirect to edmodo custom page.
-        adUnit.querySelector('.user_fb__item.why_ad').addEventListener("click", function(e) {
-            e.stopPropagation();
-            hideUserFeedback();
-        });
+        var whyAdOption = adUnit.querySelector('.user_fb__item.why_ad');
+        if(whyAdOption) {
+            whyAdOption.addEventListener("click", function(e) {
+                edLog('User clicked "Why am I seeing this ?" option');
+                e.stopPropagation();
+                hideUserFeedback();
+            });
+        }
         
         document.addEventListener("click", function(e) {
             var dropdownContainer = e.currentTarget.parentNode;
@@ -80,9 +152,8 @@
         // CTA Text
         addCTAText(position, floatType);
 
-        if(floatingItems) parent = floatingItems.parentNode;
         // Clicking anywhere on click-out should be handled by renderjs by default
-        if (!parent || floatType === 'click-out') return;
+        if (floatType === 'click-out') return;
 
         // Clicking on video ad should be conditionally handled by renderjs/edmodojs
         if(floatType === 'video') { 
@@ -99,13 +170,6 @@
             return; 
         }
 
-        // Programmatically move floating container to end of body to takeover page
-        parent.removeChild(floatingItems);
-        document.body.appendChild(floatingItems);
-
-        // Add iframe based on floatType
-        addCustomCreativeContent(adUnitConfig);
-
         adUnit.onclick = function(e) {
             // Brand Name
             if(hasClass(e.target, 'messageinfo1')) return;
@@ -116,47 +180,20 @@
             userClicked = true;
 
             // Only for Content and Leadgen Ads
-            var position = (hasClass(e.currentTarget, 'in-feed')) ? 'in-feed' : 'right-rail',
-                floatingItems = document.querySelector('.floating-items.' + position),
-                adUnit = document.querySelector('.str-adunit.' + position);
+            var position = (hasClass(e.currentTarget, 'in-feed')) ? 'in-feed' : 'right-rail';
 
-            if(hasClass(floatingItems, 'animate')) removeClass(floatingItems, 'animate');
-            overlapFloatingContainer(adUnit, position, showFloatingContainer);
+            edLog('User clicked on ad @ ', position);
+
+            // POST : Align floating container with infeed ad
+            if(top && top.window && top.window.postMessage) {
+                var clickedAdPayload = {
+                    action: "ads-native:user-clicked-floating-ad",
+                    adPosition: position
+                }
+                edLog('sending postmessage with user clicked payload', clickedAdPayload);
+                top.window.postMessage(clickedAdPayload, parentDomain);
+            }
         }
-
-        var closeButton = floatingItems.querySelector('.str-ico-close'),
-            background = floatingItems.querySelector('.floating-bg');
-        if(closeButton) {
-            closeButton.addEventListener("click", function(e) {
-                adClosed(e, position);
-            });
-        }
-        if(background) {
-            background.addEventListener("click", function(e) {
-                adClosed(e, position);
-            });
-        }
-    }
-
-    function floatTransitionComplete(position) {
-        var floatingUnit = document.querySelector('.floating-items.' + position + ' #floating-ad-container');
-        if(!hasClass(floatingUnit.querySelector('#content-container'), 'view')) {
-            addClass(floatingUnit.querySelector('#content-container'), 'view');
-        }
-        var transtionEvent = whichTransitionEvent();
-        transtionEvent && floatingUnit.removeEventListener(transtionEvent, floatTransitionComplete, false);
-    }
-
-    // TD
-    function adClosed(e, position) {
-        e.stopPropagation();
-        var position = (hasClass(e.currentTarget.parentNode, 'in-feed')) ? 'in-feed' : 'right-rail',
-            floatingItems = document.querySelector('.floating-items.' + position),
-            floatingUnit = floatingItems.querySelector('#floating-ad-container');
-
-        overlapFloatingContainer(document.querySelector('.str-adunit.' + position), position);
-        removeClass(floatingUnit.querySelector('#content-container'), 'view');
-        removeClass(floatingItems, 'clicked');
     }
 
     function hideUserFeedback() {
@@ -166,58 +203,21 @@
         }
     }
 
-    // TD
-    function overlapFloatingContainer(adUnit, position, callback) {
-        var floatingItems = document.querySelector('.floating-items.' + position),
-            floatingUnit = floatingItems.querySelector('#floating-ad-container');
-
-        floatingUnit.style.top = adUnit.getBoundingClientRect().top;
-        floatingUnit.style.left = adUnit.getBoundingClientRect().left;
-
-        // Put positioning back in callstack
-        if(callback) {
-            setTimeout(function() {
-                callback(position);
-            }, 1);
-        }
-    }
-
-    function showFloatingContainer(position) {
-        if(!userClicked) return;
-        userClicked = false;
-
-        var floatingItems = document.querySelector('.floating-items.' + position);
-
-        if(hasClass(floatingItems, 'install')) return;
-
-        // Add animation to floating container
-        if(!hasClass(floatingItems, 'animate')) {
-            addClass(floatingItems, 'animate');
-        }
-
-        // Increase height for Content Ad
-        if(hasClass(floatingItems, 'content-ad')) floatingItems.style.height = $('.str-adunit').height() + 'px';
-        if(hasClass(floatingItems, 'clicked')) return;
-
-        // Animate floating container and add listener
-        var transtionEvent = whichTransitionEvent();
-        transtionEvent && floatingItems.addEventListener(transtionEvent, function() {
-            floatTransitionComplete(position)
-        }, false);
-
-        addClass(floatingItems, 'clicked');
-
-        // Start Video Play
-        iframe = document.getElementsByClassName('adsnative-video-iframe');
-        if(iframe.length) iframe[0].contentWindow.postMessage('adsnative.mrc50.view:in', 'http://api.adsnative.com');
-    }
-
     function addCTAText(position, floatType) {
-        var ctaButton = document.querySelector('.' + position + ' .cta-button-container .cta-button');
+        var ctaButton = document.querySelector('.' + position + ' .cta-button-container .cta-button'),
+            ctaHiddenText = document.querySelector('.' + position + ' .cta-button-container .hidden-cta-text a');
 
         if(!ctaButton) return;
 
-        if(floatType === 'content-ad') {
+        if(ctaHiddenText && ctaHiddenText.innerHTML) {
+            ctaHiddenText = ctaHiddenText.innerHTML;
+        }
+
+        // Use campaign forced CTA text if avialable (other than "Install Now")
+        // "Install Now" is default value returned by AN if no value
+        if(ctaHiddenText !== 'Install Now') {
+            ctaButton.innerHTML = ctaHiddenText;
+        } else if(floatType === 'content-ad') {
             ctaButton.innerHTML = 'Read More';
         } else if(floatType === 'lead-gen') {
             ctaButton.innerHTML = 'Sign Up';
@@ -225,60 +225,11 @@
             ctaButton.innerHTML = 'Use App';
         } else if(floatType === 'video') {
             ctaButton.innerHTML = 'Learn More';
+        } else if(ctaHiddenText === 'Install_Now') {
+            ctaButton.innerHTML = 'Install Now';
         }
-    }
 
-    function addCustomCreativeContent(adUnitConfig) {
-        if(adUnitConfig.floatType != 'content-ad' && adUnitConfig.floatType != 'lead-gen') return;
-
-        var ifrm = document.createElement("iframe"),
-            floatingUnit = document.querySelector('.' + adUnitConfig.position + ' #floating-ad-container');
-
-        ifrm.setAttribute("src", "");
-        ifrm.id = "content-container";
-        ifrm.style.width = "100%";
-        ifrm.style.height = "100%";
-
-        if(adUnitConfig.floatType === 'content-ad' && adUnitConfig.contentUrl) {
-            // Example : "http://www.dogonews.com/2016/10/5/whales-mourn-their-loved-ones-just-like-you-and-me"
-            ifrm.src = adUnitConfig.contentUrl;
-            floatingUnit.querySelector('.str-embed-wrapper').appendChild(ifrm);
-
-            updateShareURLs(adUnitConfig.position);
-        } else if(adUnitConfig.floatType === 'lead-gen' && adUnitConfig.leadGenUrl) {
-            // Example : "http://docs.adsnative.com/preview/edmodo/lead-gen_iframe.html"
-            ifrm.src = adUnitConfig.leadGenUrl;
-            floatingUnit.appendChild(ifrm);
-        }
-    }
-
-    function updateShareURLs(position) {
-        // FB : http://www.facebook.com/sharer.php?u={{post_url(a=false)}}
-        // TW : https://twitter.com/intent/tweet?text={{creative_title(a=false)}};url={{post_url(a=false)}}
-        // EM : mailto:?subject={{creative_title(a=false)}};body={{creative_summary(a=false)}}
-        var floatingUnit = document.querySelector('.floating-items.' + position),
-            adUnit = document.querySelector('.str-adunit.' + position);
-        if(!hasClass(floatingUnit, 'content-ad')) return;
-        if(!hasClass(floatingUnit, 'in-feed')) return;
-
-        var fb = floatingUnit.querySelector('.str-footer .str-facebook-share'),
-            tw = floatingUnit.querySelector('.str-footer .str-twitter-share'),
-            em = floatingUnit.querySelector('.str-footer .str-email-share');
-
-        // Get values
-        var title, summary, clickUrl,
-            linkElem = adUnit.querySelector('.an-title .adsnative-icon-external-link');
-        if(linkElem) adUnit.querySelector('.an-title').removeChild(linkElem);
-
-        title = adUnit.querySelector('.an-title').innerHTML;
-        summary = adUnit.querySelector('.an-description').innerHTML;
-        clickUrl = floatingUnit.querySelector('.str-footer .adsnative-cta-button').href;
-        clickUrl = getParameterByName('url', clickUrl);
-
-        // Set Values
-        fb.href = 'http://www.facebook.com/sharer.php?u=' + encodeURI(clickUrl);
-        tw.href = 'https://twitter.com/intent/tweet?url=' + encodeURI(clickUrl);
-        em.href = 'mailto:?subject=' + encodeURI(title) + '&body=' + encodeURI(summary) + ". Read More : " + clickUrl;
+        edLog('Added CTA text "'+ ctaButton.innerHTML+ '"');
     }
 
     function hasClass(el, className) {
@@ -315,20 +266,17 @@
         return decodeURIComponent(results[2].replace(/\+/g, " "));
     }
 
-    function whichTransitionEvent() {
-        var t;
-        var el = document.createElement('fakeelement');
-        var transitions = {
-          'transition':'transitionend',
-          'OTransition':'oTransitionEnd',
-          'MozTransition':'transitionend',
-          'WebkitTransition':'webkitTransitionEnd'
-        }
+    function edLog(msg, obj) {
+        if(typeof obj === 'undefined') obj = '';
 
-        for(t in transitions){
-            if( el.style[t] !== undefined ){
-                return transitions[t];
-            }
+        if(console && console.log && debug) {
+            console.log('Edmodo AN JS : '+ msg, obj);
         }
     }
+
+    if(getParameterByName('edmodo_preview', document.referrer)) {
+        debug = true;
+        edLog('Loaded an-edmodo.js version : ', integration_version);
+    }
+
 }( window.AnEdmodo = window.AnEdmodo || {} ));
