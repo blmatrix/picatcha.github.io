@@ -1676,68 +1676,16 @@ NM.init({
 		<div id="stickyDFP">
 			<div class="vastAd">
 
-				<div id="nmx_video_ad_container">
-    				<!-- Begin ADSNATIVE Code -->
-					<script>
-				        var IVA_CheckViewabilityInterval,
-				        	visibleOnce = false,  //only send Play event once.
-				            hiddenOnce = true;
-
-				        function videoAdLoaded(adContainerID) {
-				        	window.iframeReadyTimer = setInterval(function(){
-				                if(document.querySelector("#" + adContainerID + " .adsnative-video-iframe")) {
-				                	console.log('HERE YES');
-				                    clearInterval(window.iframeReadyTimer);
-			                        IVA_CheckViewabilityInterval = setInterval(function () {
-			                            _checkIVAViewability(adContainerID);
-			                            console.log("IVA:: Interval of 1 second. Sending checkViewability.");
-			                        }, 500);
-				                }
-				            }, 500);
-				        }
-
-				        function isElementInViewport(el) {
-				            var rect = el.getBoundingClientRect(),
-				            	area = rect.height * rect.width,
-				            	inview_height = Math.min(rect.height, rect.bottom, (window.innerHeight || document.documentElement.clientHeight) - rect.top),
-				            	inview_width = Math.min(rect.width, rect.right, (window.innerWidth || document.documentElement.clientWidth) - rect.left),
-				            	inview_area = inview_height * inview_width;
-
-				            return ((inview_area / area) >= 0.5);
-				        };
-
-				        function _checkIVAViewability(adContainerID) {
-				            var videoIfrm = document.querySelector("#" + adContainerID + " .adsnative-video-iframe");
-				            if (videoIfrm && isElementInViewport(videoIfrm)) {
-				                if (visibleOnce == false) {
-				                	console.log('In view');
-				                	console.log(videoIfrm.contentWindow);
-				                    videoIfrm.contentWindow.postMessage('adsnative.mrc50.view:in', "http://api.adsnative.com");
-				                    visibleOnce = true;
-				                    hiddenOnce = false;
-				                    clearInterval(IVA_CheckViewabilityInterval);
-				                }
-				            } else {
-				                if(hiddenOnce == false) {
-				                	console.log('Out of view');
-				                	videoIfrm.contentWindow.postMessage('adsnative.mrc50.view:out', "http://api.adsnative.com");
-				                    visibleOnce = false;
-				                    hiddenOnce = true;
-				                }
-				            }
-				        }
-    				</script>
-    				<div id="tuEaUpzOS52zlevn2pzMttW6fc1v7BXgDFSmaG8Y"></div>
-					<script>
-					    var _AdsNativeOpts = {
-					    	apiKey: "tuEaUpzOS52zlevn2pzMttW6fc1v7BXgDFSmaG8Y",
-					    	userCallbackOnAdLoad: function(status) {
-					    		videoAdLoaded("tuEaUpzOS52zlevn2pzMttW6fc1v7BXgDFSmaG8Y");
-					    	},
-					    	autoPosition: true
-					    }
-					</script>
-					<script type="text/javascript" src="//static.adsnative.com/static/js/render.v1.js"></script>
+				<div id="nmx_video_ad_container">    				
+    				<div id="tuEaUpzOS52zlevn2pzMttW6fc1v7BXgDFSmaG8Y">
+	    				<!-- Start ADSNATIVE Code -->
+						<script>
+						    var _AdsNativeOpts = {
+						    	apiKey: "tuEaUpzOS52zlevn2pzMttW6fc1v7BXgDFSmaG8Y"
+						    }
+						</script>
+						<script type="text/javascript" src="//static.adsnative.com/static/js/render.v1.js"></script>
+					</div>
 					<!-- End ADSNATIVE Code -->
 				</div>
 
