@@ -12,11 +12,12 @@
     _nm.LEGACY_INTEGRATION = 1;
     _nm.OLD_INTEGRATION = 2;
     _nm.NEW_INTEGRATION = 3;
+    _nm.BB_INTEGRATION = 4;
     _nm.AdContainerPrefix = 'NmWg';
     _nm.widgetAlreadyExists = false;
     _nm.exitWidgetShownOnce = false;
     _nm.queueEnded = false;
-    _nm.version = 1.96;
+    _nm.version = 2.0;
     _nm.instreamTemplates = ['NM10', 'NM11', 'NM12'];
     _nm.widgets = {
         currentIndex: 0,
@@ -161,10 +162,11 @@
     _nm.debug = false;
 
     root.NM = _nm;
+    root.BPrime = _nm;
 
     _AdRenderOpts = {};
 
-    _nm.init = function(adConfig) {
+    _nm.init = _nm.render = function(adConfig) {
         _nm.log('INIT request received from publisher page with config : ', adConfig);
         // Save Widget config object for serial processing
         _nm.widgets.adConfigs.push(adConfig);
@@ -193,6 +195,8 @@
 
         var widgetId, clientId, template, articleSelector, integration = null;
 
+        if(adConfig.placementId)
+            widgetId = adConfig.placementId;
         if(adConfig.WidgetID)
             widgetId = adConfig.WidgetID;
         else if(adConfig.widgetId)
@@ -224,7 +228,10 @@
         }
 
         // Disable widget DIV ID prefix for new integrations
-        if(template) {
+        if(adConfig.placementId) {
+            integration = _nm.BB_INTEGRATION;
+            _nm.log('Boomer Prime Placement Integration');
+        } else if(template) {
             integration = _nm.NEW_INTEGRATION;
             _nm.log('New Direct AN ID publisher Integration');
         } else if(adConfig.ClientID) {
@@ -242,6 +249,9 @@
             if (_nm.ArticleSelector) {
                 _nm.insertInArticleWidget(widgetId, template, integration);
             }
+        } else if(integration === _nm.BB_INTEGRATION) {
+            _nm.log('Rendering Boomer Prime Placement : ', widgetId);
+            _nm.insertBoomerPrimePlacement(widgetId);
         } else {
             _nm.log('Rendering Standard widget : '+ widgetId);
             _nm.insertStandardWidget(widgetId, template, integration);
@@ -501,7 +511,6 @@
                     widgetId: _nm.inArticleWidgets.widgetId+'',
                     keyValues: {widget_type: _nm.getWidgetType(_nm.inArticleWidgets.template)},
                     nativeAdElementId: _nm.inArticleWidgets.placementIds[currentIndex],
-                    categories: ['IAB1'],
                     userCallbackOnAdLoad: function(status) {
                         if(_nm.inArticleWidgets.currentIndex === 1 || _nm.inArticleWidgets.template === 'NM11') {
                             _nm.log('Migrated Instream Widget loaded successfully');
@@ -546,7 +555,7 @@
             adContainerId = 'nmWidgetContainer';
         } else if(integration === _nm.OLD_INTEGRATION) {
             adContainerId = _nm.AdContainerPrefix + widgetId;
-        } else if(integration === _nm.NEW_INTEGRATION) {
+        } else if(integration === _nm.NEW_INTEGRATION || integration === _nm.BB_INTEGRATION) {
             adContainerId = widgetId;
         }
 
@@ -582,7 +591,6 @@
                 widgetId: widgetId+'',
                 keyValues: {widget_type: _nm.getWidgetType(adData.template)},
                 cssPath: '#' + adContainerId + ':append',
-                categories: ['IAB1'],
                 userCallbackOnAdLoad: function(status) {
                     _nm.log('Migrated Widget loaded successfully');
                     _nm.loadNextWidget(true);
@@ -641,7 +649,6 @@
                             widgetId: widgetId+'',
                             keyValues: {widget_type: _nm.getWidgetType(adData.template)},
                             cssPath: '#' + adContainerId + ':append',
-                            categories: ['IAB1'],
                             userCallbackOnAdLoad: function(status) {
                                 _nm.log('Exit Widget loaded successfully');
                                 _nm.addExitWidgetRemoveHandler();
@@ -692,6 +699,26 @@
                 document.querySelector('#exitContainer').style.display = 'none';
             }
         };
+    };
+
+    _nm.insertBoomerPrimePlacement = function(placementId) {
+        var adContainer = document.getElementById(placementId);
+        if(!adContainer) {
+            _nm.log('Boomer Prime Container DIV with ID ' + placementId +' not found on the page');
+            _nm.loadNextWidget(true);
+            return null;
+        }
+
+        _AdRenderOpts = {
+                apiKey: placementId,
+                cssPath: '#' + placementId + ':append',
+                userCallbackOnAdLoad: function(status) {
+                    _nm.log('Boomer Prime placement loaded successfully');
+                    _nm.loadNextWidget(true);
+                }
+            };
+
+        _nm.insertRenderJs();
     };
 
     // Footer widget
@@ -841,7 +868,12 @@
 
             template = 'NM05';
         } else if(template === 'NM06' || migrationWidgets.sidebar2Columns.indexOf(widgetId) >= 0) { // Sidebar - 2 Columns
-            numAds = 10;
+            if(top == self) {
+                numAds = 10;
+            } else {
+                // iframe
+                numAds = 8;
+            }
             template = 'NM06';
         } else if(template === 'NM07' || migrationWidgets.sidebarText.indexOf(widgetId) >= 0) { // Sidebar Text
             numAds = 10;
