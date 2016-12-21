@@ -603,8 +603,21 @@ window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"7f
 <!-- Begin ADSNATIVE Code -->
 <script type="text/javascript">
   var _AdsNativeOpts = {
-    apiKey: '_czRl6YhIyT4pG7w0XA308n7UQU6eFWWFfARUYXT',
-    autoPosition: true,
+    //apiKey: '_czRl6YhIyT4pG7w0XA308n7UQU6eFWWFfARUYXT',
+    //autoPosition: true,
+
+    adUnits: [
+                    {
+                        apiKey: '_czRl6YhIyT4pG7w0XA308n7UQU6eFWWFfARUYXT',
+                        cssPath: 'div.block-inner:eq(5) > div.item-list:eq(0) > ul.most-popular_list:eq(0) > li:eq(0):after'
+                    },
+                    {
+                        apiKey: 't2KUYKArHBBqpR4gxa9qKLTdED-IQLLIQCXUEbDz',
+                        cssPath: '#main-content:after'
+                    }
+                ]
+
+
   };
 </script>
 <script type="text/javascript" src="//static.adsnative.com/static/js/render.v1.js"></script>
