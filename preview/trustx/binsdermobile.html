@@ -1,0 +1,1034 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Business Insider</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" /><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"UQ8EUVRACQAFVVdbAQk="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o||e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(t,e,n){function r(t){try{c.console&&console.log(t)}catch(e){}}var o,i=t("ee"),a=t(15),c={};try{o=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(c.console=!0,o.indexOf("dev")!==-1&&(c.dev=!0),o.indexOf("nr_dev")!==-1&&(c.nrDev=!0))}catch(s){}c.nrDev&&i.on("internal-error",function(t){r(t.stack)}),c.dev&&i.on("fn-err",function(t,e,n){r(n.stack)}),c.dev&&(r("NR AGENT IN DEVELOPMENT MODE"),r("flags: "+a(c,function(t,e){return t}).join(", ")))},{}],2:[function(t,e,n){function r(t,e,n,r,o){try{d?d-=1:i("err",[o||new UncaughtException(t,e,n)])}catch(c){try{i("ierr",[c,(new Date).getTime(),!0])}catch(s){}}return"function"==typeof f&&f.apply(this,a(arguments))}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function o(t){i("err",[t,(new Date).getTime()])}var i=t("handle"),a=t(16),c=t("ee"),s=t("loader"),f=window.onerror,u=!1,d=0;s.features.err=!0,t(1),window.onerror=r;try{throw new Error}catch(l){"stack"in l&&(t(8),t(7),"addEventListener"in window&&t(5),s.xhrWrappable&&t(9),u=!0)}c.on("fn-start",function(t,e,n){u&&(d+=1)}),c.on("fn-err",function(t,e,n){u&&(this.thrown=!0,o(n))}),c.on("fn-end",function(){u&&!this.thrown&&d>0&&(d-=1)}),c.on("internal-error",function(t){i("ierr",[t,(new Date).getTime(),!0])})},{}],3:[function(t,e,n){t("loader").features.ins=!0},{}],4:[function(t,e,n){function r(t){}if(window.performance&&window.performance.timing&&window.performance.getEntriesByType){var o=t("ee"),i=t("handle"),a=t(8),c=t(7),s="learResourceTimings",f="addEventListener",u="resourcetimingbufferfull",d="bstResource",l="resource",p="-start",h="-end",m="fn"+p,w="fn"+h,v="bstTimer",y="pushState";t("loader").features.stn=!0,t(6);var g=NREUM.o.EV;o.on(m,function(t,e){var n=t[0];n instanceof g&&(this.bstStart=Date.now())}),o.on(w,function(t,e){var n=t[0];n instanceof g&&i("bst",[n,e,this.bstStart,Date.now()])}),a.on(m,function(t,e,n){this.bstStart=Date.now(),this.bstType=n}),a.on(w,function(t,e){i(v,[e,this.bstStart,Date.now(),this.bstType])}),c.on(m,function(){this.bstStart=Date.now()}),c.on(w,function(t,e){i(v,[e,this.bstStart,Date.now(),"requestAnimationFrame"])}),o.on(y+p,function(t){this.time=Date.now(),this.startPath=location.pathname+location.hash}),o.on(y+h,function(t){i("bstHist",[location.pathname+location.hash,this.startPath,this.time])}),f in window.performance&&(window.performance["c"+s]?window.performance[f](u,function(t){i(d,[window.performance.getEntriesByType(l)]),window.performance["c"+s]()},!1):window.performance[f]("webkit"+u,function(t){i(d,[window.performance.getEntriesByType(l)]),window.performance["webkitC"+s]()},!1)),document[f]("scroll",r,!1),document[f]("keypress",r,!1),document[f]("click",r,!1)}},{}],5:[function(t,e,n){function r(t){for(var e=t;e&&!e.hasOwnProperty(u);)e=Object.getPrototypeOf(e);e&&o(e)}function o(t){c.inPlace(t,[u,d],"-",i)}function i(t,e){return t[1]}var a=t("ee").get("events"),c=t(17)(a,!0),s=t("gos"),f=XMLHttpRequest,u="addEventListener",d="removeEventListener";e.exports=a,"getPrototypeOf"in Object?(r(document),r(window),r(f.prototype)):f.prototype.hasOwnProperty(u)&&(o(window),o(f.prototype)),a.on(u+"-start",function(t,e){var n=t[1],r=s(n,"nr@wrapped",function(){function t(){if("function"==typeof n.handleEvent)return n.handleEvent.apply(n,arguments)}var e={object:t,"function":n}[typeof n];return e?c(e,"fn-",null,e.name||"anonymous"):n});this.wrapped=t[1]=r}),a.on(d+"-start",function(t){t[1]=this.wrapped||t[1]})},{}],6:[function(t,e,n){var r=t("ee").get("history"),o=t(17)(r);e.exports=r,o.inPlace(window.history,["pushState","replaceState"],"-")},{}],7:[function(t,e,n){var r=t("ee").get("raf"),o=t(17)(r),i="equestAnimationFrame";e.exports=r,o.inPlace(window,["r"+i,"mozR"+i,"webkitR"+i,"msR"+i],"raf-"),r.on("raf-start",function(t){t[0]=o(t[0],"fn-")})},{}],8:[function(t,e,n){function r(t,e,n){t[0]=a(t[0],"fn-",null,n)}function o(t,e,n){this.method=n,this.timerDuration="number"==typeof t[1]?t[1]:0,t[0]=a(t[0],"fn-",this,n)}var i=t("ee").get("timer"),a=t(17)(i),c="setTimeout",s="setInterval",f="clearTimeout",u="-start",d="-";e.exports=i,a.inPlace(window,[c,"setImmediate"],c+d),a.inPlace(window,[s],s+d),a.inPlace(window,[f,"clearImmediate"],f+d),i.on(s+u,r),i.on(c+u,o)},{}],9:[function(t,e,n){function r(t,e){d.inPlace(e,["onreadystatechange"],"fn-",c)}function o(){var t=this,e=u.context(t);t.readyState>3&&!e.resolved&&(e.resolved=!0,u.emit("xhr-resolved",[],t)),d.inPlace(t,w,"fn-",c)}function i(t){v.push(t),h&&(g=-g,b.data=g)}function a(){for(var t=0;t<v.length;t++)r([],v[t]);v.length&&(v=[])}function c(t,e){return e}function s(t,e){for(var n in t)e[n]=t[n];return e}t(5);var f=t("ee"),u=f.get("xhr"),d=t(17)(u),l=NREUM.o,p=l.XHR,h=l.MO,m="readystatechange",w=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"],v=[];e.exports=u;var y=window.XMLHttpRequest=function(t){var e=new p(t);try{u.emit("new-xhr",[e],e),e.addEventListener(m,o,!1)}catch(n){try{u.emit("internal-error",[n])}catch(r){}}return e};if(s(p,y),y.prototype=p.prototype,d.inPlace(y.prototype,["open","send"],"-xhr-",c),u.on("send-xhr-start",function(t,e){r(t,e),i(e)}),u.on("open-xhr-start",r),h){var g=1,b=document.createTextNode(g);new h(a).observe(b,{characterData:!0})}else f.on("fn-end",function(t){t[0]&&t[0].type===m||a()})},{}],10:[function(t,e,n){function r(t){var e=this.params,n=this.metrics;if(!this.ended){this.ended=!0;for(var r=0;r<d;r++)t.removeEventListener(u[r],this.listener,!1);if(!e.aborted){if(n.duration=(new Date).getTime()-this.startTime,4===t.readyState){e.status=t.status;var i=o(t,this.lastSize);if(i&&(n.rxSize=i),this.sameOrigin){var a=t.getResponseHeader("X-NewRelic-App-Data");a&&(e.cat=a.split(", ").pop())}}else e.status=0;n.cbTime=this.cbTime,f.emit("xhr-done",[t],t),c("xhr",[e,n,this.startTime])}}}function o(t,e){var n=t.responseType;if("json"===n&&null!==e)return e;var r="arraybuffer"===n||"blob"===n||"json"===n?t.response:t.responseText;return h(r)}function i(t,e){var n=s(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}var a=t("loader");if(a.xhrWrappable){var c=t("handle"),s=t(11),f=t("ee"),u=["load","error","abort","timeout"],d=u.length,l=t("id"),p=t(14),h=t(13),m=window.XMLHttpRequest;a.features.xhr=!0,t(9),f.on("new-xhr",function(t){var e=this;e.totalCbs=0,e.called=0,e.cbTime=0,e.end=r,e.ended=!1,e.xhrGuids={},e.lastSize=null,p&&(p>34||p<10)||window.opera||t.addEventListener("progress",function(t){e.lastSize=t.loaded},!1)}),f.on("open-xhr-start",function(t){this.params={method:t[0]},i(this,t[1]),this.metrics={}}),f.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),f.on("send-xhr-start",function(t,e){var n=this.metrics,r=t[0],o=this;if(n&&r){var i=h(r);i&&(n.txSize=i)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(o.params.aborted=!0),("load"!==t.type||o.called===o.totalCbs&&(o.onloadCalled||"function"!=typeof e.onload))&&o.end(e)}catch(n){try{f.emit("internal-error",[n])}catch(r){}}};for(var a=0;a<d;a++)e.addEventListener(u[a],this.listener,!1)}),f.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),f.on("xhr-load-added",function(t,e){var n=""+l(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),f.on("xhr-load-removed",function(t,e){var n=""+l(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),f.on("addEventListener-end",function(t,e){e instanceof m&&"load"===t[0]&&f.emit("xhr-load-added",[t[1],t[2]],e)}),f.on("removeEventListener-end",function(t,e){e instanceof m&&"load"===t[0]&&f.emit("xhr-load-removed",[t[1],t[2]],e)}),f.on("fn-start",function(t,e,n){e instanceof m&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),f.on("fn-end",function(t,e){this.xhrCbStart&&f.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{}],11:[function(t,e,n){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");!r.port&&o[1]&&(r.port=o[1].split("/")[0].split("@").pop().split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,r.protocol=o[0],"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname);var i=!e.protocol||":"===e.protocol||e.protocol===n.protocol,a=e.hostname===document.domain&&e.port===n.port;return r.sameOrigin=i&&(!e.hostname||a),r}},{}],12:[function(t,e,n){function r(){}function o(t,e,n){return function(){return i(t,[(new Date).getTime()].concat(c(arguments)),e?null:this,n),e?void 0:this}}var i=t("handle"),a=t(15),c=t(16),s=t("ee").get("tracer"),f=NREUM;"undefined"==typeof window.newrelic&&(newrelic=f);var u=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit"],d="api-",l=d+"ixn-";a(u,function(t,e){f[e]=o(d+e,!0,"api")}),f.addPageAction=o(d+"addPageAction",!0),f.setCurrentRouteName=o(d+"routeName",!0),e.exports=newrelic,f.interaction=function(){return(new r).get()};var p=r.prototype={createTracer:function(t,e){var n={},r=this,o="function"==typeof e;return i(l+"tracer",[Date.now(),t,n],r),function(){if(s.emit((o?"":"no-")+"fn-start",[Date.now(),r,o],n),o)try{return e.apply(this,arguments)}finally{s.emit("fn-end",[Date.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,e){p[e]=o(l+e)}),newrelic.noticeError=function(t){"string"==typeof t&&(t=new Error(t)),i("err",[t,(new Date).getTime()])}},{}],13:[function(t,e,n){e.exports=function(t){if("string"==typeof t&&t.length)return t.length;if("object"==typeof t){if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if(!("undefined"!=typeof FormData&&t instanceof FormData))try{return JSON.stringify(t).length}catch(e){return}}}},{}],14:[function(t,e,n){var r=0,o=navigator.userAgent.match(/Firefox[\/\s](\d+\.\d+)/);o&&(r=+o[1]),e.exports=r},{}],15:[function(t,e,n){function r(t,e){var n=[],r="",i=0;for(r in t)o.call(t,r)&&(n[i]=e(r,t[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],16:[function(t,e,n){function r(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(o<0?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=r},{}],17:[function(t,e,n){function r(t){return!(t&&t instanceof Function&&t.apply&&!t[a])}var o=t("ee"),i=t(16),a="nr@original",c=Object.prototype.hasOwnProperty,s=!1;e.exports=function(t,e){function n(t,e,n,o){function nrWrapper(){var r,a,c,s;try{a=this,r=i(arguments),c="function"==typeof n?n(r,a):n||{}}catch(f){l([f,"",[r,a,o],c])}u(e+"start",[r,a,o],c);try{return s=t.apply(a,r)}catch(d){throw u(e+"err",[r,a,d],c),d}finally{u(e+"end",[r,a,s],c)}}return r(t)?t:(e||(e=""),nrWrapper[a]=t,d(t,nrWrapper),nrWrapper)}function f(t,e,o,i){o||(o="");var a,c,s,f="-"===o.charAt(0);for(s=0;s<e.length;s++)c=e[s],a=t[c],r(a)||(t[c]=n(a,f?c+o:o,i,c))}function u(n,r,o){if(!s||e){var i=s;s=!0;try{t.emit(n,r,o)}catch(a){l([a,n,r,o])}s=i}}function d(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){l([r])}for(var o in t)c.call(t,o)&&(e[o]=t[o]);return e}function l(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=o),n.inPlace=f,n.flag=a,n}},{}],ee:[function(t,e,n){function r(){}function o(t){function e(t){return t&&t instanceof r?t:t?s(t,c,i):i()}function n(n,r,o){if(!l.aborted){t&&t(n,r,o);for(var i=e(o),a=h(n),c=a.length,s=0;s<c;s++)a[s].apply(i,r);var f=u[y[n]];return f&&f.push([g,n,r,i]),i}}function p(t,e){v[t]=h(t).concat(e)}function h(t){return v[t]||[]}function m(t){return d[t]=d[t]||o(n)}function w(t,e){f(t,function(t,n){e=e||"feature",y[n]=e,e in u||(u[e]=[])})}var v={},y={},g={on:p,emit:n,get:m,listeners:h,context:e,buffer:w,abort:a,aborted:!1};return g}function i(){return new r}function a(){(u.api||u.feature)&&(l.aborted=!0,u=l.backlog={})}var c="nr@context",s=t("gos"),f=t(15),u={},d={},l=e.exports=o();l.backlog=u},{}],gos:[function(t,e,n){function r(t,e,n){if(o.call(t,e))return t[e];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return t[e]=r,r}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],handle:[function(t,e,n){function r(t,e,n,r){o.buffer([t],r),o.emit(t,e,n)}var o=t("ee").get("handle");e.exports=r,r.ee=o},{}],id:[function(t,e,n){function r(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:a(t,i,function(){return o++})}var o=1,i="nr@id",a=t("gos");e.exports=r},{}],loader:[function(t,e,n){function r(){if(!b++){var t=g.info=NREUM.info,e=d.getElementsByTagName("script")[0];if(setTimeout(f.abort,3e4),!(t&&t.licenseKey&&t.applicationID&&e))return f.abort();s(v,function(e,n){t[e]||(t[e]=n)}),c("mark",["onload",a()],null,"api");var n=d.createElement("script");n.src="https://"+t.agent,e.parentNode.insertBefore(n,e)}}function o(){"complete"===d.readyState&&i()}function i(){c("mark",["domContent",a()],null,"api")}function a(){return(new Date).getTime()}var c=t("handle"),s=t(15),f=t("ee"),u=window,d=u.document,l="addEventListener",p="attachEvent",h=u.XMLHttpRequest,m=h&&h.prototype;NREUM.o={ST:setTimeout,CT:clearTimeout,XHR:h,REQ:u.Request,EV:u.Event,PR:u.Promise,MO:u.MutationObserver},t(12);var w=""+location,v={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-998.min.js"},y=h&&m&&m[l]&&!/CriOS/.test(navigator.userAgent),g=e.exports={offset:a(),origin:w,features:{},xhrWrappable:y};d[l]?(d[l]("DOMContentLoaded",i,!1),u[l]("load",r,!1)):(d[p]("onreadystatechange",o),u[p]("onload",r)),c("mark",["firstbyte",a()],null,"api");var b=0},{}]},{},["loader",2,10,4,3]);</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=6.0, user-scalable=1"/>
+    <meta name="apple-touch-fullscreen" content="YES" />
+    
+            <meta name="apple-itunes-app" content=app-id=554260576>
+        <meta name="google-play-app" content=com.freerange360.mpp.businessinsider>
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="http://static3.businessinsider.com/assets/images/us/favicons/apple-touch-icon-57x57.png?v=BI-US-2016-03-31" />
+<link rel="apple-touch-icon" sizes="60x60" href="http://static2.businessinsider.com/assets/images/us/favicons/apple-touch-icon-60x60.png?v=BI-US-2016-03-31" />
+<link rel="apple-touch-icon" sizes="72x72" href="http://static3.businessinsider.com/assets/images/us/favicons/apple-touch-icon-72x72.png?v=BI-US-2016-03-31" />
+<link rel="apple-touch-icon" sizes="76x76" href="http://static6.businessinsider.com/assets/images/us/favicons/apple-touch-icon-76x76.png?v=BI-US-2016-03-31" />
+<link rel="apple-touch-icon" sizes="114x114" href="http://static2.businessinsider.com/assets/images/us/favicons/apple-touch-icon-114x114.png?v=BI-US-2016-03-31" />
+<link rel="apple-touch-icon" sizes="120x120" href="http://static5.businessinsider.com/assets/images/us/favicons/apple-touch-icon-120x120.png?v=BI-US-2016-03-31" />
+<link rel="apple-touch-icon" sizes="144x144" href="http://static1.businessinsider.com/assets/images/us/favicons/apple-touch-icon-144x144.png?v=BI-US-2016-03-31" />
+<link rel="apple-touch-icon" sizes="152x152" href="http://static1.businessinsider.com/assets/images/us/favicons/apple-touch-icon-152x152.png?v=BI-US-2016-03-31" />
+<link rel="apple-touch-icon" sizes="180x180" href="http://static3.businessinsider.com/assets/images/us/favicons/apple-touch-icon-180x180.png?v=BI-US-2016-03-31" />
+<link rel="icon" type="image/png" href="http://static1.businessinsider.com/assets/images/us/favicons/favicon-32x32.png?v=BI-US-2016-03-31" sizes="32x32" />
+<link rel="icon" type="image/png" href="http://static1.businessinsider.com/assets/images/us/favicons/android-chrome-192x192.png?v=BI-US-2016-03-31" sizes="192x192" />
+<link rel="icon" type="image/png" href="http://static2.businessinsider.com/assets/images/us/favicons/favicon-96x96.png?v=BI-US-2016-03-31" sizes="96x96" />
+<link rel="icon" type="image/png" href="http://static5.businessinsider.com/assets/images/us/favicons/favicon-16x16.png?v=BI-US-2016-03-31" sizes="16x16" />
+<link rel="manifest" href="http://static5.businessinsider.com/assets/images/us/favicons/manifest.json?v=BI-US-2016-03-31" />
+<link rel="mask-icon" href="http://static6.businessinsider.com/assets/images/us/favicons/safari-pinned-tab.svg?v=BI-US-2016-03-31" color="#185f7c" />
+<link rel="shortcut icon" href="http://static3.businessinsider.com/assets/images/us/favicons/favicon.ico?v=BI-US-2016-03-31" />
+<meta name="apple-mobile-web-app-title" content="Business Insider" />
+<meta name="application-name" content="Business Insider" />
+<meta name="msapplication-TileColor" content="#185f7c" />
+<meta name="msapplication-TileImage" content="http://static1.businessinsider.com/assets/images/us/favicons/mstile-144x144.png?v=BI-US-2016-03-31" />
+<meta name="theme-color" content="#185f7c" />
+<meta name="linkedin:owner" content="mid:1d5f7b" />
+
+    <meta name="description" content="Business Insider is a fast-growing business site with deep financial, media, tech, and other industry verticals. Launched in 2007, the site is now the largest business news site on the web." />
+<meta property="og:title" content="Business Insider" />
+<meta property="og:type" content="blog" />
+<meta property="og:url" content="http://www.businessinsider.com/" />
+<meta property="og:image" content="http://static5.businessinsider.com/assets/images/us/logos/og-image-logo-social.png" />
+<meta property="og:site_name" content="Business Insider" />
+<meta property="og:admins" content="61404924,14700889,122084,773948648" />
+<meta property="og:description" content="The latest news from Business Insider" />    <link href="http://static4.businessinsider.com/assets/css/min-mobile-us.css?1482865311" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://www.businessinsider.com" rel="canonical" />
+    <!-- inline fix as yahoo minification can not properly handle calc -->
+    <style>
+        .article-wrap.post-wrap .image,
+        .article-wrap.slideshow-wrap .intro-content .image,
+        .article-wrap.one-page-view .image,
+        .article-wrap .slide-module .on-image,
+        .article-wrap .ad,
+        .one-page-view .ad {
+            width: calc(100% + 40px);
+        }
+    </style>
+
+    <!-- Index Exchange - start -->
+        <script type="text/javascript">
+    	var vertical = 'businessinsider';
+        var index_ad_hierarch = 'home';
+        var PageType = 'homepage';
+        var post_id = '';
+        var _sf_startpt=(new Date()).getTime();
+    </script>
+	    
+            <script type="text/javascript" src="http://js.indexww.com/ht/ls-business-insider.js" async></script>
+        <!-- Index Exchange - end -->
+
+    <script>
+    window.dataLayer = [];
+    </script>
+    <script type="text/javascript" src="http://static3.businessinsider.com/assets/js/min-mobile.js?1482865311"></script>
+<script type="text/javascript">
+    //<![CDATA[
+    homepage_id = "506f6d9b69bedde127000003";    //]]>
+</script>    <!-- optimizely mobile -->
+        <!-- End optimizely mobile -->
+    
+
+    <script type="text/javascript">
+        var vertical = 'businessinsider';
+        var PageType = 'homepage';
+        BI.isMobile = true;
+    </script>
+
+    <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
+    <script type="text/javascript">BI.site = 'US';</script>
+    <script type="text/javascript">BI.siteURI = 'http://www.businessinsider.com';</script>
+    <script type="text/javascript">BI.secureURI = 'https://www.businessinsider.com';</script>
+    <script type="text/javascript">BI.staticURI = 'http://static1.businessinsider.com';</script>
+    <script type="text/javascript">BI.env.setDomain('http://www.businessinsider.com');</script>
+        <script type="text/javascript">BI.sailthruHorizonURI = 'horizon.businessinsider.com'</script>
+
+    <!-- Ooyala Head -->
+        <!-- /Ooyala Head -->
+
+    <!-- taboola mobile -->
+        <!-- End taboola mobile -->
+
+    <!-- Piano -->
+        <script>
+        // Piano: custom vars
+        tp = window.tp || [];
+        tp.push(["setUseTinypassAccounts", true ]);
+        tp.push(['setCustomVariable', 'PageType', PageType]);
+
+        (function(src){var a=document.createElement("script");a.type="text/javascript";a.async=true;a.src=src;var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})("//cdn.tinypass.com/xbuilder/experience/load?aid=B6sIXKLiin");
+
+        tp.push(['init', function () {
+            tp.experience.init();
+        }]);
+
+        // refresh on login
+     	tp.push(["addHandler", "loginSuccess", function(){
+    		tp.api.callApi('/access/list', {}, function(data){
+    			if (typeof data.data != "undefined"){
+    				for ( var i in data.data ){
+    					// If user has access to something
+    					if ( data.data[i].granted ){
+    						tp.offer.close();
+    						location.reload();
+    					}
+    				}
+    			}
+    		});
+    	}]);
+
+        // Get current page location and store as cookie
+        var primeReferrer = window.location.href;
+        BI.cookies.set('__pref', primeReferrer, 2592e3);
+    </script>
+        <!-- / PIANO -->
+
+    <!-- Chartbeat -->
+            <script type="text/javascript">
+            // chartbeat wants the vars in global
+            window._sf_async_config = window._sf_async_config || {};
+            window._sf_async_config.uid = 14447;
+            window._sf_async_config.domain = 'businessinsider.com';
+            window._sf_async_config.flickerControl = false;
+            window._sf_async_config.useCanonical = false;
+            window._sf_startpt = (new Date()).getTime();
+        </script>
+        <script async src="https://static.chartbeat.com/js/chartbeat_mab.js"></script>
+    <!-- / Chartbeat -->
+    
+</head>
+
+<body class="businessinsider">
+<div id="fb-root" data-bi-facebook-root="155043519637"></div>
+ <div class="main-menu" data-main-menu="">
+            <nav class="main-menu__nav">
+                <div class="main-menu__vertical-container">
+            <h3 class="main-menu__vertical-heading">
+                <a class="main-menu__vertical-link" href="/">Home</a>            </h3>
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="/latest">Latest</a>
+                </h4>
+                    </div>
+            <div class="main-menu__vertical-container">
+            <h3 class="main-menu__vertical-heading">
+                <a class="main-menu__vertical-link" href="/sai">Tech Insider</a>            </h3>
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="/enterprise">Enterprise</a>
+                </h4>
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="/science">Science</a>
+                </h4>
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="/advertising">Advertising</a>
+                </h4>
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="/media">Media</a>
+                </h4>
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="/thewire">Entertainment</a>
+                </h4>
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="/transportation">Transportation</a>
+                </h4>
+                    </div>
+            <div class="main-menu__vertical-container">
+            <h3 class="main-menu__vertical-heading">
+                <a class="main-menu__vertical-link" href="/clusterstock">Finance</a>            </h3>
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="/moneygame">Markets</a>
+                </h4>
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="/retail">Retail</a>
+                </h4>
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="/wealthadvisor">Wealth Advisor</a>
+                </h4>
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="/yourmoney">Your Money</a>
+                </h4>
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="http://markets.businessinsider.com">Markets Insider</a>
+                </h4>
+                    </div>
+            <div class="main-menu__vertical-container">
+            <h3 class="main-menu__vertical-heading">
+                <a class="main-menu__vertical-link" href="/politics">Politics</a>            </h3>
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="/defense">Military & Defense</a>
+                </h4>
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="/news">News</a>
+                </h4>
+                    </div>
+            <div class="main-menu__vertical-container">
+            <h3 class="main-menu__vertical-heading">
+                <a class="main-menu__vertical-link" href="/warroom">Strategy</a>            </h3>
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="/careers">Careers</a>
+                </h4>
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="/education">Education</a>
+                </h4>
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="/smallbusiness">Small Business</a>
+                </h4>
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="/lists">Lists</a>
+                </h4>
+                    </div>
+            <div class="main-menu__vertical-container">
+            <h3 class="main-menu__vertical-heading">
+                <a class="main-menu__vertical-link" href="/thelife">Life</a>            </h3>
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="/travel">Travel</a>
+                </h4>
+                    </div>
+            <div class="main-menu__vertical-container">
+            <h3 class="main-menu__vertical-heading">
+                <a class="main-menu__vertical-link" href="/sportspage">Sports</a>            </h3>
+                    </div>
+            <div class="main-menu__vertical-container">
+            <h3 class="main-menu__vertical-heading">
+                <a class="main-menu__vertical-link" href="/video">Video</a>            </h3>
+                    </div>
+    
+        <!-- sponsored link section -->
+    <div class="main-menu__vertical-container">
+                    <h3 class="main-menu__vertical-heading main-menu__vertical-heading--static">Featured</h3>
+        	
+                             <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="http://www.businessinsider.com/digital-industry-insider">Digital Industry Insider</a>
+                </h4>
+        	                 <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="http://www.businessinsider.com/category/finance-iq">Finance IQ</a>
+                </h4>
+        	                 <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="http://www.businessinsider.com/sc/landmark-innovation">Landmark Innovation</a>
+                </h4>
+        	                 <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="http://www.businessinsider.com/letter-to-my-younger-self">Letter To My Younger Self</a>
+                </h4>
+        	                 <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="http://www.businessinsider.com/category/money-talk">Money Talk</a>
+                </h4>
+        	                 <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="http://www.businessinsider.com/project-disrupt">Project Disrupt</a>
+                </h4>
+        	                 <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="http://www.businessinsider.com/retail-innovation">Retail Innovation</a>
+                </h4>
+        	                 <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="http://www.businessinsider.com/the-next-10">The Next 10</a>
+                </h4>
+        	                 <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="http://www.businessinsider.com/category/transformations">Transformations</a>
+                </h4>
+        	                 <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="http://www.businessinsider.com/unlocking-logistics">Unlocking Logistics</a>
+                </h4>
+        	                 <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="http://www.businessinsider.com/worldviews">Worldviews</a>
+                </h4>
+        	            </div>
+    
+            <div class="main-menu__vertical-container">
+            <h3 class="main-menu__vertical-heading main-menu__vertical-heading--static">
+                More            </h3>
+
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="/newsletter?unmobileonce=1">Newsletters</a>
+                </h4>
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="/companies">Companies</a>
+                </h4>
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="/authors">Authors</a>
+                </h4>
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="/categories">Categories</a>
+                </h4>
+                    </div>
+            <div class="main-menu__vertical-container">
+            <h3 class="main-menu__vertical-heading main-menu__vertical-heading--static">
+                About BI            </h3>
+
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="http://www.businessinsider.com/page/careers">Careers</a>
+                </h4>
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="/masthead">Masthead</a>
+                </h4>
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="/contact">Contact</a>
+                </h4>
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="/advertise">Advertise</a>
+                </h4>
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="/contributors-faq">Contributors FAQ</a>
+                </h4>
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="/legal-fine-print">Legal Fine Print</a>
+                </h4>
+                            <h4 class="main-menu__sub-vertical-heading">
+                    <a class="main-menu__sub-vertical-link" href="mailto:mobile@businessinsider.com?subject=Feedback">Send Feedback</a>
+                </h4>
+                    </div>
+    </nav>
+
+<nav class="main-menu__sub-nav hide-ti">
+            <a href="http://www.businessinsider.com/events" class="main-menu__sub-nav-link">Events</a>
+        <a href="http://intelligence.businessinsider.com" class="main-menu__sub-nav-link">BI Intelligence</a>
+</nav>
+
+<div class="main-menu__social-container">
+
+
+        <a href="//www.facebook.com/businessinsider" title="Like us on Facebook" target="_blank" class="main-menu__social-link main-menu__social-link--facebook sprites"></a>
+    
+        <a href="//twitter.com/businessinsider" title="Follow us on Twitter" target="_blank" class="main-menu__social-link  main-menu__social-link--twitter sprites"></a>
+    
+        <a href="//plus.google.com/+BusinessInsider/posts" rel="publisher" title="Follow us on Google+" target="_blank" class="main-menu__social-link main-menu__social-link--google sprites"></a>
+        
+            <a href="//www.linkedin.com/company/business-insider" title="Connect with us on LinkedIn" target="_blank" target="_blank" class="main-menu__social-link main-menu__social-link--linkedin sprites"></a>
+    
+    
+    </div>
+
+<footer class="main-menu__footer">
+    <p class="main-menu__copyright">
+         &copy; 2016 Copyright  Business Insider,  All rights reserved.
+        Use of this site constitutes acceptance of our
+        Terms of Service and Privacy Policy.
+                	Stock quotes by <a href="http://www.finanzen.net/" target="_blank">finanzen.net</a>
+             </p>
+            <div class="main-menu__regions">
+            <select class="main-menu__regions-selectbox sprites" data-regions-selectbox>
+                <option value="http://www.businessinsider.com">US edition</option><option value="http://uk.businessinsider.com?IR=C">UK edition</option><option value="http://www.businessinsider.de?IR=C">DE edition</option><option value="http://www.businessinsider.com.au/">AUS edition</option><option value="http://www.businessinsider.co.id/">ID edition</option><option value="http://www.businessinsider.in/">IN edition</option><option value="http://www.businessinsider.my/">MY edition</option><option value="http://www.businessinsider.sg/">SG edition</option><option value="http://www.businessinsider.com.pl/?IR=C">PL edition</option><option value="http://nordic.businessinsider.com/?IR=C">SE edition</option><option value="http://www.businessinsider.nl?IR=C">NL edition</option><option value="http://www.businessinsider.fr/?IR=C">FR edition</option><option value="https://it.businessinsider.com">IT edition</option>            </select>
+        </div>
+    </footer>
+    </div>
+<div class="page-wrap" data-page-wrap="">
+
+    <div class="main-header" data-main-header="">
+
+                
+        	<!-- Intercept Message for Android - begin -->
+        		        <!-- Intercept Message for Android - end -->
+	        
+	        <!-- Intercept Message for iOS 5 and below -->
+	        <div id="mobile-intercept" class="iphone-intercept hidden" data-iphone-intercept="">
+	            <a class="iphone-close-button">
+	                <img src="http://static2.businessinsider.com/assets/images/mobile/ios-close-button.png">
+	            </a>
+	            <div>
+	                <a class="" href="http://itunes.apple.com/us/app/business-insider-iphone-edition/id554260576?ls=1&mt=8" onclick="">
+	
+	                    <span class="iphone-text-button">VIEW</span>
+	
+	                    <img class="app-logo" src="http://static2.businessinsider.com/assets/images/mobile/bi-iphone-logo.png" alt="Business Insider">
+	
+	                    <p><strong class="title">Business Insider</strong><br>
+	                    What you need to know.<br>
+	                    On your iPhone.<br>
+	                    <strong>FREE</strong> - On the App Store.</p>
+	
+	                </a>
+	            </div>
+	        </div>
+        
+        <div data-masthead="" class="masthead toolbar">
+            <a href="" class="open-menu menulines menu-button" data-menu-button>
+                <div data-hamburger="" class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </a>
+
+            <h1 class="logo-main ksm-river-logo-main">
+                <a class="sprites" href="/"></a>
+            </h1>
+
+                <div class="search-container menu-button" data-search-container="">
+                    <div class="svg icon-search" data-icon-search></div>
+                    <div class="close-search-icon" data-icon-close-search="">
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+
+        </div>
+
+        <div class="search-open" data-search-open="">
+            <form method="get" action="/s" class="form-search">
+                <input name="q" type="text" class="search-query" placeholder="Search" data-search-query="">
+            </form>
+        </div>
+        
+        <!-- flash messages -->
+            </div>
+    <div data-cookie-notice-container></div>
+    <!-- vertical name -->
+            <div class="content">
+    <div class="mobile-homepage">
+        <!-- Sponsored Section Logo -->
+        
+                    <!-- Tout -->
+            <div class="hero">
+                <div class="hero__image-wrapper">
+                    <a href="http://www.businessinsider.com/kerry-speech-2016-12" target="_self" class="hero__image-anchor">
+                        <img src="http://static1.businessinsider.com/image/5863f6878b987dd74f21bd1c-534/kerry-we-could-not-in-good-conscience-stand-in-the-way-of-the-un-resolution-on-israel.jpg" alt="KERRY: 'We could not, in good conscience, stand in the way' of the UN resolution on Israel" border="0" />                    </a>
+                </div>
+                <div class="hero__byline">
+                    <h1 class="hero__byline-heading">
+                        <a href="http://www.businessinsider.com/kerry-speech-2016-12" target="_self" class="hero__byline-heading-anchor">John Kerry's final plea</a>
+                    </h1>
+
+                                            
+<div class="flex byline">
+        
+    <div class="flex-item">
+        <div class="list-pipes no-pipe">
+            <ul>
+                            
+                      
+                        <!-- Kissmetrics author byline class name -->
+                                                    <li class="publication-author ksm-post-author-byline"><a href="http://www.businessinsider.com/author/natasha-bertrand">Natasha Bertrand</a></li>
+                                            
+                
+                
+                                    <!-- Date -->
+                    <li class="river-post__date">
+	<span class="svg sprites date-icon"></span>
+	<span data-bi-format="date" rel="1482945602">Dec. 28, 2016, 12:20 PM</span>
+</li>                            
+                            <li class="pageviews">
+                    <span class="svg sprites hot views"></span>
+                    <span class="hot" title="views">1,809</span>
+                </li>            
+            
+                        </ul>
+
+        </div>
+    </div>
+</div>
+                                    </div>
+            </div>
+
+        
+        <ul id="home" title="Business Insider" selected="true" class="home-main">
+            
+                        <li  class="river-post ksm-first-river">
+                                
+            <div class="river-post__image-wrapper">
+                <a href="http://www.businessinsider.com/predictions-2017-2016-12" class="river-post__image-anchor" target="_self">
+                                        <img src="http://static4.businessinsider.com/image/54dfca90eab8ea2531191dae-160/here-are-our-predictions-for-2017.jpg" alt="Here are our predictions for 2017" border="0" />                                    </a>
+            </div>
+
+            <div class="river-post__byline">
+                <h2 class="river-post__heading">
+                    <a class="river-post__heading-anchor" href="http://www.businessinsider.com/predictions-2017-2016-12" target="_self" class="river-post__byline-heading-anchor">
+                        Here are our predictions for 2017                    </a>
+                </h2>
+                                    
+<div class="flex byline">
+        
+    <div class="flex-item">
+        <div class="list-pipes no-pipe">
+            <ul>
+                            
+                      
+                        <!-- Kissmetrics author byline class name -->
+                                                    <li class="publication-author ksm-post-author-byline"><a href="http://www.businessinsider.com/author/military-and-defense-team">Military &amp; Defense Team</a></li>
+                                            
+                
+                
+                                    <!-- Date -->
+                    <li class="river-post__date">
+	<span class="svg sprites date-icon"></span>
+	<span data-bi-format="date" rel="1482947728">Dec. 28, 2016, 12:55 PM</span>
+</li>                            
+            
+                        </ul>
+
+        </div>
+    </div>
+</div>
+                                            </div>
+            </li>
+            <li  class="river-post">
+                        
+            <div class="river-post__image-wrapper">
+                <a href="http://www.businessinsider.com/kate-spade-report-its-considering-selling-itself-2016-12" class="river-post__image-anchor" target="_self">
+                                        <img src="http://static4.businessinsider.com/image/5863fb37ee14b617038b5867-160/kate-spade-pops-on-report-its-looking-into-selling-itself.jpg" alt="Kate Spade pops on report it's looking into selling itself" border="0" />                                    </a>
+            </div>
+
+            <div class="river-post__byline">
+                <h2 class="river-post__heading">
+                    <a class="river-post__heading-anchor" href="http://www.businessinsider.com/kate-spade-report-its-considering-selling-itself-2016-12" target="_self" class="river-post__byline-heading-anchor">
+                        Kate Spade pops on report it's looking into selling itself                    </a>
+                </h2>
+                                    
+<div class="flex byline">
+        
+    <div class="flex-item">
+        <div class="list-pipes no-pipe">
+            <ul>
+                            
+                      
+                        <!-- Kissmetrics author byline class name -->
+                                                    <li class="publication-author ksm-post-author-byline"><a href="http://www.businessinsider.com/author/jonathan-garber">Jonathan Garber</a></li>
+                                            
+                
+                
+                                    <!-- Date -->
+                    <li class="river-post__date">
+	<span class="svg sprites date-icon"></span>
+	<span data-bi-format="date" rel="1482947460">Dec. 28, 2016, 12:51 PM</span>
+</li>                            
+                            <li class="pageviews">
+                    <span class="svg sprites cool views"></span>
+                    <span class="cool" title="views">30</span>
+                </li>            
+            
+                        </ul>
+
+        </div>
+    </div>
+</div>
+                                            </div>
+            </li>
+<li class="river-ad">
+	<div data-bi-ad data-ad-container class="ad dfp" data-adunit="mobile-web/home/home/homepage" data-pagetype="homepage" data-pos="atf" data-region="Mobile River Top" data-responsive="null" data-sizes="320x50,320x130,320x150,300x250,300x50,fluid" data-url="/">
+			</div>
+
+	<script type="text/javascript">
+		(function() {
+			'use strict';
+			// Notify the DFP code that a new ad has just been rendered
+			amplify.publish('adRender');
+		}());
+	</script>
+</li>            <li  class="river-post">
+                        
+            <div class="river-post__image-wrapper">
+                <a href="http://www.businessinsider.com/apple-ceo-airpods-runaway-success-were-making-them-as-fast-as-we-can-2016-12" class="river-post__image-anchor" target="_self">
+                                        <img src="http://static6.businessinsider.com/image/5863f972ee14b617038b5862-160/apple-ceo-tim-cook-calls-airpods-a-runaway-success-says-were-making-them-as-fast-as-we-can.jpg" alt="Apple CEO Tim Cook calls AirPods 'a runaway success,' says 'we're making them as fast as we can'" border="0" />                                    </a>
+            </div>
+
+            <div class="river-post__byline">
+                <h2 class="river-post__heading">
+                    <a class="river-post__heading-anchor" href="http://www.businessinsider.com/apple-ceo-airpods-runaway-success-were-making-them-as-fast-as-we-can-2016-12" target="_self" class="river-post__byline-heading-anchor">
+                        Apple CEO Tim Cook calls AirPods 'a runaway success,' says 'we're making them as fast as we can'                    </a>
+                </h2>
+                                    
+<div class="flex byline">
+        
+    <div class="flex-item">
+        <div class="list-pipes no-pipe">
+            <ul>
+                            
+                      
+                        <!-- Kissmetrics author byline class name -->
+                                                    <li class="publication-author ksm-post-author-byline"><a href="http://www.businessinsider.com/author/dave-smith">Dave Smith</a></li>
+                                            
+                
+                
+                                    <!-- Date -->
+                    <li class="river-post__date">
+	<span class="svg sprites date-icon"></span>
+	<span data-bi-format="date" rel="1482947224">Dec. 28, 2016, 12:47 PM</span>
+</li>                            
+                            <li class="pageviews">
+                    <span class="svg sprites cool views"></span>
+                    <span class="cool" title="views">184</span>
+                </li>            
+            
+                        </ul>
+
+        </div>
+    </div>
+</div>
+                                            </div>
+            </li>
+            <li  class="river-post">
+                        
+            <div class="river-post__image-wrapper">
+                <a href="http://www.businessinsider.com/airbnb-is-taking-away-hotel-chains-most-valuable-customers-2016-12" class="river-post__image-anchor" target="_self">
+                                        <img src="http://static4.businessinsider.com/image/5863ed25ee14b621008b5852-160/airbnb-is-taking-away-hotel-chains-most-valuable-customers.jpg" alt="Airbnb is taking away hotel chains' most valuable customers" border="0" />                                    </a>
+            </div>
+
+            <div class="river-post__byline">
+                <h2 class="river-post__heading">
+                    <a class="river-post__heading-anchor" href="http://www.businessinsider.com/airbnb-is-taking-away-hotel-chains-most-valuable-customers-2016-12" target="_self" class="river-post__byline-heading-anchor">
+                        Airbnb is taking away hotel chains' most valuable customers                    </a>
+                </h2>
+                                    
+<div class="flex byline">
+        
+    <div class="flex-item">
+        <div class="list-pipes no-pipe">
+            <ul>
+                            
+                      
+                        <!-- Kissmetrics author byline class name -->
+                                                    <li class="publication-author ksm-post-author-byline"><a href="http://www.businessinsider.com/author/bi-intelligence">BI Intelligence</a></li>
+                                            
+                
+                
+                                    <!-- Date -->
+                    <li class="river-post__date">
+	<span class="svg sprites date-icon"></span>
+	<span data-bi-format="date" rel="1482947040">Dec. 28, 2016, 12:44 PM</span>
+</li>                            
+                            <li class="pageviews">
+                    <span class="svg sprites cool views"></span>
+                    <span class="cool" title="views">128</span>
+                </li>            
+            
+                        </ul>
+
+        </div>
+    </div>
+</div>
+                                            </div>
+            </li>
+            <li  class="river-post">
+                        
+            <div class="river-post__image-wrapper">
+                <a href="http://www.businessinsider.com/style-expert-lilliana-vazquez-buy-perfect-pair-jeans-clothing-2016-12" class="river-post__image-anchor" target="_self">
+                    <div class="flag">                    <img src="http://static2.businessinsider.com/image/58546eeda1a45e61008b6940-160/a-style-expert-reveals-the-keys-to-buying-the-perfect-fitting-pair-of-jeans.jpg" alt="A style expert reveals the keys to buying the perfect fitting pair of jeans" border="0" />                    <div class="video"><i class="sprites"></i></div></div>                </a>
+            </div>
+
+            <div class="river-post__byline">
+                <h2 class="river-post__heading">
+                    <a class="river-post__heading-anchor" href="http://www.businessinsider.com/style-expert-lilliana-vazquez-buy-perfect-pair-jeans-clothing-2016-12" target="_self" class="river-post__byline-heading-anchor">
+                        A style expert reveals the keys to buying the perfect fitting pair of jeans                    </a>
+                </h2>
+                                    
+<div class="flex byline">
+        
+    <div class="flex-item">
+        <div class="list-pipes no-pipe">
+            <ul>
+                            
+                      
+                        <!-- Kissmetrics author byline class name -->
+                                                    <li class="publication-author ksm-post-author-byline"><a href="http://www.businessinsider.com/author/sam-rega">Sam Rega</a></li>
+                                            
+                
+                
+                                    <!-- Date -->
+                    <li class="river-post__date">
+	<span class="svg sprites date-icon"></span>
+	<span data-bi-format="date" rel="1482946582">Dec. 28, 2016, 12:36 PM</span>
+</li>                            
+                            <li class="pageviews">
+                    <span class="svg sprites cool views"></span>
+                    <span class="cool" title="views">295</span>
+                </li>            
+            
+                        </ul>
+
+        </div>
+    </div>
+</div>
+                                            </div>
+            </li>
+            <li  class="river-post">
+                        
+            <div class="river-post__image-wrapper">
+                <a href="http://www.businessinsider.com/learn-new-language-by-listening-in-the-background-2016-12" class="river-post__image-anchor" target="_self">
+                                        <img src="http://static2.businessinsider.com/image/57dafdf1b0ef9737018b60b6-160/how-to-learn-a-new-language-while-making-dinner-running-errands-or-paying-bills.jpg" alt="How to learn a new language while making dinner, running errands, or paying bills" border="0" />                                    </a>
+            </div>
+
+            <div class="river-post__byline">
+                <h2 class="river-post__heading">
+                    <a class="river-post__heading-anchor" href="http://www.businessinsider.com/learn-new-language-by-listening-in-the-background-2016-12" target="_self" class="river-post__byline-heading-anchor">
+                        How to learn a new language while making dinner, running errands, or paying bills                    </a>
+                </h2>
+                                    
+<div class="flex byline">
+        
+    <div class="flex-item">
+        <div class="list-pipes no-pipe">
+            <ul>
+                            
+                      
+                        <!-- Kissmetrics author byline class name -->
+                                                    <li class="publication-author ksm-post-author-byline"><a href="http://www.businessinsider.com/author/shana-lebowitz">Shana Lebowitz</a></li>
+                                            
+                
+                
+                                    <!-- Date -->
+                    <li class="river-post__date">
+	<span class="svg sprites date-icon"></span>
+	<span data-bi-format="date" rel="1482946560">Dec. 28, 2016, 12:36 PM</span>
+</li>                            
+                            <li class="pageviews">
+                    <span class="svg sprites cool views"></span>
+                    <span class="cool" title="views">291</span>
+                </li>            
+            
+                        </ul>
+
+        </div>
+    </div>
+</div>
+                                            </div>
+            </li>
+<script type="text/javascript">if (typeof BI.post.tickers === "undefined") {BI.post.tickers = {};}</script><div id="finanzen_markets_anchor" class="finanzen-river-container"><div id="tradeit-container"></div><div class="finanzen-river-disclaimer"><a class="finanzen-river-disclaimer-link" href="/disclaimer-finance">Disclaimer</a><a class="finanzen-river-disclaimer-link" href="<?= $miDomain ?>">More on Markets Insider »</a></div></div>            <li  class="river-post">
+                        
+            <div class="river-post__image-wrapper">
+                <a href="http://www.businessinsider.com/summer-reading-lists-at-prestigious-private-schools-2016-12" class="river-post__image-anchor" target="_self">
+                                        <img src="http://static4.businessinsider.com/image/56f042f0910584e73c8b7ab5-160/here-are-the-books-8-of-americas-most-prestigious-private-schools-have-students-read-over-the-summer.jpg" alt="Here are the books 8 of America's most prestigious private schools have students read over the summer" border="0" />                                    </a>
+            </div>
+
+            <div class="river-post__byline">
+                <h2 class="river-post__heading">
+                    <a class="river-post__heading-anchor" href="http://www.businessinsider.com/summer-reading-lists-at-prestigious-private-schools-2016-12" target="_self" class="river-post__byline-heading-anchor">
+                        Here are the books 8 of America's most prestigious private schools have students read over the summer                    </a>
+                </h2>
+                                    
+<div class="flex byline">
+        
+    <div class="flex-item">
+        <div class="list-pipes no-pipe">
+            <ul>
+                            
+                      
+                        <!-- Kissmetrics author byline class name -->
+                                                    <li class="publication-author ksm-post-author-byline"><a href="http://www.businessinsider.com/author/abby-jackson">Abby Jackson</a></li>
+                                            
+                
+                
+                                    <!-- Date -->
+                    <li class="river-post__date">
+	<span class="svg sprites date-icon"></span>
+	<span data-bi-format="date" rel="1482946500">Dec. 28, 2016, 12:35 PM</span>
+</li>                            
+                            <li class="pageviews">
+                    <span class="svg sprites hot views"></span>
+                    <span class="hot" title="views">2,075</span>
+                </li>            
+            
+                        </ul>
+
+        </div>
+    </div>
+</div>
+                                            </div>
+            </li>
+            <li  class="river-post">
+                        
+            <div class="river-post__image-wrapper">
+                <a href="http://www.businessinsider.com/accuens-drew-huening-facebook-ads-viewability-for-less-than-1-second-2016-12" class="river-post__image-anchor" target="_self">
+                                        <img src="http://static3.businessinsider.com/image/5774622c4321f122008b5238-160/facebook-ads-are-far-less-viewable-than-some-advertisers-were-expecting.jpg" alt="Facebook ads are 'far less viewable' than some advertisers were expecting" border="0" />                                    </a>
+            </div>
+
+            <div class="river-post__byline">
+                <h2 class="river-post__heading">
+                    <a class="river-post__heading-anchor" href="http://www.businessinsider.com/accuens-drew-huening-facebook-ads-viewability-for-less-than-1-second-2016-12" target="_self" class="river-post__byline-heading-anchor">
+                        Facebook ads are 'far less viewable' than some advertisers were expecting                    </a>
+                </h2>
+                                    
+<div class="flex byline">
+        
+    <div class="flex-item">
+        <div class="list-pipes no-pipe">
+            <ul>
+                            
+                      
+                        <!-- Kissmetrics author byline class name -->
+                                                    <li class="publication-author ksm-post-author-byline"><a href="http://www.businessinsider.com/author/lara-oreilly">Lara O'Reilly</a></li>
+                                            
+                
+                
+                                    <!-- Date -->
+                    <li class="river-post__date">
+	<span class="svg sprites date-icon"></span>
+	<span data-bi-format="date" rel="1482946473">Dec. 28, 2016, 12:34 PM</span>
+</li>                            
+                            <li class="pageviews">
+                    <span class="svg sprites cool views"></span>
+                    <span class="cool" title="views">221</span>
+                </li>            
+            
+                        </ul>
+
+        </div>
+    </div>
+</div>
+                                            </div>
+            </li>
+            <li  class="river-post">
+                        
+            <div class="river-post__image-wrapper">
+                <a href="http://www.businessinsider.com/mark-cuban-twitter-copyright-2016-12" class="river-post__image-anchor" target="_self">
+                                        <img src="http://static6.businessinsider.com/image/581ca92646e27a18048b49fa-160/mark-cuban-explains-twitter-experiment-just-knew-it-would-drive-people-crazy.jpg" alt="Mark Cuban explains Twitter experiment: 'Just knew it would drive people crazy'" border="0" />                                    </a>
+            </div>
+
+            <div class="river-post__byline">
+                <h2 class="river-post__heading">
+                    <a class="river-post__heading-anchor" href="http://www.businessinsider.com/mark-cuban-twitter-copyright-2016-12" target="_self" class="river-post__byline-heading-anchor">
+                        Mark Cuban explains Twitter experiment: 'Just knew it would drive people crazy'                    </a>
+                </h2>
+                                    
+<div class="flex byline">
+        
+    <div class="flex-item">
+        <div class="list-pipes no-pipe">
+            <ul>
+                            
+                      
+                        <!-- Kissmetrics author byline class name -->
+                                                    <li class="publication-author ksm-post-author-byline"><a href="http://www.businessinsider.com/author/allan-smith">Allan Smith</a></li>
+                                            
+                
+                
+                                    <!-- Date -->
+                    <li class="river-post__date">
+	<span class="svg sprites date-icon"></span>
+	<span data-bi-format="date" rel="1482946385">Dec. 28, 2016, 12:33 PM</span>
+</li>                            
+                            <li class="pageviews">
+                    <span class="svg sprites hot views"></span>
+                    <span class="hot" title="views">1,174</span>
+                </li>            
+            
+                        </ul>
+
+        </div>
+    </div>
+</div>
+                                            </div>
+            </li>
+            <li  class="river-post">
+                        
+            <div class="river-post__image-wrapper">
+                <a href="http://www.businessinsider.com/new-york-residential-luxury-apartment-year-end-report-olshan-2016-12" class="river-post__image-anchor" target="_self">
+                                        <img src="http://static6.businessinsider.com/image/5863f531f10a9a24008b58e1-160/new-york-citys-luxury-real-estate-market-is-slowing-down.jpg" alt="New York City's luxury real estate market is slowing down" border="0" />                                    </a>
+            </div>
+
+            <div class="river-post__byline">
+                <h2 class="river-post__heading">
+                    <a class="river-post__heading-anchor" href="http://www.businessinsider.com/new-york-residential-luxury-apartment-year-end-report-olshan-2016-12" target="_self" class="river-post__byline-heading-anchor">
+                        New York City's luxury real estate market is slowing down                    </a>
+                </h2>
+                                    
+<div class="flex byline">
+        
+    <div class="flex-item">
+        <div class="list-pipes no-pipe">
+            <ul>
+                            
+                      
+                        <!-- Kissmetrics author byline class name -->
+                                                    <li class="publication-author ksm-post-author-byline"><a href="http://www.businessinsider.com/author/akin-oyedele">Akin Oyedele</a></li>
+                                            
+                
+                
+                                    <!-- Date -->
+                    <li class="river-post__date">
+	<span class="svg sprites date-icon"></span>
+	<span data-bi-format="date" rel="1482946380">Dec. 28, 2016, 12:33 PM</span>
+</li>                            
+                            <li class="pageviews">
+                    <span class="svg sprites cool views"></span>
+                    <span class="cool" title="views">246</span>
+                </li>            
+            
+                        </ul>
+
+        </div>
+    </div>
+</div>
+                                            </div>
+            </li>
+
+            
+			<li id="pagination">
+		    <div>
+    			<a href="?page=2">
+    				<div class="float-left">More ... </div>
+    				<img id="page_loading" src="http://static2.businessinsider.com/assets/images/spinner.gif" data-page-loading="" alt="Loading" style="display:none" />
+    			</a>
+			</div>
+		</li>
+	
+
+            </ul>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="http://static4.businessinsider.com/assets/js/min-mobile-foot.js?1482865311"></script>
+
+<!-- START Nielsen Online SiteCensus V6.0 -->
+<!-- COPYRIGHT 2010 Nielsen Online -->
+<script type="text/javascript">
+(function () {
+    var d = new Image(1, 1);
+    d.onerror = d.onload = function () { d.onerror = d.onload = null; };
+    d.src = ["//secure-us.imrworldwide.com/cgi-bin/m?ci=us-103525h&cg=0&cc=1&si=", escape(window.location.href), "&rp=", escape(document.referrer), "&ts=compact&rnd=", (new Date()).getTime()].join('');
+})();
+</script>
+<noscript>
+    <div><img src="//secure-us.imrworldwide.com/cgi-bin/m?ci=us-103525h&amp;cg=0&amp;cc=1&amp;ts=noscript" width="1" height="1" alt="" /></div>
+</noscript>
+<!-- END Nielsen Online SiteCensus V6.0 -->
+
+<!-- Chartbeat -->
+<script type="text/javascript">
+    // chartbeat wants the vars in global
+    window._sf_async_config.sections = 'homepage';
+    window._sf_async_config.authors = 'homepage';
+
+    //only set the following if on a video post
+    
+    //only set the following if on a sponsored post
+    
+    (function(){
+      function loadChartbeat() {
+        window._sf_endpt=(new Date()).getTime();
+        var e = document.createElement('script');
+        e.setAttribute('language', 'javascript');
+        e.setAttribute('type', 'text/javascript');
+        e.setAttribute('src',
+           (('https:' === document.location.protocol) ? 'https://s3.amazonaws.com/' : 'http://') +
+           'static.chartbeat.com/js/chartbeat_video.js');
+        document.body.appendChild(e);
+      }
+      var oldonload = window.onload;
+      window.onload = (typeof window.onload != 'function') ?
+         loadChartbeat : function() { oldonload(); loadChartbeat(); };
+    })();
+</script>
+<!-- / Chartbeat -->
+
+<!-- Google Tag Manager -->
+<noscript><iframe src=""//www.googletagmanager.com/ns.html?id=GTM-NS64GV"" height=""0"" width=""0"" style=""display:none;visibility:hidden""></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NS64GV');</script>
+<!-- End Google Tag Manager -->
+
+
+<!-- Piano -->
+<!-- End Piano -->
+
+<!-- Kissmetrics -->
+<script type="text/javascript">
+    var _kmq = _kmq || [];
+    var _kmk = _kmk || 'baef5a3d7c1cae9c49c4ae5e64c97324b19df559';
+    function _kms(u){
+        setTimeout(function(){
+            var s = document.createElement('script');
+            var f = document.getElementsByTagName('script')[0];
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = u;
+            f.parentNode.insertBefore(s, f);
+        }, 1);
+    }
+    </script>
+<!-- /Kissmetrics -->
+
+<!-- Begin comScore Tag -->
+<script type="text/javascript">
+    var _comscore = _comscore || [];
+    _comscore.push({ c1: "2", c2: "9900186"
+            });
+    (function() {
+        var s = document.createElement("script"), el = document.getElementsByTagName("script")[0];
+        s.async = true;
+        s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+        el.parentNode.insertBefore(s, el);
+    })();
+</script>
+<noscript>
+    <img src="http://b.scorecardresearch.com/p?c1=2&c2=9900186&cv=2.0&cj=1" />
+</noscript>
+<!-- End comScore Tag -->
+
+<!-- BEGIN Krux Control Tag -->
+<script class="kxct" data-id="I2I9M2yx" data-timing="async" data-version="1.9" type="text/javascript">
+	window.Krux||((Krux=function(){Krux.q.push(arguments)}).q=[]);
+	(function(){
+		var k=document.createElement('script');k.type='text/javascript';k.async=true;
+		var m,src=(m=location.href.match(/\bkxsrc=([^&]+)/))&&decodeURIComponent(m[1]);
+		k.src = /^https?:\/\/([^\/]+\.)?krxd\.net(:\d{1,5})?\//i.test(src) ? src : src === "disable" ? "" :
+		(location.protocol==="https:"?"https:":"http:")+"//cdn.krxd.net/controltag?confid=I2I9M2yx"
+		;
+		var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(k,s);
+	}());
+</script>
+<!-- END Krux Controltag -->
+
+<!--We load the Sailthru recommended stuff at the very end. -->
+<script type="text/javascript" src="//ak.sail-horizon.com/scout/v1.js"></script>
+
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"4b4136998e","applicationID":"13516968","transactionName":"ZVZVZRBVXEJVVkJRDVwcdEQRQF1cG11ZVQdCUlBU","queueTime":0,"applicationTime":102,"atts":"SRFCE1hPTx0WVBQCGU9O","errorBeacon":"bam.nr-data.net","agent":""}</script>
+<!-- Begin ADSNATIVE Code -->
+  <script type="text/javascript">
+    var _AdsNativeOpts = {
+      apiKey: 'XD84vltI28W6BmPhtpX_-btV_vLa7hALBPL7GBnu',
+      autoPosition: true,
+    };
+  </script>
+  <script type="text/javascript" src="http://docs.adsnative.com/preview/render/v1.js"></script>
+<!-- End ADSNATIVE Code -->
+</body>
+</html>
