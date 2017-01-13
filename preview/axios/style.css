@@ -1,0 +1,214 @@
+/*Posts Container*/
+.posts-main .widget {
+    background: #fff;
+    margin-bottom: 20px;
+    padding: 20px 20px 25px;
+}
+
+/*Featured Post*/
+.posts-main--featured .widget {
+    border-top: 3px solid #008dc8;
+}
+
+.widget__featured-notice {
+    display: none;
+}
+
+.posts-main--featured .widget__featured-notice {
+    display: block;
+    margin: 0 0 10px;
+    font: 500 11px/1.2 'gordita', sans-serif;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: #008dc8;
+}
+
+/*Posts Headline*/
+.posts-main .widget__headline {
+    color: #4a4a4a;
+    font: 500 20px/1.55 'gordita', sans-serif;
+    margin: 0 0 20px 0;
+    display: block;
+    letter-spacing: -0.3px;
+}
+
+.posts-main .widget__headline a {
+    color: #4a4a4a;
+}
+
+/*Posts Splash Image and Photo Credits*/
+.posts-main .widget__image-container {
+    margin: 0 -20px 20px;
+}
+
+.posts-main .widget__image {
+    padding-top: 100%;
+}
+
+.posts-main .widget__photo-credit,
+.posts-main .widget__photo-credit p {
+    font: normal 10px/1.55 'gordita', sans-serif;
+    letter-spacing: 0.2px;
+    color: #848484;
+    margin: 0;
+}
+.posts-main .widget__photo-credit {
+    margin: 10px 20px 0;
+}
+
+/*Posts Body*/
+.posts-main .widget__body,
+.posts-main .widget__body p {
+    font: normal 15px/1.67 'atiza_textregular', serif;
+    color: #4a4a4a;
+}
+
+.posts-main .widget__body a {
+    background: linear-gradient(#fff,#fff),linear-gradient(#fff,#fff),linear-gradient(#308ECA,#308ECA);
+    background-size: .05em 1px,.05em 1px,1px 1px;
+    background-repeat: no-repeat,no-repeat,repeat-x;
+    text-shadow: 0.03em 0 #fff, -0.03em 0 #fff, 0 0.03em #fff, 0 -0.03em #fff, 0.06em 0 #fff, -0.06em 0 #fff, 0.09em 0 #fff, -0.09em 0 #fff, 0.12em 0 #fff, -0.12em 0 #fff, 0.15em 0 #fff, -0.15em 0 #fff;
+    background-position: 0 95%,100% 95%,0 95%;
+}
+
+.posts-main .widget__body p {
+    margin: 0 0 20px;
+}
+
+.posts-main .widget__body blockquote {
+    margin: -45px 0 0!important;
+    padding: 52px 20px 35px;
+    font: normal 19px/1.47 'atiza_textregular', serif;
+    letter-spacing: -0.3px;
+    text-align: center;
+    background: url(/static/img/whitelabel/axios/quote.png) top left no-repeat;
+    background-size: 102px 96px;
+}
+.posts-main .widget__body blockquote strong {
+    display: block;
+    margin-top: 15px;
+    font: 500 13px/1.55 'gordita', sans-serif;
+}
+
+.posts-main .widget__body ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.posts-main .widget__body ul li {
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 20px;
+}
+
+.posts-main .widget__body ul li:before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: #4a4a4a;
+    border-radius: 50px;
+    position: absolute;
+    left: 12px;
+    top: 8px;
+}
+
+/*Posts Footer*/
+.widget__footer {
+    margin-top: 5px;
+}
+
+.widget__primarytag {
+    font: bold 11px/32px 'gordita', sans-serif;
+    letter-spacing: 0.5px;
+    color: #4a4a4a;
+    text-transform: uppercase;
+    float: left;
+    vertical-align: top;
+}
+
+.widget__primarytag .sprite-icons-plus-box {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.widget__primarytag:hover .sprite-icons-plus-box {
+    background-position: -18px -21px;
+}
+.widget__primarytag:hover .widget__primarytag-title {
+    font-size: 0;
+    line-height: 0;
+}
+.widget__primarytag:hover .widget__primarytag-title:before {
+    content: 'READ ANOTHER';
+    font-size: 11px;
+}
+
+.posts-main .widget__sharebar {
+    float: right;
+}
+
+.posts-main .widget__sharebar .share {
+    margin-left: 11px;
+}
+
+@media (min-width: 768px) {
+    .posts-main--featured .widget__featured-notice {
+        margin-bottom: 15px;
+    }
+    .posts-main .widget {
+        padding: 24px 35px 30px;
+    }
+    .posts-main .widget__image {
+        padding-top: 56.25%;
+    }
+    .posts-main .widget__headline {
+        font-size: 27px;
+        line-height: 1.48;
+        margin-bottom: 25px;
+    }
+    .posts-main .widget__image-container {
+        margin: 0 -35px 15px;
+    }
+    .posts-main .widget__photo-credit {
+        margin: 15px 35px 0;
+    }
+    .posts-main .widget__body,
+    .posts-main .widget__body p {
+        font-size: 16px;
+        line-height: 1.75;
+    }
+    .posts-main .widget__body blockquote {
+        margin: -50px 0 0!important;
+        padding: 57px 45px 35px;
+        background-size: 106px 100px;
+        font-size: 23px;
+        line-height: 1.39;
+        letter-spacing: -0.4px;
+    }
+    .widget__footer {
+        margin-top: 10px;
+    }
+}
+
+@media (min-width: 1366px) {
+    .posts-main .widget {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+    .posts-main .widget__headline {
+        font-size: 34px;
+        line-height: 1.32;
+    }
+    .posts-main .widget__image-container {
+        margin-left: -40px;
+        margin-right: -40px;
+    }
+    .posts-main .widget__body blockquote {
+        margin: -80px 0 0!important;
+        padding: 97px 45px 35px;
+        background-size: 184px 174px;
+        font-size: 28px;
+        line-height: 1.43;
+    }
+}
