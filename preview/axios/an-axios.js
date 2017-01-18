@@ -1,6 +1,6 @@
 (function(AnAxios) {
 
-    var integration_version = 1.1,
+    var integration_version = 1.2,
         topInfeedPlacement = null,
         bottomInfeedPlacement = null,
         widgetContainerCount = 0,
@@ -11,12 +11,14 @@
         var newsletterName = getNewsletterName();
         if(newsletterName) {
             Axlog('Rendering email-web placements');
-            renderWebEmailAd(3, newsletterName);
-
             setTimeout(function() {
-                blockRenderJSClick(document.querySelector('.promotedSlot.top'));
-                blockRenderJSClick(document.querySelector('.promotedSlot.bottom'));
-            }, 4000);
+                renderWebEmailAd(3, newsletterName);
+
+                setTimeout(function() {
+                    blockRenderJSClick(document.querySelector('.promotedSlot.top'));
+                    blockRenderJSClick(document.querySelector('.promotedSlot.bottom'));
+                }, 4000);
+            }, 2000);
         } else {
             Axlog('Rendering web placements');
 
@@ -123,11 +125,16 @@
     function renderWebEmailAd(posIndex, newsletterName) {
         // Newsletter top : QP7qU259EMD8fQJMZjD-tZ9npIQH6xf5tW6umnLq
         // Newsletter bottom : c8NKzyrmahVnalrdA6S8Iy9kZGs7G1r5qrCiS5iH
-        var placementId = null;
+        var placementId = null, emailAdSibling = null,
         placementId = (posIndex < 5) ? 'QP7qU259EMD8fQJMZjD-tZ9npIQH6xf5tW6umnLq' : 'c8NKzyrmahVnalrdA6S8Iy9kZGs7G1r5qrCiS5iH';
 
-        var emailAdSibling = document.querySelector('#rebelltitem' + posIndex),
-            adContainer = document.createElement('div');
+        if(posIndex > 5) {
+            emailAdSibling = document.querySelector('.post-pager')
+        } else {
+            emailAdSibling = document.querySelector('#rebelltitem' + posIndex);
+        }
+
+        var adContainer = document.createElement('div');
 
         adContainer.id = placementId;
         emailAdSibling.parentNode.insertBefore(adContainer, emailAdSibling);
@@ -205,6 +212,8 @@
     }
 
     function blockRenderJSClick(selectorElement) {
+        if(!selectorElement) return;
+
         selectorElement.onclick = function(e) {
             e.stopPropagation();
         }
