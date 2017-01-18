@@ -1,6 +1,6 @@
 (function(AnAxios) {
 
-    var integration_version = 1.0,
+    var integration_version = 1.1,
         topInfeedPlacement = null,
         bottomInfeedPlacement = null,
         widgetContainerCount = 0,
@@ -213,6 +213,18 @@
         var summary = selectorElement.querySelector('.widget__summary');
         if(summary)
             summary.innerHTML = summary.innerHTML.replace("link", "href");
+
+        // Clean up empty image space
+        var shortCode = selectorElement.querySelector('.rm-shortcode'),
+            mediaURL = shortCode.style.backgroundImage.split('"');
+        if(mediaURL.length > 1) {
+            mediaURL = mediaURL[1].split('/');
+            if(mediaURL.length > 4) {
+                if(mediaURL[4] === '') {
+                    shortCode.style.display = 'none';
+                }
+            }
+        }
     }
 
     function getChannelName() {
