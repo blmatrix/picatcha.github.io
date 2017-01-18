@@ -1,25 +1,40 @@
 (function(AnAxios) {
 
-    var integration_version = 0.4,
+    var integration_version = 1.0,
         topInfeedPlacement = null,
-        bottomInfeedPlacement = null;
+        bottomInfeedPlacement = null,
+        widgetContainerCount = 0,
+        lazyLoadingContainers = null;
 
     // Public Methods
     AnAxios.initAdUnits = function() {
-        var inFeedPlacement = null,
-            lastWidgetContainer = getLastWidgetContainer();
-        
-        if (lastWidgetContainer && !lastWidgetContainer.querySelector('.promotedSlot')) {
-            // Render both 3rd and 7th position placements
-            if (!topInfeedPlacement) {
-                topInfeedPlacement = new AdsNative("nsK-n33LeWIYxlqAM7XF344sx76i8mN4Ui_dGZGl", []);
-            }
-            if (!bottomInfeedPlacement) {
-                bottomInfeedPlacement = new AdsNative("KGwjVBXKNqqXQFF4DtfHliBxJ6kaXoDi80AP8ZM8", []);
-            }
+        var newsletterName = getNewsletterName();
+        if(newsletterName) {
+            Axlog('Rendering email-web placements');
+            renderWebEmailAd(3, newsletterName);
 
-            fetchAd('top', topInfeedPlacement, lazyLoadingContainers.length);
-            fetchAd('bottom', bottomInfeedPlacement, lazyLoadingContainers.length);
+            setTimeout(function() {
+                blockRenderJSClick(document.querySelector('.promotedSlot.top'));
+                blockRenderJSClick(document.querySelector('.promotedSlot.bottom'));
+            }, 4000);
+        } else {
+            Axlog('Rendering web placements');
+
+            var inFeedPlacement = null,
+                lastWidgetContainer = getLastWidgetContainer();
+            
+            if (lastWidgetContainer && !lastWidgetContainer.querySelector('.promotedSlot')) {
+                // Render both 3rd and 7th position placements
+                if (!topInfeedPlacement) {
+                    topInfeedPlacement = new AdsNative("nsK-n33LeWIYxlqAM7XF344sx76i8mN4Ui_dGZGl", []);
+                }
+                if (!bottomInfeedPlacement) {
+                    bottomInfeedPlacement = new AdsNative("KGwjVBXKNqqXQFF4DtfHliBxJ6kaXoDi80AP8ZM8", []);
+                }
+
+                fetchWebAd('top', topInfeedPlacement, lazyLoadingContainers.length);
+                fetchWebAd('bottom', bottomInfeedPlacement, lazyLoadingContainers.length);
+            }
         }
     }
 
@@ -32,28 +47,50 @@
     function getLastWidgetContainer() {
         lazyLoadingContainers = document.querySelectorAll('div[data-format="posts-main"]');
         lastWidgetContainer = lazyLoadingContainers[lazyLoadingContainers.length - 1];
+        widgetContainerCount = lazyLoadingContainers.length;
 
         return lastWidgetContainer;
     }
 
-    function fetchAd(position, placement, lazyLoadCount) {
+    function fetchWebAd(position, placement, lazyLoadCount) {
         placement.fetchAd(function(adReturned, adData) {
             if (adReturned) {
 
                 // Render containers for adsnative placements
                 var latestStories = lastWidgetContainer.querySelectorAll('.widget'),
-                    pos = parseInt(adData.customFields.pos) - 2,
-                    topStory = latestStories[pos],
+                    pos = parseInt(adData.customFields.pos) - 1;
+
+                // Account for Featured container on page load
+                if(widgetContainerCount <= 3 && position === 'top') {
+                    debugger;
+                    var featuredContainer = document.querySelector('div[data-source="frontpage_featured"]');
+                    if(featuredContainer && featuredContainer.querySelector('.widget')) {
+                        // On page load, there will be two containers, first with one and second with 10
+                        pos -= 1;
+                    }
+
+                    // Account for top story container on page load
+                    if(widgetContainerCount === 3) {
+                        if(lazyLoadingContainers[1] && lazyLoadingContainers[1].querySelector('.widget')) {
+                            // On page load, there will be two containers, first with one and second with 10
+                            pos -= 1;
+                        }
+                    }
+                }
+                
+
+
+                var topStory = latestStories[pos],
                     adContainer = document.createElement('div');
 
                 adContainer.id = 'top-ad-container-' + lazyLoadCount;
-                topStory.parentNode.insertBefore(adContainer, topStory.nextSibling);
+                topStory.parentNode.insertBefore(adContainer, topStory);
                 var didDisplay = placement.displayAd('top-ad-container-' + lazyLoadCount);
                 if (!didDisplay) {
                     Axlog('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
                 } else {
                     // Break title into title+imageCaption
-                    adContainer = document.querySelector('.promotedSlot.' + position);
+                    adContainer = lastWidgetContainer.querySelector('.promotedSlot.' + position);
                     if(adContainer) {
                         var titleContainer = adContainer.querySelector('.widget__headline');
                         if(titleContainer) {
@@ -76,19 +113,43 @@
                     }
 
                     // Ad should not be clickable, prevent render js from taking over the ad click
-                    promotedSlot = document.querySelector('.promotedSlot.' + position);
-                    promotedSlot.onclick = function(e) {
-                        e.stopPropagation();
-                    }
-
-                    // Update "link" to "href" in summary anchor tag 
-                    var summary = promotedSlot.querySelector('.widget__summary');
-                    summary.innerHTML = summary.innerHTML.replace("link", "href");
+                    blockRenderJSClick(lastWidgetContainer.querySelector('.promotedSlot.' + position));
 
                     updateSocialLinks(position, (adData.actionTrackingUrls) ? adData.actionTrackingUrls : null);
                 }
             }
         });
+    }
+
+    function renderWebEmailAd(posIndex, newsletterName) {
+        // Newsletter top : QP7qU259EMD8fQJMZjD-tZ9npIQH6xf5tW6umnLq
+        // Newsletter bottom : c8NKzyrmahVnalrdA6S8Iy9kZGs7G1r5qrCiS5iH
+        var placementId = null;
+        placementId = (posIndex < 5) ? 'QP7qU259EMD8fQJMZjD-tZ9npIQH6xf5tW6umnLq' : 'c8NKzyrmahVnalrdA6S8Iy9kZGs7G1r5qrCiS5iH';
+
+        var emailAdSibling = document.querySelector('#rebelltitem' + posIndex),
+            adContainer = document.createElement('div');
+
+        adContainer.id = placementId;
+        emailAdSibling.parentNode.insertBefore(adContainer, emailAdSibling);
+        debugger;
+        kvPairs = {};
+        kvPairs["ck_newsletter_name"] = newsletterName;
+        window._AdsNativeOpts = {
+            adUnits: [{
+                apiKey: placementId,
+                keyValues: kvPairs,
+                cssPath: '#'+placementId+':append',
+                callback: function(status, adData) {
+                    if(posIndex < 5) {
+                        // Render bottom email after top
+                        renderWebEmailAd(7, newsletterName);
+                    }
+                }
+            }],
+            blockAdLoad: false
+        };
+        insertRenderJs();
     }
 
     function updateSocialLinks(position, actionTrackingUrls) {
@@ -144,11 +205,39 @@
         });
     }
 
+    function blockRenderJSClick(selectorElement) {
+        selectorElement.onclick = function(e) {
+            e.stopPropagation();
+        }
+
+        // Update "link" to "href" in summary anchor tag 
+        var summary = selectorElement.querySelector('.widget__summary');
+        if(summary)
+            summary.innerHTML = summary.innerHTML.replace("link", "href");
+    }
+
     function getChannelName() {
         var url = document.head.querySelector("[property=og:url]").content,
             urlParts = url.split('/');
 
         if(urlParts.length > 3) return urlParts[3].toLowerCase();
+    }
+
+    function getNewsletterName() {
+        var sectionMetas = document.head.querySelectorAll("[name='section']");
+
+        for(i=0; i<sectionMetas.length; i++) {
+            var content = sectionMetas[i].content;
+            if(content.indexOf("section-axios") >= 0) {
+                content = content.split('-');
+                content.splice(0, 1);
+                content = content.join('-');
+                Axlog("Newsletter name is : " + content);
+                return content;
+            }
+        }
+        
+        return null;
     }
 
     function insertRenderJs() {
@@ -191,7 +280,7 @@
 
     if (getParameterByName('axios_preview', document.referrer)) {
         debug = true;
-        edLog('Loaded an-axios.js version : ', integration_version);
+        Axlog('Loaded an-axios.js version : ', integration_version);
     }
 
 }(window.AnAxios = window.AnAxios || {}));
