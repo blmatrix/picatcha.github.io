@@ -1,6 +1,6 @@
 (function(AnAxios) {
 
-    var integration_version = 0.1,
+    var integration_version = 0.4,
         topInfeedPlacement = null,
         bottomInfeedPlacement = null;
 
@@ -22,6 +22,12 @@
             fetchAd('bottom', bottomInfeedPlacement, lazyLoadingContainers.length);
         }
     }
+
+    // AJAX loading new 10 stories
+    window.addEventListener('loaded-more-posts' , function(e) {
+        Axlog('loaded-more-posts Event fired. Requesting new set of inFeed Ads.');
+        window.AnAxios.initAdUnits();
+    });
 
     function getLastWidgetContainer() {
         lazyLoadingContainers = document.querySelectorAll('div[data-format="posts-main"]');
@@ -46,6 +52,39 @@
                 if (!didDisplay) {
                     Axlog('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
                 } else {
+                    // Break title into title+imageCaption
+                    adContainer = document.querySelector('.promotedSlot.' + position);
+                    if(adContainer) {
+                        var titleContainer = adContainer.querySelector('.widget__headline');
+                        if(titleContainer) {
+                            var title = titleContainer.innerHTML.split('|');
+                            if(title.length) {
+                                titleContainer.innerHTML = title[0].trim();
+                            }
+                            if(title.length > 1) {
+                                var imageCaption = adContainer.querySelector('.widget__photo-credit p');
+                                if(imageCaption) {
+                                    imageCaption.innerHTML = title[1];
+                                    // Remove AN external link element
+                                    var linkElem = imageCaption.querySelector('.adsnative-icon-external-link');
+                                    if(linkElem) imageCaption.removeChild(linkElem);
+
+                                    Axlog('Processed '+position+' Adunit image caption : ', imageCaption.innerHTML);
+                                }
+                            }
+                        }
+                    }
+
+                    // Ad should not be clickable, prevent render js from taking over the ad click
+                    promotedSlot = document.querySelector('.promotedSlot.' + position);
+                    promotedSlot.onclick = function(e) {
+                        e.stopPropagation();
+                    }
+
+                    // Update "link" to "href" in summary anchor tag 
+                    var summary = promotedSlot.querySelector('.widget__summary');
+                    summary.innerHTML = summary.innerHTML.replace("link", "href");
+
                     updateSocialLinks(position, (adData.actionTrackingUrls) ? adData.actionTrackingUrls : null);
                 }
             }
