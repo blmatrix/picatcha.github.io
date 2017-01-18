@@ -62,7 +62,6 @@
 
                 // Account for Featured container on page load
                 if(widgetContainerCount <= 3 && position === 'top') {
-                    debugger;
                     var featuredContainer = document.querySelector('div[data-source="frontpage_featured"]');
                     if(featuredContainer && featuredContainer.querySelector('.widget')) {
                         // On page load, there will be two containers, first with one and second with 10
@@ -132,7 +131,7 @@
 
         adContainer.id = placementId;
         emailAdSibling.parentNode.insertBefore(adContainer, emailAdSibling);
-        debugger;
+
         kvPairs = {};
         kvPairs["ck_newsletter_name"] = newsletterName;
         window._AdsNativeOpts = {
