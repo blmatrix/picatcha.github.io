@@ -1,0 +1,127 @@
+body {}
+
+#ad_container {
+    position: absolute;
+    width: 968px;
+    height: 248px;
+    overflow: hidden;
+    top: 0px;
+    left: 0px;
+/*    background-color: black;*/
+}
+
+#endplate {
+    position: absolute;
+    width: 970px;
+    height: 250px;
+    overflow: hidden;
+    top: -1px;
+    left: -1px;
+    cursor: pointer;
+    /*        background: url('../images/col_ground.png') no-repeat;*/
+}
+
+
+#date {
+    position: absolute;
+    width: 970px;
+    height: 250px;
+    top: 0px;
+    left: 20px;
+    background: url('../images/date_a.png') no-repeat;
+    visibility: hidden;
+    opacity: 0;
+    transition: ease-in .5s opacity;
+    -webkit-transition: ease-out .5s opacity;
+    -moz-transition: ease-out .5s opacity;
+    -o-transition: ease-out .5s opacity;
+    -ms-transition: ease-out .5s opacity;
+}
+
+#his {
+    position: absolute;
+    width: 970px;
+    height: 250px;
+    top: 0px;
+    left: 20px;
+    background: url('../images/his.png') no-repeat;
+    visibility: hidden;
+    opacity: 0;
+    transition: ease-in .5s opacity;
+    -webkit-transition: ease-out .5s opacity;
+    -moz-transition: ease-out .5s opacity;
+    -o-transition: ease-out .5s opacity;
+    -ms-transition: ease-out .5s opacity;
+}
+
+
+#title {
+    position: absolute;
+    width: 970px;
+    height: 250px;
+    top: 0px;
+    left: 0px;
+    background: url('../images/title.png') no-repeat;
+    visibility: hidden;
+    opacity: 0;
+    transition: ease-in .5s opacity;
+    -webkit-transition: ease-out .5s opacity;
+    -moz-transition: ease-out .5s opacity;
+    -o-transition: ease-out .5s opacity;
+    -ms-transition: ease-out .5s opacity;
+}
+
+
+
+#cta_holder {
+    position: absolute;
+    width: 158px;
+    height: 36px;
+    top: 189px;
+    left: 781px;
+    cursor: pointer;
+    opacity: 0;
+    /*    overflow: hidden;*/
+    visibility: hidden;
+    transition: ease-in .5s opacity;
+    -webkit-transition: ease-in .5s opacity;
+    -moz-transition: ease-in .5s opacity;
+    -o-transition: ease-in .5s opacity;
+    -ms-transition: ease-in .5s opacity;
+}
+
+
+#cta_text {
+    position: absolute;
+    width: 158px;
+    height: 36px;
+    top: 0px;
+    left: 0px;
+    background: url('../images/cta_text.png') no-repeat;
+    visibility: visible;
+    cursor: pointer;
+    opacity: 0;
+    transition: ease-in .5s opacity;
+    -webkit-transition: ease-out .5s opacity;
+    -moz-transition: ease-out .5s opacity;
+    -o-transition: ease-out .5s opacity;
+    -ms-transition: ease-out .5s opacity;
+}
+
+#cta_bg {
+    position: absolute;
+    width: 158px;
+    height: 36px;
+    top: 0px;
+    left: 0px;
+    background: url('../images/cta_bg.png') no-repeat;
+    visibility: visible;
+    cursor: pointer;
+    opacity: 1;
+    transition: ease-in .5s opacity;
+    -webkit-transition: ease-out .5s opacity;
+    -moz-transition: ease-out .5s opacity;
+    -o-transition: ease-out .5s opacity;
+    -ms-transition: ease-out .5s opacity;
+}
+
