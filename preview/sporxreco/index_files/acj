@@ -1,0 +1,23 @@
+OX_7509882289({
+  "ads":{
+    "medium":"w",
+    "record_tmpl":"http://insticator-d.openx.net/{medium}/1.0/{rtype}?bi=86d9895f-1a3a-43c6-862a-2bb27906793d&ba=1485555953&ts={txn_state}",
+    "pixels":"http://us-u.openx.net/w/1.0/pd?plm=5&ph=76f82d4b-8581-44b9-85f2-34f5ab6622df&bi=86d9895f-1a3a-43c6-862a-2bb27906793d",
+    "adunits" : [
+      {
+        "auid":"538152069",
+        "chain_revenue":"",
+        "size":"300x250",
+        "chain":[
+        ]
+      },
+      {
+        "auid":"538152069",
+        "chain_revenue":"",
+        "size":"300x250",
+        "chain":[
+        ]
+      }
+    ]
+  }
+});
