@@ -1,16 +1,17 @@
 (function(AnAxios) {
 
-    var integration_version = 1.7,
+    var integration_version = 2.5,
         topInfeedPlacement = null,
         bottomInfeedPlacement = null,
         widgetContainerCount = 0,
         lazyLoadingContainers = null,
         lastWidgetContainer = null,
-        featuredPostExists = false, topStoryExists = false, topicAlertExists = false, socialStoryExists = false;
+        featuredPostExists = false, topStoryExists = false, topicAlertExists = false, socialStoryExists = false,
+        newsletterName = null;
 
     // Public Methods
     AnAxios.initAdUnits = function() {
-        var newsletterName = getNewsletterName();
+        newsletterName = getNewsletterName();
         if(newsletterName) {
             Axlog('Rendering email-web placements');
             setTimeout(function() {
@@ -63,7 +64,7 @@
                     mainContainer = document.querySelector('.content__main'),
                     adRendered = false;
 
-                adContainer.id = 'top-ad-container-' + lazyLoadCount;
+                adContainer.id = position + '-ad-container-' + lazyLoadCount;
                 if(position === 'top' && lazyLoadCount <= 3) {
                     updateFirstAdPosition();
 
@@ -175,7 +176,7 @@
                         pos -= 1;
                     } else if(position === 'bottom') {
                         // Account for top ad 'widget' if already rendered
-                        var topAd = lastWidgetContainer.querySelector('.promotedSlot.top');
+                        var topAd = lastWidgetContainer.querySelector('.promotedSlot.top.' + 'index'+lazyLoadCount);
                         if(!topAd) {
                             pos -= 1;
                         }
@@ -187,14 +188,17 @@
                     adRendered = true;
                 }
 
-                var didDisplay = placement.displayAd('top-ad-container-' + lazyLoadCount);
+                var didDisplay = placement.displayAd(adContainer.id);
                 if (!didDisplay) {
                     Axlog('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
                 } else {
                     // Break title into title+imageCaption
+                    lastWidgetContainer = getLastWidgetContainer();
                     adContainer = lastWidgetContainer.querySelector('.promotedSlot.' + position);
+                    if(!adContainer) adContainer = document.querySelector('.promotedSlot.' + position);
+                    addClass(adContainer, 'index'+lazyLoadCount);
                     if(adContainer) {
-                        var titleContainer = adContainer.querySelector('.widget__headline');
+                        titleContainer = adContainer.querySelector('.widget__headline');
                         if(titleContainer) {
                             var title = titleContainer.innerHTML.split('|');
                             if(title.length) {
@@ -214,16 +218,18 @@
                         }
                     }
 
-                    updateSocialLinks(position, (adData.actionTrackingUrls) ? adData.actionTrackingUrls : null);
+                    updateSocialLinks(position, (adData.actionTrackingUrls) ? adData.actionTrackingUrls : null, lazyLoadCount);
 
                     // Ad should not be clickable, prevent render js from taking over the ad click
-                    blockRenderJSClick(lastWidgetContainer.querySelector('.promotedSlot.' + position));
+                    blockRenderJSClick(lastWidgetContainer.querySelector('.promotedSlot.' + position + '.index'+lazyLoadCount));
                 }
             }
         });
     }
 
     function renderWebEmailAd(posIndex, newsletterName) {
+        Axlog("Rendering "+newsletterName+" web placement at position : "+posIndex);
+
         // Newsletter top : QP7qU259EMD8fQJMZjD-tZ9npIQH6xf5tW6umnLq
         // Newsletter bottom : c8NKzyrmahVnalrdA6S8Iy9kZGs7G1r5qrCiS5iH
         var placementId = null, emailAdSibling = null,
@@ -232,18 +238,16 @@
         adContainer.id = placementId;
 
         if(posIndex > 5) {
-            // emailAdSibling = document.querySelector('.post-pager')
             emailAdSibling = document.querySelector('.widget__body .body');
             emailAdSibling.appendChild(adContainer);
+            Axlog("Adcontainer added for "+posIndex+" position");
         } else {
-            emailAdSibling = document.querySelector('#rebelltitem' + posIndex);
-            emailAdSibling.parentNode.insertBefore(adContainer, emailAdSibling);
+            rebelFeedItems = document.querySelectorAll('.widget__body .rebellt-item');
+            if(rebelFeedItems.length && rebelFeedItems[posIndex-1]) {
+                rebelFeedItems[posIndex-1].parentNode.insertBefore(adContainer, rebelFeedItems[posIndex-1]);
+                Axlog("Adcontainer added for "+posIndex+" position");
+            }
         }
-        // debugger;
-        
-        // var footers = document.querySelectorAll('.widget__footer');
-
-
 
         kvPairs = {};
         kvPairs["ck_newsletter_name"] = newsletterName;
@@ -253,6 +257,7 @@
                 keyValues: kvPairs,
                 cssPath: '#'+placementId+':append',
                 callback: function(status, adData) {
+                    Axlog("Ad callback received for "+posIndex+" position");
                     if(posIndex < 5) {
                         // Render bottom email after top
                         renderWebEmailAd(7, newsletterName);
@@ -303,9 +308,9 @@
         }
     }
 
-    function updateSocialLinks(position, actionTrackingUrls) {
+    function updateSocialLinks(position, actionTrackingUrls, lazyLoadCount) {
         var lastWidgetContainer = getLastWidgetContainer(),
-            adUnit = lastWidgetContainer.querySelector('.promotedSlot.' + position),
+            adUnit = lastWidgetContainer.querySelector('.promotedSlot.' + position + '.index' + lazyLoadCount),
             title, summary, clickUrl;
 
         linkElem = adUnit.querySelector('.widget__headline .adsnative-icon-external-link');
@@ -360,22 +365,44 @@
         if(!selectorElement) return;
 
         selectorElement.onclick = function(e) {
-            e.stopPropagation();
+            e = e || window.event; // cross-browser event
+
+            if (e.stopPropagation) {
+                // W3C standard variant
+                e.stopPropagation();
+            } else {
+                // IE variant
+                e.cancelBubble = true;
+            }
         }
 
-        // Update "link" to "href" in summary anchor tag 
-        var summary = selectorElement.querySelector('.widget__summary');
-        if(summary)
-            summary.innerHTML = summary.innerHTML.replace("link", "href");
+        // Web infeed / web newsletter placements
+        // Update "link" to "href" in summary 
+        selectorElement.innerHTML = selectorElement.innerHTML.replace('link=""', 'href=""');
+        var clickThroughUrl = selectorElement.querySelector('.an-click-through');
+            anchorLinks = selectorElement.querySelectorAll('.adLink');
+        if(clickThroughUrl && anchorLinks.length) {
+            clickThroughUrl = clickThroughUrl.innerHTML;
+            anchorLinks.forEach(updateClickURL);
+            function updateClickURL(item, index) {
+                if(typeof item.href !== 'undefined') {
+                    // Add link to the href element
+                    item.href = clickThroughUrl;
+                    Axlog('Updated hyperlink in summary');
+                }
+            }
+        }
 
         // Clean up empty image space
-        var shortCode = selectorElement.querySelector('.rm-shortcode'),
-            mediaURL = shortCode.style.backgroundImage.split('"');
-        if(mediaURL.length > 1) {
-            mediaURL = mediaURL[1].split('/');
-            if(mediaURL.length > 4) {
-                if(mediaURL[4] === '') {
+        var shortCode = selectorElement.querySelector('.rm-shortcode');
+        if(shortCode) {
+            var mediaURL = shortCode.style.backgroundImage;
+            mediaURL = mediaURL.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
+            mediaURLParts = mediaURL.split('/');
+            if(mediaURLParts.length > 4) {
+                if(mediaURLParts[4] === '') {
                     shortCode.style.display = 'none';
+                    Axlog('No image creative present, collapsing container');
                 }
             }
         }
@@ -430,6 +457,28 @@
             }
         }
     };
+
+    function hasClass(el, className) {
+      if (el.classList)
+        return el.classList.contains(className)
+      else
+        return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'))
+    }
+
+    function addClass(el, className) {
+      if (el.classList)
+        el.classList.add(className)
+      else if (!hasClass(el, className)) el.className += " " + className
+    }
+
+    function removeClass(el, className) {
+      if (el.classList)
+        el.classList.remove(className)
+      else if (hasClass(el, className)) {
+        var reg = new RegExp('(\\s|^)' + className + '(\\s|$)')
+        el.className=el.className.replace(reg, ' ')
+      }
+    }
 
     function getParameterByName(name, url) {
         if (!url) {
