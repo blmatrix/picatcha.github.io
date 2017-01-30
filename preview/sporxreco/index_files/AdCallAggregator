@@ -1,0 +1,5 @@
+var bidDetailsMap={ "/91725235/sporx.com_Web_300x250_1@300x250": { "ecpm":0.0000, "creative_tag":"", "tracking_url":"", "width":"0","height":"0","deal_channel":1,"error":"1"}, "/91725235/sporx.com_Web_300x250_2@300x250": { "ecpm":0.0000, "creative_tag":"", "tracking_url":"", "width":"0","height":"0","deal_channel":1,"error":"1"} }
+var progKeyValueMap={ "/91725235/sporx.com_Web_300x250_1@300x250":"bidstatus=0;bid=0.0000;bidid=/91725235/sporx.com_Web_300x250_1@300x250;wdeal=", "/91725235/sporx.com_Web_300x250_2@300x250":"bidstatus=0;bid=0.0000;bidid=/91725235/sporx.com_Web_300x250_2@300x250;wdeal=" }
+if (typeof window.parent.instBid.handlePubmaticCallback === 'function') {
+  window.parent.instBid.handlePubmaticCallback();
+}

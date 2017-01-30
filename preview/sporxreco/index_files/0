@@ -1,0 +1,11 @@
+var inDapIF = true;var inFIF = true;var RMIF = true;
+var tc = 0;
+var c = 'US';
+var s = 'California, 8863';
+var ci = 'San Francisco (Mission District), 140696';
+var uip = '199.116.74.234';
+var wcamp = '0';
+var bn = 'Chrome';
+;
+var msxweb37 = '15.6708';;
+var rts = '';var db = 'System started\r\nAdSharedTask : 0\r\n\r\nCapping : 0\r\n\r\nCampaigns : 0\r\n\r\nEmpty Preview : 15.6708\r\n\r\n'; 

@@ -1,0 +1,1 @@
+$(function() {var ctlPressed = false;var ctl = 17;var c = 67;jQuery(document).keydown(function(e) {if (e.keyCode == ctl) ctlPressed = true; }).keyup(function(e) {if (e.keyCode == ctl) ctlPressed = false; }); jQuery(document).keydown(function(e) {if (ctlPressed && e.keyCode == c) return false;});});document.oncontextmenu=new Function("return false");
