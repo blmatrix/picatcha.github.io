@@ -1,0 +1,277 @@
+
+<html>
+<head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+
+    <script type="text/javascript" src="//static.adsnative.com/static/js/jwplayer/jwplayer.js"></script>
+    <script>jwplayer.key="ZLDzSWyaANSc0ZLgWoUGIT4zW5VqvQOl3IOOHQ==";</script>
+
+    <style type="text/css">
+        body { margin: 0px; cursor: pointer; }
+        #embed-container { position: relative; overflow: hidden; width: 100%; height: 100%; } #embed-container iframe, #embed-container object, #embed-container embed { top: 0; left: 0; width: 100%; height: 100%; }
+    </style>
+    <script type="text/javascript">
+
+        function urlPrefix(){
+            if(location.protocol == 'https:')
+                return 'https:';
+            else
+                return 'http:';
+        }
+
+        if(typeof swfobject !== 'undefined' && swfobject.getFlashPlayerVersion().major !== 0){
+          /* flash supported */
+        } else {
+          dropTrackingTag('http://bevo-us-east-1.adsnative.com/dd.gif?key=v_noflash&sid=1ba8c156d4c84ee0a25ba800f83482c2_9a8c6421');
+        }
+
+        
+        
+
+        function logTimeSpent(time_spent){
+          dropTrackingTag('http://bevo-us-east-1.adsnative.com/vv.gif?tag_name=vvts&data=NmVlYTI1MjkwYzMwNDVkYTQyMzRiZDAzNWY0YjQwNDIyYzhjODM5NzU0ZjBlZjkwY2JjOWNlNzc0NTAwYTg3ODdiYjg5NDAxMzMzZDcxY2Y5M2E1Mzc2NTUwYWNlOGZmNjhlMjM3MjBhMWNhZjE4MjUzZTk2NTUyNjAzNmNiMmQyYTRmMDI4NDNjNDE0MjY1NGQxOWQzN2M1NDAxYTllNjNmYjVmMzA3NzRjMmE1NThmOTZjNTAzOTQ4ODUwNzE3NDJmZTJkYjYwYjkyYmM2Y2Q0Nzg2MzM1MjA4YWY3NTdjMmJkNGJmODEyM2MwNGY5YmQ4YmFlM2I3NzFiOWNjYWRjOTQwNzJkNmYzZjgxMzFmYzk4ODBlYmFjNDQ2Nzkx&sid=1ba8c156d4c84ee0a25ba800f83482c2_9a8c6421&tag_value='+time_spent);
+        }
+
+        function dropTrackingTag(url){
+            $('#embed-container').append("<img style=\"width:1px;height:1px;\" width='0' height='0' border='0' src=\""+ url +"\"/>");
+        }
+
+        var click_count=0;
+        function trackPlay(){
+            if(click_count == 0){
+                dropTrackingTag('http://bevo-us-east-1.adsnative.com/vv.gif?tag_name=v&data=NmVlYTI1MjkwYzMwNDVkYTQyMzRiZDAzNWY0YjQwNDIyYzhjODM5NzU0ZjBlZjkwY2JjOWNlNzc0NTAwYTg3ODdiYjg5NDAxMzMzZDcxY2Y5M2E1Mzc2NTUwYWNlOGZmNjhlMjM3MjBhMWNhZjE4MjUzZTk2NTUyNjAzNmNiMmQyYTRmMDI4NDNjNDE0MjY1NGQxOWQzN2M1NDAxYTllNjNmYjVmMzA3NzRjMmE1NThmOTZjNTAzOTQ4ODUwNzE3NDJmZTJkYjYwYjkyYmM2Y2Q0Nzg2MzM1MjA4YWY3NTdjMmJkNGJmODEyM2MwNGY5YmQ4YmFlM2I3NzFiOWNjYWRjOTQwNzJkNmYzZjgxMzFmYzk4ODBlYmFjNDQ2Nzkx&sid=1ba8c156d4c84ee0a25ba800f83482c2_9a8c6421');
+
+                
+                  <!-- no extra view tags -->
+                
+            }
+            click_count++;
+        }
+
+        function trackResume(){
+            
+        }
+
+        function trackVideoImpression(){
+            
+            dropTrackingTag("http://bevo-us-east-1.adsnative.com/vv.gif?tag_name=vvi&data=NmVlYTI1MjkwYzMwNDVkYTQyMzRiZDAzNWY0YjQwNDIyYzhjODM5NzU0ZjBlZjkwY2JjOWNlNzc0NTAwYTg3ODdiYjg5NDAxMzMzZDcxY2Y5M2E1Mzc2NTUwYWNlOGZmNjhlMjM3MjBhMWNhZjE4MjUzZTk2NTUyNjAzNmNiMmQyYTRmMDI4NDNjNDE0MjY1NGQxOWQzN2M1NDAxYTllNjNmYjVmMzA3NzRjMmE1NThmOTZjNTAzOTQ4ODUwNzE3NDJmZTJkYjYwYjkyYmM2Y2Q0Nzg2MzM1MjA4YWY3NTdjMmJkNGJmODEyM2MwNGY5YmQ4YmFlM2I3NzFiOWNjYWRjOTQwNzJkNmYzZjgxMzFmYzk4ODBlYmFjNDQ2Nzkx&sid=1ba8c156d4c84ee0a25ba800f83482c2_9a8c6421");
+            dropTrackingTag('http://bevo-us-east-1.adsnative.com/dd.gif?key=v_player&sid=1ba8c156d4c84ee0a25ba800f83482c2_9a8c6421');
+        }
+
+        function trackPause(){
+            
+        }
+
+        function trackComplete(){
+            
+            dropTrackingTag("http://bevo-us-east-1.adsnative.com/vv.gif?tag_name=vv100&data=NmVlYTI1MjkwYzMwNDVkYTQyMzRiZDAzNWY0YjQwNDIyYzhjODM5NzU0ZjBlZjkwY2JjOWNlNzc0NTAwYTg3ODdiYjg5NDAxMzMzZDcxY2Y5M2E1Mzc2NTUwYWNlOGZmNjhlMjM3MjBhMWNhZjE4MjUzZTk2NTUyNjAzNmNiMmQyYTRmMDI4NDNjNDE0MjY1NGQxOWQzN2M1NDAxYTllNjNmYjVmMzA3NzRjMmE1NThmOTZjNTAzOTQ4ODUwNzE3NDJmZTJkYjYwYjkyYmM2Y2Q0Nzg2MzM1MjA4YWY3NTdjMmJkNGJmODEyM2MwNGY5YmQ4YmFlM2I3NzFiOWNjYWRjOTQwNzJkNmYzZjgxMzFmYzk4ODBlYmFjNDQ2Nzkx&sid=1ba8c156d4c84ee0a25ba800f83482c2_9a8c6421");
+        }
+
+        function trackMuteState(state){
+            
+            
+        }
+
+        function trackFullscreen(state){
+            
+        }
+
+        function trackVideoAdClick(){
+          dropTrackingTag("http://bevo-us-east-1.adsnative.com/vv.gif?tag_name=vvc&data=NmVlYTI1MjkwYzMwNDVkYTQyMzRiZDAzNWY0YjQwNDIyYzhjODM5NzU0ZjBlZjkwY2JjOWNlNzc0NTAwYTg3ODdiYjg5NDAxMzMzZDcxY2Y5M2E1Mzc2NTUwYWNlOGZmNjhlMjM3MjBhMWNhZjE4MjUzZTk2NTUyNjAzNmNiMmQyYTRmMDI4NDNjNDE0MjY1NGQxOWQzN2M1NDAxYTllNjNmYjVmMzA3NzRjMmE1NThmOTZjNTAzOTQ4ODUwNzE3NDJmZTJkYjYwYjkyYmM2Y2Q0Nzg2MzM1MjA4YWY3NTdjMmJkNGJmODEyM2MwNGY5YmQ4YmFlM2I3NzFiOWNjYWRjOTQwNzJkNmYzZjgxMzFmYzk4ODBlYmFjNDQ2Nzkx&sid=1ba8c156d4c84ee0a25ba800f83482c2_9a8c6421");
+        }
+
+        var play_init_count=0;
+        function trackVideoInitiatePlay(){
+          if(play_init_count == 0)
+            dropTrackingTag("http://bevo-us-east-1.adsnative.com/vv.gif?tag_name=vvp&data=NmVlYTI1MjkwYzMwNDVkYTQyMzRiZDAzNWY0YjQwNDIyYzhjODM5NzU0ZjBlZjkwY2JjOWNlNzc0NTAwYTg3ODdiYjg5NDAxMzMzZDcxY2Y5M2E1Mzc2NTUwYWNlOGZmNjhlMjM3MjBhMWNhZjE4MjUzZTk2NTUyNjAzNmNiMmQyYTRmMDI4NDNjNDE0MjY1NGQxOWQzN2M1NDAxYTllNjNmYjVmMzA3NzRjMmE1NThmOTZjNTAzOTQ4ODUwNzE3NDJmZTJkYjYwYjkyYmM2Y2Q0Nzg2MzM1MjA4YWY3NTdjMmJkNGJmODEyM2MwNGY5YmQ4YmFlM2I3NzFiOWNjYWRjOTQwNzJkNmYzZjgxMzFmYzk4ODBlYmFjNDQ2Nzkx&sid=1ba8c156d4c84ee0a25ba800f83482c2_9a8c6421");
+          play_init_count++;
+        }
+
+        var v_25_tracker = false, v_50_tracker = false, v_75_tracker = false;
+        function trackDurationMetrics(position, duration){
+            
+            var diff = ( Math.floor(position) ) / duration;
+            var perc = diff * 100;
+            
+            if(!v_25_tracker && (parseInt(perc) >= 25 && parseInt(perc) < 50)){
+              dropTrackingTag("http://bevo-us-east-1.adsnative.com/vv.gif?tag_name=vv25&data=NmVlYTI1MjkwYzMwNDVkYTQyMzRiZDAzNWY0YjQwNDIyYzhjODM5NzU0ZjBlZjkwY2JjOWNlNzc0NTAwYTg3ODdiYjg5NDAxMzMzZDcxY2Y5M2E1Mzc2NTUwYWNlOGZmNjhlMjM3MjBhMWNhZjE4MjUzZTk2NTUyNjAzNmNiMmQyYTRmMDI4NDNjNDE0MjY1NGQxOWQzN2M1NDAxYTllNjNmYjVmMzA3NzRjMmE1NThmOTZjNTAzOTQ4ODUwNzE3NDJmZTJkYjYwYjkyYmM2Y2Q0Nzg2MzM1MjA4YWY3NTdjMmJkNGJmODEyM2MwNGY5YmQ4YmFlM2I3NzFiOWNjYWRjOTQwNzJkNmYzZjgxMzFmYzk4ODBlYmFjNDQ2Nzkx&sid=1ba8c156d4c84ee0a25ba800f83482c2_9a8c6421");
+              v_25_tracker = true
+            }
+            else if(!v_50_tracker && (parseInt(perc) >= 50 && parseInt(perc) < 75)){
+              dropTrackingTag("http://bevo-us-east-1.adsnative.com/vv.gif?tag_name=vv50&data=NmVlYTI1MjkwYzMwNDVkYTQyMzRiZDAzNWY0YjQwNDIyYzhjODM5NzU0ZjBlZjkwY2JjOWNlNzc0NTAwYTg3ODdiYjg5NDAxMzMzZDcxY2Y5M2E1Mzc2NTUwYWNlOGZmNjhlMjM3MjBhMWNhZjE4MjUzZTk2NTUyNjAzNmNiMmQyYTRmMDI4NDNjNDE0MjY1NGQxOWQzN2M1NDAxYTllNjNmYjVmMzA3NzRjMmE1NThmOTZjNTAzOTQ4ODUwNzE3NDJmZTJkYjYwYjkyYmM2Y2Q0Nzg2MzM1MjA4YWY3NTdjMmJkNGJmODEyM2MwNGY5YmQ4YmFlM2I3NzFiOWNjYWRjOTQwNzJkNmYzZjgxMzFmYzk4ODBlYmFjNDQ2Nzkx&sid=1ba8c156d4c84ee0a25ba800f83482c2_9a8c6421");
+              v_50_tracker = true
+            }
+            else if(!v_75_tracker && (parseInt(perc) >= 75 && parseInt(perc) < 100)){
+              dropTrackingTag("http://bevo-us-east-1.adsnative.com/vv.gif?tag_name=vv75&data=NmVlYTI1MjkwYzMwNDVkYTQyMzRiZDAzNWY0YjQwNDIyYzhjODM5NzU0ZjBlZjkwY2JjOWNlNzc0NTAwYTg3ODdiYjg5NDAxMzMzZDcxY2Y5M2E1Mzc2NTUwYWNlOGZmNjhlMjM3MjBhMWNhZjE4MjUzZTk2NTUyNjAzNmNiMmQyYTRmMDI4NDNjNDE0MjY1NGQxOWQzN2M1NDAxYTllNjNmYjVmMzA3NzRjMmE1NThmOTZjNTAzOTQ4ODUwNzE3NDJmZTJkYjYwYjkyYmM2Y2Q0Nzg2MzM1MjA4YWY3NTdjMmJkNGJmODEyM2MwNGY5YmQ4YmFlM2I3NzFiOWNjYWRjOTQwNzJkNmYzZjgxMzFmYzk4ODBlYmFjNDQ2Nzkx&sid=1ba8c156d4c84ee0a25ba800f83482c2_9a8c6421");
+              v_75_tracker = true
+            }
+        }
+
+        function trackVideoError(){
+            dropTrackingTag("http://bevo-us-east-1.adsnative.com/vv.gif?tag_name=vve&data=NmVlYTI1MjkwYzMwNDVkYTQyMzRiZDAzNWY0YjQwNDIyYzhjODM5NzU0ZjBlZjkwY2JjOWNlNzc0NTAwYTg3ODdiYjg5NDAxMzMzZDcxY2Y5M2E1Mzc2NTUwYWNlOGZmNjhlMjM3MjBhMWNhZjE4MjUzZTk2NTUyNjAzNmNiMmQyYTRmMDI4NDNjNDE0MjY1NGQxOWQzN2M1NDAxYTllNjNmYjVmMzA3NzRjMmE1NThmOTZjNTAzOTQ4ODUwNzE3NDJmZTJkYjYwYjkyYmM2Y2Q0Nzg2MzM1MjA4YWY3NTdjMmJkNGJmODEyM2MwNGY5YmQ4YmFlM2I3NzFiOWNjYWRjOTQwNzJkNmYzZjgxMzFmYzk4ODBlYmFjNDQ2Nzkx&sid=1ba8c156d4c84ee0a25ba800f83482c2_9a8c6421");
+        }
+
+        var user_initiated_play = true; //We ignore the case when auto_play is forced through parameters
+
+        $(document).ready(function(){
+          // $('#embed-container').mouseenter(function(){
+          //     if(!user_initiated_play)
+          //       player.setMute(false);
+          // });
+
+          // $('#embed-container').mouseleave(function(){
+          //   if(!user_initiated_play)
+          //     player.setMute(true);
+          // });
+        });
+
+        function listener(event){
+          var message = event.message || event.data;
+          
+          if(message == 'disqus.view:50in' || message == 'adsnative.mrc50.view:in'){
+            player.play(true);
+            player.pauseAd();
+            trackVideoInitiatePlay();
+            user_initiated_play = false;
+          } else if ((message == 'disqus.view:50out' || message == 'adsnative.mrc50.view:out') && !user_initiated_play){
+            player.pause(true);
+            player.pauseAd();
+            user_initiated_play = false;
+          }
+          
+        }
+
+        //Event listeners
+        if (window.addEventListener){
+          addEventListener("message", listener, false)
+        } else {
+          attachEvent("onmessage", listener)
+        }
+
+        function sendPostMessage(message) {
+            var domain = document.referrer;
+            if(domain) {
+              domain = domain.split('/');
+              domain.length = 3;
+              domain = domain.join('/');
+              window.parent.contentWindow.postMessage(message, domain);
+            }
+        }
+
+    </script>
+</head>
+<body>
+  <div id='embed-container'>
+    <div id="theplayer"></div>
+
+    <script type='text/javascript'>
+        jwplayer('theplayer').setup({
+            skin: 'glow',
+            sources: [
+              
+                
+                { file: 'https://static.adsnative.com/media/videos/blank.mp4' }
+                
+              
+            ],
+            image: 'http://cdn.adsnative.com/media/13963/2eebfcac-2daf-4701-b95f-983bf55bb8c4.jpg',
+            width: '100%',
+            height: '100%',
+            autostart:  false ,
+            mute: true ,
+            primary: 'flash',
+            advertising: {
+                client: 'vast',
+                tag: 'https://upload.omnivirt.com/vpaid/24.xml'
+            }
+            
+        });
+
+        window.started = false;
+        window.player = jwplayer();
+        player.onSetupError(function(state) {
+            trackVideoError();
+        });
+
+        player.onReady(function(state) {
+          sendPostMessage('ready');
+        });
+
+        
+
+        player.onAdImpression(function(state){
+            //
+        });
+
+        player.onAdPlay(function(state){
+            if(!window.started){
+                window.started = true;
+                trackPlay();
+                window.playback_time = 0;
+            } else {
+                trackResume();
+            }
+            window.start_time = player.getPosition();
+        });
+
+        player.onAdPause(function(state){
+            logTimeSpent(Math.floor(( player.getPosition() - window.start_time ) * 1000));
+            trackPause();
+        });
+
+        player.onAdComplete(function(state){
+          trackComplete();
+        });
+
+        player.onAdError(function(state){
+          trackVideoError();
+        });
+
+        player.onAdTime(function(state){
+            // This event can be called multiple times within a second
+            if(window.playback_time == Math.floor(state.position))
+              return;
+            window.playback_time = Math.floor(state.position)
+
+            trackDurationMetrics(state.position, state.duration);
+        });
+
+        player.onAdClick(function(state){
+          trackVideoAdClick();
+        });
+
+        
+
+        player.onReady(function(state) {
+            trackVideoImpression();
+        });
+
+        player.onDisplayClick(function(state){
+          var state = player.getState();
+          // player state value is not updated yet when this event is called
+          if(state == 'PLAYING' && !user_initiated_play){
+            player.setMute(true);
+          } else if(state == 'PAUSED') {
+            user_initiated_play = true;
+            player.setMute(false);
+          }
+        });
+
+        player.onMute(function(state) {
+            trackMuteState(state.mute);
+        });
+
+        player.onFullscreen(function(state) {
+            if(state.fullscreen){
+                player.seek(0);
+                player.setMute(false);
+                trackFullscreen();
+            }
+        });
+    </script>
+
+    <img src="http://bevo-us-east-1.adsnative.com/dd.gif?key=v_iframe&sid=1ba8c156d4c84ee0a25ba800f83482c2_9a8c6421" style="width:1px;height:1px;" width='0' height='0' border='0'>
+  </div>
+</body>
+</html>

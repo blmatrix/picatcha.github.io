@@ -911,6 +911,9 @@
         } else if(template === 'NM16') { // Instream Text Single
             zoneCount = 1;
             template = 'NM16';
+        } else if(template === 'NM17') { // Instream Text Only
+            zoneCount = 1;
+            template = 'NM17';
         }
 
         return {zoneCount: zoneCount, template: template};
