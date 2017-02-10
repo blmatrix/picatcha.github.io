@@ -1,0 +1,206 @@
+@font-face {
+    font-family: 'Roboto Slab';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto Slab Regular'), local('RobotoSlab-Regular'), url(https://fonts.gstatic.com/s/robotoslab/v6/y7lebkjgREBJK96VQi37ZvZraR2Tg8w2lzm7kLNL0-w.woff2) format('woff2');
+    unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F
+}
+
+@font-face {
+    font-family: 'Roboto Slab';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto Slab Regular'), local('RobotoSlab-Regular'), url(https://fonts.gstatic.com/s/robotoslab/v6/y7lebkjgREBJK96VQi37Zl4sYYdJg5dU2qzJEVSuta0.woff2) format('woff2');
+    unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116
+}
+
+@font-face {
+    font-family: 'Roboto Slab';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto Slab Regular'), local('RobotoSlab-Regular'), url(https://fonts.gstatic.com/s/robotoslab/v6/y7lebkjgREBJK96VQi37ZlBW26QxpSj-_ZKm_xT4hWw.woff2) format('woff2');
+    unicode-range: U+1F00-1FFF
+}
+
+@font-face {
+    font-family: 'Roboto Slab';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto Slab Regular'), local('RobotoSlab-Regular'), url(https://fonts.gstatic.com/s/robotoslab/v6/y7lebkjgREBJK96VQi37Zgt_Rm691LTebKfY2ZkKSmI.woff2) format('woff2');
+    unicode-range: U+0370-03FF
+}
+
+@font-face {
+    font-family: 'Roboto Slab';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto Slab Regular'), local('RobotoSlab-Regular'), url(https://fonts.gstatic.com/s/robotoslab/v6/y7lebkjgREBJK96VQi37ZtDiNsR5a-9Oe_Ivpu8XWlY.woff2) format('woff2');
+    unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB
+}
+
+@font-face {
+    font-family: 'Roboto Slab';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto Slab Regular'), local('RobotoSlab-Regular'), url(https://fonts.gstatic.com/s/robotoslab/v6/y7lebkjgREBJK96VQi37ZqE8kM4xWR1_1bYURRojRGc.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF
+}
+
+@font-face {
+    font-family: 'Roboto Slab';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto Slab Regular'), local('RobotoSlab-Regular'), url(https://fonts.gstatic.com/s/robotoslab/v6/y7lebkjgREBJK96VQi37Zogp9Q8gbYrhqGlRav_IXfk.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000
+}
+
+@font-face {
+    font-family: 'Roboto Slab';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url(https://fonts.gstatic.com/s/robotoslab/v6/dazS1PrQQuCxC3iOAJFEJQXaAXup5mZlfK6xRLrhsco.woff2) format('woff2');
+    unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F
+}
+
+@font-face {
+    font-family: 'Roboto Slab';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url(https://fonts.gstatic.com/s/robotoslab/v6/dazS1PrQQuCxC3iOAJFEJVx-M1I1w5OMiqnVF8xBLhU.woff2) format('woff2');
+    unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116
+}
+
+@font-face {
+    font-family: 'Roboto Slab';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url(https://fonts.gstatic.com/s/robotoslab/v6/dazS1PrQQuCxC3iOAJFEJVT7aJLK6nKpn36IMwTcMMc.woff2) format('woff2');
+    unicode-range: U+1F00-1FFF
+}
+
+@font-face {
+    font-family: 'Roboto Slab';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url(https://fonts.gstatic.com/s/robotoslab/v6/dazS1PrQQuCxC3iOAJFEJQn6Wqxo-xwxilDXPU8chVU.woff2) format('woff2');
+    unicode-range: U+0370-03FF
+}
+
+@font-face {
+    font-family: 'Roboto Slab';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url(https://fonts.gstatic.com/s/robotoslab/v6/dazS1PrQQuCxC3iOAJFEJcbIQSYZnWLaWC9QNCpTK_U.woff2) format('woff2');
+    unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB
+}
+
+@font-face {
+    font-family: 'Roboto Slab';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url(https://fonts.gstatic.com/s/robotoslab/v6/dazS1PrQQuCxC3iOAJFEJYgd9OEPUCN3AdYW0e8tat4.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF
+}
+
+@font-face {
+    font-family: 'Roboto Slab';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url(https://fonts.gstatic.com/s/robotoslab/v6/dazS1PrQQuCxC3iOAJFEJf79_ZuUxCigM2DespTnFaw.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000
+}
+
+main.login,
+main.login>.container,
+main.register,
+main.register>.container {
+    width: 100%
+}
+
+.login .navbar,
+.register .navbar {
+    padding: 0 0 20px
+}
+
+.login .navbar-inner,
+.register .navbar-inner {
+    margin: 0;
+    width: 100%;
+    max-width: 100%
+}
+
+.login .navbar-inner .container,
+.register .navbar-inner .container {
+    background: url(https://www.newsmaxfeednetwork.com/App_Themes/NMWidget/images/signup_headback.png) center center/cover no-repeat;
+    min-height: 241px;
+    text-align: center;
+    width: 100%
+}
+
+.login .navbar-inner .container a,
+.register .navbar-inner .container a {
+    margin-top: 128px;
+    display: inline-block;
+    color: #fff;
+    font-size: 40px;
+    line-height: 42px;
+    font-family: 'Roboto Slab', serif
+}
+
+img.logo {
+    max-height: 30px
+}
+
+.login img.logo,
+.register img.logo {
+    
+}
+
+.login .navbar-inner .container a:before {
+    content: "Sign In to the"
+}
+
+.register .navbar-inner .container a:before {
+    content: "Sign up for the"
+}
+
+.reset-password .navbar-inner .container a:before {
+    content: "Reset Password"
+}
+
+.change-password .navbar-inner .container a:before {
+    content: "Change Password"
+}
+
+.login .navbar-inner .container a:after,
+.register .navbar-inner .container a:after {
+    content: "Sheknows Media Network";
+    display: block;
+    color: #55aee1;
+    font-weight: 700
+}
+
+#registration-form>h1,
+.onboarding-signup-container div.fieldWrapper h1,
+.onboarding-signup-container>h1 {
+    display: none
+}
+
+.onboarding-signup-container {
+    padding-top: 0;
+    margin-top: 0
+}
+
+.onboarding-signup-container div.fieldWrapper {
+    padding-top: 0!important
+}
+
+#registration-form input {
+    border-width: 1px;
+    font-weight: 300;
+    font-size: 14px
+}
+
+#registration-form {
+    border-color: #e3e3e4
+}
