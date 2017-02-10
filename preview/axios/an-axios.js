@@ -1,13 +1,15 @@
 (function(AnAxios) {
 
-    var integration_version = 2.5,
+    var integration_version = 2.7,
         topInfeedPlacement = null,
         bottomInfeedPlacement = null,
         widgetContainerCount = 0,
         lazyLoadingContainers = null,
         lastWidgetContainer = null,
-        featuredPostExists = false, topStoryExists = false, topicAlertExists = false, socialStoryExists = false,
-        newsletterName = null;
+        featuredPostsCount = 0, topStoryCount = 0, topicAlertExists = 0, socialStoryCount = 0,
+        featuredPostContainer = null, topStoryContainer = null, topicAlertContainer = null, socialPostContainer = null,
+        newsletterName = null,
+        forceCampaignId = null, forceCreativeId = null;
 
     // Public Methods
     AnAxios.initAdUnits = function() {
@@ -54,6 +56,16 @@
     }
 
     function fetchWebAd(position, placement, lazyLoadCount) {
+        var fetchOptions = {};
+        if(position === 'top' && lazyLoadCount <= 3) {
+            // Check if user clicked a ad shared on social feed and came back to axios
+            forceCampaignId = getParameterByName('c_id', document.location.href);
+            forceCreativeId = getParameterByName('cr_id', document.location.href);
+            if(forceCampaignId && forceCreativeId) {
+                fetchOptions.cid = parseInt(forceCampaignId);
+                fetchOptions.crid = parseInt(forceCreativeId);
+            }
+        }
         placement.fetchAd(function(adReturned, adData) {
             if (adReturned) {
 
@@ -64,109 +76,53 @@
                     mainContainer = document.querySelector('.content__main'),
                     adRendered = false;
 
+                if(typeof pos === 'undefined') pos = 3;
+
                 adContainer.id = position + '-ad-container-' + lazyLoadCount;
                 if(position === 'top' && lazyLoadCount <= 3) {
                     updateFirstAdPosition();
 
-                    // "Top ad will in the position after the first non-featured piece irrespective of the channel"
-                    if(featuredPostExists) {
-                        // If featured ad exists, increase the ad position by 1
-                        pos += 1;
+                    // If user clicked on a Ad shared on social feed, 
+                    // the same ad will be rendered at the top of the Axios feed
+                    if(forceCampaignId && forceCreativeId) {
+                        pos = 1;
                     }
 
+                    // "Top ad will in the position after the first two editorial stories irrespective of the channel"
                     // Featured post is always at Top of the main container
-                    if(!adRendered && featuredPostExists) {
-                        if(pos > 1) {
-                            pos -= 1;
+                    if(!adRendered && featuredPostsCount) {
+                        if(pos > 1 && pos - featuredPostsCount >= 1) {
+                            pos = pos - featuredPostsCount;
                         } else {
-                            // If pos=0 OR 1, then insert in position 1 (Top of the feed)
-                            var featuredContainer = mainContainer.querySelector('div[data-source^="frontpage_featured"]');
-                            if(featuredContainer && featuredContainer.querySelector('.widget')) {
-                                var featuredAd = featuredContainer.querySelector('.widget');
-                                featuredAd.parentNode.insertBefore(adContainer, featuredAd);
-                            } else {
-                                featuredContainer.appendChild(adContainer);
-                            }
+                            pos -= 1;
+                            // Insert @ pos in featured container
+                            var featuredAd = featuredPostContainer.querySelectorAll('.axios-post')[pos];
+                            featuredAd.parentNode.insertBefore(adContainer, featuredAd);
                             adRendered = true;
+                            Axlog('Rendered first ad in featured container. Featured posts = ' + featuredPostsCount);
                         }
                     }
-                    if(!adRendered && socialStoryExists) {
-                        if(pos > 1) {
-                            pos -= 1;
+                    if(!adRendered && socialStoryCount) {
+                        if(pos > 1 && pos - socialStoryCount >= 1) {
+                            pos -= socialStoryCount;
                         } else {
-                            // If pos=0 OR 1, then insert in position 1 (Top of the feed)
-                            var socialPostContainer = mainContainer.querySelector('#article-content');
-                            if(socialPostContainer && socialPostContainer.querySelector('.widget')) {
-                                var socialAd = socialPostContainer.querySelector('.widget');
-                                socialAd.parentNode.insertBefore(adContainer, socialAd);
-                            } else {
-                                socialPostContainer.appendChild(adContainer);
-                            }
+                            // Insert @ pos in social story container
+                            var socialAd = socialPostContainer.querySelectorAll('.axios-post')[pos];
+                            socialAd.parentNode.insertBefore(adContainer, socialAd);
                             adRendered = true;
+                            Axlog('Rendered first ad in social container. Social posts = ' + socialStoryCount);
                         }
                     }
-                    if(!adRendered && topStoryExists) {
-                        if(pos > 1) {
-                            pos -= 1;
+                    if(!adRendered && topStoryCount) {
+                        if(pos > 1 && pos - topStoryCount >= 1) {
+                            pos -= topStoryCount;
                         } else {
-                            // Check for top story post
-                            var topStoryContainerIndex = (socialStoryExists) ? 0 : 1,
-                                topStoryContainer = mainContainer.querySelectorAll('.posts-main.posts-main-section')[topStoryContainerIndex],
-                                topStory = null;
-                            if(topStoryContainer) topStory = topStoryContainer.querySelectorAll('.widget');
-                            if(topStory.length === 1) {
-                                // Top story exists, so insertBefore (prepend)
-                                topStory = topStory[0];
-                                topStory.parentNode.insertBefore(adContainer, topStory);
-                            } else {
-                                // Top story does not exist, so appendChild (append)
-                                topStoryContainer.appendChild(adContainer);
-                            }
+                            pos -= 1
+                            // Insert @ pos in top story container
+                            var topStory = topStoryContainer.querySelectorAll('.axios-post')[pos];
+                            topStory.parentNode.insertBefore(adContainer, topStory);
                             adRendered = true;
-                        }
-                    }
-                    // Topic alert post is always at third position of the main container
-                    if(!adRendered && topicAlertExists) {
-                        if(pos > 1) {
-                            pos -= 1;
-                        } else {
-                            // Check for topic-alert post
-                            var topicAlertContainer = mainContainer.querySelector('.topic-alert');
-                            if(topicAlertContainer && topicAlertContainer.innerHTML !== '') {
-                                // Top topic alert exists, so Insert after featured unit (previous container)
-                                // var featuredContainer = mainContainer.querySelector('div[data-source^="frontpage_featured"]');
-                                // featuredContainer.appendChild(adContainer);
-
-                                // Top topic alert exists, so Insert after top story unit (previous container)
-                                var topStoryContainer = mainContainer.querySelectorAll('.posts-main.posts-main-section')[1],
-                                    topStory = null;
-                                if(topStoryContainer) topStory = topStoryContainer.querySelectorAll('.widget');
-                                if(topStory.length === 1) {
-                                    // Top story exists, so insertBefore (prepend)
-                                    topStoryContainer.appendChild(adContainer);
-                                } else {
-                                    // Top story does not exist, so appendChild (append)
-                                    topStoryContainer.appendChild(adContainer);
-                                }
-                            } else {
-                                // Top topic alert does not exist, prepend in top story container
-                                // var topStoryContainer = mainContainer.querySelectorAll('.posts-main.posts-main-section')[1],
-                                //     topStory = null;
-                                // if(topStoryContainer) topStory = topStoryContainer.querySelectorAll('.widget');
-                                // if(topStory.length === 1) {
-                                //     // Top story exists, so insertBefore (prepend)
-                                //     topStory = topStory[0];
-                                //     topStory.parentNode.insertBefore(adContainer, topStory);
-                                // } else {
-                                //     // Top story does not exist, so appendChild (append)
-                                //     topStoryContainer.appendChild(adContainer);
-                                // }
-
-                                var latestStories = lastWidgetContainer.querySelectorAll('.widget');
-                                topStory = latestStories[0];
-                                topStory.parentNode.insertBefore(adContainer, topStory);
-                            }
-                            adRendered = true;
+                            Axlog('Rendered first ad in top story container. Top stories = ' + topStoryCount);
                         }
                     }
                 }
@@ -182,7 +138,7 @@
                         }
                     }
 
-                    var latestStories = lastWidgetContainer.querySelectorAll('.widget');
+                    var latestStories = lastWidgetContainer.querySelectorAll('.axios-post');
                     topStory = latestStories[pos];
                     topStory.parentNode.insertBefore(adContainer, topStory);
                     adRendered = true;
@@ -216,15 +172,15 @@
                                 }
                             }
                         }
-                    }
 
-                    updateSocialLinks(position, (adData.actionTrackingUrls) ? adData.actionTrackingUrls : null, lazyLoadCount);
+                        updateSocialLinks((adData.actionTrackingUrls) ? adData.actionTrackingUrls : null, adContainer);
+                    }
 
                     // Ad should not be clickable, prevent render js from taking over the ad click
                     blockRenderJSClick(lastWidgetContainer.querySelector('.promotedSlot.' + position + '.index'+lazyLoadCount));
                 }
             }
-        });
+        }, fetchOptions);
     }
 
     function renderWebEmailAd(posIndex, newsletterName) {
@@ -280,23 +236,25 @@
             if(postsContainers.length <= 3) {
 
                 // Check for featured post
-                var featuredContainer = mainContainer.querySelector('div[data-source^="frontpage_featured"]');
-                if(featuredContainer && featuredContainer.querySelector('.widget')) {
-                    featuredPostExists = true;
+                featuredPostContainer = mainContainer.querySelector('div[data-source^="frontpage_featured"]');
+                if(featuredPostContainer && featuredPostContainer.querySelector('.axios-post')) {
+                    featuredPostsCount = featuredPostContainer.querySelectorAll('.axios-post').length;
                 }
 
                 // Check for social post
                 var socialPostContainer = mainContainer.querySelector('#article-content');
-                if(socialPostContainer && socialPostContainer.querySelector('.widget')) {
-                    socialStoryExists = true;
+                if(socialPostContainer && socialPostContainer.querySelector('.axios-post')) {
+                    socialStoryCount = socialPostContainer.querySelectorAll('.axios-post').length;
                 }
 
                 // Check for top story post
-                var topStoryContainerIndex = (socialStoryExists) ? 0 : 1,
-                    topStoryContainer = postsContainers[topStoryContainerIndex];
-                if(topStoryContainer) topStoryContainer = topStoryContainer.querySelectorAll('.widget');
-                if(topStoryContainer.length === 1) {
-                    topStoryExists = true;
+                var topStoryContainerIndex = (socialStoryCount) ? 0 : 1;
+                topStoryContainer = postsContainers[topStoryContainerIndex];
+                if(topStoryContainer) {
+                    var topStories = topStoryContainer.querySelectorAll('.axios-post');
+                    if(topStories.length === 1) {
+                        topStoryCount = 1;
+                    }
                 }
 
                 // Check for topic-alert post
@@ -308,10 +266,16 @@
         }
     }
 
-    function updateSocialLinks(position, actionTrackingUrls, lazyLoadCount) {
+    // Sharing workflow
+    // Adops adds [CID] & [CRID] macros in destination URL
+    // js fetches those values from ad response
+    // Updates social links with 'c_id' and 'cr_id' and share to social feed
+    // If user clicks on social feed story, detect 'c_id' & 'cr_id' in url
+    // Pass those values to JS API to fetch the exact same campaign/creative to be rendered
+    // Change the top Ad (First Ad) position to 1 in the feed
+    function updateSocialLinks(actionTrackingUrls, adUnit) {
         var lastWidgetContainer = getLastWidgetContainer(),
-            adUnit = lastWidgetContainer.querySelector('.promotedSlot.' + position + '.index' + lazyLoadCount),
-            title, summary, clickUrl;
+            title, summary, clickUrl, cid, crid;
 
         linkElem = adUnit.querySelector('.widget__headline .adsnative-icon-external-link');
         if(linkElem) adUnit.querySelector('.widget__headline').removeChild(linkElem);
@@ -321,16 +285,26 @@
         clickUrl = adUnit.querySelector('.click-link').href;
         clickUrl = getParameterByName('url', clickUrl);
 
+        if(clickUrl) {
+            cid = getParameterByName('cid', clickUrl);
+            crid = getParameterByName('crid', clickUrl);
+
+            if(cid && crid) {
+                var baseUrl = (window.location.href) ? window.location.url.split('?')[0] : 'https://www.axios.com/'
+                clickUrl = baseUrl + '?c_id=' + cid + '&cr_id=' + crid;
+            }
+        }
+
         var fb = adUnit.querySelector('.share-fb'),
             tw = adUnit.querySelector('.share-tw'),
             linkedIn = adUnit.querySelector('.share-linkedin'),
             email = adUnit.querySelector('.share-email');
 
         // Set Values
-        fb.href += clickUrl;
-        tw.href += clickUrl + '&text=' + encodeURI(title);
-        linkedIn.href += encodeURI(clickUrl)
-        email.href += clickUrl + '&subject=' + encodeURI(title);
+        fb.href += encodeURIComponent(clickUrl);
+        tw.href += encodeURIComponent(clickUrl) + '&text=' + encodeURI(title);
+        linkedIn.href += encodeURIComponent(clickUrl)
+        email.href += encodeURIComponent(clickUrl) + '&subject=' + encodeURI(title);
 
         // Track custom actions
         trackCustomAction(fb, actionTrackingUrls.facebook_share[0], function() {
