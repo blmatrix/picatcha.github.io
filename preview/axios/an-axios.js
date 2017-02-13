@@ -1,6 +1,6 @@
 (function(AnAxios) {
 
-    var integration_version = 2.7,
+    var integration_version = 3.0,
         topInfeedPlacement = null,
         bottomInfeedPlacement = null,
         widgetContainerCount = 0,
@@ -177,7 +177,7 @@
                     }
 
                     // Ad should not be clickable, prevent render js from taking over the ad click
-                    blockRenderJSClick(lastWidgetContainer.querySelector('.promotedSlot.' + position + '.index'+lazyLoadCount));
+                    blockRenderJSClick(adContainer);
                 }
             }
         }, fetchOptions);
@@ -266,7 +266,7 @@
         }
     }
 
-    // Sharing workflow
+    // Social Sharing workflow
     // Adops adds [CID] & [CRID] macros in destination URL
     // js fetches those values from ad response
     // Updates social links with 'c_id' and 'cr_id' and share to social feed
@@ -290,21 +290,19 @@
             crid = getParameterByName('crid', clickUrl);
 
             if(cid && crid) {
-                var baseUrl = (window.location.href) ? window.location.url.split('?')[0] : 'https://www.axios.com/'
+                var baseUrl = (window.location.href) ? window.location.href.split('?')[0] : 'https://www.axios.com/'
                 clickUrl = baseUrl + '?c_id=' + cid + '&cr_id=' + crid;
             }
         }
 
         var fb = adUnit.querySelector('.share-fb'),
             tw = adUnit.querySelector('.share-tw'),
-            linkedIn = adUnit.querySelector('.share-linkedin'),
-            email = adUnit.querySelector('.share-email');
+            linkedIn = adUnit.querySelector('.share-linkedin');
 
         // Set Values
         fb.href += encodeURIComponent(clickUrl);
         tw.href += encodeURIComponent(clickUrl) + '&text=' + encodeURI(title);
         linkedIn.href += encodeURIComponent(clickUrl)
-        email.href += encodeURIComponent(clickUrl) + '&subject=' + encodeURI(title);
 
         // Track custom actions
         trackCustomAction(fb, actionTrackingUrls.facebook_share[0], function() {
@@ -315,9 +313,6 @@
         });
         trackCustomAction(linkedIn, actionTrackingUrls.linkedin_share[0], function() {
             Axlog('linkedin_share custom action tracked');
-        });
-        trackCustomAction(email, actionTrackingUrls.email_share[0], function() {
-            Axlog('email_share custom action tracked');
         });
     }
 
@@ -353,6 +348,7 @@
         // Web infeed / web newsletter placements
         // Update "link" to "href" in summary 
         selectorElement.innerHTML = selectorElement.innerHTML.replace('link=""', 'href=""');
+        selectorElement.innerHTML = selectorElement.innerHTML.replace('ad-url', 'href=""');
         var clickThroughUrl = selectorElement.querySelector('.an-click-through');
             anchorLinks = selectorElement.querySelectorAll('.adLink');
         if(clickThroughUrl && anchorLinks.length) {
@@ -368,14 +364,20 @@
         }
 
         // Clean up empty image space
-        var shortCode = selectorElement.querySelector('.rm-shortcode');
-        if(shortCode) {
-            var mediaURL = shortCode.style.backgroundImage;
+        var imageContainer = selectorElement.querySelector('.rm-shortcode');
+        if(!imageContainer) imageContainer = selectorElement.querySelector('.widget__image-container');
+        if(imageContainer) {
+            var webImageContainer;
+            if (!imageContainer.style.backgroundImage) {
+                webImageContainer = imageContainer.querySelector('.widget__image');
+            }
+
+            var mediaURL = (imageContainer.style.backgroundImage) ? imageContainer.style.backgroundImage : webImageContainer.style.backgroundImage;
             mediaURL = mediaURL.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
             mediaURLParts = mediaURL.split('/');
             if(mediaURLParts.length > 4) {
                 if(mediaURLParts[4] === '') {
-                    shortCode.style.display = 'none';
+                    imageContainer.style.display = "none";
                     Axlog('No image creative present, collapsing container');
                 }
             }
