@@ -31,12 +31,12 @@
                 if (!topInfeedPlacement) {
                     topInfeedPlacement = new AdsNative("nsK-n33LeWIYxlqAM7XF344sx76i8mN4Ui_dGZGl", []);
                 }
-                if (!bottomInfeedPlacement) {
-                    bottomInfeedPlacement = new AdsNative("KGwjVBXKNqqXQFF4DtfHliBxJ6kaXoDi80AP8ZM8", []);
-                }
+                // if (!bottomInfeedPlacement) {
+                //     bottomInfeedPlacement = new AdsNative("KGwjVBXKNqqXQFF4DtfHliBxJ6kaXoDi80AP8ZM8", []);
+                // }
 
                 fetchWebAd('top', topInfeedPlacement, lazyLoadingContainers.length);
-                fetchWebAd('bottom', bottomInfeedPlacement, lazyLoadingContainers.length);
+                // fetchWebAd('bottom', bottomInfeedPlacement, lazyLoadingContainers.length);
             }
         }
     }
@@ -86,6 +86,15 @@
                     // the same ad will be rendered at the top of the Axios feed
                     if(forceCampaignId && forceCreativeId) {
                         pos = 1;
+                    }
+
+                    if(!adRendered) {
+                        // User reached the site via a "specific story" link
+                        // Example : https://www.axios.com/david-shulkin-easily-confirmed-as-va-secretary-2259554681.html
+                        var specificStory = document.querySelectorAll('.content__main > .axios-post');
+                        if(specificStory && specificStory.length === 1) {
+                            pos -= 1;
+                        }
                     }
 
                     // "Top ad will in the position after the first two editorial stories irrespective of the channel"
