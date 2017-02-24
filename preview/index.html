@@ -3,37 +3,67 @@
 
 <head>
     <title></title>
-         <script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<!--          <script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
 <script>
   var googletag = googletag || {};
   googletag.cmd = googletag.cmd || [];
-</script>
+</script> -->
 
 <script>
-  googletag.cmd.push(function() {
-    googletag.defineSlot('/41710666/IABFEED', [300, 250], 'edmodo-adx-banner-medrec').addService(googletag.pubads());
-    googletag.pubads().enableSingleRequest();
-    googletag.enableServices();
-  });
+  // googletag.cmd.push(function() {
+  //   googletag.defineSlot('/41710666/IABFEED', [300, 250], 'edmodo-adx-banner-medrec').addService(googletag.pubads());
+  //   googletag.pubads().enableSingleRequest();
+  //   googletag.enableServices();
+  // });
 </script>
 </head>
 
 <body>
     <script type="text/javascript">
-    var _AdsNativeOpts = {
-        adUnits: [{
-            apiKey: 't8AjW-y8rudFGzKft_YQcBZG1-aGZ5otj5QdsKaP',
-            cssPath: 'body:append',
-            callback: function(status, adData) {
-                if (adData && adData.actionTrackingUrls && adData.actionTrackingUrls. < ACTION_NAME > ) {
-                    var pxl = document.createElement('img');
-                    pxl.src = adData.actionTrackingUrls. < ACTION_NAME > [0];
-                    pxl.width = pxl.height = 0;
-                    document.body.appendChild(pxl);
-                }
-            }
-        }],
-    };
+    // var _AdsNativeOpts = {
+    //     adUnits: [{
+    //         apiKey: 'cwWQusujneJpDIdGQaMbHI41oXK0ViFhbG4yeTFZ',
+    //         cssPath: 'body:append',
+    //         // This callback is fired when render js finished rendering the ad
+    //         callback: function(status, adData) {
+    //         	// adData contains : cid, crid, zid, sid, actionTrackingUrls & type
+ 			// 	if(status && adData && adData.crid) {
+ 			// 		// RTB creative ID string will be of this format : 'rtb:<DSP_ID>:<INDEX>'
+ 			// 		if(adData.crid.indexOf('rtb:36') >= 0) {
+ 			// 			// Ad returned by powerlinks disqus DSP : ID = 36
+ 			// 			// Fire Disqus custom diagnostic event
+ 			// 			if (adData && adData.actionTrackingUrls && adData.actionTrackingUrls.powerlinks_imp) {
+		  //                   var pxl = document.createElement('img');
+		  //                   pxl.src = adData.actionTrackingUrls.powerlinks_imp[0];
+		  //                   pxl.width = pxl.height = 0;
+		  //                   document.body.appendChild(pxl);
+		  //               }
+ 			// 		}
+ 			// 	}
+    //         }
+    //     }],
+    // };
+
+    var _AdsNativeOpts = { 
+		adUnits: [{ 
+				apiKey: 'DAXN8Yuk0sWp3-jfs0JaT_U79o5FE-Y7JajR2m4o', 
+				numAds: 1
+			}, { 
+				apiKey: 'kxvenXOjUlPJibewha5OHL28nYHa2y-RXi0yP3NH', 
+				numAds: 4,
+				callback: function(status, adData) {
+	            	if (adData && adData.actionTrackingUrls && adData.actionTrackingUrls.widgetloaded) {
+	                	var pxl = document.createElement('img');
+	                	pxl.src = adData.actionTrackingUrls.widgetloaded[0];
+	                	pxl.width = pxl.height = 0;
+	                	document.body.appendChild(pxl);
+	                }
+	            }
+			}
+		],
+		autoPosition: true
+	};
+
     </script>
     <script type="text/javascript" src="http://static.adsnative.com/static/js/render.v1.js"></script>
 
@@ -81,11 +111,16 @@
 
 
 <!-- /41710666/IABFEED -->
-<div id='edmodo-adx-banner-medrec' style='height:250px; width:300px;'>
+<!-- <div id='edmodo-adx-banner-medrec' style='height:250px; width:300px;'>
 <script>
 googletag.cmd.push(function() { googletag.display('edmodo-adx-banner-medrec'); });
 </script>
-</div>
+</div> -->
+
+<div id="cwWQusujneJpDIdGQaMbHI41oXK0ViFhbG4yeTFZ"></div>
+<div id="DAXN8Yuk0sWp3-jfs0JaT_U79o5FE-Y7JajR2m4o"></div>
+<div id="kxvenXOjUlPJibewha5OHL28nYHa2y-RXi0yP3NH"></div>
+
 </body>
 
 </html>

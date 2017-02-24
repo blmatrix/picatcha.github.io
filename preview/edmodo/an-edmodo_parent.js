@@ -1,7 +1,8 @@
 (function( AnEdmodo ) {
     // Public Methods
     AnEdmodo.initFloatingAd = function(postData) {
-        var adUnit = null;
+        var adUnit = null,
+            version = 1.03;
         if(postData.adUnitConfig.position === 'in-feed') {
             adUnit = document.querySelector('.main-column .stream-item.str-adunit');
         } else {
@@ -24,12 +25,30 @@
         addCustomCreativeContent(postData.adUnitConfig);
     }
 
+    AnEdmodo.hideAd = function(postData) {
+        adUnitIframe = document.querySelector('.' + postData.adPosition + ' .ads-native-message-item-iframe');
+        adUnitIframe.style.display = "none";
+    }
+
     AnEdmodo.userClickedFloatingAd = function(postData) {
         var floatingItems = document.querySelector('.floating-items.' + postData.adPosition),
             adUnit = document.querySelector('.str-adunit.' + postData.adPosition);
 
         if(hasClass(floatingItems, 'animate')) removeClass(floatingItems, 'animate');
         overlapFloatingContainer(adUnit, postData.adPosition, showFloatingContainer);
+    }
+
+    AnEdmodo.adjustAdContainerSize = function(postData) {
+        if(postData && postData.adHeight) {
+            // Assign the received height to the iframe
+            if(postData.adPosition) {
+                var adUnit = document.querySelector('.str-adunit.' + postData.adPosition + ' .ads-native-message-item-iframe');
+                if(adUnit) {
+                    if(postData.adHeight) adUnit.height = postData.adHeight;
+                    if(postData.adWidth) adUnit.width = postData.adWidth;
+                }
+            }
+        }
     }
 
     // Private Methods
@@ -218,3 +237,21 @@
         return decodeURIComponent(results[2].replace(/\+/g, " "));
     }
 }( window.AnEdmodo = window.AnEdmodo || {} ));
+
+var handleMessage = function(e) {
+    switch(e.data.action) {
+        case 'ads-native:init-floating-ad':
+            AnEdmodo.initFloatingAd(e.data);
+            break;
+        case 'ads-native:user-clicked-floating-ad':
+            AnEdmodo.userClickedFloatingAd(e.data);
+            break;
+        case 'ads-native:ad-height':
+            AnEdmodo.adjustAdContainerSize(e.data);
+            break;
+        case 'ads-native:hide':
+            AnEdmodo.hideAd(e.data);
+            break;
+    }
+};
+window.addEventListener('message', handleMessage, false);

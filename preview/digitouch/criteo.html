@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<!-- Example Ad Response Structure
+{
+    "response_status": 0,
+    "status_message": "",
+    "products": [{
+        "title": "Red shoes",
+        "description": "Male running shoes",
+        "price": "$120",
+        "click_url": "http://myadvertiser.com/redKshoes",
+        "image": {
+            "url": "http://myadvertiser.com/img/redKshoes.png",
+            "width": 400,
+            "height": 400
+        }
+    }],
+    "advertiser": {
+        "logo_click_url": "http://myadvertiser.com/home",
+        "description": “Advertiser ", "
+        domain ": "
+        advertiser.com ",
+        "legal_text“: "
+        No tax "
+        "logo": {
+            "url": "http://myadvertiser.com/img/logo.png",
+            "width": 70,
+            "height": 70
+        }
+    },
+    "privacy": {
+        "optout_click_url": "http://myoptouturl/info",
+        "optout_image_url": "http://myoptouturl/icon.png"
+    },
+    "impression_pixels": [{
+        "url": "http://myvendorurl/pixel.gif"
+    }, {
+        "url": "http://www.advertiser.com/impression.gif"
+    }]
+});
+-->
+
+<script type='text/javascript'>
+var version = '0.1',
+	zoneid = '671782',
+	s = document.createElement('script');
+
+s.type = 'text/javascript';
+s.src = '//cas.criteo.com/delivery/'+ version + '/napi.jsonp?zoneid=' + zoneid + '&callback=processJSON';
+var h = document.getElementsByTagName('script')[0];
+h.parentNode.insertBefore(s, h);
+
+function processJSON(data) { // data structure defined above
+	if(data && typeof data.response_status !== 'undefined') {
+		if(data.response_status === 1) {
+			console.log("No Ad was returned by Criteo tag v0.1 for zoneID : "+ zoneid + ", falling back to next");
+		} else if(data.response_status === 0) {
+			console.log("Ad was successfully returned by Criteo tag v0.1 for zoneID : "+ zoneid);
+			if(data.products) {
+				console.log("Received following products in the response : ", data.products);
+			}
+		}
+	}
+}
+</script>
+
+</body>
+</html>

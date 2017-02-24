@@ -1,18 +1,37 @@
 (function(AnAxios) {
 
-    var integration_version = 3.0,
+    var integration_version = 3.3,
         topInfeedPlacement = null,
         bottomInfeedPlacement = null,
         widgetContainerCount = 0,
         lazyLoadingContainers = null,
-        lastWidgetContainer = null,
         featuredPostsCount = 0, topStoryCount = 0, topicAlertExists = 0, socialStoryCount = 0,
         featuredPostContainer = null, topStoryContainer = null, topicAlertContainer = null, socialPostContainer = null,
         newsletterName = null,
-        forceCampaignId = null, forceCreativeId = null;
+        channelName = null,
+        placementId = null,
+        forceCampaignId = null, forceCreativeId = null,
+        processedStories = null,
+        currentAllStories = null,
+        firstAdPosition = null,
+        adRepeatFrequency = null,
+        currentAdIndex = -1,
+        mainContainer = document.querySelector('.content__main'),
+        processQueue = {
+            peerStoryItems: [],
+            placements: []
+        };
+
+    // AJAX loading new 10 stories
+    window.addEventListener('loaded-more-posts' , function(e) {
+        Axlog('loaded-more-posts Event fired. Populating new ads at frequency ' + adRepeatFrequency);
+        window.AnAxios.initAdUnits();
+    });
 
     // Public Methods
     AnAxios.initAdUnits = function() {
+        currentAllStories = document.querySelectorAll('.content__main .axios-post');
+
         newsletterName = getNewsletterName();
         if(newsletterName) {
             Axlog('Rendering email-web placements');
@@ -20,176 +39,264 @@
                 renderWebEmailAd(3, newsletterName);
             }, 1500);
         } else {
-            Axlog('Rendering web placements');
 
-            var inFeedPlacement = null;
+            if(processedStories === null) {
+                channelName = getChannelName();
+                Axlog('Rendering web placements on ' + channelName + ' Channel');
 
-            lastWidgetContainer = getLastWidgetContainer();
+                switch(channelName) {
+                    case 'top-stories':
+                        placementId = "dqbpjCQilAeKkaWaOs8hiMSzkFPMZ5sHYrJZlBjS";
+                        break;
+                    case 'technology':
+                        placementId = "ogEn-wxjnlx6EOFDwTWiF9ftaHHzn7RMQ3FldamU";
+                        break;
+                    case 'politics':
+                        placementId = "8s0xMKz8FuXuP6SdKsowrs88GuyzEOpLPm8Refm2";
+                        break;
+                    case 'business':
+                        placementId = "VcTu2azGAQ7OZZ0vm2p2RiUbQWSrPqjC7UIFuZ6B";
+                        break;
+                    case 'health-care':
+                        placementId = "RwrWRlt2YQfmPPTrHr0VM1J4ipsmIgCZdeQTeskq";
+                        break;
+                }
+                processQueue.placements.push(new AdsNative(placementId, []));
+                processQueue.peerStoryItems.push(currentAllStories[0]);
+            } else {
+
+                // Loop and process story items based on repeat frequency
+                if(processedStories < currentAllStories.length - adRepeatFrequency) {
+                    // Suffient stories left unprocessed to insert an add at adRepeatFrequency
+
+                    // Example : firstAdPosition : 3 : repeatFrequency : 4 : currentAllStories : 12
+                    for(var i = processedStories; i < currentAllStories.length; i++) {
+                        // first the repeat frequency story item and use it as peerStory for insertBefore
+                        if((i - (firstAdPosition - 1)) % adRepeatFrequency === 0 && (i - (firstAdPosition - 1)) !== 0) {
+                            processQueue.peerStoryItems.push(currentAllStories[i]);
+                            processQueue.placements.push(new AdsNative(placementId, []));
+
+                            // Move processed pointer
+                            processedStories = i;
+                        }
+                    }
+                    
+                }
+            }
             
-            if (lastWidgetContainer && !lastWidgetContainer.querySelector('.promotedSlot')) {
-                // Render both 3rd and 7th position placements
-                if (!topInfeedPlacement) {
-                    topInfeedPlacement = new AdsNative("nsK-n33LeWIYxlqAM7XF344sx76i8mN4Ui_dGZGl", []);
-                }
-                // if (!bottomInfeedPlacement) {
-                //     bottomInfeedPlacement = new AdsNative("KGwjVBXKNqqXQFF4DtfHliBxJ6kaXoDi80AP8ZM8", []);
-                // }
-
-                fetchWebAd('top', topInfeedPlacement, lazyLoadingContainers.length);
-                // fetchWebAd('bottom', bottomInfeedPlacement, lazyLoadingContainers.length);
-            }
+            // Handle first/next
+            processNextPlacement();
         }
     }
 
-    // AJAX loading new 10 stories
-    window.addEventListener('loaded-more-posts' , function(e) {
-        Axlog('loaded-more-posts Event fired. Requesting new set of inFeed Ads.');
-        window.AnAxios.initAdUnits();
-    });
-
-    function getLastWidgetContainer() {
-        lazyLoadingContainers = document.querySelectorAll('div[data-format="posts-main"]');
-        lastWidgetContainer = lazyLoadingContainers[lazyLoadingContainers.length - 1];
-        widgetContainerCount = lazyLoadingContainers.length;
-
-        return lastWidgetContainer;
+    function processNextPlacement() {
+        if((processQueue.peerStoryItems.length - 1) > currentAdIndex) {
+            currentAdIndex++;
+            fetchWebAdNew(processQueue.placements[currentAdIndex], processQueue.peerStoryItems[currentAdIndex]);
+        }
     }
 
-    function fetchWebAd(position, placement, lazyLoadCount) {
-        var fetchOptions = {};
-        if(position === 'top' && lazyLoadCount <= 3) {
-            // Check if user clicked a ad shared on social feed and came back to axios
-            forceCampaignId = getParameterByName('c_id', document.location.href);
-            forceCreativeId = getParameterByName('cr_id', document.location.href);
-            if(forceCampaignId && forceCreativeId) {
-                fetchOptions.cid = parseInt(forceCampaignId);
-                fetchOptions.crid = parseInt(forceCreativeId);
+    function fetchWebAdNew(placement, peerStory) {
+
+        // Fetch Ad for placement at current index
+        (function(adIndex, peerStory, placementObj) {
+
+            // Force ad creative : First placement in feed
+            var fetchOptions = {};
+            if(!currentAdIndex) {
+                // Check if user clicked a ad shared on social feed and came back to axios
+                forceCampaignId = getParameterByName('c_id', document.location.href);
+                forceCreativeId = getParameterByName('cr_id', document.location.href);
+                if(forceCampaignId && forceCreativeId) {
+                    fetchOptions.cid = parseInt(forceCampaignId);
+                    fetchOptions.crid = parseInt(forceCreativeId);
+                }
             }
-        }
-        placement.fetchAd(function(adReturned, adData) {
-            if (adReturned) {
 
-                // Render containers for adsnative placements
-                var pos = parseInt(adData.customFields.pos),
-                    topStory = null,
-                    adContainer = document.createElement('div'),
-                    mainContainer = document.querySelector('.content__main'),
-                    adRendered = false;
+            placement.fetchAd(function(adReturned, adData) {
+                if (adReturned) {
 
-                if(typeof pos === 'undefined') pos = 3;
-
-                adContainer.id = position + '-ad-container-' + lazyLoadCount;
-                if(position === 'top' && lazyLoadCount <= 3) {
-                    updateFirstAdPosition();
-
-                    // If user clicked on a Ad shared on social feed, 
-                    // the same ad will be rendered at the top of the Axios feed
-                    if(forceCampaignId && forceCreativeId) {
-                        pos = 1;
+                    // Get the custom fields from first ad placement and reuse for others.
+                    if(!adIndex) {
+                        if(typeof adData.customFields.first_ad_pos !== 'undefined') firstAdPosition = parseInt(adData.customFields.first_ad_pos);
+                        if(typeof adData.customFields.repeat_frequency !== 'undefined') adRepeatFrequency = parseInt(adData.customFields.repeat_frequency);
+                        if(typeof firstAdPosition === 'undefined') firstAdPosition = 3;
                     }
 
-                    if(!adRendered) {
-                        // User reached the site via a "specific story" link
-                        // Example : https://www.axios.com/david-shulkin-easily-confirmed-as-va-secretary-2259554681.html
-                        var specificStory = document.querySelectorAll('.content__main > .axios-post');
-                        if(specificStory && specificStory.length === 1) {
-                            pos -= 1;
-                        }
-                    }
 
-                    // "Top ad will in the position after the first two editorial stories irrespective of the channel"
-                    // Featured post is always at Top of the main container
-                    if(!adRendered && featuredPostsCount) {
-                        if(pos > 1 && pos - featuredPostsCount >= 1) {
-                            pos = pos - featuredPostsCount;
-                        } else {
-                            pos -= 1;
-                            // Insert @ pos in featured container
-                            var featuredAd = featuredPostContainer.querySelectorAll('.axios-post')[pos];
-                            featuredAd.parentNode.insertBefore(adContainer, featuredAd);
-                            adRendered = true;
-                            Axlog('Rendered first ad in featured container. Featured posts = ' + featuredPostsCount);
-                        }
-                    }
-                    if(!adRendered && socialStoryCount) {
-                        if(pos > 1 && pos - socialStoryCount >= 1) {
-                            pos -= socialStoryCount;
-                        } else {
-                            // Insert @ pos in social story container
-                            var socialAd = socialPostContainer.querySelectorAll('.axios-post')[pos];
-                            socialAd.parentNode.insertBefore(adContainer, socialAd);
-                            adRendered = true;
-                            Axlog('Rendered first ad in social container. Social posts = ' + socialStoryCount);
-                        }
-                    }
-                    if(!adRendered && topStoryCount) {
-                        if(pos > 1 && pos - topStoryCount >= 1) {
-                            pos -= topStoryCount;
-                        } else {
-                            pos -= 1
-                            // Insert @ pos in top story container
-                            var topStory = topStoryContainer.querySelectorAll('.axios-post')[pos];
-                            topStory.parentNode.insertBefore(adContainer, topStory);
-                            adRendered = true;
-                            Axlog('Rendered first ad in top story container. Top stories = ' + topStoryCount);
-                        }
-                    }
-                }
+                    // Render containers for adsnative placements
+                    renderWebAdContainer(adIndex, peerStory, function(adContainer, adContainerRendered) {
+                        if(adContainerRendered) {
+                            var didDisplay = placementObj.displayAd(adContainer.id);
+                            if (!didDisplay) {
+                                Axlog('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
+                            } else {
+                                // Break title into title+imageCaption
+                                var adSlots = document.querySelectorAll('.promotedSlot');
+                                adContainer = adSlots[adSlots.length-1];
+                                addClass(adContainer, getAdContainerIdentifier(adIndex));
+                                if(adContainer) {
+                                    titleContainer = adContainer.querySelector('.widget__headline');
+                                    if(titleContainer) {
+                                        var title = titleContainer.innerHTML.split('|');
+                                        if(title.length) {
+                                            titleContainer.innerHTML = title[0].trim();
+                                        }
+                                        if(title.length > 1) {
+                                            var imageCaption = adContainer.querySelector('.widget__photo-credit p');
+                                            if(imageCaption) {
+                                                imageCaption.innerHTML = title[1];
+                                                // Remove AN external link element
+                                                var linkElem = imageCaption.querySelector('.adsnative-icon-external-link');
+                                                if(linkElem) imageCaption.removeChild(linkElem);
 
-                if(!adRendered) {
-                    if(position === 'top') {
-                        pos -= 1;
-                    } else if(position === 'bottom') {
-                        // Account for top ad 'widget' if already rendered
-                        var topAd = lastWidgetContainer.querySelector('.promotedSlot.top.' + 'index'+lazyLoadCount);
-                        if(!topAd) {
-                            pos -= 1;
-                        }
-                    }
+                                                Axlog('Processed '+position+' Adunit image caption : ', imageCaption.innerHTML);
+                                            }
+                                        }
+                                    }
 
-                    var latestStories = lastWidgetContainer.querySelectorAll('.axios-post');
-                    topStory = latestStories[pos];
-                    topStory.parentNode.insertBefore(adContainer, topStory);
-                    adRendered = true;
-                }
-
-                var didDisplay = placement.displayAd(adContainer.id);
-                if (!didDisplay) {
-                    Axlog('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
-                } else {
-                    // Break title into title+imageCaption
-                    lastWidgetContainer = getLastWidgetContainer();
-                    adContainer = lastWidgetContainer.querySelector('.promotedSlot.' + position);
-                    if(!adContainer) adContainer = document.querySelector('.promotedSlot.' + position);
-                    addClass(adContainer, 'index'+lazyLoadCount);
-                    if(adContainer) {
-                        titleContainer = adContainer.querySelector('.widget__headline');
-                        if(titleContainer) {
-                            var title = titleContainer.innerHTML.split('|');
-                            if(title.length) {
-                                titleContainer.innerHTML = title[0].trim();
-                            }
-                            if(title.length > 1) {
-                                var imageCaption = adContainer.querySelector('.widget__photo-credit p');
-                                if(imageCaption) {
-                                    imageCaption.innerHTML = title[1];
-                                    // Remove AN external link element
-                                    var linkElem = imageCaption.querySelector('.adsnative-icon-external-link');
-                                    if(linkElem) imageCaption.removeChild(linkElem);
-
-                                    Axlog('Processed '+position+' Adunit image caption : ', imageCaption.innerHTML);
+                                    updateSocialLinks((adData.actionTrackingUrls) ? adData.actionTrackingUrls : null, adContainer);
                                 }
+
+                                // Ad should not be clickable, prevent render js from taking over the ad click
+                                blockRenderJSClick(adContainer);
+                            }
+
+                            // If first ad placement, then use the adFrequency value fetched 
+                            // from custom fields and add the next placements to queue
+                            if(adIndex === 0) {
+                                window.AnAxios.initAdUnits();
+                            } else {
+                                processNextPlacement();
                             }
                         }
+                    });
 
-                        updateSocialLinks((adData.actionTrackingUrls) ? adData.actionTrackingUrls : null, adContainer);
+                }
+            }, fetchOptions);
+
+        })(currentAdIndex, peerStory, placement);
+    }
+
+    // Render the DIV container at the right position for placement to be rendered.
+    function renderWebAdContainer(placementIndex, peerStory, callback) {
+        var adContainer = document.createElement('div'),
+            adContainerRendered = false;
+
+        adContainer.id = getAdContainerIdentifier(placementIndex);
+
+        // Determine Top ad container position 
+        if(!placementIndex) {
+            pos = firstAdPosition;
+
+            postsContainers = mainContainer.querySelectorAll('.posts-main.posts-main-section');
+            if(postsContainers.length <= 3) {
+
+                // Check for featured post
+                featuredPostContainer = mainContainer.querySelector('div[data-source^="frontpage_featured"]');
+                if(featuredPostContainer && featuredPostContainer.querySelector('.axios-post')) {
+                    featuredPostsCount = featuredPostContainer.querySelectorAll('.axios-post').length;
+                }
+
+                // Check for social post
+                var socialPostContainer = mainContainer.querySelector('#article-content');
+                if(socialPostContainer && socialPostContainer.querySelector('.axios-post')) {
+                    socialStoryCount = socialPostContainer.querySelectorAll('.axios-post').length;
+                }
+
+                // Check for top story post
+                var topStoryContainerIndex = (socialStoryCount) ? 0 : 1;
+                topStoryContainer = postsContainers[topStoryContainerIndex];
+                if(topStoryContainer) {
+                    var topStories = topStoryContainer.querySelectorAll('.axios-post');
+                    if(topStories.length === 1) {
+                        topStoryCount = 1;
                     }
+                }
 
-                    // Ad should not be clickable, prevent render js from taking over the ad click
-                    blockRenderJSClick(adContainer);
+                // Check for topic-alert post
+                var topicAlertContainer = mainContainer.querySelector('.topic-alert');
+                if(topicAlertContainer && topicAlertContainer.innerHTML !== '') {
+                    topicAlertExists = true;
                 }
             }
-        }, fetchOptions);
+
+            // If user clicked on a Ad shared on social feed,
+            // the same ad will be rendered at the top of the Axios feed
+            if(forceCampaignId && forceCreativeId) {
+                firstAdPosition = pos = 1;
+            }
+
+            // Consider the story slots above First ad as processed.
+            processedStories = pos - 1;
+
+            if(!adContainerRendered) {;
+                // User reached the site via a "specific story" link
+                // Example : https://www.axios.com/david-shulkin-easily-confirmed-as-va-secretary-2259554681.html
+                var specificStory = document.querySelectorAll('.content__main > .axios-post');
+                if(specificStory && specificStory.length === 1) {
+                    pos -= 1;
+                }
+            }
+
+            // "Top ad will in the position after the first two editorial stories irrespective of the channel"
+            // Featured post is always at Top of the main container
+            if(!adContainerRendered && featuredPostsCount) {;
+                if(pos > 1 && pos - featuredPostsCount >= 1) {
+                    pos = pos - featuredPostsCount;
+                } else {
+                    pos -= 1;
+                    // Insert @ pos in featured container
+                    var featuredAd = featuredPostContainer.querySelectorAll('.axios-post')[pos];
+                    featuredAd.parentNode.insertBefore(adContainer, featuredAd);
+                    adContainerRendered = true;;
+                    Axlog('Rendered first ad in featured container. Featured posts = ' + featuredPostsCount);
+                }
+            }
+            if(!adContainerRendered && socialStoryCount) {;
+                if(pos > 1 && pos - socialStoryCount >= 1) {
+                    pos -= socialStoryCount;
+                } else {
+                    // Insert @ pos in social story container
+                    var socialAd = socialPostContainer.querySelectorAll('.axios-post')[pos];
+                    socialAd.parentNode.insertBefore(adContainer, socialAd);
+                    adContainerRendered = true;;
+                    Axlog('Rendered first ad in social container. Social posts = ' + socialStoryCount);
+                }
+            }
+            if(!adContainerRendered && topStoryCount) {;
+                if(pos > 1 && pos - topStoryCount >= 1) {
+                    pos -= topStoryCount;
+                } else {
+                    pos -= 1
+                    // Insert @ pos in top story container
+                    var topStory = topStoryContainer.querySelectorAll('.axios-post')[pos];
+                    topStory.parentNode.insertBefore(adContainer, topStory);
+                    adContainerRendered = true;;
+                    Axlog('Rendered first ad in top story container. Top stories = ' + topStoryCount);
+                }
+            }
+
+            if(!adContainerRendered) {
+                pos = firstAdPosition;
+                pos -= 1;
+                peerStory = currentAllStories[pos];
+                peerStory.parentNode.insertBefore(adContainer, peerStory);
+                adContainerRendered = true;
+            }
+        } else {
+            // non-first ad placements
+            if(peerStory) {
+                peerStory.parentNode.insertBefore(adContainer, peerStory);
+                adContainerRendered = true;
+            }
+        }
+
+        callback(adContainer, adContainerRendered);
+    }
+
+    function getAdContainerIdentifier(adIndex) {
+        return 'ad-container-' + adIndex;
     }
 
     function renderWebEmailAd(posIndex, newsletterName) {
@@ -237,44 +344,6 @@
         insertRenderJs();
     }
 
-    function updateFirstAdPosition() {
-        var mainContainer = document.querySelector('.content__main');
-
-        if(mainContainer) {
-            postsContainers = mainContainer.querySelectorAll('.posts-main.posts-main-section');
-            if(postsContainers.length <= 3) {
-
-                // Check for featured post
-                featuredPostContainer = mainContainer.querySelector('div[data-source^="frontpage_featured"]');
-                if(featuredPostContainer && featuredPostContainer.querySelector('.axios-post')) {
-                    featuredPostsCount = featuredPostContainer.querySelectorAll('.axios-post').length;
-                }
-
-                // Check for social post
-                var socialPostContainer = mainContainer.querySelector('#article-content');
-                if(socialPostContainer && socialPostContainer.querySelector('.axios-post')) {
-                    socialStoryCount = socialPostContainer.querySelectorAll('.axios-post').length;
-                }
-
-                // Check for top story post
-                var topStoryContainerIndex = (socialStoryCount) ? 0 : 1;
-                topStoryContainer = postsContainers[topStoryContainerIndex];
-                if(topStoryContainer) {
-                    var topStories = topStoryContainer.querySelectorAll('.axios-post');
-                    if(topStories.length === 1) {
-                        topStoryCount = 1;
-                    }
-                }
-
-                // Check for topic-alert post
-                var topicAlertContainer = mainContainer.querySelector('.topic-alert');
-                if(topicAlertContainer && topicAlertContainer.innerHTML !== '') {
-                    topicAlertExists = true;
-                }
-            }
-        }
-    }
-
     // Social Sharing workflow
     // Adops adds [CID] & [CRID] macros in destination URL
     // js fetches those values from ad response
@@ -283,8 +352,7 @@
     // Pass those values to JS API to fetch the exact same campaign/creative to be rendered
     // Change the top Ad (First Ad) position to 1 in the feed
     function updateSocialLinks(actionTrackingUrls, adUnit) {
-        var lastWidgetContainer = getLastWidgetContainer(),
-            title, summary, clickUrl, cid, crid;
+        var title, summary, clickUrl, cid, crid;
 
         linkElem = adUnit.querySelector('.widget__headline .adsnative-icon-external-link');
         if(linkElem) adUnit.querySelector('.widget__headline').removeChild(linkElem);
@@ -394,10 +462,14 @@
     }
 
     function getChannelName() {
-        var url = document.head.querySelector("[property=og:url]").content,
+        var url = document.querySelector('meta[property="og:url"]').content,
             urlParts = url.split('/');
 
-        if(urlParts.length > 3) return urlParts[3].toLowerCase();
+        if(urlParts.length > 3 && urlParts[3] !== "") {
+            return urlParts[3].toLowerCase();
+        } else {
+            return 'top-stories';
+        }
     }
 
     function getNewsletterName() {

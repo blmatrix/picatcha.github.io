@@ -20,8 +20,8 @@
   };
 </script>
 <script type="text/javascript" src="https://static.adsnative.com/static/js/render.v1.js"></script>
-<script type="text/javascript" src="https://static.adsnative.com/static/js/an-edmodo.js"></script> 
-<!-- <script type="text/javascript" src="edmodo.js"></script> -->
+<!-- <script type="text/javascript" src="https://static.adsnative.com/static/js/an-edmodo.js"></script> -->
+<script type="text/javascript" src="edmodo.js"></script>
 
 <script>
 
@@ -39,20 +39,19 @@ var setupPipe = function(e) {
 
 var handleMessage = function(e) {
     setupPipe(e);
-    initialize(e);
+    
 };
 
-window.addEventListener('message', handleMessage, false); 
+window.addEventListener('message', handleMessage, false);
 
 var initialize = function(e) {
   if (typeof AdsNative == 'undefined') {
     return;
   }
 
-  var keyValues = JSON.parse(decodeURIComponent(getParameterByName('key_values')));
-
+  // var keyValues = JSON.parse(decodeURIComponent(getParameterByName('key_values')));
   var placement_id = getParameterByName('placement_id');
-  var placement = new AdsNative(placement_id, [], keyValues);
+  var placement = new AdsNative(placement_id, []);
   var position = getParameterByName('position');
 
   placement.fetchAd(function(status, adData) {
@@ -82,12 +81,6 @@ function getParameterByName(name, url) {
 }
 
 handleMessage();
+initialize();
 
 </script>
-
-
-
-
-
-
-<img src="https://rudy.adsnative.com/cm.gif" style="height: 1px; width: 1px; border: none; display: none;"></body></html>

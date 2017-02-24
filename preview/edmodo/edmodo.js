@@ -1,9 +1,10 @@
 (function( AnEdmodo ) {
     // position : in-feed / right-rail
     // floatType : lead-gen / content-ad
-    var integration_version = 1.01,
+    var integration_version = 1.03,
         parentDomain = document.referrer.split('/'),
-        debug = false;
+        debug = false,
+        iabResized = false;
 
     if(parentDomain.length > 2) {
         parentDomain = parentDomain[0] + '//' + parentDomain[2];
@@ -32,11 +33,57 @@
         adUnitConfig.floatType = 'video';
         } else if(adData.type === "app_install") {
             adUnitConfig.floatType = 'click-out';
+        } else if(typeof adData.type === 'undefined' || !adData.type) {
+            adUnitConfig.floatType = 'iab-ad';
         }
 
         edLog('Loading '+adUnitConfig.floatType+' @ '+adUnitConfig.position+' position');
         loadAdUnit(adUnitConfig);
     };
+
+    AnEdmodo.resizeIABContainer = function(position, width, height) {
+        iabResized = true;
+        edLog('Resize IAB container request received for '+position+' : ' + width + ' X ' + height);
+        if(!width && !height) {
+            // No Ad returned (0x0) : Hide the ad container
+            var adUnit = document.querySelector('.str-adunit');
+            if(adUnit) {
+                hideAd(adUnit, position);
+            }
+        } else {
+            // For in-feed : Check if screen is in mobile, to add additional height due to vertical aligned design
+            var extraAdjustedHeight = 40;
+            if (top !== self && position === 'in-feed') {
+                var frameWidth = 1000000;
+                if( typeof(window.innerWidth ) == 'number') {
+                    //Non-IE
+                    frameWidth = window.innerWidth;
+                } else if(document.documentElement && document.documentElement.clientWidth) {
+                    //IE 6+ in 'standards compliant mode'
+                    frameWidth = document.documentElement.clientWidth;
+                }
+
+                // @media all and (max-width: 554px)
+                if(frameWidth <= 554) {
+                    extraAdjustedHeight = 90;
+                }
+            }
+
+            // Ad returned of widthxheight dimension
+            if(position) {
+                // Resize
+                var adResizePayload = {
+                    action: "ads-native:ad-height",
+                    adPosition: position
+                };
+                if(width) adResizePayload.adWidth = width + 40;
+                if(height) adResizePayload.adHeight = height + extraAdjustedHeight + 20;
+
+                edLog('sending postmessage with '+position+' AD height payload', adResizePayload);
+                parent.postMessage(adResizePayload, parentDomain);
+            }
+        }
+    }
 
     //Private Methods
     function loadAdUnit(adUnitConfig) {
@@ -44,35 +91,56 @@
 
         if(!adUnitConfig.position || !adUnitConfig.floatType) return;
 
+        setTimeout(function() {
+            // If IAB ad resize function is invoked, do not auto resize based on timer.
+            if (iabResized) return;
+
+            // Send ad height to parent page
+            var actualAdHeight = document.querySelector('.str-adunit');
+            if(actualAdHeight) actualAdHeight = actualAdHeight.clientHeight;
+
+            var adHeightPayload = {
+                action: "ads-native:ad-height",
+                adHeight: actualAdHeight + 15,
+                adPosition: adUnitConfig.position
+            }
+            edLog('sending postmessage with AD height payload', adHeightPayload);
+            parent.postMessage(adHeightPayload, parentDomain);
+        }, 2000);
+
         var position = adUnitConfig.position,
             floatType = adUnitConfig.floatType,
             columnContainer = (position === 'in-feed') ? document.getElementsByClassName('main-column') : document.getElementsByClassName('right-column');
+
 
         if(!columnContainer) {
             edLog('Proper column container not present in DOM');
             return;
         }
-        
+
         floatingItems = columnContainer[0].querySelector('.floating-items'),
         adUnit = columnContainer[0].querySelector('.str-adunit');
-
-        addClass(floatingItems, position);
-        addClass(floatingItems, floatType);
-        addClass(adUnit, position);
-        addClass(adUnit, floatType);
         
-        // POST : Clone the floating items + styling
-        tempDOMContainer = document.createElement('div');
-        tempDOMContainer.appendChild(floatingItems);
-        floatingItemsString = tempDOMContainer.innerHTML;
-        tempDOMContainer.innerHTML = null;
-        styleNode = document.head.lastChild.cloneNode(true)
-        tempDOMContainer.appendChild(styleNode)
-        floatingItemsString += tempDOMContainer.innerHTML;
+        if(floatingItems) {
+            addClass(floatingItems, position);
+            addClass(floatingItems, floatType);
+            // POST : Clone the floating items + styling
+            tempDOMContainer = document.createElement('div');
+            tempDOMContainer.appendChild(floatingItems);
+            floatingItemsString = tempDOMContainer.innerHTML;
+            tempDOMContainer.innerHTML = null;
+            styleNode = document.head.lastChild.cloneNode(true)
+            tempDOMContainer.appendChild(styleNode)
+            floatingItemsString += tempDOMContainer.innerHTML;
+        }
+        if(adUnit) {
+            addClass(adUnit, position);
+            addClass(adUnit, floatType);
+        }
 
         // Send the DOM string to parent page
         if(adUnitConfig.floatType === 'content-ad' || adUnitConfig.floatType === 'lead-gen') {
-            if(top && top.window && top.window.postMessage) {
+            if(parent && parent.postMessage) {
                 if(floatType === 'content-ad') {
                     var adTitle = adUnit.querySelector('.an-title');
                     linkElem = adTitle.querySelector('.adsnative-icon-external-link');
@@ -89,7 +157,7 @@
 
 
                 edLog('sending postmessage with floating DOM payload', floatingDOMPayload);
-                top.window.postMessage(floatingDOMPayload, parentDomain);
+                parent.postMessage(floatingDOMPayload, parentDomain);
             }
         }
 
@@ -109,26 +177,8 @@
             hideAdOption.addEventListener("click", function(e) {
                 e.stopPropagation();
                 edLog('User clicked Hide Ad option');
-                adUnit.style.display = "none";
-
-                // POST : Notify edmodo about hide ad
-                if(top && top.window && top.window.postMessage) {
-                    var hideAdPayload = {
-                        action: "ads-native:hide",
-                        adPosition: adUnitConfig.position
-                    }
-                    edLog('sending postmessage with hide ad payload', hideAdPayload);
-                    top.window.postMessage(hideAdPayload, parentDomain);
-                }
-
-                // Track custom action
-                var adData = adUnitConfig.adData;
-                if(adData && adData.actionTrackingUrls && adData.actionTrackingUrls.hide_ad) {
-                    var pxl = document.createElement('img');
-                    pxl.src = adData.actionTrackingUrls.hide_ad[0];
-                    pxl.width = pxl.height = 0;
-                    document.body.appendChild(pxl);
-                }
+                
+                hideAd(adUnit, adUnitConfig.position);
             });
         }
 
@@ -153,7 +203,7 @@
         addCTAText(position, floatType);
 
         // Clicking anywhere on click-out should be handled by renderjs by default
-        if (floatType === 'click-out') return;
+        if (floatType === 'click-out' || floatType === 'iab-ad') return;
 
         // Clicking on video ad should be conditionally handled by renderjs/edmodojs
         if(floatType === 'video') { 
@@ -185,14 +235,37 @@
             edLog('User clicked on ad @ ', position);
 
             // POST : Align floating container with infeed ad
-            if(top && top.window && top.window.postMessage) {
+            if(parent && parent.postMessage) {
                 var clickedAdPayload = {
                     action: "ads-native:user-clicked-floating-ad",
                     adPosition: position
                 }
                 edLog('sending postmessage with user clicked payload', clickedAdPayload);
-                top.window.postMessage(clickedAdPayload, parentDomain);
+                parent.postMessage(clickedAdPayload, parentDomain);
             }
+        }
+    }
+
+    function hideAd(adUnit, position) {
+        adUnit.style.display = "none";
+
+        // POST : Notify edmodo about hide ad
+        if(parent && parent.postMessage) {
+            var hideAdPayload = {
+                action: "ads-native:hide",
+                adPosition: position
+            }
+            edLog('sending postmessage with hide ad payload', hideAdPayload);
+            parent.postMessage(hideAdPayload, parentDomain);
+        }
+
+        // Track custom action
+        var adData = adUnitConfig.adData;
+        if(adData && adData.actionTrackingUrls && adData.actionTrackingUrls.hide_ad) {
+            var pxl = document.createElement('img');
+            pxl.src = adData.actionTrackingUrls.hide_ad[0];
+            pxl.width = pxl.height = 0;
+            document.body.appendChild(pxl);
         }
     }
 
@@ -252,7 +325,7 @@
         var reg = new RegExp('(\\s|^)' + className + '(\\s|$)')
         el.className=el.className.replace(reg, ' ')
       }
-    }   
+    }
 
     function getParameterByName(name, url) {
         if (!url) {

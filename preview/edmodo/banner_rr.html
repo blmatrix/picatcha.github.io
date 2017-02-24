@@ -23,11 +23,10 @@
         border-left: 1px solid #dfe4e8;
         border-right: 1px solid #dfe4e8;
         box-shadow: 1px 1px 1px 1px #dfe4e8 !important;
-        min-width: 340px;
     }
     
     .message-item:first-child {
-        padding: 20px !important;
+        padding: 10px 20px !important;
         margin: 0px !important;
     }
     
@@ -37,23 +36,16 @@
         border: 0px !important;
     }
     
-    .message-item [id^='google_ads_iframe'],
-    .message-item [id^='google_ads_iframe'] iframe {
-        width: 300px !important;
-        height: 250px !important;
-    }
-    
     .message-item .content {
         display: inline-block;
-        width: calc(100% - 320px);
         vertical-align: top;
-        height: 250px;
+        width: 100%;
     }
     
     .message-item .header {
         display: inline-block;
-        margin-bottom: 15px;
         line-height: 14px;
+        margin-bottom: 5px;
     }
     
     .message-item .logo {
@@ -62,77 +54,22 @@
         float: left;
     }
     
-    .message-item .content .header .text {
-        display: inline-block;
-        float: left;
-        margin: 8px 0px 0px 10px;
-    }
-    
-    .message-item .content .header .text .edmodo-branding {
-        color: #3b73b2;
-    }
-    
-    .message-item .content .header .text .promoted-prefix {
+    .message-item .content .header .promoted-prefix {
         font-size: 12px;
         color: lightgrey;
         font-weight: 400;
-    }
-    
-    .message-item .content .ad-message {
         display: inline-block;
-        width: 205px;
-        height: 182px;
-        opacity: 0.7;
-        text-align: center;
-        vertical-align: bottom;
-    }
-    
-    .message-item .content .ad-message p {
-        margin: 20px;
-        color: grey;
-    }
-
-    /* Edmodo mobile view : no left & right rail */
-    @media all and (max-width: 554px) {
-        .message-item .content .ad-message {
-            display: none;
-        }
-
-        .message-item .content {
-            display: block;
-            height: inherit;
-            width: 100%;
-        }
-
-        .content .user_fb {
-            right: 20px;
-            left: inherit !important;
-        }
-
-        .message-item [id^='google_ads_iframe'],
-        .message-item [id^='google_ads_iframe'] iframe {
-            margin: 0 auto;
-            display: block !important;
-        }
-
-        .message-item:first-child {
-            padding: 16px 20px !important;
-        }
-
-        .message-item .header {
-            margin-bottom: 8px;
-        }
+        float: left;
     }
 
     /* User Feedback Dropdown */
-    .user_fb {
+    .right-rail .content .user_fb {
         position: relative;
         display: inline-block;
         text-align: left;
         width: 200px;
         float: right;
-        position: absolute;
-        left: 343px;
+        top: 0px !important;
     }
     
     .user_fb__list {
@@ -209,7 +146,7 @@
 </head>
 
 <body>
-    <div class="stream-item str-adunit str-card-exp an-item in-feed iab-ad">
+    <div class="stream-item str-adunit str-card-exp an-item right-rail iab-ad">
         <div class="item-container">
             <div id="8ybQAnXdk0XwWYPq4Yo9KhrVedhvyz9gvSJO5imF" data-event-type="post" class="message-item">
                 <div class="content">
@@ -226,14 +163,9 @@
                         </ul>
                     </div>
                     <div class="header">
-                        <img src="https://assets.edmodo.com/one-eye/logo-eb8f69bccb3cb77a8b7534f841aab69e.png" class="logo">
                         <div class="text">
-                            <p class="edmodo-branding">Edmodo</p>
                             <p class="promoted-prefix">Sponsored</p>
                         </div>
-                    </div>
-                    <div class="ad-message">
-                        <p>Edmodo’s mission is to connect all learners with the people and resources they need to meet their full potential - always &amp; forever free.</p>
                     </div>
                 </div>
 
@@ -245,15 +177,15 @@
                 googletag.cmd = googletag.cmd || [];
                 googletag.cmd.push(function() {
                     googletag.pubads().setTagForChildDirectedTreatment(1);
-                    googletag.defineSlot('/41710666/IABFEED', [300, 250], '8ybQAnXdk0XwWYPq4Yo9KhrVedhvyz9gvSJO5imF').addService(googletag.pubads());
+                    googletag.defineSlot('/41710666/IABRR', [[300, 250], [300, 600], [160, 600]], '8ybQAnXdk0XwWYPq4Yo9KhrVedhvyz9gvSJO5imF').addService(googletag.pubads());
                     googletag.pubads().enableSingleRequest();
                     var pubads = googletag.pubads();
                     pubads.addEventListener('slotRenderEnded', function(event) {
                         if (event.isEmpty) {
                             window._an_adNoFill('google_dfp');
-                            console.log('NO Ad received by Google ADX Display Tag for In Feed');
+                            console.log('NO Ad received by Google ADX Display Tag for Right Rail');
                             if(AnEdmodo && AnEdmodo.resizeIABContainer) {
-                                AnEdmodo.resizeIABContainer('in-feed', 0, 0);
+                                AnEdmodo.resizeIABContainer('right-rail', 0, 0);
                             }
                         } else {
                             if (window._an_adFill) {
@@ -264,10 +196,9 @@
                                     var width = event.size[0],
                                         height = event.size[1];
 
-                                    console.log('Received In Feed Google ADX Ad of size : ' + width + ' X ' + height);
+                                    console.log('Received Right Rail Google ADX Ad of size : ' + width + ' X ' + height);
                                     if(AnEdmodo && AnEdmodo.resizeIABContainer) {
-                                        // Never resize width of infeed : It should always be 100% which is set by default already
-                                        AnEdmodo.resizeIABContainer('in-feed', 0, height);
+                                        AnEdmodo.resizeIABContainer('right-rail', width, height);
                                     }
                                 }
                             }
