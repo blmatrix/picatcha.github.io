@@ -17,7 +17,7 @@
     _nm.widgetAlreadyExists = false;
     _nm.exitWidgetShownOnce = false;
     _nm.queueEnded = false;
-    _nm.version = 2.0;
+    _nm.version = 2.1;
     _nm.instreamTemplates = ['NM10', 'NM11', 'NM12'];
     _nm.widgets = {
         currentIndex: 0,
@@ -878,6 +878,17 @@
         } else if(template === 'NM07' || migrationWidgets.sidebarText.indexOf(widgetId) >= 0) { // Sidebar Text
             numAds = 10;
             template = 'NM07';
+        } else if(template === 'NM18') { // medrec2x2
+            numAds = 4;
+            template = 'NM18';
+        }
+          else if(template === 'NM19') { // medrecSingle
+            numAds = 1;
+            template = 'NM19';
+        }
+          else if(template === 'NM20') { // medrecLinks
+            numAds = 6;
+            template = 'NM20';
         }
 
         return {numAds: numAds, template: template};
