@@ -1,6 +1,6 @@
 (function(AnAxios) {
 
-    var integration_version = 3.3,
+    var integration_version = 3.4,
         topInfeedPlacement = null,
         bottomInfeedPlacement = null,
         widgetContainerCount = 0,
@@ -374,37 +374,70 @@
 
         var fb = adUnit.querySelector('.share-fb'),
             tw = adUnit.querySelector('.share-tw'),
-            linkedIn = adUnit.querySelector('.share-linkedin');
+            linkedIn = adUnit.querySelector('.share-linkedin'),
+            copyClip = adUnit.querySelector('.share-link');
 
         // Set Values
-        fb.href += encodeURIComponent(clickUrl);
-        tw.href += encodeURIComponent(clickUrl) + '&text=' + encodeURI(title);
-        linkedIn.href += encodeURIComponent(clickUrl)
+        if(fb) fb.href += encodeURIComponent(clickUrl);
+        if(tw) tw.href += encodeURIComponent(clickUrl) + '&text=' + encodeURI(title);
+        if(linkedIn) linkedIn.href += encodeURIComponent(clickUrl);
+        if(copyClip) copyClip.setAttribute('data-clipboard-text', clickUrl);
 
         // Track custom actions
-        trackCustomAction(fb, actionTrackingUrls.facebook_share[0], function() {
+        trackCustomAction('fb', fb, actionTrackingUrls.facebook_share[0], function() {
             Axlog('facebook_share custom action tracked');
         });
-        trackCustomAction(tw, actionTrackingUrls.twitter_share[0], function() {
+        trackCustomAction('tw', tw, actionTrackingUrls.twitter_share[0], function() {
             Axlog('twitter_share custom action tracked');
         });
-        trackCustomAction(linkedIn, actionTrackingUrls.linkedin_share[0], function() {
+        trackCustomAction('linkedIn', linkedIn, actionTrackingUrls.linkedin_share[0], function() {
             Axlog('linkedin_share custom action tracked');
+        });
+        trackCustomAction('copyClip', copyClip.querySelector('.icons-share'), actionTrackingUrls.copy_clipboard[0], function() {
+            Axlog('copy_clipboard custom action tracked');
         });
     }
 
-    function trackCustomAction(element, actionPixel, callback) {
-        element.addEventListener("click", function(e) {
-            e.stopPropagation();
-            // Track custom action
-            if(actionPixel) {
-                var pxl = document.createElement('img');
-                pxl.src = actionPixel;
-                pxl.width = pxl.height = 0;
-                document.body.appendChild(pxl);
-                callback();
+    function trackCustomAction(actionName, element, actionPixel, callback) {
+        if(element) {
+            element.addEventListener("click", function(e) {
+                e.stopPropagation();
+
+                if(actionName === 'copyClip') {
+                    copyToClipboard(element.getAttribute('data-clipboard-text'));
+                }
+                // Track custom action
+                if(actionPixel) {
+                    var pxl = document.createElement('img');
+                    pxl.src = actionPixel;
+                    pxl.width = pxl.height = 0;
+                    document.body.appendChild(pxl);
+                    callback();
+                }
+            });
+        }
+    }
+
+    function copyToClipboard(text) {
+        if (window.clipboardData && window.clipboardData.setData) {
+            // IE specific code path to prevent textarea being shown while dialog is visible.
+            return clipboardData.setData("Text", text); 
+
+        } else if (document.queryCommandSupported && document.queryCommandSupported("copy")) {
+            var textarea = document.createElement("textarea");
+            textarea.textContent = text;
+            textarea.style.position = "fixed";  // Prevent scrolling to bottom of page in MS Edge.
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                return document.execCommand("copy");  // Security exception may be thrown by some browsers.
+            } catch (ex) {
+                console.warn("Copy to clipboard failed.", ex);
+                return false;
+            } finally {
+                document.body.removeChild(textarea);
             }
-        });
+        }
     }
 
     function blockRenderJSClick(selectorElement) {

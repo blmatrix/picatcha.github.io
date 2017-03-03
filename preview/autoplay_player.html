@@ -22,7 +22,7 @@
         if(typeof swfobject !== 'undefined' && swfobject.getFlashPlayerVersion().major !== 0){
           /* flash supported */
         } else {
-          //dropTrackingTag('{{ url_datadog_v_noflash|safe }}');
+          dropTrackingTag('http://bevo-us-east-1.adsnative.com/dd.gif?key=v_noflash&sid=c9a9e63fa40146a9bfdef018588adcee_48770540');
         }
 
         // {% for key,value in video_duration_tracking.seconds.items %}
@@ -33,7 +33,7 @@
         // {% endfor %}
 
         function logTimeSpent(time_spent){
-          //dropTrackingTag('{{ url_videoview_timespent|safe }}&tag_value='+time_spent);
+          dropTrackingTag('http://bevo-us-east-1.adsnative.com/vv.gif?tag_name=vvts&data=MzRhZTdmNDdmZWExYmE5MGNkN2QwNDg3ZjU3YTNjZmM2MzllNzliZGE3Y2I3ZWNhYWM0NDJlNThlZjJlZTViOGQ4OTgzYjlmNWNhYjE4MTQ5YjdmZmYxMzYzODdhZTcyNTRkY2Y1MWYxMTRkYzkzY2ZkNjE4NDQ5ZDAwNDliOWY4MGM3YjNlNWM0NjVjMWJmYWI2MWQ4NDNlNDYyNjAzNjcyMDExMGUzOGRjN2JmYjU1NDBiYjBlM2Q0YWEzZDAxNzc3MjEzZDUzNWE0YmRhYTU4YTk2YmU0NzdmMGQwY2EzYTJiMDk5NGFmZDA2YzJmMTAxOWMyMGEwNjAzMWNkYzY3MDQyMGI3Mzk5YWY1NTk0Y2YyOTIwMmM0MWI3MzA5NDkyODVmNmFjN2ZhMDU5NjdjOTFkODhmZTRlYTI4Zjg%3D&sid=c9a9e63fa40146a9bfdef018588adcee_48770540&tag_value='+time_spent);
         }
 
         function dropTrackingTag(url){
@@ -42,113 +42,84 @@
 
         var click_count=0;
         function trackPlay(){
-            // if(click_count == 0){
-            //     //dropTrackingTag('{{ url_videoview_view|safe }}');
-
-            //     {% for url in log_external_view_urls %}
-            //       //dropTrackingTag("{{ url|safe }}");
-            //     {% empty %}
-            //       <!-- no extra view tags -->
-            //     {% endfor %}
-            // }
-            // click_count++;
+            if(click_count == 0){
+                dropTrackingTag('http://bevo-us-east-1.adsnative.com/vv.gif?tag_name=v&data=MzRhZTdmNDdmZWExYmE5MGNkN2QwNDg3ZjU3YTNjZmM2MzllNzliZGE3Y2I3ZWNhYWM0NDJlNThlZjJlZTViOGQ4OTgzYjlmNWNhYjE4MTQ5YjdmZmYxMzYzODdhZTcyNTRkY2Y1MWYxMTRkYzkzY2ZkNjE4NDQ5ZDAwNDliOWY4MGM3YjNlNWM0NjVjMWJmYWI2MWQ4NDNlNDYyNjAzNjcyMDExMGUzOGRjN2JmYjU1NDBiYjBlM2Q0YWEzZDAxNzc3MjEzZDUzNWE0YmRhYTU4YTk2YmU0NzdmMGQwY2EzYTJiMDk5NGFmZDA2YzJmMTAxOWMyMGEwNjAzMWNkYzY3MDQyMGI3Mzk5YWY1NTk0Y2YyOTIwMmM0MWI3MzA5NDkyODVmNmFjN2ZhMDU5NjdjOTFkODhmZTRlYTI4Zjg%3D&sid=c9a9e63fa40146a9bfdef018588adcee_48770540');
+            }
+            click_count++;
         }
 
         function trackResume(){
-            // {% if video_event_tracking.resume %}
-            //   //dropTrackingTag('{{ video_event_tracking.resume|safe }}');
-            // {% endif %}
         }
 
         function trackVideoImpression(){
-            // {% for video_impression_tracker in video_impression_trackers %}
-            // //dropTrackingTag("{{ video_impression_tracker|safe }}");
-            // {% endfor %}
-            //dropTrackingTag("{{ url_videoview_impression|safe }}");
-            //dropTrackingTag('{{ url_datadog_v_player|safe }}');
+            dropTrackingTag("http://bevo-us-east-1.adsnative.com/vv.gif?tag_name=vvi&data=MzRhZTdmNDdmZWExYmE5MGNkN2QwNDg3ZjU3YTNjZmM2MzllNzliZGE3Y2I3ZWNhYWM0NDJlNThlZjJlZTViOGQ4OTgzYjlmNWNhYjE4MTQ5YjdmZmYxMzYzODdhZTcyNTRkY2Y1MWYxMTRkYzkzY2ZkNjE4NDQ5ZDAwNDliOWY4MGM3YjNlNWM0NjVjMWJmYWI2MWQ4NDNlNDYyNjAzNjcyMDExMGUzOGRjN2JmYjU1NDBiYjBlM2Q0YWEzZDAxNzc3MjEzZDUzNWE0YmRhYTU4YTk2YmU0NzdmMGQwY2EzYTJiMDk5NGFmZDA2YzJmMTAxOWMyMGEwNjAzMWNkYzY3MDQyMGI3Mzk5YWY1NTk0Y2YyOTIwMmM0MWI3MzA5NDkyODVmNmFjN2ZhMDU5NjdjOTFkODhmZTRlYTI4Zjg%3D&sid=c9a9e63fa40146a9bfdef018588adcee_48770540");
+            dropTrackingTag('http://bevo-us-east-1.adsnative.com/dd.gif?key=v_player&sid=c9a9e63fa40146a9bfdef018588adcee_48770540');
         }
 
         function trackPause(){
-            // {% if video_event_tracking.pause %}
-            // //dropTrackingTag('{{ video_event_tracking.pause|safe }}');
-            // {% endif %}
         }
 
         function trackComplete(){
-            // {% if video_duration_tracking.completion %}
-            //   //dropTrackingTag("{{ video_duration_tracking.completion|safe }}");
-            // {% endif %}
-            //dropTrackingTag("{{ url_videoview_duration_complete|safe }}");
+            dropTrackingTag("http://bevo-us-east-1.adsnative.com/vv.gif?tag_name=vv100&data=MzRhZTdmNDdmZWExYmE5MGNkN2QwNDg3ZjU3YTNjZmM2MzllNzliZGE3Y2I3ZWNhYWM0NDJlNThlZjJlZTViOGQ4OTgzYjlmNWNhYjE4MTQ5YjdmZmYxMzYzODdhZTcyNTRkY2Y1MWYxMTRkYzkzY2ZkNjE4NDQ5ZDAwNDliOWY4MGM3YjNlNWM0NjVjMWJmYWI2MWQ4NDNlNDYyNjAzNjcyMDExMGUzOGRjN2JmYjU1NDBiYjBlM2Q0YWEzZDAxNzc3MjEzZDUzNWE0YmRhYTU4YTk2YmU0NzdmMGQwY2EzYTJiMDk5NGFmZDA2YzJmMTAxOWMyMGEwNjAzMWNkYzY3MDQyMGI3Mzk5YWY1NTk0Y2YyOTIwMmM0MWI3MzA5NDkyODVmNmFjN2ZhMDU5NjdjOTFkODhmZTRlYTI4Zjg%3D&sid=c9a9e63fa40146a9bfdef018588adcee_48770540");
         }
 
         function trackMuteState(state){
-            // {% if video_event_tracking.mute %}
-            //   if(state)
-            //     //dropTrackingTag('{{ video_event_tracking.mute|safe }}');
-            // {% endif %}
-            // {% if video_event_tracking.unmute %}
-            //   if(!state)
-            //     //dropTrackingTag('{{ video_event_tracking.unmute|safe }}');
-            // {% endif %}
         }
 
         function trackFullscreen(state){
-            // {% if video_event_tracking.fullscreen %}
-            //   //dropTrackingTag('{{ video_event_tracking.fullscreen|safe }}');
-            // {% endif %}
         }
 
         function trackVideoAdClick(){
-          //dropTrackingTag("{{ url_videoview_click|safe }}");
+          dropTrackingTag("http://bevo-us-east-1.adsnative.com/vv.gif?tag_name=vvc&data=MzRhZTdmNDdmZWExYmE5MGNkN2QwNDg3ZjU3YTNjZmM2MzllNzliZGE3Y2I3ZWNhYWM0NDJlNThlZjJlZTViOGQ4OTgzYjlmNWNhYjE4MTQ5YjdmZmYxMzYzODdhZTcyNTRkY2Y1MWYxMTRkYzkzY2ZkNjE4NDQ5ZDAwNDliOWY4MGM3YjNlNWM0NjVjMWJmYWI2MWQ4NDNlNDYyNjAzNjcyMDExMGUzOGRjN2JmYjU1NDBiYjBlM2Q0YWEzZDAxNzc3MjEzZDUzNWE0YmRhYTU4YTk2YmU0NzdmMGQwY2EzYTJiMDk5NGFmZDA2YzJmMTAxOWMyMGEwNjAzMWNkYzY3MDQyMGI3Mzk5YWY1NTk0Y2YyOTIwMmM0MWI3MzA5NDkyODVmNmFjN2ZhMDU5NjdjOTFkODhmZTRlYTI4Zjg%3D&sid=c9a9e63fa40146a9bfdef018588adcee_48770540");
         }
 
         var play_init_count=0;
         function trackVideoInitiatePlay(){
           if(play_init_count == 0)
-            //dropTrackingTag("{{ url_videoview_initiate_play|safe }}");
+            dropTrackingTag("{{ url_videoview_initiate_play|safe }}");
           play_init_count++;
         }
 
         var v_25_tracker = false, v_50_tracker = false, v_75_tracker = false;
         function trackDurationMetrics(position, duration){
-            // {% for key,value in video_duration_tracking.seconds.items %}
-            //   try{
-            //     if(Math.floor(position) > {{ key }} && !sec_tracked_{{key}}){
-            //       //dropTrackingTag("{{ value|safe }}");
-            //       sec_tracked_{{key}} = true;
-            //     }
-            //   } catch(err){
+            {% for key,value in video_duration_tracking.seconds.items %}
+              try{
+                if(Math.floor(position) > {{ key }} && !sec_tracked_{{key}}){
+                  dropTrackingTag("{{ value|safe }}");
+                  sec_tracked_{{key}} = true;
+                }
+              } catch(err){
 
-            //   }
-            // {% endfor %}
-            // var diff = ( Math.floor(position) ) / duration;
-            // var perc = diff * 100;
-            // {% for key,value in video_duration_tracking.percentage.items %}
-            //   try{
-            //     if(diff > {{ key }}/100 && !perc_tracked_{{key}}){
-            //       //dropTrackingTag("{{ value|safe }}");
-            //       perc_tracked_{{key}} = true;
-            //     }
-            //   } catch(err){
+              }
+            {% endfor %}
+            var diff = ( Math.floor(position) ) / duration;
+            var perc = diff * 100;
+            {% for key,value in video_duration_tracking.percentage.items %}
+              try{
+                if(diff > {{ key }}/100 && !perc_tracked_{{key}}){
+                  dropTrackingTag("{{ value|safe }}");
+                  perc_tracked_{{key}} = true;
+                }
+              } catch(err){
 
-            //   }
-            // {% endfor %}
-            // if(!v_25_tracker && (parseInt(perc) >= 25 && parseInt(perc) < 50)){
-            //   //dropTrackingTag("{{ url_videoview_duration_25|safe }}");
-            //   v_25_tracker = true
-            // }
-            // else if(!v_50_tracker && (parseInt(perc) >= 50 && parseInt(perc) < 75)){
-            //   //dropTrackingTag("{{ url_videoview_duration_50|safe }}");
-            //   v_50_tracker = true
-            // }
-            // else if(!v_75_tracker && (parseInt(perc) >= 75 && parseInt(perc) < 100)){
-            //   //dropTrackingTag("{{ url_videoview_duration_75|safe }}");
-            //   v_75_tracker = true
-            // }
+              }
+            {% endfor %}
+            if(!v_25_tracker && (parseInt(perc) >= 25 && parseInt(perc) < 50)){
+              dropTrackingTag("{{ url_videoview_duration_25|safe }}");
+              v_25_tracker = true
+            }
+            else if(!v_50_tracker && (parseInt(perc) >= 50 && parseInt(perc) < 75)){
+              dropTrackingTag("{{ url_videoview_duration_50|safe }}");
+              v_50_tracker = true
+            }
+            else if(!v_75_tracker && (parseInt(perc) >= 75 && parseInt(perc) < 100)){
+              dropTrackingTag("{{ url_videoview_duration_75|safe }}");
+              v_75_tracker = true
+            }
         }
 
         function trackVideoError(){
-            //dropTrackingTag("{{ url_videoview_error|safe }}");
+            dropTrackingTag("{{ url_videoview_error|safe }}");
         }
 
         var user_initiated_play = true,   //We ignore the case when auto_play is forced through parameters
@@ -290,6 +261,7 @@
         function scrollViewListener(event){
           var message = event.message || event.data || event;
 
+          {% ifequal video_experience "autoplay_inview" %}
           if(!user_paused) {
 
             if(message.indexOf('disqus.view') >= 0) {
@@ -320,6 +292,7 @@
                   canvasVideo(true); // Play
                   trackVideoInitiatePlay();
                 } else if(!playerWindow.playerLoaded) {
+                  {% if 'VAST' in embed_type and embed_url %}
                   $(".jwvideo > video")[0].addEventListener('loadstart', function(e) {
                     if(e.target.src.indexOf('blank.mp4') >= 0) return;  // Ignore the initial blank content video load
                     // On source loadstart (implies asset url is loaded into video tag from VAST). Pause JW from playing,
@@ -334,12 +307,13 @@
                   // Start to load ad request. Allow JW to process VAST tag
                   player.play(true);
                   player.pauseAd(false);
-                  
+                  {% else %}
                   // If video source is a direct asset URL
-                  // var videoPlaylist = player.getPlaylist();
-                  // if(videoPlaylist.length && videoPlaylist[0].file) {
-                  //   canvasPlayerSetup(videoPlaylist[0].file);
-                  // }
+                  var videoPlaylist = player.getPlaylist();
+                  if(videoPlaylist.length && videoPlaylist[0].file) {
+                    canvasPlayerSetup(videoPlaylist[0].file);
+                  }
+                  {% endif %}
 
                   playerWindow.playerLoaded = true;
                 }
@@ -374,6 +348,7 @@
               }
             }
           }
+          {% endifequal %}
         }
 
         //Event listeners
@@ -383,14 +358,8 @@
           attachEvent("onmessage", scrollViewListener);
         }
 
-        function sendPostMessage(message) {
-            var domain = document.referrer;
-            if(domain) {
-              domain = domain.split('/');
-              domain.length = 3;
-              domain = domain.join('/');
-              window.parent.contentWindow.sendPostMessage(message, domain);
-            }
+        function postMessage(message) {
+            parent.postMessage(message, "*");
         }
 
     </script>
@@ -403,14 +372,29 @@
         var playerConfig = {
             skin: 'glow',
             sources: [
-              { file: '//cdn.adsnative.com/media/nw-652/0358fa79-e984-4dc2-a3c3-2c0c9fecfe99.mp4' }
+              {% for source in sources %}
+                {% if forloop.last %}
+                { file: '{{ source|safe }}' }
+                {% else %}
+                { file: '{{ source|safe }}' },
+                {% endif %}
+              {% endfor %}
             ],
-            image: 'http://cdn.adsnative.com/media/13963/2eebfcac-2daf-4701-b95f-983bf55bb8c4.jpg',
+            image: '{{ img_url|safe }}',
             width: '100%',
             height: '100%',
-            autostart: false,
-            mute:true,
-            repeat: false
+            autostart: {% if auto_play %} true {% else %} false {% endif %},
+            mute:{% if mute %} true  {% else %}{% ifequal video_experience "autoplay_inview" %} true {% else %} false {% endifequal %}{% endif %}{% if 'VAST' in embed_type and embed_url %},
+            {% ifequal video_experience "autoplay_inview" %}
+            primary: 'html5',
+            {% else %}
+            primary: 'flash',
+            {% endifequal %}
+            advertising: {
+                client: 'vast',
+                tag: '{{ embed_url|safe }}'
+            }
+            {% endif %}
         };
 
         playerWindow.isMobile = false;
@@ -419,10 +403,10 @@
         // Always autoplay video on iOS devices
         // JW player loads the video source into <video> tag only on click / autoplay
         // Since iOS does not autoplay even if you set jw player to autoplay, content does not start
-        // if(/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+        if(/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
           playerWindow.isMobile = true;
           playerConfig.autostart = true;
-        // }
+        }
 
         jwplayer('anPlayer').setup(playerConfig);
         playerWindow.started = false;
@@ -434,13 +418,14 @@
         playerWindow.ready = false;
         player.onReady(function(state) {
           playerWindow.ready = true;
-          sendPostMessage('ready');
+          postMessage('ready');
 
           $jwMainContainer = $('.jwmain'),
           playerWindow.isHTML5 = false;
           $jwVideo = $('.jwvideo video');
           $embedContainer = $('#embed-container');
 
+          {% ifequal video_experience "autoplay_inview" %}
           // Check if JW is running on Flash/HTML5
           // JW falls back to Flash if,
           // 1. VAST tag has flash (VPAID) creative
@@ -454,9 +439,12 @@
           if(playerWindow.scrolledInViewBeforeReady) {
             scrollViewListener('adsnative.mrc50.view:in');
           }
+          {% endifequal %}
         });
-        
+
+        {% if 'VAST' in embed_type and embed_url %}
         // JW VAST/VPAID Ad player callbacks
+
         player.onAdImpression(function(state){
             //
         });
@@ -472,29 +460,31 @@
             playerWindow.start_time = player.getPosition();
 
 
+            {% ifequal video_experience "autoplay_inview" %}
             if(playerWindow.isHTML5) {
               $jwMainContainer.removeClass('paused').addClass('playing');
             }
+            {% endifequal %}
         });
 
         player.onAdPause(function(state){
             logTimeSpent(Math.floor(( player.getPosition() - playerWindow.start_time ) * 1000));
             trackPause();
-            
+            {% ifequal video_experience "autoplay_inview" %}
             if(playerWindow.isHTML5) {
               $jwMainContainer.removeClass('playing').addClass('paused');
             }
-
+            {% endifequal %}
         });
 
         player.onAdComplete(function(state){
           trackComplete();
-
+          {% ifequal video_experience "autoplay_inview" %}
           if(playerWindow.isHTML5) {
             player.complete = true;
             $progressWrap.hide();
           }
-
+          {% endifequal %}
         });
 
         player.onAdError(function(state){
@@ -502,10 +492,12 @@
         });
 
         player.onAdTime(function(state){
+          {% ifequal video_experience "autoplay_inview" %}
           if(playerWindow.isHTML5) {
             $progressWrap.data('progress-percent', Math.floor((state.position/state.duration) * 100));
             player.moveProgressBar();
           }
+          {% endifequal %}
 
           // This event can be called multiple times within a second
           if(playerWindow.playback_time == Math.floor(state.position))
@@ -519,91 +511,92 @@
           trackVideoAdClick();
         });
 
-        
+        {% else %}
         // JW Content player callbacks
 
-        // player.onPlay(function(state) {
-        //     if(!playerWindow.started){
-        //         playerWindow.started = true;
-        //         trackPlay();
-        //         playerWindow.playback_time = 0;
-        //     } else {
-        //         trackResume();
-        //     }
-        //     {% ifequal video_experience "autoplay_inview" %}
-        //     if(playerWindow.isHTML5) {
-        //       $jwMainContainer.removeClass('paused').addClass('playing');
-        //     }
-        //     {% endifequal %}
-        //     playerWindow.start_time = player.getPosition();
-        // });
+        player.onPlay(function(state) {
+            if(!playerWindow.started){
+                playerWindow.started = true;
+                trackPlay();
+                playerWindow.playback_time = 0;
+            } else {
+                trackResume();
+            }
+            {% ifequal video_experience "autoplay_inview" %}
+            if(playerWindow.isHTML5) {
+              $jwMainContainer.removeClass('paused').addClass('playing');
+            }
+            {% endifequal %}
+            playerWindow.start_time = player.getPosition();
+        });
 
-        // player.onPause(function(state) {
-        //     logTimeSpent(Math.floor(( player.getPosition() - playerWindow.start_time ) * 1000));
-        //     trackPause();
-        //     {% ifequal video_experience "autoplay_inview" %}
-        //     if(playerWindow.isHTML5) {
-        //       $jwMainContainer.removeClass('playing').addClass('paused');
-        //     }
-        //     {% endifequal %}
-        // });
+        player.onPause(function(state) {
+            logTimeSpent(Math.floor(( player.getPosition() - playerWindow.start_time ) * 1000));
+            trackPause();
+            {% ifequal video_experience "autoplay_inview" %}
+            if(playerWindow.isHTML5) {
+              $jwMainContainer.removeClass('playing').addClass('paused');
+            }
+            {% endifequal %}
+        });
 
-        // player.onComplete(function() {
-        //     {% ifequal video_experience "autoplay_inview" %}
-        //     if(playerWindow.isHTML5) {
-        //       player.complete = true;
-        //       $progressWrap.hide();
-        //     }
-        //     {% endifequal %}
+        player.onComplete(function() {
+            {% ifequal video_experience "autoplay_inview" %}
+            if(playerWindow.isHTML5) {
+              player.complete = true;
+              $progressWrap.hide();
+            }
+            {% endifequal %}
 
-        //     trackComplete();
-        // });
+            trackComplete();
+        });
 
-        // player.onTime(function(state) {
-        //     {% ifequal video_experience "autoplay_inview" %}
-        //     if(playerWindow.isHTML5) {
-        //       $progressWrap.data('progress-percent', Math.floor((state.position/state.duration) * 100));
-        //       player.moveProgressBar();
-        //     }
-        //     {% endifequal %}
+        player.onTime(function(state) {
+            {% ifequal video_experience "autoplay_inview" %}
+            if(playerWindow.isHTML5) {
+              $progressWrap.data('progress-percent', Math.floor((state.position/state.duration) * 100));
+              player.moveProgressBar();
+            }
+            {% endifequal %}
 
-        //     // This event can be called multiple times within a second
-        //     if(playerWindow.playback_time == Math.floor(state.position))
-        //       return;
-        //     playerWindow.playback_time = Math.floor(state.position)
+            // This event can be called multiple times within a second
+            if(playerWindow.playback_time == Math.floor(state.position))
+              return;
+            playerWindow.playback_time = Math.floor(state.position)
 
-        //     trackDurationMetrics(state.position, state.duration);
-        // });
-        // {% endif %}
+            trackDurationMetrics(state.position, state.duration);
+        });
+        {% endif %}
 
-        // // JW common callbacks
-        // player.onReady(function(state) {
-        //     trackVideoImpression();
-        // });
+        // JW common callbacks
+        player.onReady(function(state) {
+            trackVideoImpression();
+        });
 
-        // player.onDisplayClick(function(state){
-        //   var state = player.getState();
-        //   // player state value is not updated yet when this event is called
-        //   if(state == 'PLAYING' && !user_initiated_play){
-        //     player.setMute(true);
-        //   } else if(state == 'PAUSED') {
-        //     user_initiated_play = true;
-        //     player.setMute(false);
-        //   }
-        // });
+        player.onDisplayClick(function(state){
+          var state = player.getState();
+          // player state value is not updated yet when this event is called
+          if(state == 'PLAYING' && !user_initiated_play){
+            player.setMute(true);
+          } else if(state == 'PAUSED') {
+            user_initiated_play = true;
+            player.setMute(false);
+          }
+        });
 
-        // player.onMute(function(state) {
-        //     trackMuteState(state.mute);
-        // });
+        player.onMute(function(state) {
+            trackMuteState(state.mute);
+        });
 
-        // player.onFullscreen(function(state) {
-        //     if(state.fullscreen){
-        //         player.seek(0);
-        //         player.setMute(false);
-        //         trackFullscreen();
-        //     }
-        // });
+        player.onFullscreen(function(state) {
+            if(state.fullscreen){
+                player.seek(0);
+                player.setMute(false);
+                trackFullscreen();
+            }
+        });
 
+        {% ifequal video_experience "autoplay_inview" %}
         // Canvas Player Code Start
 
         var playerHandlers = {
@@ -874,8 +867,10 @@
             this.ctx.drawImage(this.video, 0, 0, this.width, this.height);
         };
 
+        {% endifequal %}
     </script>
 
+    <img src="{{ url_datadog_v_iframe|safe }}" style="width:1px;height:1px;" width='0' height='0' border='0'>
   </div>
 </body>
 </html>

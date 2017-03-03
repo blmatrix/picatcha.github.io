@@ -3,13 +3,12 @@
 
 <head>
     <script type="text/javascript">
-      var _AdsNativeOpts = {
+    var _AdsNativeOpts = {
         blockAdLoad: true
-      };
+    };
     </script>
     <script type="text/javascript" src="https://static.adsnative.com/static/js/render.v1.js"></script>
     <script type="text/javascript" src="edmodo.js"></script>
-
     <link rel="stylesheet" type="text/css" href="https://assets.edmodo.com/e10.landing.css.all.82c97f189dca08bc.css">
     <link rel="stylesheet" type="text/css" href="https://assets.edmodo.com/e11.billygoat.css.all.97835efacd5d9b89.css">
     <style type="text/css">
@@ -61,8 +60,8 @@
         display: inline-block;
         float: left;
     }
-
     /* User Feedback Dropdown */
+    
     .right-rail .content .user_fb {
         position: relative;
         display: inline-block;
@@ -168,23 +167,25 @@
                         </div>
                     </div>
                 </div>
-
-                
                 <!-- GPT Code START -->
                 <script async="async" src="https://www.googletagservices.com/tag/js/gpt.js"></script>
                 <script>
                 var googletag = googletag || {};
                 googletag.cmd = googletag.cmd || [];
                 googletag.cmd.push(function() {
+                    googletag.defineSlot('/41710666/RightRail', [
+                        [160, 600], 'fluid'
+                    ], '8ybQAnXdk0XwWYPq4Yo9KhrVedhvyz9gvSJO5imF').addService(googletag.pubads());
+                    googletag.pubads().setTargeting('audience_type', 'teacher');
                     googletag.pubads().setTagForChildDirectedTreatment(1);
-                    googletag.defineSlot('/41710666/IABRR', [[300, 250], [300, 600], [160, 600]], '8ybQAnXdk0XwWYPq4Yo9KhrVedhvyz9gvSJO5imF').addService(googletag.pubads());
+                    googletag.pubads().collapseEmptyDivs();
                     googletag.pubads().enableSingleRequest();
                     var pubads = googletag.pubads();
                     pubads.addEventListener('slotRenderEnded', function(event) {
                         if (event.isEmpty) {
                             window._an_adNoFill('google_dfp');
                             console.log('NO Ad received by Google ADX Display Tag for Right Rail');
-                            if(AnEdmodo && AnEdmodo.resizeIABContainer) {
+                            if (AnEdmodo && AnEdmodo.resizeIABContainer) {
                                 AnEdmodo.resizeIABContainer('right-rail', 0, 0);
                             }
                         } else {
@@ -192,12 +193,12 @@
                                 window._an_adFill('google_dfp');
 
                                 // Check size
-                                if(event.size && event.size.length === 2) {
+                                if (event.size && event.size.length === 2) {
                                     var width = event.size[0],
                                         height = event.size[1];
 
                                     console.log('Received Right Rail Google ADX Ad of size : ' + width + ' X ' + height);
-                                    if(AnEdmodo && AnEdmodo.resizeIABContainer) {
+                                    if (AnEdmodo && AnEdmodo.resizeIABContainer) {
                                         AnEdmodo.resizeIABContainer('right-rail', width, height);
                                     }
                                 }
