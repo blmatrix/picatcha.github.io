@@ -2926,12 +2926,44 @@ var google_remarketing_only = true;
 
 <!-- Begin ADSNATIVE Code -->
   <script type="text/javascript">
-    var _AdsNativeOpts = {
-      apiKey: '1mmpNncpbu4zUe7dhf9iUoBVrYWr3vKwEeHq6IbH',
-      autoPosition: true,
-    };
-  </script>
-  <script type="text/javascript" src="//static.adsnative.com/static/js/render.v1.js"></script>
+
+  var _AdsNativeOpts = {
+    adUnits: [{
+        apiKey: "1mmpNncpbu4zUe7dhf9iUoBVrYWr3vKwEeHq6IbH",
+        // keyValues: {
+        //     "ck_campaign_id": "960142"
+        // },
+        impressionTags: '<img src="https://x.vindicosuite.com/dserve/t=d;l=532931;c=960142;b=4211193;ta=5326438;cr=1322069823;smuid=OZhKOC2_ls-xCD;pt1=1mmpNncpbu4zUe7dhf9iUoBVrYWr3vKwEeHq6IbH;ad=CMPDIBCLoA0YnzMgASgEMMOJATiopQFAxLUSSJjOFVCOzTpY-YOBAmAAaIqUI3ABeAGIAQCQAQCYAQCiARM5MTQ0ODQ1MzkxMDI2NTA3MDI1sgEIQ1JFQVRJVkW4AQDAAQDIAQDQAQDYAQDoAZiao56kKw;xid=9144845391026507025;ts=1487195917">',
+        clickTags: '<img src="https://x.vindicosuite.com/click/?v=5;m=2;l=532931;c=960142;b=4211193;ts=1487195917;ui=TVmZKDLqNreWxRkblZAXapgsdCY5MpMUYFbLRrGvQAxRyRua7M17KEUxZPUqF9asOuiuYRXHFatlBVJgdCqU4A;pc=1;pt1=1mmpNncpbu4zUe7dhf9iUoBVrYWr3vKwEeHq6IbH;ad=CMPDIBCLoA0YnzMgASgEMMOJATiopQFAxLUSSJjOFVCOzTpY-YOBAmAAaIqUI3ABeAGIAQCQAQCYAQCiARM5MTQ0ODQ1MzkxMDI2NTA3MDI1sgEIQ1JFQVRJVkW4AQDAAQDIAQDQAQDYAQDoAZiao56kKw;xid=9144845391026507025;ep=1;tpr=0;spd=1">',
+        viewabilityTags: '<img src="https://x.vindicosuite.com/event/?e=5304;l=532931;b=4211193;c=960142;smuid=OZhKOC2_ls-xCD;msd=;ta=1487195917;tk=18999;cr=2296050666;pt1=1mmpNncpbu4zUe7dhf9iUoBVrYWr3vKwEeHq6IbH;ad=CMPDIBCLoA0YnzMgASgEMMOJATiopQFAxLUSSJjOFVCOzTpY-YOBAmAAaIqUI3ABeAGIAQCQAQCYAQCiARM5MTQ0ODQ1MzkxMDI2NTA3MDI1sgEIQ1JFQVRJVkW4AQDAAQDIAQDQAQDYAQDoAZiao56kKw;xid=9144845391026507025;href=">',
+        callback: function(status, adData) {
+            var xfinityLogo = document.querySelector('._7th.viant.news-article .xfinity_logo');
+            if(xfinityLogo) {
+                xfinityLogo.onclick = function(e) {
+                    e = e || window.event; // cross-browser event
+
+                    if (e.stopPropagation) {
+                        // W3C standard variant
+                        e.stopPropagation();
+                    } else {
+                        // IE variant
+                        e.cancelBubble = true;
+                    }
+                }
+            }
+        }
+    }],
+    autoPosition: true
+};
+(function() {
+    var antag = document.createElement('script');
+    antag.async = true;
+    antag.type = 'text/javascript';
+    antag.src = '//static.adsnative.com/static/js/render.v1.js';
+    var node = document.getElementsByTagName('script')[0];
+    node.parentNode.insertBefore(antag, node);
+})();
+</script>
 <!-- End ADSNATIVE Code -->
 </html>
 
