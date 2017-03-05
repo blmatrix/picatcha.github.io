@@ -6,11 +6,17 @@
     <link rel="stylesheet" type="text/css" href="//static.adsnative.com/static/css/canvas_player.min.css"/>
     <style type="text/css">
         body { margin: 0px; cursor: pointer; }
-        #embed-container { position: relative; overflow: hidden; width: 100%; height: 100%; } #embed-container iframe, #embed-container object, #embed-container embed { top: 0; left: 0; width: 100%; height: 100%; }
+        #embed-container { position: relative; overflow: hidden; width: 640px; height: 360px; } #embed-container iframe, #embed-container object, #embed-container embed { top: 0; left: 0; width: 100%; height: 100%; }
+        .jwvideo {
+          visibility: visible !important;
+        }
     </style>
     <script type="text/javascript">
         // Global playerWindow pointer
         playerWindow = window;
+        video_experience = "autoplay_inview";
+        autoplay = true;
+        embed_type = 'source';
 
         function urlPrefix(){
             if(location.protocol == 'https:')
@@ -76,50 +82,50 @@
         var play_init_count=0;
         function trackVideoInitiatePlay(){
           if(play_init_count == 0)
-            dropTrackingTag("{{ url_videoview_initiate_play|safe }}");
+            dropTrackingTag("http://bevo-us-east-1.adsnative.com/vv.gif?tag_name=vvp&data=NGM5NDVjMjk2NjQxOGI2NTNkMTE1ZTYzY2E2ZGY5YWNmNTNkMTQ3MTk0OWYxZDE2YmYzYjdiYWRmYTVhM2ZhZTI5YTY3YTlhZTkyYTUxNWI2NzQzMTgwMjEzZTMxNWQ5MWQxYzdlNmIyYzc3MTcyZDdjN2MxNWQxMTgzMjA5OWUxMDQ3OTNjOTk0ZmJkNzhmZTIxMzQ3YWI3MjE1ZmQ0YzA2OGIyZWQ0ZTExZTY0NWFiZWE5MWExMjg1YzkxNDdjOWI5MmYwNjk4NWM2M2Y0ZWZlZTI1MGY4MGY2MzRjMzczYTdkMGQwOWJmZTU1MDNjZjI4ZjM4ZmNhZjdhNWM0YTAzYTg1YTRhNTUyMzllYjBmZjhlOTMxM2QzMDg4ZDc3NTc2MTM3ODljMmU0OTE5MTBmYmE3MTY2OWJlMTdiMjE%3D&sid=179b30d8f8d14c1fa9569b0148a941bf_1d64e639");
           play_init_count++;
         }
 
         var v_25_tracker = false, v_50_tracker = false, v_75_tracker = false;
         function trackDurationMetrics(position, duration){
-            {% for key,value in video_duration_tracking.seconds.items %}
-              try{
-                if(Math.floor(position) > {{ key }} && !sec_tracked_{{key}}){
-                  dropTrackingTag("{{ value|safe }}");
-                  sec_tracked_{{key}} = true;
-                }
-              } catch(err){
+            // {% for key,value in video_duration_tracking.seconds.items %}
+            //   try{
+            //     if(Math.floor(position) > {{ key }} && !sec_tracked_{{key}}){
+            //       dropTrackingTag("{{ value|safe }}");
+            //       sec_tracked_{{key}} = true;
+            //     }
+            //   } catch(err){
 
-              }
-            {% endfor %}
-            var diff = ( Math.floor(position) ) / duration;
-            var perc = diff * 100;
-            {% for key,value in video_duration_tracking.percentage.items %}
-              try{
-                if(diff > {{ key }}/100 && !perc_tracked_{{key}}){
-                  dropTrackingTag("{{ value|safe }}");
-                  perc_tracked_{{key}} = true;
-                }
-              } catch(err){
+            //   }
+            // {% endfor %}
+            // var diff = ( Math.floor(position) ) / duration;
+            // var perc = diff * 100;
+            // {% for key,value in video_duration_tracking.percentage.items %}
+            //   try{
+            //     if(diff > {{ key }}/100 && !perc_tracked_{{key}}){
+            //       dropTrackingTag("{{ value|safe }}");
+            //       perc_tracked_{{key}} = true;
+            //     }
+            //   } catch(err){
 
-              }
-            {% endfor %}
-            if(!v_25_tracker && (parseInt(perc) >= 25 && parseInt(perc) < 50)){
-              dropTrackingTag("{{ url_videoview_duration_25|safe }}");
-              v_25_tracker = true
-            }
-            else if(!v_50_tracker && (parseInt(perc) >= 50 && parseInt(perc) < 75)){
-              dropTrackingTag("{{ url_videoview_duration_50|safe }}");
-              v_50_tracker = true
-            }
-            else if(!v_75_tracker && (parseInt(perc) >= 75 && parseInt(perc) < 100)){
-              dropTrackingTag("{{ url_videoview_duration_75|safe }}");
-              v_75_tracker = true
-            }
+            //   }
+            // {% endfor %}
+            // if(!v_25_tracker && (parseInt(perc) >= 25 && parseInt(perc) < 50)){
+            //   dropTrackingTag("{{ url_videoview_duration_25|safe }}");
+            //   v_25_tracker = true
+            // }
+            // else if(!v_50_tracker && (parseInt(perc) >= 50 && parseInt(perc) < 75)){
+            //   dropTrackingTag("{{ url_videoview_duration_50|safe }}");
+            //   v_50_tracker = true
+            // }
+            // else if(!v_75_tracker && (parseInt(perc) >= 75 && parseInt(perc) < 100)){
+            //   dropTrackingTag("{{ url_videoview_duration_75|safe }}");
+            //   v_75_tracker = true
+            // }
         }
 
         function trackVideoError(){
-            dropTrackingTag("{{ url_videoview_error|safe }}");
+            dropTrackingTag("http://bevo-us-east-1.adsnative.com/vv.gif?tag_name=vve&data=NGM5NDVjMjk2NjQxOGI2NTNkMTE1ZTYzY2E2ZGY5YWNmNTNkMTQ3MTk0OWYxZDE2YmYzYjdiYWRmYTVhM2ZhZTI5YTY3YTlhZTkyYTUxNWI2NzQzMTgwMjEzZTMxNWQ5MWQxYzdlNmIyYzc3MTcyZDdjN2MxNWQxMTgzMjA5OWUxMDQ3OTNjOTk0ZmJkNzhmZTIxMzQ3YWI3MjE1ZmQ0YzA2OGIyZWQ0ZTExZTY0NWFiZWE5MWExMjg1YzkxNDdjOWI5MmYwNjk4NWM2M2Y0ZWZlZTI1MGY4MGY2MzRjMzczYTdkMGQwOWJmZTU1MDNjZjI4ZjM4ZmNhZjdhNWM0YTAzYTg1YTRhNTUyMzllYjBmZjhlOTMxM2QzMDg4ZDc3NTc2MTM3ODljMmU0OTE5MTBmYmE3MTY2OWJlMTdiMjE%3D&sid=179b30d8f8d14c1fa9569b0148a941bf_1d64e639");
         }
 
         var user_initiated_play = true,   //We ignore the case when auto_play is forced through parameters
@@ -224,6 +230,7 @@
             } else {
               // If muted : clicking the player unmutes audio
               // If unmuted : clicking the player pauses the video
+              // If paused : Just plays the video in same mute/unmute state (unchanged)
               if($('.jwmain.an-muted').length) {
                 autoPlayUnmute(true);
                 if(playerWindow.isMobile) {
@@ -258,97 +265,100 @@
           });
         }
 
-        function scrollViewListener(event){
+        function scrollViewListener(event) {
           var message = event.message || event.data || event;
 
-          {% ifequal video_experience "autoplay_inview" %}
-          if(!user_paused) {
+          if(video_experience === 'autoplay_inview') {
+            if(!user_paused) {
+              if(message.indexOf('disqus.view') >= 0) {
+                $embedContainer.mouseenter(function() {
+                  if(!user_initiated_play) {
+                    autoPlayUnmute(true);
+                    player.setMute(false);
+                  }
+                });
 
-            if(message.indexOf('disqus.view') >= 0) {
-              $embedContainer.mouseenter(function() {
-                if(!user_initiated_play) {
-                  autoPlayUnmute(true);
-                  player.setMute(false);
-                }
-              });
-
-              $embedContainer.mouseleave(function(){
-                if(!user_initiated_play)
-                  player.setMute(true);
-                  autoPlayMute(true);
-              });
-            }
-
-            playerWindow.scrolledInViewBeforeReady = false;
-            if(message == 'disqus.view:50in' || message == 'adsnative.mrc50.view:in') {
-              // Player scrolled inview before player ready. Mark so that player handles when gets ready
-              if(!playerWindow.ready) {
-                playerWindow.scrolledInViewBeforeReady = true;
-                return;
+                $embedContainer.mouseleave(function() {
+                  if(!user_initiated_play)
+                    player.setMute(true);
+                    autoPlayMute(true);
+                });
               }
 
-              if(playerWindow.isMobile) {
-                if(playerWindow.playerLoaded) {
-                  canvasVideo(true); // Play
-                  trackVideoInitiatePlay();
-                } else if(!playerWindow.playerLoaded) {
-                  {% if 'VAST' in embed_type and embed_url %}
-                  $(".jwvideo > video")[0].addEventListener('loadstart', function(e) {
-                    if(e.target.src.indexOf('blank.mp4') >= 0) return;  // Ignore the initial blank content video load
-                    // On source loadstart (implies asset url is loaded into video tag from VAST). Pause JW from playing,
-                    // and fetch the source and load into Canvas Player for mobile canvas autoplay
-                    player.pause(true);
-                    player.pauseAd(true);
-                    var videoSource = e.target.getAttribute('src');
-                    if(videoSource) {
-                      canvasPlayerSetup(videoSource);
+              playerWindow.scrolledInViewBeforeReady = false;
+              if(message == 'disqus.view:50in' || message == 'adsnative.mrc50.view:in') {
+                // Player scrolled inview before player ready. Mark so that player handles when gets ready
+                if(!playerWindow.ready) {
+                  playerWindow.scrolledInViewBeforeReady = true;
+                  return;
+                }
+
+                if(playerWindow.isMobile) {
+                  if(playerWindow.playerLoaded) {
+                    canvasVideo(true); // Play
+                    trackVideoInitiatePlay();
+                  } else if(!playerWindow.playerLoaded) {
+                    // {% if 'VAST' in embed_type and embed_url %}
+                    if(embed_type === 'VAST') {
+                      $(".jwvideo > video")[0].addEventListener('loadstart', function(e) {
+                        if(e.target.src.indexOf('blank.mp4') >= 0) return;  // Ignore the initial blank content video load
+                        // On source loadstart (implies asset url is loaded into video tag from VAST). Pause JW from playing,
+                        // and fetch the source and load into Canvas Player for mobile canvas autoplay
+                        player.pause(true);
+                        player.pauseAd(true);
+                        var videoSource = e.target.getAttribute('src');
+                        if(videoSource) {
+                          canvasPlayerSetup(videoSource);
+                        }
+                      });
+                      // Start to load ad request. Allow JW to process VAST tag
+                      player.play(true);
+                      player.pauseAd(false);
+                    } else {
+                      // {% else %}
+                      // If video source is a direct asset URL
+                      var videoPlaylist = player.getPlaylist();
+                      if(videoPlaylist.length && videoPlaylist[0].file) {
+                        canvasPlayerSetup(videoPlaylist[0].file);
+                      }
                     }
-                  });
-                  // Start to load ad request. Allow JW to process VAST tag
+                    // {% endif %}
+
+                    playerWindow.playerLoaded = true;
+                  }
+                } else {
                   player.play(true);
                   player.pauseAd(false);
-                  {% else %}
-                  // If video source is a direct asset URL
-                  var videoPlaylist = player.getPlaylist();
-                  if(videoPlaylist.length && videoPlaylist[0].file) {
-                    canvasPlayerSetup(videoPlaylist[0].file);
+
+                  trackVideoInitiatePlay();
+
+                  if(!playerWindow.playerLoaded) {
+                    loadAnPlayerControls();
+                    setAnPlayerClickListeners();
+                    // Start in muted-autoplay mode
+                    player.setMute(true);
+                    playerWindow.playerLoaded = true;
                   }
-                  {% endif %}
-
-                  playerWindow.playerLoaded = true;
                 }
-              } else {
-                player.play(true);
-                player.pauseAd(false);
+                user_initiated_play = false;
+              } else if (message == 'disqus.view:50out' || message == 'adsnative.mrc50.view:out') {
+                user_initiated_play = false;
 
-                trackVideoInitiatePlay();
-
-                if(!playerWindow.playerLoaded) {
-                  loadAnPlayerControls();
-                  setAnPlayerClickListeners();
-                  // Start in muted-autoplay mode
-                  player.setMute(true);
-                  playerWindow.playerLoaded = true;
-                }
-              }
-              user_initiated_play = false;
-            } else if (message == 'disqus.view:50out' || message == 'adsnative.mrc50.view:out') {
-              user_initiated_play = false;
-
-              if(playerWindow.isMobile) {
-                // Act on canvas video going out-of-view only if it is already initialized
-                if(playerWindow.audioAnCanvasPlayer) {
-                  canvasVideo(false); // Pause
-                }
-              } else {
-                if(!playerWindow.isHTML5 || !$('.jwmain.paused').length) {
-                  player.pause(true);
-                  player.pauseAd(true);
+                if(playerWindow.isMobile) {
+                  // Act on canvas video going out-of-view only if it is already initialized
+                  if(playerWindow.audioAnCanvasPlayer) {
+                    canvasVideo(false); // Pause
+                  }
+                } else {
+                  if(!playerWindow.isHTML5 || !$('.jwmain.paused').length) {
+                    player.pause(true);
+                    player.pauseAd(true);
+                  }
                 }
               }
             }
+          // {% endifequal %}
           }
-          {% endifequal %}
         }
 
         //Event listeners
@@ -357,6 +367,8 @@
         } else {
           attachEvent("onmessage", scrollViewListener);
         }
+
+        scrollViewListener('adsnative.mrc50.view:in');
 
         function postMessage(message) {
             parent.postMessage(message, "*");
@@ -371,30 +383,33 @@
     <script type='text/javascript'>
         var playerConfig = {
             skin: 'glow',
+            // sources: [
+            //   {% for source in sources %}
+            //     {% if forloop.last %}
+            //     { file: '{{ source|safe }}' }
+            //     {% else %}
+            //     { file: '{{ source|safe }}' },
+            //     {% endif %}
+            //   {% endfor %}
+            // ],
             sources: [
-              {% for source in sources %}
-                {% if forloop.last %}
-                { file: '{{ source|safe }}' }
-                {% else %}
-                { file: '{{ source|safe }}' },
-                {% endif %}
-              {% endfor %}
+              {file: 'http://cdn.adsnative.com/media/nw-652/6d009ee4-1be9-4ca6-bada-a290c5afa8a8.mp4'}
             ],
-            image: '{{ img_url|safe }}',
+            // image: '{{ img_url|safe }}',
+            image: 'http://cdn.adsnative.com/media/nw-652/c6ad0b82-91e9-40de-8b83-a5d1415a247d.jpeg',
             width: '100%',
             height: '100%',
-            autostart: {% if auto_play %} true {% else %} false {% endif %},
-            mute:{% if mute %} true  {% else %}{% ifequal video_experience "autoplay_inview" %} true {% else %} false {% endifequal %}{% endif %}{% if 'VAST' in embed_type and embed_url %},
-            {% ifequal video_experience "autoplay_inview" %}
-            primary: 'html5',
-            {% else %}
-            primary: 'flash',
-            {% endifequal %}
-            advertising: {
-                client: 'vast',
-                tag: '{{ embed_url|safe }}'
-            }
-            {% endif %}
+            autostart: (autoplay) ? true : false, //{% if auto_play %} true {% else %} false {% endif %},
+            mute: true, //{% if mute %} true  {% else %}if(video_experience === 'autoplay_inview') true {% else %} false {% endifequal %}{% endif %}{% if 'VAST' in embed_type and embed_url %},
+            primary: (video_experience === 'autoplay_inview') ? 'html5' : 'flash',
+            // {% else %}
+            // primary: 'flash',
+            // {% endifequal %}
+            // advertising: {
+            //     client: 'vast',
+            //     tag: '{{ embed_url|safe }}'
+            // }
+            // {% endif %}
         };
 
         playerWindow.isMobile = false;
@@ -403,10 +418,10 @@
         // Always autoplay video on iOS devices
         // JW player loads the video source into <video> tag only on click / autoplay
         // Since iOS does not autoplay even if you set jw player to autoplay, content does not start
-        if(/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+        // if(/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
           playerWindow.isMobile = true;
           playerConfig.autostart = true;
-        }
+        // }
 
         jwplayer('anPlayer').setup(playerConfig);
         playerWindow.started = false;
@@ -418,155 +433,167 @@
         playerWindow.ready = false;
         player.onReady(function(state) {
           playerWindow.ready = true;
-          postMessage('ready');
+          // postMessage('ready');
 
           $jwMainContainer = $('.jwmain'),
           playerWindow.isHTML5 = false;
           $jwVideo = $('.jwvideo video');
           $embedContainer = $('#embed-container');
 
-          {% ifequal video_experience "autoplay_inview" %}
-          // Check if JW is running on Flash/HTML5
-          // JW falls back to Flash if,
-          // 1. VAST tag has flash (VPAID) creative
-          // 2. Browser does not support HTML5 video (< IE10)
-          if($jwVideo.length) {
-            // HTML5 Player : autoplay on desktop & mobile
-            playerWindow.isHTML5 = true;
-          }
+          if(video_experience === 'autoplay_inview') {
+            // Check if JW is running on Flash/HTML5
+            // JW falls back to Flash if,
+            // 1. VAST tag has flash (VPAID) creative
+            // 2. Browser does not support HTML5 video (< IE10)
+            if($jwVideo.length) {
+              // HTML5 Player : autoplay on desktop & mobile
+              playerWindow.isHTML5 = true;
+            }
 
-          // If player scrolled inview before ready, then start video
-          if(playerWindow.scrolledInViewBeforeReady) {
-            scrollViewListener('adsnative.mrc50.view:in');
+            // If player scrolled inview before ready, then start video
+            if(playerWindow.scrolledInViewBeforeReady) {
+              scrollViewListener('adsnative.mrc50.view:in');
+            }
+            // {% endifequal %}
           }
-          {% endifequal %}
         });
 
-        {% if 'VAST' in embed_type and embed_url %}
+        // {% if 'VAST' in embed_type and embed_url %}
+        if(embed_type === 'VAST') {
         // JW VAST/VPAID Ad player callbacks
 
-        player.onAdImpression(function(state){
-            //
-        });
+          player.onAdImpression(function(state){
+              //
+          });
 
-        player.onAdPlay(function(state){
-            if(!playerWindow.started){
-                playerWindow.started = true;
-                trackPlay();
-                playerWindow.playback_time = 0;
-            } else {
-                trackResume();
-            }
-            playerWindow.start_time = player.getPosition();
+          player.onAdPlay(function(state){
+              if(!playerWindow.started){
+                  playerWindow.started = true;
+                  trackPlay();
+                  playerWindow.playback_time = 0;
+              } else {
+                  trackResume();
+              }
+              playerWindow.start_time = player.getPosition();
 
 
-            {% ifequal video_experience "autoplay_inview" %}
-            if(playerWindow.isHTML5) {
-              $jwMainContainer.removeClass('paused').addClass('playing');
-            }
-            {% endifequal %}
-        });
+              if(video_experience === 'autoplay_inview') {
+                if(playerWindow.isHTML5) {
+                  $jwMainContainer.removeClass('paused').addClass('playing');
+                }
+              // {% endifequal %}
+              }
+          });
 
-        player.onAdPause(function(state){
-            logTimeSpent(Math.floor(( player.getPosition() - playerWindow.start_time ) * 1000));
-            trackPause();
-            {% ifequal video_experience "autoplay_inview" %}
-            if(playerWindow.isHTML5) {
-              $jwMainContainer.removeClass('playing').addClass('paused');
-            }
-            {% endifequal %}
-        });
+          player.onAdPause(function(state){
+              logTimeSpent(Math.floor(( player.getPosition() - playerWindow.start_time ) * 1000));
+              trackPause();
+              if(video_experience === 'autoplay_inview') {
+                if(playerWindow.isHTML5) {
+                  $jwMainContainer.removeClass('playing').addClass('paused');
+                }
+              // {% endifequal %}
+              }
+          });
 
-        player.onAdComplete(function(state){
-          trackComplete();
-          {% ifequal video_experience "autoplay_inview" %}
-          if(playerWindow.isHTML5) {
-            player.complete = true;
-            $progressWrap.hide();
-          }
-          {% endifequal %}
-        });
-
-        player.onAdError(function(state){
-          trackVideoError();
-        });
-
-        player.onAdTime(function(state){
-          {% ifequal video_experience "autoplay_inview" %}
-          if(playerWindow.isHTML5) {
-            $progressWrap.data('progress-percent', Math.floor((state.position/state.duration) * 100));
-            player.moveProgressBar();
-          }
-          {% endifequal %}
-
-          // This event can be called multiple times within a second
-          if(playerWindow.playback_time == Math.floor(state.position))
-            return;
-          playerWindow.playback_time = Math.floor(state.position)
-
-          trackDurationMetrics(state.position, state.duration);
-        });
-
-        player.onAdClick(function(state){
-          trackVideoAdClick();
-        });
-
-        {% else %}
-        // JW Content player callbacks
-
-        player.onPlay(function(state) {
-            if(!playerWindow.started){
-                playerWindow.started = true;
-                trackPlay();
-                playerWindow.playback_time = 0;
-            } else {
-                trackResume();
-            }
-            {% ifequal video_experience "autoplay_inview" %}
-            if(playerWindow.isHTML5) {
-              $jwMainContainer.removeClass('paused').addClass('playing');
-            }
-            {% endifequal %}
-            playerWindow.start_time = player.getPosition();
-        });
-
-        player.onPause(function(state) {
-            logTimeSpent(Math.floor(( player.getPosition() - playerWindow.start_time ) * 1000));
-            trackPause();
-            {% ifequal video_experience "autoplay_inview" %}
-            if(playerWindow.isHTML5) {
-              $jwMainContainer.removeClass('playing').addClass('paused');
-            }
-            {% endifequal %}
-        });
-
-        player.onComplete(function() {
-            {% ifequal video_experience "autoplay_inview" %}
-            if(playerWindow.isHTML5) {
-              player.complete = true;
-              $progressWrap.hide();
-            }
-            {% endifequal %}
-
+          player.onAdComplete(function(state){
             trackComplete();
-        });
-
-        player.onTime(function(state) {
-            {% ifequal video_experience "autoplay_inview" %}
-            if(playerWindow.isHTML5) {
-              $progressWrap.data('progress-percent', Math.floor((state.position/state.duration) * 100));
-              player.moveProgressBar();
+            if(video_experience === 'autoplay_inview') {
+              if(playerWindow.isHTML5) {
+                player.complete = true;
+                $progressWrap.hide();
+              }
+            // {% endifequal %}
             }
-            {% endifequal %}
+          });
+
+          player.onAdError(function(state){
+            trackVideoError();
+          });
+
+          player.onAdTime(function(state){
+            if(video_experience === 'autoplay_inview') {
+              if(playerWindow.isHTML5) {
+                $progressWrap.data('progress-percent', Math.floor((state.position/state.duration) * 100));
+                player.moveProgressBar();
+              }
+            }
+            // {% endifequal %}
 
             // This event can be called multiple times within a second
             if(playerWindow.playback_time == Math.floor(state.position))
               return;
             playerWindow.playback_time = Math.floor(state.position)
 
-            trackDurationMetrics(state.position, state.duration);
-        });
-        {% endif %}
+            // trackDurationMetrics(state.position, state.duration);
+          });
+
+          player.onAdClick(function(state){
+            trackVideoAdClick();
+          });
+
+        // {% else %}
+        } else {
+        // JW Content player callbacks
+
+          player.onPlay(function(state) {
+              if(!playerWindow.started){
+                  playerWindow.started = true;
+                  trackPlay();
+                  playerWindow.playback_time = 0;
+              } else {
+                  trackResume();
+              }
+              if(video_experience === 'autoplay_inview') {
+                if(playerWindow.isHTML5) {
+                  $jwMainContainer.removeClass('paused').addClass('playing');
+                }
+              // {% endifequal %}
+              }
+              playerWindow.start_time = player.getPosition();
+          });
+
+          player.onPause(function(state) {
+              logTimeSpent(Math.floor(( player.getPosition() - playerWindow.start_time ) * 1000));
+              trackPause();
+              if(video_experience === 'autoplay_inview') {
+                if(playerWindow.isHTML5) {
+                  $jwMainContainer.removeClass('playing').addClass('paused');
+                }
+              // {% endifequal %}
+              }
+          });
+
+          player.onComplete(function() {
+              if(video_experience === 'autoplay_inview') {
+                if(playerWindow.isHTML5) {
+                  player.complete = true;
+                  $progressWrap.hide();
+                }
+              // {% endifequal %}
+              }
+
+              trackComplete();
+          });
+
+          player.onTime(function(state) {
+              if(video_experience === 'autoplay_inview') {
+                if(playerWindow.isHTML5) {
+                  $progressWrap.data('progress-percent', Math.floor((state.position/state.duration) * 100));
+                  player.moveProgressBar();
+                }
+              // {% endifequal %}
+              }
+
+              // This event can be called multiple times within a second
+              if(playerWindow.playback_time == Math.floor(state.position))
+                return;
+              playerWindow.playback_time = Math.floor(state.position)
+
+              // trackDurationMetrics(state.position, state.duration);
+          });
+        // {% endif %}
+        }
 
         // JW common callbacks
         player.onReady(function(state) {
@@ -596,281 +623,283 @@
             }
         });
 
-        {% ifequal video_experience "autoplay_inview" %}
+        if(video_experience === 'autoplay_inview') {
         // Canvas Player Code Start
 
-        var playerHandlers = {
-            timeUpdateHandler: null,
-            canPlayHandler: null,
-            windowResizeHandler: null
-        };
+          var playerHandlers = {
+              timeUpdateHandler: null,
+              canPlayHandler: null,
+              windowResizeHandler: null
+          };
 
-        // Instantiate Canvas Player
-        function canvasPlayerSetup(source) {
-            // If init / player paused
-            if (playerWindow.audioAnCanvasPlayer || !source) return;
+          // Instantiate Canvas Player
+          function canvasPlayerSetup(source) {
+              // If init / player paused
+              if (playerWindow.audioAnCanvasPlayer || !source) return;
 
-            // Prepare video element for fetching frames
-            $jwVideo.addClass('an-video');
-            if (!$jwVideo.attr('src')) {
-                $jwVideo.append('<source src="' + source + '" type="video/mp4">');
-            }
+              // Prepare video element for fetching frames
+              $jwVideo.addClass('an-video');
+              if (!$jwVideo.attr('src')) {
+                  $jwVideo.append('<source src="' + source + '" type="video/mp4">');
+              }
 
-            loadAnPlayerControls();
+              loadAnPlayerControls();
 
-            // Add audio ENABLED canvas screen for frame rendering
-            var audioCanvas = document.createElement('canvas');
-            audioCanvas.className = 'an-canvas-audio';
-            audioCanvas.width = "640";
-            audioCanvas.height = "360";
-            $('.an-video').after($(audioCanvas));
+              // Add audio ENABLED canvas screen for frame rendering
+              var audioCanvas = document.createElement('canvas');
+              audioCanvas.className = 'an-canvas-audio';
+              audioCanvas.width = "640";
+              audioCanvas.height = "360";
+              $('.an-video').after($(audioCanvas));
 
-            var audio = document.createElement('audio');
-            audio.src = source;
-            audio.className = 'an-audio';
-            $jwVideo[0].parentNode.insertBefore(audio, $jwVideo[0]);
-            audio.load();
+              var audio = document.createElement('audio');
+              audio.src = source;
+              audio.className = 'an-audio';
+              $jwVideo[0].parentNode.insertBefore(audio, $jwVideo[0]);
+              audio.load();
 
-            playerWindow.audioAnCanvasPlayer = new ANCanvasPlayer({
-                videoSelector: '.an-video',
-                canvasSelector: '.an-canvas-audio',
-                framesPerSecond: 16,
-                hideVideo: true,
-                autoplay: true,
-                audio: '.an-audio',
-            });
+              playerWindow.audioAnCanvasPlayer = new ANCanvasPlayer({
+                  videoSelector: '.an-video',
+                  canvasSelector: '.an-canvas-audio',
+                  framesPerSecond: 16,
+                  hideVideo: true,
+                  autoplay: true,
+                  audio: '.an-audio'
+              });
+              playerWindow.audioAnCanvasPlayer.mute();
 
-            setAnPlayerClickListeners();
+              setAnPlayerClickListeners();
+          }
+
+          // Toggle Play/Pause
+          function canvasVideo(state) {
+              if (state) {
+                  // Resume canvas frame rendering : Video in-view
+                  // If its muted or not muted, just start playing canvas frames
+                  $jwMainContainer.removeClass('paused').addClass('playing');
+                  playerWindow.audioAnCanvasPlayer.play();
+              } else {
+                  // Pause canvas frame rendering : Video out-of-view
+                  // If its muted or not muted, just pause canvas frames
+                  if (playerWindow.audioAnCanvasPlayer) {
+                      $jwMainContainer.removeClass('playing').addClass('paused');
+                      playerWindow.audioAnCanvasPlayer.pause();
+                  }
+              }
+          }
+
+          ANCanvasPlayer = function(options) {
+              var i;
+
+              this.options = {
+                  framesPerSecond: 24,
+                  autoplay: false,
+                  audio: false
+              };
+
+              for (i in options) {
+                  this.options[i] = options[i];
+              }
+
+              this.video = document.querySelectorAll(this.options.videoSelector)[0];
+              this.canvas = document.querySelectorAll(this.options.canvasSelector)[0];
+
+              if (!this.options.videoSelector || !this.video) {
+                  console.error('Video element is not found');
+                  return;
+              }
+
+              if (!this.options.canvasSelector || !this.canvas) {
+                  console.error('Canvas element is not found');
+                  return;
+              }
+
+              if (typeof(this.options.audio) === 'string') {
+                  // Use audio selector from options if specified
+                  this.audio = document.querySelectorAll(this.options.audio)[0];
+
+                  if (!this.audio) {
+                      console.error('Element for the "audio" not found');
+                      return;
+                  }
+              }
+
+              // Canvas context
+              this.ctx = this.canvas.getContext('2d');
+
+              this.playing = false;
+
+              this.resizeTimeoutReference = false;
+              this.RESIZE_TIMEOUT = 1000;
+
+              this.init();
+              this.bind();
+          };
+
+          ANCanvasPlayer.prototype.init = function() {
+              this.video.load();
+              this.setCanvasSize();
+              this.video.style.display = 'none';
+          };
+
+          // Used most of the jQuery code for the .offset() method
+          ANCanvasPlayer.prototype.getOffset = function(elem) {
+              var docElem, rect, doc;
+
+              if (!elem) {
+                  return;
+              }
+
+              rect = elem.getBoundingClientRect();
+
+              // Make sure element is not hidden (display: none) or window.
+              if (rect.width || rect.height || elem.getClientRects().length) {
+                  doc = elem.ownerDocument;
+                  docElem = doc.documentElement;
+
+                  return {
+                      top: rect.top + window.pageYOffset - docElem.clientTop,
+                      left: rect.left + window.pageXOffset - docElem.clientLeft
+                  };
+              }
+          };
+
+          ANCanvasPlayer.prototype.jumpTo = function(percentage) {
+              this.video.currentTime = this.video.duration * percentage;
+
+              if (this.options.audio && !this.muted) {
+                  this.audio.currentTime = this.audio.duration * percentage;
+              }
+          };
+
+          ANCanvasPlayer.prototype.bind = function() {
+              var self = this;
+
+              // On every time update draws frame
+              this.video.addEventListener('timeupdate', playerHandlers.timeUpdateHandler = function() {
+                  self.drawFrame();
+              });
+
+              // Draws first frame
+              this.video.addEventListener('canplay', playerHandlers.canPlayHandler = function() {
+                  self.drawFrame();
+              });
+
+              if (self.options.autoplay) {
+                  self.play();
+              }
+
+              // Cache canvas size on resize (doing it only once in a second)
+              window.addEventListener('resize', playerHandlers.windowResizeHandler = function() {
+                  clearTimeout(self.resizeTimeoutReference);
+
+                  self.resizeTimeoutReference = setTimeout(function() {
+                      self.setCanvasSize();
+                      self.drawFrame();
+                  }, self.RESIZE_TIMEOUT);
+              });
+
+              this.unbind = function() {
+                  this.video.removeEventListener('timeupdate', playerHandlers.timeUpdateHandler);
+                  this.video.removeEventListener('canplay', playerHandlers.canPlayHandler);
+                  window.removeEventListener('resize', playerHandlers.windowResizeHandler);
+
+                  if (this.options.audio) {
+                      this.audio.parentNode.removeChild(this.audio);
+                  }
+              };
+          };
+
+          ANCanvasPlayer.prototype.setCanvasSize = function() {
+              this.width = this.canvas.clientWidth;
+              this.height = this.canvas.clientHeight;
+
+              this.canvas.setAttribute('width', this.width);
+              this.canvas.setAttribute('height', this.height);
+          };
+
+          ANCanvasPlayer.prototype.play = function() {
+              this.lastTime = Date.now();
+              this.playing = true;
+              this.loop();
+
+              if (this.options.audio && !this.muted) {
+                  // Resync audio and video
+                  this.audio.currentTime = this.video.currentTime;
+                  this.audio.play();
+              }
+          };
+
+          ANCanvasPlayer.prototype.pause = function() {
+              this.playing = false;
+
+              if (this.options.audio && !this.muted) {
+                  this.audio.pause();
+              }
+          };
+
+          ANCanvasPlayer.prototype.mute = function() {
+            if(this.muted) return;
+
+            this.audio.pause();
+
+            this.muted = true;
+          };
+
+          ANCanvasPlayer.prototype.unmute = function() {
+            if(!this.muted) return;
+
+            // Resync audio and video
+            this.audio.currentTime = this.video.currentTime;
+            this.audio.play();
+
+            this.muted = false;
+          };
+
+          ANCanvasPlayer.prototype.loop = function() {
+              var self = this;
+
+              var time = Date.now();
+              var elapsed = (time - this.lastTime) / 1000;
+
+              // Render
+              if (elapsed >= (1 / this.options.framesPerSecond)) {
+                  if (this.video.currentTime + elapsed >= this.video.duration) {
+                      this.video.currentTime = this.video.duration;
+                  } else {
+                      this.video.currentTime = this.video.currentTime + elapsed;
+                  }
+                  this.lastTime = time;
+                  // Resync audio and video if they drift more than 300ms apart
+                  if (this.audio && !this.muted && Math.abs(this.audio.currentTime - this.video.currentTime) > .3) {
+                      this.audio.currentTime = this.video.currentTime;
+                  }
+              }
+
+              // If we are at the end of the video stop
+              if (this.video.currentTime >= this.video.duration) {
+                  this.playing = false;
+                  this.video.currentTime = this.video.duration;
+              }
+
+              if (this.playing) {
+                  this.animationFrame = requestAnimationFrame(function() {
+                      self.loop();
+                  });
+              } else {
+                  cancelAnimationFrame(this.animationFrame);
+              }
+          };
+
+          ANCanvasPlayer.prototype.drawFrame = function() {
+              this.ctx.drawImage(this.video, 0, 0, this.width, this.height);
+          };
+
+        // {% endifequal %}
         }
-
-        // Toggle Play/Pause
-        function canvasVideo(state) {
-            if (state) {
-                // Resume canvas frame rendering : Video in-view
-                // If its muted or not muted, just start playing canvas frames
-                $jwMainContainer.removeClass('paused').addClass('playing');
-                playerWindow.audioAnCanvasPlayer.play();
-            } else {
-                // Pause canvas frame rendering : Video out-of-view
-                // If its muted or not muted, just pause canvas frames
-                if (playerWindow.audioAnCanvasPlayer) {
-                    $jwMainContainer.removeClass('playing').addClass('paused');
-                    playerWindow.audioAnCanvasPlayer.pause();
-                }
-            }
-        }
-
-        ANCanvasPlayer = function(options) {
-            var i;
-
-            this.options = {
-                framesPerSecond: 24,
-                autoplay: false,
-                audio: false
-            };
-
-            for (i in options) {
-                this.options[i] = options[i];
-            }
-
-            this.video = document.querySelectorAll(this.options.videoSelector)[0];
-            this.canvas = document.querySelectorAll(this.options.canvasSelector)[0];
-
-            if (!this.options.videoSelector || !this.video) {
-                console.error('Video element is not found');
-                return;
-            }
-
-            if (!this.options.canvasSelector || !this.canvas) {
-                console.error('Canvas element is not found');
-                return;
-            }
-
-            if (typeof(this.options.audio) === 'string') {
-                // Use audio selector from options if specified
-                this.audio = document.querySelectorAll(this.options.audio)[0];
-
-                if (!this.audio) {
-                    console.error('Element for the "audio" not found');
-                    return;
-                }
-            }
-
-            // Canvas context
-            this.ctx = this.canvas.getContext('2d');
-
-            this.playing = false;
-
-            this.resizeTimeoutReference = false;
-            this.RESIZE_TIMEOUT = 1000;
-
-            this.init();
-            this.bind();
-        };
-
-        ANCanvasPlayer.prototype.init = function() {
-            this.video.load();
-            this.setCanvasSize();
-            this.video.style.display = 'none';
-        };
-
-        // Used most of the jQuery code for the .offset() method
-        ANCanvasPlayer.prototype.getOffset = function(elem) {
-            var docElem, rect, doc;
-
-            if (!elem) {
-                return;
-            }
-
-            rect = elem.getBoundingClientRect();
-
-            // Make sure element is not hidden (display: none) or window.
-            if (rect.width || rect.height || elem.getClientRects().length) {
-                doc = elem.ownerDocument;
-                docElem = doc.documentElement;
-
-                return {
-                    top: rect.top + window.pageYOffset - docElem.clientTop,
-                    left: rect.left + window.pageXOffset - docElem.clientLeft
-                };
-            }
-        };
-
-        ANCanvasPlayer.prototype.jumpTo = function(percentage) {
-            this.video.currentTime = this.video.duration * percentage;
-
-            if (this.options.audio && !this.muted) {
-                this.audio.currentTime = this.audio.duration * percentage;
-            }
-        };
-
-        ANCanvasPlayer.prototype.bind = function() {
-            var self = this;
-
-            // On every time update draws frame
-            this.video.addEventListener('timeupdate', playerHandlers.timeUpdateHandler = function() {
-                self.drawFrame();
-            });
-
-            // Draws first frame
-            this.video.addEventListener('canplay', playerHandlers.canPlayHandler = function() {
-                self.drawFrame();
-            });
-
-            if (self.options.autoplay) {
-                self.play();
-            }
-
-            // Cache canvas size on resize (doing it only once in a second)
-            window.addEventListener('resize', playerHandlers.windowResizeHandler = function() {
-                clearTimeout(self.resizeTimeoutReference);
-
-                self.resizeTimeoutReference = setTimeout(function() {
-                    self.setCanvasSize();
-                    self.drawFrame();
-                }, self.RESIZE_TIMEOUT);
-            });
-
-            this.unbind = function() {
-                this.video.removeEventListener('timeupdate', playerHandlers.timeUpdateHandler);
-                this.video.removeEventListener('canplay', playerHandlers.canPlayHandler);
-                window.removeEventListener('resize', playerHandlers.windowResizeHandler);
-
-                if (this.options.audio) {
-                    this.audio.parentNode.removeChild(this.audio);
-                }
-            };
-        };
-
-        ANCanvasPlayer.prototype.setCanvasSize = function() {
-            this.width = this.canvas.clientWidth;
-            this.height = this.canvas.clientHeight;
-
-            this.canvas.setAttribute('width', this.width);
-            this.canvas.setAttribute('height', this.height);
-        };
-
-        ANCanvasPlayer.prototype.play = function() {
-            this.lastTime = Date.now();
-            this.playing = true;
-            this.loop();
-
-            if (this.options.audio && !this.muted) {
-                // Resync audio and video
-                this.audio.currentTime = this.video.currentTime;
-                this.audio.play();
-            }
-        };
-
-        ANCanvasPlayer.prototype.pause = function() {
-            this.playing = false;
-
-            if (this.options.audio && !this.muted) {
-                this.audio.pause();
-            }
-        };
-
-        ANCanvasPlayer.prototype.mute = function() {
-          if(this.muted) return;
-
-          this.audio.pause();
-
-          this.muted = true;
-        };
-
-        ANCanvasPlayer.prototype.unmute = function() {
-          if(!this.muted) return;
-
-          // Resync audio and video
-          this.audio.currentTime = this.video.currentTime;
-          this.audio.play();
-
-          this.muted = false;
-        };
-
-        ANCanvasPlayer.prototype.loop = function() {
-            var self = this;
-
-            var time = Date.now();
-            var elapsed = (time - this.lastTime) / 1000;
-
-            // Render
-            if (elapsed >= (1 / this.options.framesPerSecond)) {
-                if (this.video.currentTime + elapsed >= this.video.duration) {
-                    this.video.currentTime = this.video.duration;
-                } else {
-                    this.video.currentTime = this.video.currentTime + elapsed;
-                }
-                this.lastTime = time;
-                // Resync audio and video if they drift more than 300ms apart
-                if (this.audio && !this.muted && Math.abs(this.audio.currentTime - this.video.currentTime) > .3) {
-                    this.audio.currentTime = this.video.currentTime;
-                }
-            }
-
-            // If we are at the end of the video stop
-            if (this.video.currentTime >= this.video.duration) {
-                this.playing = false;
-                this.video.currentTime = this.video.duration;
-            }
-
-            if (this.playing) {
-                this.animationFrame = requestAnimationFrame(function() {
-                    self.loop();
-                });
-            } else {
-                cancelAnimationFrame(this.animationFrame);
-            }
-        };
-
-        ANCanvasPlayer.prototype.drawFrame = function() {
-            this.ctx.drawImage(this.video, 0, 0, this.width, this.height);
-        };
-
-        {% endifequal %}
     </script>
 
-    <img src="{{ url_datadog_v_iframe|safe }}" style="width:1px;height:1px;" width='0' height='0' border='0'>
+    <!-- <img src="{{ url_datadog_v_iframe|safe }}" style="width:1px;height:1px;" width='0' height='0' border='0'> -->
   </div>
 </body>
 </html>
