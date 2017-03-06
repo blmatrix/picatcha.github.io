@@ -1,0 +1,171 @@
+#rectangle2x2 {
+    position: relative;
+    overflow: hidden;
+}
+
+#rectangle2x2 .nmWrapper {
+    width: 100% !important;
+    text-align: left !important;
+    display: block;
+}
+
+#rectangle2x2 .nmWidgetList a {
+    display: block !important;
+}
+
+#rectangle2x2 .nmHeaderGradiant {
+    height: 2px;
+    width: 30%;
+    min-width: 200px;
+    margin-left: 5px !important;
+    background: #005aab;
+    /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left, #005aab, #FFFFFF);
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #005aab, #FFFFFF);
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #005aab, #FFFFFF);
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #005aab, #FFFFFF);
+    /* Standard syntax (must be last) */
+}
+
+#rectangle2x2 .nmHeaderArrowRight {
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid #B22222;
+    display: inline-block !important;
+    margin-left: 5px !important;
+}
+
+#rectangle2x2 #triangle {
+    left: 0px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid red;
+    border-bottom: 5px solid transparent;
+    border-top: 5px solid transparent;
+    display: inline-block !important;
+    position: relative;
+    float: left;
+}
+
+#rectangle2x2 #triangle2 {
+    left: -7px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid #FFF;
+    border-bottom: 4px solid transparent;
+    border-top: 4px solid transparent;
+    position: absolute;
+    top: -4px;
+    display: inline-block!important;
+}
+
+#rectangle2x2 .nmHeaderTitle {
+    margin: 0px 0px 0px 1px;
+    font-size: 16px;
+    font-weight: 900;
+    font-family: sans-serif;
+    display: inline-block !important;
+    color: #004a98 !important;
+}
+
+#rectangle2x2 .nmWidgetUl {
+    padding: 0 !important;
+    width: 100%;
+    margin: -5px 0px;
+}
+
+#rectangle2x2 .nmWidgetList {
+    line-height: 14px !important;
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    padding: 1% 0% 0% 1% !important;
+    position: relative;
+    width: calc((100% / 2) - 1.7%);
+    display: inline-block;
+    margin: 0.7% 0px 0px 0.7% !important;
+    float: left;
+}
+
+#rectangle2x2 .nmWidgetList a:hover {
+    text-decoration: underline;
+}
+
+#rectangle2x2 .nmImg {
+    border-color: #000;
+    border-style: none;
+    color: #000;
+    font-size: 16px;
+    font-weight: normal!important;
+    overflow: hidden;
+    position: relative;
+    text-decoration: none;
+    top: 0;
+    width: 100% !important;
+    margin: 0 auto;
+    height: 0px !important;
+    padding-bottom: 60%;
+}
+
+#rectangle2x2 .nmTitleContainer {
+    padding-top: 2px;
+}
+
+#rectangle2x2 .nmTitle {
+    background-color: transparent;
+    color: black !important;
+    font-family: verdana !important;
+    font-size: 10px !important;
+    font-weight: 800 !important;
+    line-height: 11px !important;
+    height: 22px !important;
+    overflow: hidden;
+    position: relative;
+    top: 0;
+    display: inline-block;
+    font-size: normal !important;
+    text-decoration: none !important;
+}
+
+#rectangle2x2 .nmWidgetBrand {
+    color: #000000 !important;
+    font-family: sans-serif;
+    font-size: 10px !important;
+    font-weight: 400 !important;
+    padding: 2px;
+    text-align: right;
+    cursor: pointer;
+    display: inline-block !important;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color: #DCDCDC;
+}
+
+#rectangle2x2 .nmWidgetBrand p {
+    display: inline-block !important;
+    font-size: 10px;
+    font-weight: 600;
+    margin: 0px;
+    line-height: 10px;
+    float: left;
+    margin-left: 3px;
+}
+
+#rectangle2x2 .nmWidgetBrand a {
+    color: #000000 !important;
+    text-decoration: none !important;
+}
+
+#rectangle2x2 .nmWidgetBrand a:hover {
+    text-decoration: underline;
+}
+
+#rectangle2x2 li.nmWidgetList:before {
+    content: none !important;
+}
