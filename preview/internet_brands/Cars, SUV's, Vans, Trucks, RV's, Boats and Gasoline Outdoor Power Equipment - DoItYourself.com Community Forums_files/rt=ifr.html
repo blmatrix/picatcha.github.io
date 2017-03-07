@@ -1,0 +1,33 @@
+
+<!-- saved from url=(0667)http://bcp.crwdcntrl.net/5/c=9234/rand=985152672/pv=y/genp=page%3ALawn/genp=page%3ARoutine%20Services/genp=page%3ATrucks/genp=page%3ALarge%20Passenger/genp=page%3ACargo%20Trailers/genp=cis130%3A118/genp=cis130%3A101/genp=cis130%3A38/genp=cis130%3A39/genp=cis130%3A107/genp=cis130%3A64/genp=cis130%3A115/genp=cis130%3A112/genp=cis130%3A7/genp=cis130%3A113/genp=cis130%3A66/genp=cis130%3A40/genp=cis130%3A33/genp=cis130%3A121/genp=cis130%3A8/genp=cis130%3A41/genp=cis130%3A34/genp=cis130%3A67/genp=cis130%3A42/genp=cis130%3A68/int=%23OpR%2371882%23doityourself%20%3A%20Total%20Site%20Traffic/int=%23OpR%2371883%23doityourself%20%3A%20Site%20Section%20%3A%20forum/rt=ifr -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" style="background-color:transparent; width: 100%; text-align: center;">
+<div><img src="http://idsync.rlcdn.com/382416.gif?partner_uid=2720b22743a5a460b3a9e631b0868281" width="1" height="1"><img src="./5907" width="1" height="1"><script>
+function processTargusData(json)
+{
+   if (json != null) {
+       if (json.targus != null) {
+            u = "";
+            v = "map";
+            if (json.targus.sk != null && json.targus.sk != "") {
+                u += "/tp=TARG/tpid=" + json.targus.sk;
+            }
+            if (json.targus.age != null && json.targus.age != "") {
+                u += "/genp=" + (new Date().getFullYear() - json.targus.age);
+                v = "5";
+            }
+            if (json.targus.gender != null && json.targus.gender != "") {
+                u += "/genp=gender%20-%20" + json.targus.gender;
+                v = "5";
+            }
+            if (u != "") {
+              var img = new Image();
+              img.src = "http://bcp.crwdcntrl.net/" + v + "/c=368" + u;
+              document.body.appendChild(img);
+            }
+        }
+   }
+}
+</script>
+<script src="./g.json"></script></div><img src="./genp=gender - M">
+
+</body></html>

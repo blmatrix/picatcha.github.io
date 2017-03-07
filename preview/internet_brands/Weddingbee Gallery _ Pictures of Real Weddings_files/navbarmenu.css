@@ -1,0 +1,2164 @@
+    /* 
+    Created on : Sep 22, 2016, 8:42:45 AM
+    Author     : mgutierrez
+*/
+
+.Bridal-Stories-Copy {
+  width: 66px;
+  height: 32px;
+  font-family: Roboto;
+  font-size: 14px;
+  /*font-weight: bold; for active one*/
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.14;
+  letter-spacing: 0.5px;
+  text-align: center;
+  color: #709704;
+}
+.DISCUSSION {
+  width: 85px;
+  height: 20px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.43;
+  letter-spacing: 0.5px;
+  text-align: left;
+  color: #000000;
+}
+.GALLERY-Copy-2 {
+  width: 62px;
+  height: 20px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.43;
+  letter-spacing: 0.5px;
+  text-align: left;
+  color: #000000;
+}
+.Wedding-Planning-Copy {
+  width: 73px;
+  height: 32px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.14;
+  letter-spacing: 0.5px;
+  text-align: center;
+  color: #000000;
+}
+.Love-Marriage {
+  width: 74px;
+  height: 32px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.14;
+  letter-spacing: 0.5px;
+  text-align: center;
+  color: #000000;
+}
+.STYLE-BEAUTY {
+  width: 57px;
+  height: 32px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.14;
+  letter-spacing: 0.5px;
+  text-align: center;
+  color: #000000;
+}
+.REGISTRY-Copy-2 {
+  width: 68px;
+  height: 20px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.43;
+  letter-spacing: 0.5px;
+  text-align: left;
+  color: #000000;
+}
+.CLASSIFIEDS-Copy-2 {
+  width: 89px;
+  height: 20px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.43;
+  letter-spacing: 0.5px;
+  text-align: left;
+  color: #000000;
+}
+.VENDOR-REVIEWS-Copy-2 {
+  width: 62px;
+  height: 32px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.14;
+  letter-spacing: 0.5px;
+  text-align: left;
+  color: #000000;
+}
+
+.Rectangle-2 {
+  width: 220px;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.5);
+  border: solid 2px #979797;
+/*  background: rgba(0, 0, 0, 0) url("http://cdn.weddingbee.com/wp-content/themes/skeleton/images/sprite.png") repeat scroll -195px -59px;*/
+}
+/* BRIDAL STORIES */
+.All-Bridal-Stories,
+.Engagement-Stories,
+.Bridal-Style,
+.Planning-Copy,
+.Ceremony,
+.Reception, 
+.Honeymoon-Recap{
+  width: 175.3px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+/* /BRIDAL STORIES */
+.NavBar-wht {
+  width: 1024px;
+  height: 42px;
+  background-color: #ffffff;
+}
+
+/* green square*/
+.Rectangle-4 {
+  background: rgba(0, 0, 0, 0) url("http://cdn.weddingbee.com/wp-content/themes/skeleton/images/icons_v2/Inactive_Menu_Button.png") no-repeat scroll 0 ;
+  width: 60px;
+  height: 60px;
+  background-color: #709704;
+}
+.Fill-1 {
+  width: 22px;
+  height: 1.1px;
+  border: solid 2px #ffffff;
+}
+.Fill-2 {
+  width: 22px;
+  height: 1.1px;
+  border: solid 2px #ffffff;
+}
+.Fill-3 {
+  width: 22px;
+  height: 1.1px;
+  border: solid 2px #ffffff;
+}
+
+/* the heart */
+.Fill-1-Copy-3 {
+  width: 30.6px;
+  height: 25.9px;
+  background-color: #709704;
+  border: solid 1px #709704; 
+}
+
+/* the envelop */
+.Rectangle-15 {
+  width: 32px;
+  height: 21.5px;
+  background-color: #ffffff;
+  border: solid 3px #709704;
+  
+}
+
+
+#loginSignV2 .Log-in a {
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  color: #b3a49c;
+}
+
+.search---fontawesome {
+  width: 19.6px;
+  height: 21px;
+  font-family: FontAwesome;
+  font-size: 21.3px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #709704;
+}
+/* for searchbox */
+.Rectangle {
+  width: 308px;
+  height: 2px;
+  border-radius: 1px;
+  background-color: #709704;
+}
+
+/* underneath menu green line */
+.Line {
+  width: 1004px;
+  height: 2px;
+  border-top:solid 2px #514741;
+  border-bottom:solid 2px #514741;
+}
+
+.Line-2 {
+  width: 12.4px;
+  height: 14px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.5px;
+  text-align: center;
+  color: #000000;
+}
+.Line-3 {
+  width: 12.4px;
+  height: 20px;
+  font-family: HelveticaNeue;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.43;
+  letter-spacing: 0.5px;
+  text-align: center;
+  color: #311d11;
+}
+
+/* DISCUSSION */
+
+.All-Discussion-Board {
+  width: 173px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  /*font-weight: bold; active one*/
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.Wedding-Related {
+  width: 137px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+/* class name modified */
+.Love-Marriage-submenu {
+  width: 137px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.Nesting {
+  width: 137px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.Month-Twins {
+  width: 137px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.Local {
+  width: 137px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+/* /DISCUSSION */
+/* GALLERY */
+.All-Galleries {
+  width: 137px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.Rings {
+  width: 137px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.Wedding-Dresses {
+  width: 137px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.Invitations {
+  width: 137px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.Makeup {
+  width: 137px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.Flowers {
+  width: 137px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.Cake {
+  width: 137px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.DIY {
+  width: 137px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.Updates {
+  width: 137px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+/* /GALLERY */
+
+/* WEDDING PLANNING */
+.All-Wedding-Planning {
+  width: 180.9px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.Ceremony-Reception {
+  width: 192.9px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.Invitations-Paper {
+  width: 203.9px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.Pre-Wedding-Events {
+  width: 203.9px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.Honeymoon {
+  width: 143.2px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.DIY-Projects {
+  width: 143.2px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+/* /WEDDING PLANNING */
+
+
+/* LOVE & MARRIAGE */
+.All-Love-Marriage {
+  width: 173.8px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.Dating {
+  width: 173.8px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.Engagement {
+  width: 173.8px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+/*  font-weight: bold; active one*/
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.Married-Life {
+  width: 173.8px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.Makeup {
+  width: 173.8px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.Pregnancy-Kids {
+  width: 173.8px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.Advice {
+  width: 173.8px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+/* /LOVE & MARRIAGE */
+
+
+/* STYLE & BEAUTY */
+.All-Style-Beauty {
+  width: 137px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.Wedding-Dresses {
+  width: 184.1px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.Wedding-Party-Fami {
+  width: 184px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.Rings {
+  width: 137px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.Hair-MakeUp {
+  width: 184.1px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.Jewelry-Accessorie {
+  width: 184.1px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+.Health-Fitness {
+  width: 137px;
+  height: 16px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 0.6px;
+  color: #000000;
+}
+
+/* /STYLE & BEAUTY */
+
+/* modified stuff */
+/* override css green square*/
+.Rectangle-4 {
+    float: left;
+    margin: 0px 12px 0 0;
+    position: relative;
+    text-align: center;
+}
+
+/* override css the heart */
+.Fill-1-Copy-3 {
+    background: rgba(0, 0, 0, 0) url("http://cdn.weddingbee.com/wp-content/themes/skeleton/images/icons_v2/Fill_1_Copy_3.png") no-repeat scroll 0 ;
+    float: left;
+    /* margin: 3px 12px 0 0; */
+    position: relative;
+    width: 33px;
+    height:63px;
+    border: none; 
+
+}
+
+a.Fill-1-Copy-3:hover {
+    background: rgba(0, 0, 0, 0) url("http://cdn.weddingbee.com/wp-content/themes/skeleton/images/icons_v2/Heart-Hover.png") no-repeat scroll 0 ;
+}
+a.Fill-1-Copy-3:active {
+    background: rgba(0, 0, 0, 0) url("http://cdn.weddingbee.com/wp-content/themes/skeleton/images/icons_v2/heart-On-click.png") no-repeat scroll 0 ;
+}
+/* override css the envelop */
+.Rectangle-15 {
+    background: rgba(0, 0, 0, 0) url("http://cdn.weddingbee.com/wp-content/themes/skeleton/images/icons_v2/Mail-Static.png") no-repeat scroll 0;
+    float: left;
+    margin-right: 130px;
+    position: relative;
+    width: 40px;
+    height:53px;
+    border: medium none;
+}
+.Rectangle-15:hover {
+    background: rgba(0, 0, 0, 0) url("http://cdn.weddingbee.com/wp-content/themes/skeleton/images/icons_v2/Mail-hover.png") no-repeat scroll 0;
+}
+.Rectangle-15:active, .mailOpen {
+    background: rgba(0, 0, 0, 0) url("http://cdn.weddingbee.com/wp-content/themes/skeleton/images/icons_v2/Mail-On-Click.png") no-repeat scroll 0;
+}
+.Fill-1 {
+  width: 22px;
+  height: 1.1px;
+  border: solid 2px #ffffff;
+  display: inline-block;
+}
+.Fill-2 {
+  width: 22px;
+  height: 1.1px;
+  border: solid 2px #ffffff;
+  display: inline-block;
+}
+.Fill-3 {
+  width: 22px;
+  height: 1.1px;
+  border: solid 2px #ffffff;
+  display: inline-block;
+}
+/* override #main css*/
+#main {
+    border: none;
+}
+
+/* override search box psd2html css*/
+.search-box #cse-search-box.search-form {
+    border-color: #709704;
+    border-color: -moz-use-text-color -moz-use-text-color #709704;
+    border-radius: 1px;
+    border-style: none none solid;
+    border-width: medium medium 2px;
+    box-sizing: content-box;
+    float: left;
+    height: 24px;
+    margin-right: 10px;
+    margin-top: 12px;
+    padding: 0 27px 0 11px;
+}
+/* override search box psd2html css*/
+.search-box {
+    margin-right: 0px;
+    margin-top: 12px;
+    
+}
+@media only screen and (min-device-width: 320px)  and (max-device-width: 736px){
+    .search-box{
+    border-left: 3px solid #988a81;
+}
+}
+/*override #header css to remove border bottom*/
+#header {
+    border-bottom: none;
+}
+
+/*override menu width, height & font-size */
+.Bridal-Stories-Copy, 
+.DISCUSSION, 
+.GALLERY-Copy-2,
+.Wedding-Planning-Copy, 
+.Love-Marriage, 
+.STYLE-BEAUTY, 
+.REGISTRY-Copy-2,
+.VENDOR-REVIEWS-Copy-2{
+    /*width:110px;*/
+    height: 32px;
+    font-size: 14px;
+}
+.CLASSIFIEDS-Copy-2{
+    width:115px;
+    font-size: 14px;
+}
+
+/*override menu width & height (psd2htmlcss override)*/
+#sort-list-v2 li a.Bridal-Stories-Copy, 
+#sort-list-v2 li a.DISCUSSION, 
+#sort-list-v2 li a.GALLERY-Copy-2,
+#sort-list-v2 li a.Wedding-Planning-Copy, 
+#sort-list-v2 li a.Love-Marriage, 
+#sort-list-v2 li a.STYLE-BEAUTY, 
+#sort-list-v2 li a.REGISTRY-Copy-2,
+#sort-list-v2 li a.VENDOR-REVIEWS-Copy-2{
+    margin-right: 3px;
+    padding: 0 10px 0px;
+}
+#sort-list-v2 li a.VENDOR-REVIEWS-Copy-2{
+    border-right: none;
+    padding: 0 10px 5px;
+}
+
+#sort-list-v2 li a.CLASSIFIEDS-Copy-2{
+    width: 90px;
+    padding: 0 3px 4px;
+}
+
+/*override menu remove green arrow (psd2htmlcss override)*/
+#sort-list-v2 > li.Bridal-Stories-Copy > a::after, 
+#sort-list-v2 > li.DISCUSSION > a::after, 
+#sort-list-v2 > li.GALLERY-Copy-2 > a::after,
+#sort-list-v2 > li.Wedding-Planning-Copy > a::after, 
+#sort-list-v2 > li.Love-Marriage > a::after, 
+#sort-list-v2 > li.STYLE-BEAUTY > a::after, 
+#sort-list-v2 > li.REGISTRY-Copy-2 > a::after,
+#sort-list-v2 > li.CLASSIFIEDS-Copy-2 > a::after,
+#sort-list-v2 > li.VENDOR-REVIEWS-Copy-2 > a::after{
+/*    background: none;*/
+}
+
+/*Bridal Stories dropdown box menu */
+.Bridal-Stories-Copy .Rectangle-2 {
+  width: 220px;
+  height: 365px;
+  /*background-color: #ffffff;*/
+  /*box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.5);*/
+  border: solid 2px #979797;
+}
+
+/*Discussion  dropdown box menu*/
+.DISCUSSION .Rectangle-2 {
+  width: 220px;
+  height: 320px;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.5);
+  border: solid 2px #979797;
+}
+
+/*Gallery  dropdown box menu*/
+.GALLERY-Copy-2 .Rectangle-2 {
+  width: 220px;
+  height: 442.4px;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.5);
+  border: solid 2px #979797;
+}
+
+/*wedding planning  dropdown box menu*/
+.Wedding-Planning-Copy .Rectangle-2 {
+  width: 246px;
+  height: 307.4px;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.5);
+  border: solid 2px #979797;
+}
+
+/*Love and marriage   dropdown box menu*/
+.Love-Marriage  .Rectangle-2 {
+  width: 220px;
+  height: 346.4px;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.5);
+  border: solid 2px #979797;
+}
+/*Style and beauty  dropdown box menu*/
+.STYLE-BEAUTY .Rectangle-2 {
+  width: 234px;
+  height: 351.4px;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.5);
+  border: solid 2px #979797;
+}
+/* override floating rectangle */
+.Rectangle-2{
+    text-align: left;
+    z-index: 3;
+}
+#sort-list-v2 .frame.Rectangle-2{
+    margin-left: 48px ;
+}
+.a-nav-title{
+    height: inherit;
+}
+
+.nav-title-container-center {
+    display: table;
+    height: inherit;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+}
+.nav-title-center {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+/* override psd2html #nav ul a  */
+#nav ul li.Bridal-Stories-Copy a, 
+#nav ul li.DISCUSSION a,
+#nav ul li.GALLERY-Copy-2 a {
+    border:none;
+    padding:0px;
+}
+/* override psd2html #sort-list-v2 li  */
+#sort-list-v2.NavBar-wht li.has-drop-down {
+    /*
+    margin-right: 0px;
+    padding-right: 0px;
+    */
+    margin-right: auto;
+    /* padding-left: 0; */
+    margin-left: auto;
+}
+
+.nav-title-container {
+    display:block;
+    /* width:110px; */
+    width:100%;
+    /*margin-bottom: 37px;*/
+    margin-bottom: 32px;
+}
+.nav-title-container-left {
+    display: block;
+    float: left;
+    height: 30px;
+    /*
+    margin-bottom: auto;
+    margin-top: auto;
+    */
+    margin: auto;
+    padding-left: 7%;
+    width: 90%;
+}
+.nav-title-container-right {
+/*    display: block;*/
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    height: 30px;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+.STYLE-BEAUTY {
+    width:92px;
+}
+
+/* BRIDAL STORIES */
+#nav ul .All-Bridal-Stories a,
+#nav ul .Engagement-Stories a,
+#nav ul .Bridal-Style a,
+#nav ul .Planning-Copy a,
+#nav ul .Ceremony a,
+#nav ul .Reception a, 
+#nav ul .Honeymoon-Recap a {
+    font-size: 12px;   
+    margin-bottom: 5px;
+    padding-bottom: 4px;
+    margin-top: 4px;
+    padding-top: 8px;
+    display:block;
+    
+}
+/*#nav ul .All-Bridal-Stories a,
+#nav ul .Engagement-Stories  a{
+    margin-top: 4px;
+    padding-top: 8px;
+}*/
+
+/* /BRIDAL STORIES */
+/* DISCUSSION */
+#nav ul .All-Discussion-Board a,
+#nav ul .Wedding-Related a,
+#nav ul .Love-Marriage-submenu a,
+#nav ul .Nesting a,
+#nav ul .Month-Twins a,
+#nav ul .Local a{
+/*    font-size: 12px;   
+    margin-bottom: 30px;*/
+    
+    font-size: 12px;   
+    margin-bottom: 5px;
+    padding-bottom: 4px;
+    margin-top: 4px;
+    padding-top: 8px;
+    display:block;
+    
+}
+/*.All-Discussion-Board {
+    margin-top: 30px;
+}*/
+
+
+
+/* /DISCUSSION */
+
+/* GALLERY */
+#nav ul .All-Galleries a,
+#nav ul .Rings a,
+#nav ul .Wedding-Dresses a,
+#nav ul .Invitations  a,
+#nav ul .Makeup a,
+#nav ul .Flowers a,
+#nav ul .Cake a,
+#nav ul .DIY a,
+#nav ul .Updates a {
+/*    margin-bottom: 30px;
+    font-size: 12px;   */
+    font-size: 12px;   
+    margin-bottom: 5px;
+    padding-bottom: 4px;
+    margin-top: 4px;
+    padding-top: 8px;
+    display:block;
+}
+
+/*.All-Galleries {
+    margin-top: 30px;
+}*/
+
+/* /GALLERY */
+
+/* WEDDING PLANNING */
+#nav ul .All-Wedding-Planning a,
+#nav ul .Ceremony-Reception a,
+#nav ul .Invitations-Paper a,
+#nav ul .Pre-Wedding-Events a,
+#nav ul .Honeymoon a,
+#nav ul .DIY-Projects a {
+    /*    margin-bottom: 30px;
+    font-size: 12px;   */
+    font-size: 12px;   
+    margin-bottom: 5px;
+    padding-bottom: 4px;
+    margin-top: 4px;
+    padding-top: 8px;
+    display:block;
+}
+
+/* .All-Wedding-Planning {
+    margin-top: 30px;
+}*/
+
+/* /WEDDING PLANNING */
+
+/* LOVE & MARRIAGE */
+#nav ul .All-Love-Marriage  a,
+#nav ul .Dating a,
+#nav ul .Engagement  a,
+#nav ul .Married-Life a,
+#nav ul .Makeup  a,
+#nav ul .Pregnancy-Kids a,
+#nav ul .Advice a{
+    /*    margin-bottom: 30px;
+    font-size: 12px;   */
+    font-size: 12px;   
+    margin-bottom: 5px;
+    padding-bottom: 4px;
+    margin-top: 4px;
+    padding-top: 8px;
+    display:block;
+}
+/*.All-Love-Marriage {
+    margin-top: 30px;
+}*/
+
+/* /LOVE & MARRIAGE */
+
+/* STYLE & BEAUTY */
+#nav ul .All-Style-Beauty a,
+#nav ul .Wedding-Dresses a,
+#nav ul .Wedding-Party-Fami a,
+#nav ul .Rings a,
+#nav ul .Hair-MakeUp a,
+#nav ul .Jewelry-Accessorie a,
+#nav ul .Health-Fitness a {
+    /*    margin-bottom: 30px;
+    font-size: 12px;   */
+    font-size: 12px;   
+    margin-bottom: 5px;
+    padding-bottom: 4px;
+    margin-top: 4px;
+    padding-top: 8px;
+    display:block;
+}
+/*.All-Style-Beauty {
+    margin-top: 30px;
+}*/
+/* /STYLE & BEAUTY */
+
+/* override psd2html #nav ul a:hover  */
+#nav ul li.All-Bridal-Stories:hover,
+#nav ul li.Engagement-Stories:hover,
+#nav ul li.Bridal-Style:hover,
+#nav ul li.Planning-Copy:hover,
+#nav ul li.Ceremony:hover,
+#nav ul li.Reception:hover,
+#nav ul li.Honeymoon-Recap:hover,
+#nav ul li.All-Discussion-Board:hover,
+#nav ul li.Wedding-Related:hover,
+#nav ul li.Love-Marriage-submenu:hover,
+#nav ul li.Nesting:hover,
+#nav ul li.Month-Twins:hover,
+#nav ul li.Local:hover,
+#nav ul li.All-Galleries:hover,
+#nav ul li.Rings:hover,
+#nav ul li.Wedding-Dresses:hover,
+#nav ul li.Invitations:hover,
+#nav ul li.Makeup:hover,
+#nav ul li.Flowers:hover,
+#nav ul li.Cake:hover,
+#nav ul li.DIY:hover,
+#nav ul li.Updates:hover,
+#nav ul li.All-Wedding-Planning:hover,
+#nav ul li.Ceremony-Reception:hover,
+#nav ul li.Invitations-Paper:hover,
+#nav ul li.Pre-Wedding-Events:hover,
+#nav ul li.Honeymoon:hover,
+#nav ul li.DIY-Projects:hover,
+#nav ul li.All-Love-Marriage:hover,
+#nav ul li.Dating:hover,
+#nav ul li.Engagement:hover,
+#nav ul li.Married-Life:hover,
+#nav ul li.Makeup:hover,
+#nav ul li.Pregnancy-Kids:hover,
+#nav ul li.Advice:hover,
+#nav ul li.All-Style-Beauty:hover,
+#nav ul li.Wedding-Dresses:hover,
+#nav ul li.Wedding-Party-Fami:hover,
+#nav ul li.Rings:hover,
+#nav ul li.Hair-MakeUp:hover,
+#nav ul li.Jewelry-Accessorie:hover,
+#nav ul li.Health-Fitness:hover
+{
+    /*font-weight: bold;*/
+    color: #000;
+    width: 100%;
+    border: solid 3px #709704; 
+    font-weight: bold;
+    margin-top:   -3px;
+    margin-right: -2px;
+    margin-bottom:-3px;
+}
+
+
+/* DISCUSSION */
+/*
+#nav ul li.All-Discussion-Board:hover,
+#nav ul li.Wedding-Related:hover,
+#nav ul li.Love-Marriage-submenu,:hover,
+#nav ul li.Nesting:hover,
+#nav ul li.Month-Twins:hover,
+#nav ul li.Local:hover{
+    color: #000;
+    width: 100%;
+    border: solid 3px #709704; 
+    border: solid 3px #DDD;
+}
+ */
+#nav ul li.All-Discussion-Board:hover,
+#nav ul li.Wedding-Related:hover,
+#nav ul li.Love-Marriage-submenu:hover,
+#nav ul li.Nesting:hover,
+#nav ul li.Month-Twins:hover,
+#nav ul li.Local:hover{
+    color: #000;
+    width: 100%;
+    border: solid 3px #709704; 
+    /*border: solid 3px #DDD;*/
+}
+
+#nav .NavBar-wht .Rectangle-2 ul{
+    width: 100%;
+    margin-left: 0px;
+    margin-top: 9px;
+}
+
+#nav .NavBar-wht .Rectangle-2 ul li{
+    height:100%;
+}
+ul#sort-list-v2 li.has-drop-down.hover span.subnavtriangle div.drop div.frame.Rectangle-2 ul.second_level li.last {
+    margin-bottom: 10px;
+}
+
+/*#nav ul li.All-Bridal-Stories:hover {
+    width: 100%;
+    border: solid 3px #709704;
+}*/
+/*.Rectangle-3 {
+  width: 220px;
+  height: 46px;
+  border: solid 3px #709704;
+}*/
+
+#sort-list-v2 .frame.Rectangle-2 {
+    /*margin: 0 -22px 0 0;*/
+    /*overflow: hidden;*/
+    padding: 2px 0 21px 0px;
+}
+/*
+Override #header .link from psd2html
+*/
+#header .frame ul.links.header-v2{
+    font-size: 14px;
+    line-height: 60px;
+    margin: 0 35px 0 0;
+    float: left;
+}
+
+/* Override psd2html .link-inbox span   */
+.link-inbox span {
+    background: white none repeat scroll 0 0;
+    border: 2px solid #F25984;
+    color: #000;
+    right: -5px;
+    top: 3px;
+}
+
+/* Override psd2html logo*/
+
+.logo {
+    background: rgba(0, 0, 0, 0) url("http://cdn.weddingbee.com/wp-content/themes/skeleton/images/logo-v2.png") repeat scroll 0px 87px;
+    height: 49px;
+    margin-top: 10px;
+    width:130px;
+}
+
+.logo-mobile-logged-user{
+    background: rgba(0, 0, 0, 0) url("http://cdn.weddingbee.com/wp-content/themes/skeleton/images/logo-v2.png") repeat scroll 50px 85px;
+    height: 50px;
+    width: 50px;
+    float: left;
+    margin-top: 6px;
+    margin-left: 5px;
+}
+/* Override psd2html #sort-list-v2 .drop*/
+/*#sort-list-v2 .drop {
+    padding: 30px 0 0;
+}*/
+/* override psd2html #nav ul a:hover  */
+#nav ul.NavBar-wht .drop a:hover {
+    color: #000;
+}
+
+#nav ul.NavBar-wht .nav-title-container a:hover  {
+    color: #7ca218;
+}
+
+.search-box .search-form .input-box input[type=search]{
+  width: 300px;
+  font-size: 16px;
+}
+
+.search-box.active{
+  border : none;
+}
+
+#avatar-profile-link{
+  float:left;
+  margin-top: 16px;
+  margin-right: 12px;
+  background: rgb(76, 175, 80);
+}
+
+#avatar-profile-link-mobile{
+  float:left;
+  margin-top: 12px;
+  background: rgb(76, 175, 80);
+}
+
+
+/** mobile **/
+@media only screen and (min-device-width: 320px)  and (max-device-width: 736px){
+  .logo {
+    background: rgba(0, 0, 0, 0) url("http://cdn.weddingbee.com/wp-content/themes/skeleton/images/logo-v2.png") repeat scroll 20px 40px;
+    height: 40px;
+    width: 148px;
+    float: none;
+    margin: auto;
+    margin-top: 6px;
+  }
+
+  #log-in-btn, #sign-in-btn ,  #header .frame ul.links.header-v2 li span.Line-3{
+    display: none !important;
+  }
+
+  #sort-list-v2, .nav-row-mogu{
+    display: none !important;
+  }
+
+  .Rectangle-4{
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+
+  #header .frame {
+    padding: 0px;
+  }
+
+  .search-box #cse-search-box.search-form {
+    height: 45px;
+    margin-top: 5px;
+    margin-left: 75px;
+    width:50%;
+    border-color: #709704;
+    float: right;
+  }
+
+  .search-box .search-form .input-box{
+    margin-left: 20px;
+  }
+
+  .search-box .search-form input[type=submit]{
+    border: none;
+    right: 0;
+    position: relative;
+    top:-29px;
+    margin-left:-20px;
+  }
+
+  .search-box .search-form .input-box input[type=search] {
+    color: #807a77;
+    margin-top: 10px;
+    width:100%;
+  }
+
+  #heart_envelope_links{
+    display: none;
+  }
+
+  .Line {
+    position: fixed;
+    margin-top: -5px;
+    z-index:9999;
+  }
+
+  .isFixed{
+    top:65px !important;
+  }
+  .panel {
+    margin-bottom: -1px;
+  }
+
+  .Nav2Version #header .frame-top-nav {
+    /*min-height: 60px !important;
+    max-height: 60px !important;
+    min-width: 375px !important;
+    max-width: 375px !important;*/
+  }
+
+  #infiniteScrollContainer {
+    margin-bottom: 25px;
+  }
+
+  .logo-mobile-logged-user{
+    background: rgba(0, 0, 0, 0) url("http://cdn.weddingbee.com/wp-content/themes/skeleton/images/logo-v2.png") repeat scroll 50px 85px;
+    height: 50px;
+    width: 50px;
+    float: left;
+    margin-top: 6px;
+    margin-left: 45px;
+  }
+
+}
+
+/* Galaxy S5 */
+@media only screen and (min-device-width: 360px)  and (max-device-width: 480px){
+
+  .search-box #cse-search-box.search-form {
+    width: 54%;
+  }
+
+  .logo-mobile-logged-user{
+    background: rgba(0, 0, 0, 0) url("http://cdn.weddingbee.com/wp-content/themes/skeleton/images/logo-v2.png") repeat scroll 50px 85px;
+    height: 50px;
+    width: 50px;
+    float: left;
+    margin-top: 6px;
+    margin-left: 60px;
+  }
+}
+
+/* iphone 6 and Galaxy S5 */
+@media only screen and (min-device-width: 375px) and (max-device-width: 736px){
+
+  .logo {
+    background: rgba(0, 0, 0, 0) url("http://cdn.weddingbee.com/wp-content/themes/skeleton/images/logo-v2.png") repeat scroll 0px 86px;
+    height: 48px;
+    margin-top: 6px;
+  }
+
+  .search-box #cse-search-box.search-form {
+    width: 57%;
+  }
+
+  .logo-mobile-logged-user{
+    background: rgba(0, 0, 0, 0) url("http://cdn.weddingbee.com/wp-content/themes/skeleton/images/logo-v2.png") repeat scroll 0px 86px;
+    height: 48px;
+    width: 148px;
+    margin-top: 6px;
+    margin-left: 40px;
+    float: left;
+  }
+}
+
+/*iPhone6+ & Nexus*/
+@media only screen and (min-device-width: 412px) and (max-device-width: 736px){
+  .search-box #cse-search-box.search-form {
+    width: 60%;
+  }
+
+  .logo-mobile-logged-user{
+    margin-left: 50px;
+  }
+}
+
+@media only screen and (min-device-width: 600px)  and (orientation: landscape) {
+  .logo-mobile-logged-user{
+    margin-left: 160px;
+  }
+}
+
+@media only screen and (min-device-width: 700px)  and (orientation: landscape) {
+  .logo-mobile-logged-user{
+    margin-left: 200px;
+  }
+}
+
+
+/* tablets */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px)  {
+  .logo {
+    background: rgba(0, 0, 0, 0) url("http://cdn.weddingbee.com/wp-content/themes/skeleton/images/logo.png") repeat scroll 0 -85px;
+    height: 59px;
+    float: none;
+    margin: auto;
+  }
+
+  #sort-list-v2, .nav-row-mogu{
+    display: none !important;
+  }
+
+  .Rectangle-4{
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+
+  #header .frame {
+    padding: 0px;
+  }
+
+  #avatar-profile-link{
+    margin-top: 13px;
+    margin-right: 5px;
+    margin-left: 10px;
+  }
+
+  .js-header {
+      margin-top: 58px !important;
+  }
+
+  .Line {
+      margin-top: 2px;
+  }
+}
+
+/* tablets */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape)  {
+    #avatar-profile-link{
+        margin-right: 12px;
+    }
+}
+
+
+#sort-list-v2 > li.has-drop-down.hover .subnavtriangle::after {
+    background: #fff url("http://cdn.weddingbee.com/wp-content/themes/skeleton/images/sprite.png") repeat scroll -195px -60px;
+    content: "";
+    display: block;
+    height: 12px;
+    position: absolute;
+    width: 24px;
+    z-index: 160;
+    margin-left:25px;
+}
+
+
+/*psd2html sortlist */
+#sort-list-v2 .drop-inner,
+.user-box .drop ul {
+    border: 1px solid #c7c2c2;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .41);
+    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, .41);
+    background: url('data:image/svg+xml; base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZlZmVmZSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmMWYxZjEiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+') #fefefe;
+    background: -moz-linear-gradient(top, #fefefe 0, #f1f1f1 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fefefe), color-stop(100%, #f1f1f1));
+    background: -webkit-linear-gradient(top, #fefefe 0, #f1f1f1 100%);
+    background: -o-linear-gradient(top, #fefefe 0, #f1f1f1 100%);
+    background: -ms-linear-gradient(top, #fefefe 0, #f1f1f1 100%);
+    background: linear-gradient(to bottom, #fefefe 0, #f1f1f1 100%);
+    text-transform: none;
+    position: relative;
+    overflow: hidden
+}
+
+#footer ul.inline li:before,
+#sort-list-v2>li.has-drop-down>a:after,
+#sort-list-v2>li.has-drop-down>a:before,
+.btn-facebook:before,
+.btn.add:before,
+.category-row .list>li:before,
+.gallery-list .social-networks [class^=icon-]:after,
+.prev-page:before,
+.select-area .select-opener:after,
+.visual-box .more:after {
+    content: ""
+}
+
+#sort-list-v2 {
+    overflow: visible;
+    float: left
+}
+
+#sort-list-v2 li {
+    /* margin-right: 5px; */
+    position: relative;
+    /* padding: 0 10px 0 0 */
+    padding: 0 ;
+    width: 113px;
+}
+
+#sort-list-v2 li.category {
+    position: static
+}
+
+#sort-list-v2 a {
+    float: left
+}
+
+#sort-list-v2>li.hover>a {
+    color: #709704
+}
+
+#sort-list-v2>li.has-drop-down>a {
+    padding-right: 15px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden
+}
+
+#sort-list-v2>li.hover.has-drop-down>a {
+    overflow: visible
+}
+
+#sort-list-v2>li.has-drop-down>a:after {
+    background: url(http://cdn.weddingbee.com/wp-content/themes/skeleton/images/sprite.png) -226px -44px;
+    width: 10px;
+    height: 7px;
+    position: absolute;
+    top: 8px;
+    right: 0
+}
+
+#sort-list-v2>li.has-drop-down>a:before {
+    background: url(http://cdn.weddingbee.com/wp-content/themes/skeleton/images/sprite.png) -195px -59px;
+    width: 24px;
+    height: 11px;
+    position: absolute;
+    top: -99999em;
+    left: 50%;
+    margin: -4px 0 0 -18px
+}
+
+#sort-list-v2>li.hover.has-drop-down>a:before {
+    top: 100%
+}
+
+#sort-list-v2 .drop {
+    position: absolute;
+    top: -99999em;
+    padding: 10px 0 0;
+    width: 999px
+}
+
+#sort-list-v2 li.hover .drop {
+    top: 100%
+}
+
+#sort-list-v2 li.category .drop {
+    width: 100%!important;
+    left: 0!important;
+    margin-top: -28px
+}
+
+.sort-row.border #sort-list-v2 li.category .drop {
+    margin-top: -10px
+}
+
+.sort-row.border #sort-list-v2 li.category .filterddlTopic .drop,
+.vendor-row.border #sort-list-v2 li.category .drop {
+    margin-top: -20px
+}
+
+#sort-list-v2 .drop-inner {
+    border: 1px solid #cbc6c6;
+    float: left;
+    padding: 14px 16px 10px 14px;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .41);
+    -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, .41)
+}
+
+#sort-list-v2 li.category .drop-inner {
+    float: none
+}
+
+#sort-list-v2 .frame {
+    overflow: hidden;
+    padding: 2px 0 21px 5px;
+    margin: 0 -22px 0 0
+}
+
+#sort-list-v2 .drop ul {
+    font: 12px/20px proxima_novasemibold, Arial, Helvetica, sans-serif
+}
+
+#sort-list-v2 .color-list {
+    max-width: 330px;
+    margin: 0 -15px -10px 0
+}
+
+#sort-list-v2 .color-list li {
+    padding: 0 7px 14px 0;
+    display: inline-block;
+    vertical-align: top;
+    float: none
+}
+
+#sort-list-v2 .color-list a {
+    width: 16px!important;
+    height: 16px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    text-indent: -9999px;
+    overflow: hidden;
+    float: left
+}
+
+#sort-list-v2 .column {
+    float: left;
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    min-width: 13.66%;
+    padding: 0 2% 0 0
+}
+
+#sort-list-v2 .column li,
+#sort-list-v2 ul li {
+    float: none;
+    padding: 0;
+    white-space: nowrap
+}
+
+#sort-list-v2 .column li {
+    white-space: normal
+}
+
+#sort-list-v2 .column a,
+#sort-list-v2 ul a {
+    float: none
+}
+
+#sort-list-v2 .title {
+    border-bottom: 1px dotted #432a1a;
+    display: block;
+    font: 14px/19px proxima_nova_rgbold, Arial, Helvetica, sans-serif;
+    margin: 0 0 8px
+}
+
+.sort-row.border #sort-list-v2 li {
+    padding: 0 29px 0 0
+}
+
+.sort-row.border #sort-list-v2 li.last-child {
+    padding: 0
+}
+
+@media only screen and (min-width:768px) {
+    
+    #sort-list-v2 .wedding-rel-ddl .column {
+        width: 13.66%
+    }
+   
+}
+@media only screen and (max-width:767px) {
+    #sort-list-v2 .frame {
+        margin: 0 -5px 0 -1px;
+        padding: 3px 0
+    }
+    #sort-list-v2 .column {
+        float: none;
+        width: auto;
+        padding: 14px 0 0
+    }
+    #sort-list-v2 .column:first-child {
+        padding: 0
+    }
+    #sort-list-v2 li.category .drop {
+        width: auto!important;
+        left: -10px!important;
+        right: -10px
+    }
+    #sort-list-v2 .drop {
+        padding: 7px 0 0
+    }
+    .sort-row.border #sort-list-v2 li.category .filterddlTopic .drop {
+        margin-top: -18px
+    }
+    #sort-list-v2 li.category .drop,
+    .sort-row.border #sort-list-v2 li.category .drop {
+        margin-top: -8px
+    }
+    #sort-list-v2 .inner {
+        overflow: hidden
+    }
+    #sort-list-v2 .column ul {
+        float: left;
+        padding-left: 4%
+    }
+    #sort-list-v2 .column ul:first-child {
+        padding: 0
+    }
+    #sort-list-v2 .column li {
+        padding: 5px 0 0
+    }
+    #sort-list-v2 .column li:first-child {
+        padding: 0
+    }
+    .sort-row.border #sort-list-v2 li {
+        padding: 0 20px 0 0
+    }
+}
+#sort-list-v2 .last-child .drop {
+    left: auto!important;
+    right: 0
+}
+
+.sort-row.border #sort-list-v2 .column li {
+    padding: 0
+}
+
+#wrapper #main.container .row #content.col-md-8 #forum-filter.sort-row ul#sort-list-v2 li.category div.drop {
+    padding: 0
+}
+
+.vendor-row #sort-list-v2 .last-child .drop
+{
+	right:auto
+}
+.vendor-row #sort-list-v2 .category-search .drop.show-inner
+{
+	top:100%
+}
+.vendor-row #sort-list-v2 .category-search .drop
+{
+	z-index:-1
+}
+
+@media only screen and (max-width:767px){
+    .vendor-row #sort-list-v2 .last-child .drop{
+            right:auto!important;
+            left:0!important
+    }
+
+}
+@media only screen and (min-width:768px){
+    .vendor-row #sort-list-v2 .category-search .drop{
+            margin-top:-10px!important
+    }
+}
+
+#sort-list-v2 .nav-title-container-left a{
+    width:100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* ----------- iPad 1, 2 and mini ----------- */
+/* Portrait */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    .logocentered {
+        width: 140px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .search-box #cse-search-box.search-form {
+        border-color: #709704;
+        width: 200px;
+        margin-right: 2px;
+    }
+    .search-box .search-form input[type=submit] {
+        background: url(http://cdn.weddingbee.com/wp-content/themes/skeleton/images/sprite.png) -202px -8px;
+        width: 18px;
+        height: 18px;
+    }
+    #header .frame ul.links.header-v2 {
+        width: 180px;
+    }
+    .Sign-Up {
+        width: 49px;
+        height: 20px;
+        font-family: Roboto;
+        font-size: 14px;
+        font-weight: 500!important;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.43;
+        text-align: left;
+        color: #b3a49c;
+    }
+    .RELATED-POSTS {
+        width: 170px;
+        height: 46px;
+        font-family: Helvetica;
+        font-size: 20px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1;
+        text-align: left;
+        color: #4a4a4a;
+    }
+    .home-content section.blogs-section .frame .Line.visible-sm{
+        width: 642px;
+        height: 2px;
+        background-color: #d8d8d8;
+        border: solid 1px #514741;
+        border: solid 1px var(--greyish-brown);
+    }
+    .blogs-section .head, .popular-section .head{
+        border: none;
+    }
+    .search-box .search-form .input-box{
+        width: 220px;
+    }
+    .Fill-1-Copy-3 {
+        height: 31px;
+        margin: 15px 25px 0 15px;
+    }
+    .Rectangle-15 {
+        height: 25px;
+        margin: 19px 60px 0 0;
+    }
+}
+/* ----------- iPad 3 and 4 ----------- */
+/* Portrait */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .logocentered {
+        width: 140px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .search-box #cse-search-box.search-form {
+        border-color: #709704;
+        width: 200px;
+        margin-right: 2px;
+    }
+    .search-box .search-form input[type=submit] {
+        background: url(http://cdn.weddingbee.com/wp-content/themes/skeleton/images/sprite.png) -202px -8px;
+        width: 18px;
+        height: 18px;
+    }
+    #header .frame ul.links.header-v2 {
+        width: 180px;
+    }
+    .Sign-Up {
+        width: 49px;
+        height: 20px;
+        font-family: Roboto;
+        font-size: 14px;
+        font-weight: 500!important;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.43;
+        text-align: left;
+        color: #b3a49c;
+    }
+    .RELATED-POSTS {
+        width: 170px;
+        height: 46px;
+        font-family: Helvetica;
+        font-size: 20px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1;
+        text-align: left;
+        color: #4a4a4a;
+    }
+    .home-content section.blogs-section .frame .Line.visible-sm{
+        width: 642px;
+        height: 2px;
+        background-color: #d8d8d8;
+        border: solid 1px #514741;
+        border: solid 1px var(--greyish-brown);
+    }
+    .blogs-section .head, .popular-section .head{
+        border: none;
+    }
+    .search-box .search-form .input-box{
+        width: 220px;
+    }
+    .Fill-1-Copy-3 {
+        height: 31px;
+        margin: 15px 25px 0 15px;
+    }
+    .Rectangle-15 {
+        height: 25px;
+        margin: 19px 60px 0 0;
+    }
+}
+
+/* ----------- Galaxy Tab 10.1,  Kindle Fire HD 7" and other similar tablets ----------- */
+/* Portrait */
+@media
+  (min-device-width: 700px) and (max-device-width: 800px)
+  and (orientation: portrait) { 
+    .logocentered {
+        /*width: 140px;*/
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #header .frame ul.links.header-v2 {
+        width: 180px;
+    }
+    .Sign-Up {
+        width: 49px;
+        height: 20px;
+        font-family: Roboto;
+        font-size: 14px;
+        font-weight: 500!important;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.43;
+        text-align: left;
+        color: #b3a49c;
+    }
+    .RELATED-POSTS {
+        width: 170px;
+        height: 46px;
+        font-family: Helvetica;
+        font-size: 20px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1;
+        text-align: left;
+        color: #4a4a4a;
+    }
+    .home-content section.blogs-section .frame .Line.visible-sm{
+        width: 642px;
+        height: 2px;
+        background-color: #d8d8d8;
+        border: solid 1px #514741;
+        border: solid 1px var(--greyish-brown);
+        z-index: 9999;
+    }
+    .blogs-section .head, .popular-section .head{
+        border: none;
+    }
+
+    .Fill-1-Copy-3 {
+        height: 31px;
+        margin: 15px 25px 0 15px;
+    }
+    .Rectangle-15 {
+        height: 25px;
+        margin: 19px 60px 0 0;
+    }
+}
+/* ----------- Asus Nexus 7 ----------- */
+/* Portrait */
+@media screen 
+  and (device-width: 601px) 
+  and (device-height: 906px) 
+  and (-webkit-min-device-pixel-ratio: 1.331) 
+  and (-webkit-max-device-pixel-ratio: 1.332) 
+  and (orientation: portrait) {
+    .logocentered {
+        width: 140px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #header .frame ul.links.header-v2 {
+        width: 180px;
+    }
+    .Sign-Up {
+        width: 49px;
+        height: 20px;
+        font-family: Roboto;
+        font-size: 14px;
+        font-weight: 500!important;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.43;
+        text-align: left;
+        color: #b3a49c;
+    }
+    .RELATED-POSTS {
+        width: 170px;
+        height: 46px;
+        font-family: Helvetica;
+        font-size: 20px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1;
+        text-align: left;
+        color: #4a4a4a;
+    }
+    .home-content section.blogs-section .frame .Line.visible-sm{
+        width: 642px;
+        height: 2px;
+        background-color: #d8d8d8;
+        border: solid 1px #514741;
+        border: solid 1px var(--greyish-brown);
+    }
+    .blogs-section .head, .popular-section .head{
+        border: none;
+    }
+    .search-box .search-form .input-box{
+        width: 220px;
+    }
+    .Fill-1-Copy-3 {
+        height: 31px;
+        margin: 15px 25px 0 15px;
+    }
+    .Rectangle-15 {
+        height: 25px;
+        margin: 19px 60px 0 0;
+    }
+
+}
+
+#loginSignV2 .links.header-v2 a#sign-in-btn.Sign-Up{
+    font-weight: bold;   
+}
+.hp-social ul.social-networks li a.fa {
+    width: 18px;
+    height: 17px;
+    font-family: FontAwesome;
+    font-size: 17.5px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    color: rgba(81, 71, 65, 0.71);
+}
+.Nav2Version #header .frame {
+    padding: 0 9px 0px 0px;
+}
+.Nav2Version .nav-row-mogu {
+    margin-top: 22px;
+}
+.Nav2Version nav#nav ul#sort-list-v2 a:hover{
+    font-weight: 500;
+    color:#709704;
+}
+
+.Nav2Version #header .frame-top-nav {
+    background-color: #FFF;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 99999;
+    max-width: 1024px;
+    height: 60px;
+}
+
+.activity-sidemenu{
+ color: #7b7571;   
+}
+
+img.avatar:hover{
+  opacity: 0.5;
+  filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+
+@media only screen and (min-device-width: 412px){
+    .panel{
+        margin-bottom: -1px;
+    }
+}

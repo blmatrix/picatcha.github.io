@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<!-- saved from url=(0071)https://s0.2mdn.net/2850051/1477490097734/728x90-doubleclick/index.html -->
+<html lang=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<!--<script src="https://s0.2mdn.net/ads/studio/Enabler.js"></script>-->
+		<title>pradaxa html5</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<style>
+			::-moz-selection { background: transparent; }
+			::selection { background: transparent; }
+
+			html {
+				height: 100%;
+			}
+
+			body {
+				background: #fff;
+				font-family: Arial, sans-serif;
+				color: #333;
+				margin: 0;
+				padding: 0;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			img {text-decoration: none; border: 0px;}
+
+			#banner-container {
+				width: 728px;
+				height: 90px;
+
+			}
+
+			#banner {
+				background-image: url('isi-bg.png');
+				background-repeat: no-repeat;
+				background-position: right top;
+				width: 728px;
+				height: 90px;
+				position: relative;
+				overflow: hidden;
+				box-sizing: border-box;
+				border: solid 1px #000;
+				perspective: 500px;
+				transform-origin: 212px 125px
+			}
+
+			#border {
+				position: absolute;
+				z-index: 30000;
+				border: solid 1px #000;
+				width: 100%;
+				height: 100%;
+				box-sizing: border-box;
+				pointer-events: none;
+				visibility: hidden;
+			}
+
+			#animation {
+				position: absolute;
+				z-index: 1000;
+				width: 411px;
+				height: 88px;
+			}
+
+			#click-area-primary,
+			#bg-pi-mg {
+				position: absolute;
+				left: 0;
+				width: 728px;  
+			}
+
+			#click-area-primary {
+				top: 0;
+				left: 0;
+				width: 411px;
+				height: 88px;
+				position: absolute;
+				z-index: 4000;
+				cursor: pointer;
+				background: rgba(0,0,0,0);
+			}
+
+			#pradaxa-logo {
+				background-image: url('pradaxa-logo.png');
+				position: absolute;
+			    width: 115px;
+			    height:56px;
+			    z-index: 3999;
+			    top: 10px;
+			    left: 13px;
+				cursor: pointer;
+			}
+
+			#exit-pi,
+			#exit-mg {
+				position: absolute;
+				z-index: 4100;
+				cursor: pointer;
+				width: 124px;
+				height: 12px;
+				top: 4px;
+				right: 20px;
+			}
+
+			#exit-mg {
+				z-index: 4200;
+				width: 106px;
+				top: 17px;
+				right: 42px;
+			}
+
+			#sprite-holder {
+				width: 728px;
+				height: 160px;
+				overflow: hidden;
+				position: absolute;
+
+				z-index: 100;
+				perspective: 1000px;
+			}
+
+			.slide {
+				position: absolute;
+				top: 0;
+				overflow: hidden;
+				width: 728px;
+				height: 160px;
+			}
+
+			.sprite {
+				background: url('sprite.png') no-repeat;
+			}
+
+			.darkblue {
+				color: #003da7;  
+			}
+			.lightblue {
+				color: #005cab;
+			}
+			.red {
+				color: #c20430;
+			}
+			.bold {
+				font-weight: bold;
+			}
+			.references {
+				font-size: 8px;
+			}
+			sup {
+			   vertical-align: baseline;
+			   position: relative;
+			   top: -0.4em;
+			}
+			sub {
+				vertical-align: baseline;
+				position: relative;
+				top: 0.3em;
+			}
+			a:link,
+			a:visited {
+				color: #005cab
+			}
+			.nowrap {
+				word-spacing: nowrap;
+			}
+			.bi-logo {
+				border: 0px;
+				margin: 5px 0;
+			}
+			#isi-container {
+				position: absolute;
+				width: 304px;
+				top: 34px;
+				right: 11px;
+				height: 54px;
+				font-family: arial;
+				color: #3d3d3d;
+				font-size: 12px;
+				-webkit-font-smoothing: antialiased;
+			}
+			@-moz-document url-prefix() {
+				#isi-container {
+					 line-height: 14px;
+				}
+			}
+			#isi {
+				letter-spacing: -0.5px;
+			}
+			#isi h2 {
+				color: #005cab;
+				font-size: 12px;
+			}
+			#isi p {
+				margin: 7px 0;
+				margin-top: 3px;
+			}
+			#isi p:first-child {
+				margin-top: 0;
+			}
+			#isi ul,
+			#isi li {
+				margin-left:0;
+				padding-left: 0;
+			}
+			#isi li {
+				margin-left: 12px;
+				color: #005cab;
+			}
+			#isi ul> li >span {
+				position: relative;
+				left: -6px;
+				color: #3d3d3d;
+			}
+			@-moz-document url-prefix() {
+				#isi li {
+					margin-left: 8px;
+				}
+				#isi ul> li >span {
+					position: relative;
+					left: -2px;
+				}
+			}
+			/* Tiny Scrollbar */
+			#isi-container .viewport { width: 282px; height: 54px; overflow: hidden; position: relative; background-color: #fff;}
+			#isi-container .overview { list-style: none; position: absolute; left: 0; top: 0; padding: 0; margin: 0; margin-top: -5px;padding: 0 14px 0px 12px; }
+			#isi-container .overview::selection { background: transparent; }
+			#isi-container .scrollbar{ background: transparent url(sprite-scrollbar.png) no-repeat 0 0; position: relative; background-position: 0 0; float: right; width: 7px;  margin-top: 6px;}
+			#isi-container .track { background: transparent; max-height: 18px; width:7px; position: relative; padding: 0; margin: 0 auto;}
+			#isi-container .thumb { background: transparent url(sprite-scrollbar.png) no-repeat; background-position: -7px 0; height: 20px; width: 7px; cursor: pointer; overflow: hidden; position: absolute; top: 0; left: 0px; }
+			#isi-container .disable { display: none; }
+			.noSelect { user-select: none; -o-user-select: none; -moz-user-select: none; -khtml-user-select: none; -webkit-user-select: none; }
+		</style>
+
+		<script type="text/javascript">
+			var clickTag = "https://www.pradaxa.com/talking-to-your-doctor";
+			var clickTag1 = "http://bidocs.boehringer-ingelheim.com/BIWebAccess/ViewServlet.ser?docBase=renetnt&folderPath=/Prescribing%20Information/PIs/Pradaxa/Pradaxa.pdf";
+			var clickTag2 = "http://bidocs.boehringer-ingelheim.com/BIWebAccess/ViewServlet.ser?docBase=renetnt&folderPath=/Prescribing+Information/PIs/Pradaxa/Patient+Info/PradaxaMedGuide.pdf";
+			var clickTag3 = "http://www.pradaxa.com";
+			var clickTag4 = "http://www.fda.gov/medwatch";
+			var clickTag5 = "http://us.boehringer-ingelheim.com/";
+
+			var newWindow;
+			function openClickTag(url) {
+				newWindow = window.open(url);
+			}
+		</script>
+	<script type="text/javascript">
+    
+      (function() {
+        var relegateNavigation = '';
+        var handleClickTagMessage = function(e) {
+          try {
+            var eventData = JSON.parse(e.data);
+          } catch (err) {
+            return;
+          }
+          if (eventData.isInitClickTag) {
+            if (eventData.clickTags) {
+              for (var i = 0; i < eventData.clickTags.length; i++) {
+                var clkTag = eventData.clickTags[i];
+                window[clkTag.name] = clkTag.url;
+              }
+            } else if (eventData.clickTag) {
+              window.clickTag = eventData.clickTag;
+            }
+            relegateNavigation = eventData.relegateNavigation;
+          }
+        };
+
+        if (open.call) {
+          window.open = function(open) {
+            return function(url, name, features) {
+              if (relegateNavigation === 'parent') {
+                var message = {'clickTag': url, 'isPostClickTag': true};
+                parent.postMessage(JSON.stringify(message), '*');
+              } else {
+                var args = [url, name];
+                if (features) {
+                  args.push(features);
+                }
+                open.apply(window, args);
+              }
+            };
+          }(window.open);
+        }
+
+        if (window.addEventListener) {
+          window.addEventListener(
+              'message', handleClickTagMessage, false);
+        } else {
+          window.attachEvent('onmessage', handleClickTagMessage);
+        }
+      })();
+    
+  </script></head>
+	<body>
+
+
+		<div id="banner-container">
+			<div id="banner">
+				<div id="border"></div>
+
+				<div id="animation"><canvas width="411" height="88"></canvas></div>
+
+
+				<div id="click-area-primary" onclick="openClickTag(clickTag);"></div>
+				<div id="exit-pi" onclick="openClickTag(clickTag1);"></div>
+				<div id="exit-mg" onclick="openClickTag(clickTag2);"></div>
+				<div id="pradaxa-logo"></div>
+				
+
+
+
+
+
+				<div id="isi-container">
+					<div class="scrollbar" style="height: 39px;"><div class="track" style="height: 39px;"><div class="thumb" style="top: 0px; height: 20px;"></div></div></div>
+					<div id="isi" class="viewport">
+						<div class="overview" style="top: 0px;">
+							<div>
+
+						<p style="margin-top: 10px;"><b>For people taking PRADAXA for atrial fibrillation:  Do not stop taking PRADAXA without talking to the doctor who prescribes it for you. Stopping PRADAXA increases your risk of having a stroke.</b> PRADAXA may need to be stopped prior to surgery or a medical or dental procedure. Your doctor will tell you when you should stop taking PRADAXA and when you may start taking it again. If you have to stop taking PRADAXA, your doctor may prescribe another medicine to help prevent a blood clot from forming. </p>
+
+						<h2 id="isi-limit">PRADAXA can cause bleeding which can be serious and sometimes lead to death.  Don’t take PRADAXA if you:</h2>
+						<ul>
+							<li><span>currently have abnormal bleeding;</span></li>
+							<li><span>have ever had an allergic reaction to it;</span></li>
+							<li><span>have had or plan to have a valve in your heart replaced</span></li>
+						</ul>
+						<h2>Your risk of bleeding with PRADAXA may be higher if you:</h2>
+						<ul>
+						<li><span>are 75 years old or older</span></li>
+						<li><span>have kidney problems</span></li>
+						<li><span>have stomach or intestine bleeding that is recent or keeps coming back or you have a stomach ulcer</span></li>
+						<li><span>take other medicines that increase your risk of bleeding, like aspirin products, non-steroidal anti-inflammatory drugs (NSAIDs) and blood thinners</span></li>
+						<li><span>have kidney problems and take dronedarone (Multaq<sup>®</sup>) or ketoconazole tablets (Nizoral<sup>®</sup>)</span></li>
+						</ul>
+						<h2>Call your doctor or seek immediate medical care if you have any of the following signs or symptoms of bleeding:</h2>
+						<ul>
+							<li><span>any unexpected, severe, or uncontrollable bleeding; or bleeding that lasts a long time</span></li>
+							<li><span>unusual or unexpected bruising</span></li>
+							<li><span>coughing up or vomiting blood; or vomit that looks like coffee grounds</span></li>
+							<li><span>pink or brown urine; red or black stools (looks like tar)</span></li>
+							<li><span>unexpected pain, swelling, or joint pain</span></li>
+							<li><span>headaches and feeling dizzy or weak</span></li>
+						</ul>
+
+						<p class="smallmb"><b style="color: #005baa;">Spinal or epidural blood clots (hematoma).</b> People who take PRADAXA and have medicine injected into their spinal and epidural area, or have a spinal puncture have a risk of forming a blood clot that can cause long-term or permanent loss of the ability to move (paralysis). Your risk of developing a spinal or epidural blood clot is higher if:</p>
+						<ul>
+						<li><span>a thin tube called an epidural catheter is placed in your back to give you certain medicine</span></li>
+						<li><span>you take NSAIDs or a medicine to prevent blood from clotting</span></li>
+						<li><span>you have a history of difficult or repeated epidural or spinal punctures</span></li>
+						<li><span>you have a history of problems with your spine or have had surgery on your spine.</span></li>
+						</ul>
+						<p>If you take PRADAXA and receive spinal anesthesia or have a spinal puncture, your doctor should watch you closely for symptoms of spinal or epidural blood clots. Tell your doctor right away if you have back pain, tingling, numbness, muscle weakness (especially in your legs and feet), loss of control of the bowels or bladder (incontinence).</p>
+
+						<p><b>Take PRADAXA exactly as prescribed.  It is important to tell your doctors about all medicines (prescription and over-the-counter), vitamins, and supplements you take.  Some medicines may affect the way PRADAXA works.</b></p>
+
+						<p>PRADAXA can cause indigestion, stomach upset or burning, and stomach pain.</p>
+
+						<p><strong>You are encouraged to report negative side effects of prescription drugs to the FDA. Visit <a class="nobr outbound" href="javascript:openClickTag(clickTag4);">www.fda.gov/medwatch</a> or call 1-800-FDA-1088</strong>.</p>
+
+								<h2>What is PRADAXA?</h2>
+
+								<p style="margin-bottom: 14px;">PRADAXA is a prescription blood thinner medicine that lowers the chance of blood clots forming in your body. PRADAXA is used to:</p>
+
+								<ul class="">
+									<li><span>reduce the risk of stroke and blood clots in people who have a medical condition called atrial fibrillation not caused by a heart valve problem. With atrial fibrillation, part of the heart does not beat the way it should. This can lead to blood clots forming and increase your risk of a stroke.</span></li>
+									<li><span>treat blood clots in the veins of your legs (deep vein thrombosis) or lungs (pulmonary embolism) and reduce the risk of them occurring again.</span></li>
+								</ul>
+
+								<p>PRADAXA is not for use in people with artificial (prosthetic) heart valves.</p>
+
+								<p class="bold">Please see full <a nointer="1" class="download_btn" href="javascript:openClickTag(clickTag1);">Prescribing Information</a> and <a class="download_btn" nointer="1" href="javascript:openClickTag(clickTag2);">Medication Guide</a>.</p>
+								<p><a href="javascript:openClickTag(clickTag5);"><img src="./bi-logo.png" class="bi-logo"></a></p>
+						<div class="smaller">	
+
+							<p>Boehringer Ingelheim Pharmaceuticals, Inc. either owns or uses the trademarks Pradaxa<sup>®</sup>, PRADAXA with associated design <sup>®</sup> and related images under license. Other referenced trademarks are owned by third parties.</p>
+
+							<p>Copyright ©  2016 Boehringer Ingelheim Pharmaceuticals, Inc. All Rights Reserved. [11/16]</p>
+
+							<p>PC-PX-0261-CONS-C</p>
+						</div>
+					</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>	
+
+
+		<script src="./jquery-1.11.3.min.js"></script>
+		<script src="./TweenMax.min.js"></script>
+		<script src="./EasePack.min.js"></script>
+		<script src="./pixi.min.js"></script>
+		<script src="./animation.js"></script>
+
+		<script>
+
+			/*! tinyscrollbar - v2.4.2 - 2015-04-03
+			 * //www.baijs.com/tinyscrollbar
+			 *
+			 * Copyright (c) 2015 Maarten Baijs <wieringen@gmail.com>;
+			 * Licensed under the MIT license */
+			!function(a,b){"use strict";function c(){for(var a=1;a<arguments.length;a++)for(var b in arguments[a])arguments[a].hasOwnProperty(b)&&(arguments[0][b]=arguments[a][b]);return arguments[0]}function d(d,g){function h(){return q.update(),j(),q}function i(){w.style[C]=q.thumbPosition+"px",t.style[C]=-q.contentPosition+"px",u.style[B]=q.trackSize+"px",v.style[B]=q.trackSize+"px",w.style[B]=q.thumbSize+"px"}function j(){z?s.ontouchstart=function(a){1===a.touches.length&&(m(a.touches[0]),a.stopPropagation())}:(w.onmousedown=function(a){a.stopPropagation(),m(a)},v.onmousedown=function(a){m(a,!0)}),a.addEventListener("resize",function(){q.update("relative")},!0),q.options.wheel&&a.addEventListener?d.addEventListener(A,n,!1):q.options.wheel&&(d.onmousewheel=n)}function k(){return q.contentPosition>0}function l(){return q.contentPosition<=q.contentSize-q.viewportSize-5}function m(a,b){if(q.hasContentToSroll){{C.charAt(0).toUpperCase()+C.slice(1).toLowerCase()}x=b?w.getBoundingClientRect()[C]:y?a.clientX:a.clientY,r.className+=" noSelect",z?(document.ontouchmove=function(a){(q.options.touchLock||k()&&l())&&a.preventDefault(),o(a.touches[0])},document.ontouchend=p):(document.onmousemove=o,document.onmouseup=w.onmouseup=p),o(a)}}function n(b){if(q.hasContentToSroll){{var c=b||a.event,e=-(c.deltaY||c.detail||-1/3*c.wheelDelta)/40;1===c.deltaMode?q.options.wheelSpeed:1}q.contentPosition-=e*q.options.wheelSpeed,q.contentPosition=Math.min(q.contentSize-q.viewportSize,Math.max(0,q.contentPosition)),q.thumbPosition=q.contentPosition/q.trackRatio,d.dispatchEvent(D),w.style[C]=q.thumbPosition+"px",t.style[C]=-q.contentPosition+"px",(q.options.wheelLock||k()&&l())&&c.preventDefault()}}function o(a){if(q.hasContentToSroll){var b=y?a.clientX:a.clientY,c=z?x-b:b-x,e=Math.min(q.trackSize-q.thumbSize,Math.max(0,q.thumbPosition+c));q.contentPosition=e*q.trackRatio,d.dispatchEvent(D),w.style[C]=e+"px",t.style[C]=-q.contentPosition+"px"}}function p(){q.thumbPosition=parseInt(w.style[C],10)||0,r.className=r.className.replace(" noSelect",""),document.onmousemove=document.onmouseup=null,w.onmouseup=null,v.onmouseup=null,document.ontouchmove=document.ontouchend=null}this.options=c({},f,g),this._defaults=f,this._name=e;var q=this,r=document.querySelectorAll("body")[0],s=d.querySelectorAll(".viewport")[0],t=d.querySelectorAll(".overview")[0],u=d.querySelectorAll(".scrollbar")[0],v=u.querySelectorAll(".track")[0],w=u.querySelectorAll(".thumb")[0],x=0,y="x"===this.options.axis,z="ontouchstart"in document.documentElement,A="onwheel"in document.createElement("div")?"wheel":document.onmousewheel!==b?"mousewheel":"DOMMouseScroll",B=y?"width":"height",C=y?"left":"top",D=document.createEvent("HTMLEvents");return D.initEvent("move",!0,!0),this.contentPosition=0,this.viewportSize=0,this.contentSize=0,this.contentRatio=0,this.trackSize=0,this.trackRatio=0,this.thumbSize=0,this.thumbPosition=0,this.hasContentToSroll=!1,this.update=function(a){var b=B.charAt(0).toUpperCase()+B.slice(1).toLowerCase(),c=u.className;switch(this.viewportSize=s["offset"+b],this.contentSize=t["scroll"+b],this.contentRatio=this.viewportSize/this.contentSize,this.trackSize=this.options.trackSize||this.viewportSize,this.thumbSize=Math.min(this.trackSize,Math.max(this.options.thumbSizeMin,this.options.thumbSize||this.trackSize*this.contentRatio)),this.trackRatio=(this.contentSize-this.viewportSize)/(this.trackSize-this.thumbSize),this.hasContentToSroll=this.contentRatio<1,u.className=this.hasContentToSroll?c.replace(/disable/g,""):c.replace(/ disable/g,"")+" disable",a){case"bottom":this.contentPosition=Math.max(this.contentSize-this.viewportSize,0);break;case"relative":this.contentPosition=Math.min(Math.max(this.contentSize-this.viewportSize,0),Math.max(0,this.contentPosition));break;default:this.contentPosition=parseInt(a,10)||0}return this.thumbPosition=q.contentPosition/q.trackRatio,i(),q},h()}var e="tinyscrollbar",f={axis:"y",wheel:!0,wheelSpeed:40,wheelLock:!0,touchLock:!0,trackSize:!1,thumbSize:!1,thumbSizeMin:20},g=function(a,b){return new d(a,b)};"function"==typeof define&&define.amd?define(function(){return g}):"object"==typeof module&&module.exports?module.exports=g:a.tinyscrollbar=g}(window);
+
+
+
+		</script>	
+
+	
+
+</body></html>

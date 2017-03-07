@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)https://s0.2mdn.net/4114412/1473983111218/index.html -->
+<html class="no-js"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="ad.size" content="width=160,height=600">
+    <link rel="stylesheet" href="./styles.css">
+    <link href="./css" rel="stylesheet">
+
+
+    <script>
+        // window.dealerTag = 'Dealer Name';
+        var clickTag = 'http://www.google.com';
+
+    </script>
+<script type="text/javascript">
+    
+      (function() {
+        var relegateNavigation = '';
+        var handleClickTagMessage = function(e) {
+          try {
+            var eventData = JSON.parse(e.data);
+          } catch (err) {
+            return;
+          }
+          if (eventData.isInitClickTag) {
+            if (eventData.clickTags) {
+              for (var i = 0; i < eventData.clickTags.length; i++) {
+                var clkTag = eventData.clickTags[i];
+                window[clkTag.name] = clkTag.url;
+              }
+            } else if (eventData.clickTag) {
+              window.clickTag = eventData.clickTag;
+            }
+            relegateNavigation = eventData.relegateNavigation;
+          }
+        };
+
+        if (open.call) {
+          window.open = function(open) {
+            return function(url, name, features) {
+              if (relegateNavigation === 'parent') {
+                var message = {'clickTag': url, 'isPostClickTag': true};
+                parent.postMessage(JSON.stringify(message), '*');
+              } else {
+                var args = [url, name];
+                if (features) {
+                  args.push(features);
+                }
+                open.apply(window, args);
+              }
+            };
+          }(window.open);
+        }
+
+        if (window.addEventListener) {
+          window.addEventListener(
+              'message', handleClickTagMessage, false);
+        } else {
+          window.attachEvent('onmessage', handleClickTagMessage);
+        }
+      })();
+    
+  </script></head>
+
+<body>
+
+    <div class="ad skyscraper">
+        <div id="intro">
+            <div class="scene" id="scene-1" style="visibility: hidden; opacity: 0;">
+                <div class="element" id="image-bg1" style="transform: matrix(1, 0, 0, 1, 0, 0);"></div>
+                <div class="element" id="container-1" style="clip: rect(0px 480px 480px 0px);">
+                    <div class="element" id="inner-1">
+                        <div class="element" id="copy-mdx"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scene" id="scene-2" style="visibility: hidden; opacity: 0;">
+                <div class="element" id="container-2" style="clip: rect(0px 0px 800px 0px);">
+                    <div class="element" id="inner-2">
+                        <div class="element" id="copy-1"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scene" id="scene-3" style="visibility: hidden; opacity: 0;">
+                <div class="element" id="container-3" style="clip: rect(0px 800px 800px 0px);">
+                    <div class="element" id="inner-3">
+                        <div class="element" id="image-bg-2" style="transform: matrix(1, 0, 0, 1, -20, 0);"></div>
+                        <div class="element" id="feature-container" style="clip: rect(0px 800px 195px 0px);">
+                            <div class="element" id="feature-container-inner">
+                                <div class="element" id="image-checker"></div>
+                                <div class="element" id="copy-feature"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scene" id="scene-4">
+                <div class="element" id="container-4" style="clip: rect(0px 0px 800px 0px);">
+                    <div class="element" id="inner-4">
+                        <div class="element" id="copy-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scene" id="endframe" style="visibility: inherit; opacity: 1;">
+            <div class="element" id="badge-mdx-container" style="clip: rect(0px 800px 195px 0px);">
+                <div class="element" id="badge-mdx"></div>
+            </div>
+
+            <div class="element" id="logo-acura-container">
+                <div class="element" id="logo-acura"></div>
+                <div class="element" id="logo-acura-subline" style="width: 100%;"></div>
+            </div>
+
+            <div id="cta-container">
+                <svg id="cta-border" viewBox="0 0 160 23" style="stroke-dasharray: 645, 850;">
+                    <g id="cta-border-ref">
+                        <polygon id="cta-polygon" fill="none" stroke-width="1" stroke="#005096" stroke-miterlimit="10" points="0,0 160,0 160,23 0,23 " style="fill-opacity: 1;"></polygon>
+                    </g>
+                </svg>
+                <div id="cta-text" style="visibility: inherit; opacity: 1;"></div>
+            </div>
+        </div>
+
+        <div id="clicktag"></div>
+    </div>
+
+    <script src="./index.js"></script>
+    <script>
+        $('#clicktag').on('click', function() {
+            window.open(window.clickTag, '_blank');
+        });
+    </script>
+
+
+
+
+</body></html>
