@@ -1,0 +1,1 @@
+/**/Tynt.sc({"d":true,"domain":"weddingbee.com","ss":"fgpt","pt":"i"})

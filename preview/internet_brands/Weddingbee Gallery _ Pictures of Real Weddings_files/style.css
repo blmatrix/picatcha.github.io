@@ -1,0 +1,155 @@
+/**
+ * Base
+ */
+body {
+/*  background-color: #E8E8E8;
+  font-family: sans-serif;
+  font-size: 14px;*/
+}
+
+img {
+  max-width: 100%;
+}
+
+/**
+ * Wrapper
+ */
+.wrapper {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+
+
+/**
+ * Panel
+ 
+.panel {
+  background-color: #FFFFFF;
+  padding: 15px 10px;
+  border-left: 2px solid #9b59b6;
+}
+*/
+
+
+/**
+ * Header
+ */
+.header {
+  margin-bottom: 10px;
+}
+
+.header-wrapper {
+  background-color: #FFFFFF;
+  margin-bottom: 10px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.header-wrapper-top {
+  border-bottom: 2px solid rgba(155, 89, 182, 0.25);
+}
+
+.header-wrapper-bottom {
+  background-color: #FFFFFF;
+  border-bottom: 3px solid rgba(155, 89, 182, 0.75);
+}
+
+.anim {
+  -moz-transition: -moz-transform 1000ms ease;
+  -o-transition: -o-transform 1000ms ease;
+  -webkit-transition: -webkit-transform 1000ms ease;
+  transition: transform 1000ms ease;
+}
+
+.isFixed {
+  background-color: #fff;
+  position: fixed;
+/*  width: 100%;*/
+  top: 58px;
+  /*left: 0;*/
+  z-index: 100;
+}
+
+/**
+ * Top Nav
+ */
+.topNav {
+  /*max-width: 960p x;*/
+  /*margin: 0 auto;*/
+  /*padding: 10px 15px;*/
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.topNav-wrapper {
+  display: table;
+  width: 100%;
+}
+
+.topNav-wrapper > * {
+  /*display: table-cell;*/
+  vertical-align: middle;
+}
+
+.topNav-wrapper-right {
+  text-align: right;
+}
+
+/**
+ * Nav
+ */
+.nav {
+  font-size: 0;
+}
+
+.nav > * {
+  display: inline-block;
+  font-size: 16px;
+}
+
+.nav > * + * {
+  margin-left: 20px;
+}
+
+/**
+ * Sub Nav
+ */
+.subNav {
+  padding: 10px 0;
+  background-color: #FFFFFF;
+}
+
+.subNav-wrapper {
+  max-width: 1024px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/**
+ * Hdg
+ */
+.hdg {
+  color: #9b59b6;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/**
+ * User Content
+ */
+.userContent p {
+  min-height: 1px;
+  line-height: 1.6;
+  //font-size: 12px;
+}
+
+.userContent p + p {
+  margin-top: 10px;
+}
+
+.js-header{
+    margin-top:65px;
+}

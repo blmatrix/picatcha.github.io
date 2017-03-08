@@ -1,0 +1,19 @@
+@font-face {
+    font-family:    'HelveticaNeueLTStdMedium';
+    src:            url('HelveticaNeueLTStdMedium.woff') format('woff');
+}
+
+@font-face {
+    font-family:    'TempoStdHeavyCondensed';
+    src:            url('TempoStdHeavyCondensed.woff') format('woff');
+}
+
+.HelveticaNeueLTStdMedium {
+	white-space: 	nowrap;
+	font-family: 	'HelveticaNeueLTStdMedium';
+}
+
+.TempoStdHeavyCondensed {
+	white-space: 	nowrap;
+	font-family: 	'TempoStdHeavyCondensed';
+}

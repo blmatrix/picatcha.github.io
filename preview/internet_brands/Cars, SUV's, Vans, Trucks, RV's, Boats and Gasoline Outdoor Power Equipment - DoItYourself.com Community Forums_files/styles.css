@@ -1,0 +1,83 @@
+/*! normalize.css v3.0.0 | MIT License | git.io/normalize */
+img,legend{border:0}
+legend,td,th{padding:0}
+body,mark{color:#000}
+.ad,sub,sup{position:relative}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;box-sizing:border-box}
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
+audio,canvas,progress,video{display:inline-block;vertical-align:baseline}
+audio:not([controls]){display:none;height:0}
+[hidden],template{display:none}
+a{background:0 0}
+a:active,a:hover{outline:0}
+abbr[title]{border-bottom:1px dotted}
+b,optgroup,strong{font-weight:700}
+dfn{font-style:italic}
+h1{font-size:2em;margin:.67em 0}
+mark{background:#ff0}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+svg:not(:root){overflow:hidden}
+figure{margin:1em 40px}
+hr{box-sizing:content-box;height:0}
+pre,textarea{overflow:auto}
+code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}
+button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}
+button{overflow:visible}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+input{line-height:normal}
+input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0}
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{height:auto}
+input[type=search]{-webkit-appearance:textfield;box-sizing:content-box}
+input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+table{border-collapse:collapse;border-spacing:0}
+@-ms-viewport{width:device-width}
+@viewport{width:device-width}
+*,:after,:before{box-sizing:inherit}
+body{margin:0;font-size:10px;font-family:sans-serif;line-height:22px;background-color:#fff}
+.ad{border:1px solid #ccc;overflow:hidden;cursor:pointer}
+.ad .scene{position:absolute;width:100%;height:100%}
+.ad .scene .element{position:absolute;background-repeat:no-repeat}
+.mbu{width:300px;height:250px}
+.skyscraper{width:160px;height:600px}
+.leaderboard{width:1280px;height:100px}
+.large-skyscraper{width:300px;height:600px}
+#intro #scene-1 #container-1,#intro #scene-2 #container-2,#intro #scene-3 #container-3,#intro #scene-4 #container-4{width:800px;height:800px;clip:rect(0,800px,800px,680px);overflow:hidden}
+@font-face{font-family:AcuraBespokeBook;src:url(AcuraBespokeBook.woff) format("woff"),url(AcuraBespokeBook.woff2) format("woff2");font-style:normal}
+#intro{position:absolute;width:100%;height:100%}
+#intro #scene-1{height:100%}
+#intro #scene-1 #container-1{transform:rotate(31deg);-webkit-transform:rotate(31deg);-ms-transform:rotate(31deg);left:-79px;top:215px}
+#intro #scene-1 #container-1 #inner-1{position:absolute;width:100%;height:100%;left:81px;top:-29px;transform:rotate(-31deg);-webkit-transform:rotate(-31deg);-ms-transform:rotate(-31deg)}
+#intro #scene-1 #container-1 #inner-1 #copy-mdx{width:157px;height:82px;background:url(copy-mdx.png) no-repeat;background-size:157px 82px;top:226px;left:0}
+#intro #scene-1 #image-bg1{width:160px;height:100%;top:0;left:0;background:url(bg-image-1.jpg) no-repeat}
+#intro #scene-2 #container-2{transform:rotate(31deg);-webkit-transform:rotate(31deg);-ms-transform:rotate(31deg);left:-147px;top:-56px;z-index:1}
+#intro #scene-2 #container-2 #inner-2{position:absolute;width:100%;height:100%;left:101px;top:3px;transform:rotate(-31deg);-webkit-transform:rotate(-31deg);-ms-transform:rotate(-31deg);background-color:#005096}
+#intro #scene-2 #container-2 #inner-2 #copy-1{width:148px;height:99px;background:url(copy-can.svg) no-repeat;background-size:148px 99px;top:237px;left:67px}
+#intro #scene-3 #container-3{left:-151px;top:-94px}
+#intro #scene-3 #container-3 #inner-3{position:absolute;width:190px;height:600px;left:54px;top:57px}
+#intro #scene-3 #container-3 #inner-3 #image-bg-2{width:100%;height:100%;left:102px;top:35px;background:url(bg-image-2.jpg) no-repeat}
+#intro #scene-3 #container-3 #inner-3 #feature-container{width:480px;height:240px;clip:rect(0,480px,195px,480px);bottom:-46px;left:-100px}
+#intro #scene-3 #container-3 #inner-3 #feature-container #feature-container-inner{width:160px;height:35px;top:145px;left:129px}
+#intro #scene-3 #container-3 #inner-3 #feature-container #feature-container-inner #image-checker{width:75px;height:42px;background:url(image-checker.png) no-repeat;background-size:75px 29px;right:-66px;bottom:-26px}
+#intro #scene-3 #container-3 #inner-3 #feature-container #feature-container-inner #copy-feature{width:103px;height:52px;background:url(copy-feature.svg) no-repeat;background-size:103px 52px;bottom:51px;left:96px}
+#intro #scene-4 #container-4{transform:rotate(31deg);-webkit-transform:rotate(31deg);-ms-transform:rotate(31deg);left:-145px;top:-55px}
+#intro #scene-4 #container-4 #inner-4{position:absolute;width:100%;height:100%;left:54px;top:17px;transform:rotate(-31deg);-webkit-transform:rotate(-31deg);-ms-transform:rotate(-31deg);background-color:#005096}
+#intro #scene-4 #container-4 #inner-4 #copy-2{width:116px;height:33px;background:url(copy-see.svg) no-repeat;background-size:114px 33px;top:306px;left:129px}
+#endframe{width:100%;height:100%;top:0;left:0;z-index:-1;opacity:0;visibility:hidden;background:url(bg-endframe.jpg) no-repeat}
+#endframe #badge-mdx-container{width:480px;height:195px;clip:rect(0,480px,195px,480px);transform:rotate(31deg);-webkit-transform:rotate(31deg);-ms-transform:rotate(31deg);top:41px;left:-32px}
+#endframe #badge-mdx-container #badge-mdx{width:151px;height:75px;transform:rotate(-31deg);-webkit-transform:rotate(-31deg);-ms-transform:rotate(-31deg);top:89px;left:35px;background:url(badge-mdx-blue.svg) no-repeat;background-size:151px 75px}
+#endframe #logo-acura-container{width:174px;height:57px;bottom:35px;left:0}
+#endframe #logo-acura-container #logo-acura{background:url(logo-acura.svg) no-repeat;background-size:123px 18px;width:120px;height:18px;top:14px;left:19px}
+#endframe #logo-acura-container #logo-acura-subline{background:url(logo-acura-subline.svg) no-repeat;background-size:123px 5px;width:0;height:5px;top:37px;left:19px}
+#endframe #cta-container{position:absolute;width:160px;height:23px;top:575px;left:0;overflow:hidden}
+#endframe #cta-container #cta-border{width:100%;height:100%;stroke-dasharray:75px 850px;stroke-dashoffset:75px}
+#endframe #cta-container #cta-text{position:absolute;width:93px;height:8px;left:33px;top:7px;background:url(copy-cta.svg) no-repeat;background-size:93px 8px;opacity:0}
+#endframe #cta-container #cta-polygon{fill-opacity:0;fill:#005096}
+#endframe #dealer-name{width:114px;top:406px;left:21px;font-size:1.2em;color:#fff;opacity:0;font-family:Lato,sans-serif;text-transform:uppercase;text-align:center;line-height:1.3em}
+#clicktag{position:absolute;width:100%;height:100%;background-color:#ccc;opacity:0;z-index:999}
