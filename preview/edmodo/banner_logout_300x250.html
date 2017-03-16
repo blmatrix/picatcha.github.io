@@ -3,13 +3,12 @@
 
 <head>
     <script type="text/javascript">
-      var _AdsNativeOpts = {
+    var _AdsNativeOpts = {
         blockAdLoad: true
-      };
+    };
     </script>
     <script type="text/javascript" src="https://static.adsnative.com/static/js/render.v1.js"></script>
     <script type="text/javascript" src="edmodo.js"></script>
-
     <link rel="stylesheet" type="text/css" href="https://assets.edmodo.com/e10.landing.css.all.82c97f189dca08bc.css">
     <link rel="stylesheet" type="text/css" href="https://assets.edmodo.com/e11.billygoat.css.all.97835efacd5d9b89.css">
     <style type="text/css">
@@ -37,17 +36,10 @@
         border: 0px !important;
     }
     
-    .message-item [id^='google_ads_iframe'],
-    .message-item [id^='google_ads_iframe'] iframe {
-        width: 300px !important;
-        height: 250px !important;
-    }
-    
     .message-item .content {
         display: inline-block;
-        width: calc(100% - 320px);
+        height: 55px;
         vertical-align: top;
-        height: 250px;
     }
     
     .message-item .header {
@@ -91,48 +83,42 @@
         margin: 20px;
         color: grey;
     }
-
     /* Edmodo mobile view : no left & right rail */
+    
     @media all and (max-width: 554px) {
         .message-item .content .ad-message {
             display: none;
         }
-
         .message-item .content {
             display: block;
             height: inherit;
             width: 100%;
         }
-
         .content .user_fb {
             right: 20px;
             left: inherit !important;
         }
-
         .message-item [id^='google_ads_iframe'],
         .message-item [id^='google_ads_iframe'] iframe {
             margin: 0 auto;
             display: block !important;
         }
-
         .message-item:first-child {
             padding: 16px 20px !important;
         }
-
         .message-item .header {
             margin-bottom: 8px;
         }
     }
-
     /* User Feedback Dropdown */
+    
     .user_fb {
-        position: relative;
         display: inline-block;
         text-align: left;
         width: 200px;
         float: right;
         position: absolute;
-        left: 343px;
+        right: 2%;
     }
     
     .user_fb__list {
@@ -209,7 +195,8 @@
 </head>
 
 <body>
-    <div class="stream-item str-adunit str-card-exp an-item in-feed iab-ad">
+    <div class="landing-page-container">
+    <div class="stream-item str-adunit str-card-exp an-item logout-right iab-ad">
         <div class="item-container">
             <div id="8ybQAnXdk0XwWYPq4Yo9KhrVedhvyz9gvSJO5imF" data-event-type="post" class="message-item">
                 <div class="content">
@@ -232,42 +219,48 @@
                             <p class="promoted-prefix">Sponsored</p>
                         </div>
                     </div>
-                    <div class="ad-message">
-                        <p>Edmodo’s mission is to connect all learners with the people and resources they need to meet their full potential - always &amp; forever free.</p>
-                    </div>
                 </div>
-
-                
                 <!-- GPT Code START -->
                 <script async="async" src="https://www.googletagservices.com/tag/js/gpt.js"></script>
                 <script>
                 var googletag = googletag || {};
                 googletag.cmd = googletag.cmd || [];
+                var adUnitName = 'LogoutRight',
+                    positionName = 'logout-right',
+                    width = 300,
+                    height = 250;
+
                 googletag.cmd.push(function() {
                     googletag.pubads().setTagForChildDirectedTreatment(1);
-                    googletag.defineSlot('/41710666/IABLOGOUTTOP', [970, 250], '8ybQAnXdk0XwWYPq4Yo9KhrVedhvyz9gvSJO5imF').addService(googletag.pubads());
+                    googletag.defineSlot('/41710666/' + adUnitName, [
+                        [width, height]
+                    ], '8ybQAnXdk0XwWYPq4Yo9KhrVedhvyz9gvSJO5imF').addService(googletag.pubads());
+                    googletag.pubads().setTargeting('audience_type', 'student');
+                    googletag.pubads().set("page_url", document.referrer);
+                    googletag.pubads().setTagForChildDirectedTreatment(1);
+                    // googletag.pubads().collapseEmptyDivs();
                     googletag.pubads().enableSingleRequest();
                     var pubads = googletag.pubads();
                     pubads.addEventListener('slotRenderEnded', function(event) {
                         if (event.isEmpty) {
                             window._an_adNoFill('google_dfp');
-                            console.log('NO Ad received by Google ADX Display Tag for In Feed');
-                            if(AnEdmodo && AnEdmodo.resizeIABContainer) {
-                                AnEdmodo.resizeIABContainer('in-feed', 0, 0);
+                            console.log('NO Ad received by Google ADX Display Tag for ' + positionName);
+                            if (AnEdmodo && AnEdmodo.resizeIABContainer) {
+                                AnEdmodo.resizeIABContainer(positionName, 0, 0);
                             }
                         } else {
                             if (window._an_adFill) {
                                 window._an_adFill('google_dfp');
 
                                 // Check size
-                                if(event.size && event.size.length === 2) {
+                                if (event.size && event.size.length === 2) {
                                     var width = event.size[0],
                                         height = event.size[1];
 
-                                    console.log('Received In Feed Google ADX Ad of size : ' + width + ' X ' + height);
-                                    if(AnEdmodo && AnEdmodo.resizeIABContainer) {
+                                    console.log('Received '+ positionName+ ' Google ADX Ad of size : ' + width + ' X ' + height);
+                                    if (AnEdmodo && AnEdmodo.resizeIABContainer) {
                                         // Never resize width of infeed : It should always be 100% which is set by default already
-                                        AnEdmodo.resizeIABContainer('in-feed', 0, height);
+                                        AnEdmodo.resizeIABContainer(positionName, 0, height);
                                     }
                                 }
                             }
@@ -284,6 +277,7 @@
                 <!-- GPT Code END -->
             </div>
         </div>
+    </div>
     </div>
 </body>
 

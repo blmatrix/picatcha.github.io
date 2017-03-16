@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+ body {
+ margin: 0px !important;
+ }
+ 
+ .stream-item {
+ border-bottom: 1px solid #dfe4e8;
+ border-top: 1px solid #dfe4e8;
+ border-left: 1px solid #dfe4e8;
+ border-right: 1px solid #dfe4e8;
+ box-shadow: 1px 1px 1px 1px #dfe4e8 !important;
+ min-width: 340px;
+ }
+ 
+ .message-item:first-child {
+ padding: 20px !important;
+ margin: 0px !important;
+ }
+ 
+ .message-item {
+ padding: 0px !important;
+ margin: 0px !important;
+ border: 0px !important;
+ }
+ 
+ .message-item [id^='google_ads_iframe'],
+ .message-item [id^='google_ads_iframe'] iframe {
+ width: 300px !important;
+ height: 250px !important;
+ }
+ 
+ .message-item .content {
+ display: inline-block;
+ width: calc(100% - 320px);
+ vertical-align: top;
+ height: 250px;
+ }
+ 
+ .message-item .header {
+ display: inline-block;
+ margin-bottom: 15px;
+ line-height: 14px;
+ }
+ 
+ .message-item .logo {
+ width: 50px;
+ height: 50px;
+ float: left;
+ }
+ 
+ .message-item .content .header .text {
+ display: inline-block;
+ float: left;
+ margin: 8px 0px 0px 10px;
+ }
+ 
+ .message-item .content .header .text .edmodo-branding {
+ color: #3b73b2;
+ }
+ 
+ .message-item .content .header .text .promoted-prefix {
+ font-size: 12px;
+ color: lightgrey;
+ font-weight: 400;
+ }
+ 
+ .message-item .content .ad-message {
+ display: inline-block;
+ width: 205px;
+ height: 182px;
+ opacity: 0.7;
+ text-align: center;
+ vertical-align: bottom;
+ }
+ 
+ .message-item .content .ad-message p {
+ margin: 20px;
+ color: grey;
+ }
+
+ /* Edmodo mobile view : no left & right rail */
+ @media all and (max-width: 554px) {
+ .message-item .content .ad-message {
+ display: none;
+ }
+
+ .message-item .content {
+ display: block;
+ height: inherit;
+ width: 100%;
+ }
+
+ .content .user_fb {
+ right: 20px;
+ left: inherit !important;
+ }
+
+ .message-item [id^='google_ads_iframe'],
+ .message-item [id^='google_ads_iframe'] iframe {
+ margin: 0 auto;
+ display: block !important;
+ }
+
+ .message-item:first-child {
+ padding: 16px 20px !important;
+ }
+
+ .message-item .header {
+ margin-bottom: 8px;
+ }
+ }
+
+ /* User Feedback Dropdown */
+ .user_fb {
+ position: relative;
+ display: inline-block;
+ text-align: left;
+ width: 200px;
+ float: right;
+ position: absolute;
+ left: 343px;
+ top: 5px;
+ }
+ 
+ .user_fb__list {
+ margin: 5px 0 0 0;
+ padding: 6px 0;
+ list-style: none;
+ position: absolute;
+ top: 125%;
+ left: 15%;
+ width: 85%;
+ text-align: left;
+ opacity: 0;
+ visibility: hidden;
+ border-radius: 3px;
+ background: #fff;
+ -webkit-transition: opacity .25s linear, top .25s linear;
+ transition: opacity .25s linear, top .25s linear;
+ border: 1px solid #839096;
+ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+ }
+ 
+ .user_fb.is-open .user_fb__list {
+ opacity: 1;
+ visibility: visible;
+ top: 100%;
+ z-index: 10000;
+ }
+ 
+ .user_fb__item {
+ padding: 6px 12px;
+ font-size: 14px;
+ line-height: 20px;
+ cursor: pointer;
+ color: #434A54;
+ white-space: nowrap;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ -webkit-transition: background-color .25s linear;
+ transition: background-color .25s linear;
+ text-decoration: none;
+ }
+ 
+ .user_fb__item a {
+ color: #434A54;
+ }
+ 
+ .user_fb__item:hover {
+ background-color: #2077cf;
+ }
+ 
+ .user_fb__item:hover a,
+ a .user_fb__item:hover,
+ .user_fb__item:hover {
+ color: #E6E9ED;
+ }
+ 
+ .c-button {
+ display: block;
+ height: 15px;
+ width: 10px;
+ background: url(//assets.edmodo.com/images_v2/sprites/sprite-site-v2.png) 1px -1340px no-repeat;
+ float: right;
+ }
+ 
+ .c-button:hover,
+ .c-button:focus {
+ outline: none;
+ text-decoration: none;
+ }
+ 
+ .c-button:not(:disabled) {
+ cursor: pointer;
+ }
+ </style>
+</head>
+<body>
+<div class="stream-item str-adunit str-card-exp an-item in-feed iab-ad">
+ <div class="item-container">
+ <div id="8ybQAnXdk0XwWYPq4Yo9KhrVedhvyz9gvSJO5imF" data-event-type="post" class="message-item">
+ <div class="content">
+ <div class="user_fb js-dropdown">
+ <span class="c-button"></span>
+ <ul class="user_fb__list">
+ <li class="user_fb__item hide_ad" data-dropdown-value="angular">Hide</li>
+ <a target="_blank" href="https://support.edmodo.com/hc/en-us/articles/115000999288">
+ <li class="user_fb__item why_ad" data-dropdown-value="backbone">Why am I seeing this?</li>
+ </a>
+ <a target="_blank" href="https://support.edmodo.com/hc/en-us/requests/new?ticket_form_id=549368">
+ <li class="user_fb__item report_ad" data-dropdown-value="backbone">Report</li>
+ </a>
+ </ul>
+ </div>
+ <div class="header">
+ <img src="https://assets.edmodo.com/one-eye/logo-eb8f69bccb3cb77a8b7534f841aab69e.png" class="logo">
+ <div class="text">
+ <p class="edmodo-branding">Sponsored</p>
+ <p class="promoted-prefix"></p>
+ </div>
+ </div>
+ <div class="ad-message">
+ <p>This sponsored content keeps Edmodo free and accessible to learners everywhere.</p>
+ </div>
+ </div>
+
+ 
+ <!-- GPT Code START -->
+ <script async="async" src="https://www.googletagservices.com/tag/js/gpt.js"></script>
+ <script>
+ var googletag = googletag || {};
+ googletag.cmd = googletag.cmd || [];
+ googletag.cmd.push(function() {
+ googletag.pubads().setTagForChildDirectedTreatment(1);
+ googletag.defineSlot('/41710666/Feed', [[300, 250], 'fluid'], '8ybQAnXdk0XwWYPq4Yo9KhrVedhvyz9gvSJO5imF').addService(googletag.pubads());
+googletag.pubads().setTargeting('audience_type', 'teacher');
+googletag.pubads().set("page_url", document.referrer);
+ googletag.pubads().enableSingleRequest();
+ var pubads = googletag.pubads();
+ pubads.addEventListener('slotRenderEnded', function(event) {
+ if (event.isEmpty) {
+ window._an_adNoFill('google_dfp');
+ console.log('NO Ad received by Google ADX Display Tag for In Feed');
+ if(AnEdmodo && AnEdmodo.resizeIABContainer) {
+ AnEdmodo.resizeIABContainer('in-feed', 0, 0);
+ }
+ } else {
+ if (window._an_adFill) {
+ window._an_adFill('google_dfp');
+
+ // Check size
+ if(event.size && event.size.length === 2) {
+ var width = event.size[0],
+ height = event.size[1];
+
+ console.log('Received In Feed Google ADX Ad of size : ' + width + ' X ' + height);
+ if(AnEdmodo && AnEdmodo.resizeIABContainer) {
+ // Never resize width of infeed : It should always be 100% which is set by default already
+ AnEdmodo.resizeIABContainer('in-feed', 0, height);
+ }
+ }
+ }
+ }
+ });
+
+ // Last call when DFP is initialized
+ googletag.enableServices();
+ });
+ googletag.cmd.push(function() {
+ googletag.display('8ybQAnXdk0XwWYPq4Yo9KhrVedhvyz9gvSJO5imF');
+ });
+ </script>
+ <!-- GPT Code END -->
+ </div>
+ </div>
+ </div>
+</body>
+</html>

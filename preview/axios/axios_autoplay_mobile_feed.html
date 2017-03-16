@@ -13180,7 +13180,7 @@
                                         <h2 class="widget__headline custom-post-headline">Why Walmart invests in U.S. manufacturing </h2>
                                         <div class="widget__image-container">
                                             <div>
-                                                <iframe src="http://native-preview.herokuapp.com/axios_autoplay" class="widget__image image adsnative-video-iframe" scrolling="no" style="border: none; overflow:hidden; " width="" height="" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe>
+                                                <iframe src="http://localhost:8050/axios_autoplay" class="widget__image image adsnative-video-iframe" scrolling="no" style="border: none; overflow:hidden; " width="" height="" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe>
                                             </div>
                                             <div class="widget__photo-credit">
                                                 <p><span></span></p>
@@ -16984,7 +16984,7 @@
                                         var inview_width = Math.min(rect.width, rect.right, (window.innerWidth || document.documentElement.clientWidth) - rect.left);
 
                                         var inview_area = inview_height * inview_width;
-                                        return ((inview_area / area) >= 0.5);
+                                        return ((inview_area / area) >= 0.1);
                                     };
 
                                     var visibleOnce = false, //only send Play event once.

@@ -110,16 +110,34 @@
 
         var position = adUnitConfig.position,
             floatType = adUnitConfig.floatType,
-            columnContainer = (position === 'in-feed') ? document.getElementsByClassName('main-column') : document.getElementsByClassName('right-column');
+            columnContainer = null;
 
+        switch(position) {
+            case 'in-feed':
+                columnContainerClass = 'main-column';
+                break;
+            case 'right-rail':
+                columnContainerClass = 'right-column';
+                break;
+            case 'logout-top':
+            case 'logout-left':
+            case 'logout-right':
+                columnContainerClass = 'landing-page-container'
+                break;
+            default:
+                columnContainerClass = 'main-column';
+        }
+        if(columnContainerClass) {
+            columnContainer = document.querySelector('.' + columnContainerClass);
+        }
 
         if(!columnContainer) {
             edLog('Proper column container not present in DOM');
             return;
         }
 
-        floatingItems = columnContainer[0].querySelector('.floating-items'),
-        adUnit = columnContainer[0].querySelector('.str-adunit');
+        floatingItems = columnContainer.querySelector('.floating-items'),
+        adUnit = columnContainer.querySelector('.str-adunit');
         
         if(floatingItems) {
             addClass(floatingItems, position);

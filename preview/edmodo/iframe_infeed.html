@@ -49,10 +49,15 @@ var initialize = function(e) {
     return;
   }
 
-  // var keyValues = JSON.parse(decodeURIComponent(getParameterByName('key_values')));
+  var keyValues = JSON.parse(decodeURIComponent(getParameterByName('key_values')));
+
   var placement_id = getParameterByName('placement_id');
-  var placement = new AdsNative(placement_id, []);
+  var placement = new AdsNative(placement_id, [], keyValues);
   var position = getParameterByName('position');
+
+  var fetchOptions = {};
+      
+  fetchOptions.cid = getParameterByName('cid');
 
   placement.fetchAd(function(status, adData) {
     if(status && adData) { // If returned a valid campaign to display
@@ -65,7 +70,7 @@ var initialize = function(e) {
     } else {
       e.source.postMessage('ads-native:no-ad', e.origin)
     }
-  });
+  }, fetchOptions);
 }
 
 function getParameterByName(name, url) {

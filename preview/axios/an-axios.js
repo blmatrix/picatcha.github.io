@@ -1,6 +1,6 @@
 (function(AnAxios) {
 
-    var integration_version = 3.4,
+    var integration_version = 4.2,
         topInfeedPlacement = null,
         bottomInfeedPlacement = null,
         widgetContainerCount = 0,
@@ -20,7 +20,8 @@
         processQueue = {
             peerStoryItems: [],
             placements: []
-        };
+        },
+        debug = false;
 
     // AJAX loading new 10 stories
     window.addEventListener('loaded-more-posts' , function(e) {
@@ -60,7 +61,13 @@
                     case 'health-care':
                         placementId = "RwrWRlt2YQfmPPTrHr0VM1J4ipsmIgCZdeQTeskq";
                         break;
+                    default:
+                        placementId = "dqbpjCQilAeKkaWaOs8hiMSzkFPMZ5sHYrJZlBjS";
+                        Axlog('ERROR : valid channel name not found');
+                        break;
                 }
+                if(!placementId) return;
+
                 processQueue.placements.push(new AdsNative(placementId, []));
                 processQueue.peerStoryItems.push(currentAllStories[0]);
             } else {
@@ -115,14 +122,12 @@
 
             placement.fetchAd(function(adReturned, adData) {
                 if (adReturned) {
-
                     // Get the custom fields from first ad placement and reuse for others.
                     if(!adIndex) {
                         if(typeof adData.customFields.first_ad_pos !== 'undefined') firstAdPosition = parseInt(adData.customFields.first_ad_pos);
                         if(typeof adData.customFields.repeat_frequency !== 'undefined') adRepeatFrequency = parseInt(adData.customFields.repeat_frequency);
                         if(typeof firstAdPosition === 'undefined') firstAdPosition = 3;
                     }
-
 
                     // Render containers for adsnative placements
                     renderWebAdContainer(adIndex, peerStory, function(adContainer, adContainerRendered) {
@@ -151,6 +156,22 @@
                                                 if(linkElem) imageCaption.removeChild(linkElem);
 
                                                 Axlog('Processed '+position+' Adunit image caption : ', imageCaption.innerHTML);
+                                            }
+                                        }
+                                    }
+
+                                    // Hide Sponsored logo, prefix and brand name when "Brand Name" is "axios"/"Axios"
+                                    var sponsoredContainer = adContainer.querySelector('.author-avatar');
+                                    if(sponsoredContainer) {
+                                        var sponsoredText = sponsoredContainer.querySelector('.author-avatar__name');
+                                        if(sponsoredText) {
+                                            sponsoredText = sponsoredText.innerHTML.toLowerCase();
+                                            if(sponsoredText && sponsoredText.match(" axios$")) {
+                                                // Hide the container
+                                                sponsoredContainer.style.display = 'none';
+                                                Axlog('Removing brand name and logo for content promotion on site. Placement index : ' + adIndex);
+                                            } else {
+                                                Axlog('Advertiser Sponsored on site : ' + adIndex);
                                             }
                                         }
                                     }
@@ -383,29 +404,26 @@
         if(linkedIn) linkedIn.href += encodeURIComponent(clickUrl);
         if(copyClip) copyClip.setAttribute('data-clipboard-text', clickUrl);
 
+        console.log('clipboard link : ', clickUrl);
         // Track custom actions
-        trackCustomAction('fb', fb, actionTrackingUrls.facebook_share[0], function() {
+        trackCustomAction(fb, actionTrackingUrls.facebook_share[0], function() {
             Axlog('facebook_share custom action tracked');
         });
-        trackCustomAction('tw', tw, actionTrackingUrls.twitter_share[0], function() {
+        trackCustomAction(tw, actionTrackingUrls.twitter_share[0], function() {
             Axlog('twitter_share custom action tracked');
         });
-        trackCustomAction('linkedIn', linkedIn, actionTrackingUrls.linkedin_share[0], function() {
+        trackCustomAction(linkedIn, actionTrackingUrls.linkedin_share[0], function() {
             Axlog('linkedin_share custom action tracked');
         });
-        trackCustomAction('copyClip', copyClip.querySelector('.icons-share'), actionTrackingUrls.copy_clipboard[0], function() {
+        trackCustomAction(copyClip, actionTrackingUrls.copy_clipboard[0], function() {
             Axlog('copy_clipboard custom action tracked');
         });
     }
 
-    function trackCustomAction(actionName, element, actionPixel, callback) {
+    function trackCustomAction(element, actionPixel, callback) {
         if(element) {
             element.addEventListener("click", function(e) {
                 e.stopPropagation();
-
-                if(actionName === 'copyClip') {
-                    copyToClipboard(element.getAttribute('data-clipboard-text'));
-                }
                 // Track custom action
                 if(actionPixel) {
                     var pxl = document.createElement('img');
@@ -415,28 +433,6 @@
                     callback();
                 }
             });
-        }
-    }
-
-    function copyToClipboard(text) {
-        if (window.clipboardData && window.clipboardData.setData) {
-            // IE specific code path to prevent textarea being shown while dialog is visible.
-            return clipboardData.setData("Text", text); 
-
-        } else if (document.queryCommandSupported && document.queryCommandSupported("copy")) {
-            var textarea = document.createElement("textarea");
-            textarea.textContent = text;
-            textarea.style.position = "fixed";  // Prevent scrolling to bottom of page in MS Edge.
-            document.body.appendChild(textarea);
-            textarea.select();
-            try {
-                return document.execCommand("copy");  // Security exception may be thrown by some browsers.
-            } catch (ex) {
-                console.warn("Copy to clipboard failed.", ex);
-                return false;
-            } finally {
-                document.body.removeChild(textarea);
-            }
         }
     }
 
@@ -495,10 +491,12 @@
     }
 
     function getChannelName() {
+        if(channelName) return channelName;
+
         var url = document.querySelector('meta[property="og:url"]').content,
             urlParts = url.split('/');
 
-        if(urlParts.length > 3 && urlParts[3] !== "") {
+        if(urlParts.length > 3 && urlParts[3] !== "" && urlParts[3].indexOf('html') < 0) {
             return urlParts[3].toLowerCase();
         } else {
             return 'top-stories';
@@ -539,7 +537,7 @@
     };
 
     function Axlog(msg, value) {
-        if (typeof console !== 'undefined') {
+        if (debug && typeof console !== 'undefined') {
             if (!value) {
                 console.log(msg);
             } else {
@@ -582,7 +580,7 @@
         return decodeURIComponent(results[2].replace(/\+/g, " "));
     };
 
-    if (getParameterByName('axios_preview', document.referrer)) {
+    if (getParameterByName('adsnative_debug', document.referrer)) {
         debug = true;
         Axlog('Loaded an-axios.js version : ', integration_version);
     }
