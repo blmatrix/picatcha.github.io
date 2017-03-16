@@ -67,6 +67,8 @@
                 if(frameWidth <= 554) {
                     extraAdjustedHeight = 90;
                 }
+            } else if(position.indexOf('logout') >=0) {
+                extraAdjustedHeight = 80;
             }
 
             // Ad returned of widthxheight dimension
