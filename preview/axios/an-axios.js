@@ -21,7 +21,7 @@
             peerStoryItems: [],
             placements: []
         },
-        debug = false;
+        debug = true;
 
     // AJAX loading new 10 stories
     window.addEventListener('loaded-more-posts' , function(e) {
@@ -67,6 +67,7 @@
                         break;
                 }
                 if(!placementId) return;
+                placementId = "3ln4AP6ExPaJGRFSOYRk0p60rhw8bdSOwXx3nxX7";
 
                 processQueue.placements.push(new AdsNative(placementId, []));
                 processQueue.peerStoryItems.push(currentAllStories[0]);

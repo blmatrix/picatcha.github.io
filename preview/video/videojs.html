@@ -1,0 +1,487 @@
+<html>
+
+<head>
+    <title>AdsNative // Video JS</title>
+    <!-- Video JS Stylesheet  -->
+    <link href="//vjs.zencdn.net/5.11/video-js.min.css" rel="stylesheet">
+    <!-- Video JS VAST VPAID Plugin Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="vjs-vast-vpaid/videojs.vast.vpaid.min.css">
+    <!-- Video JS Library -->
+    <script src="//vjs.zencdn.net/5.11/video.min.js"></script>
+    <!-- Video JS VAST VPAID Plugin Library -->
+    <script type="text/javascript" src="vjs-vast-vpaid/videojs_5.vast.vpaid.min.js"></script>
+    <script type="text/javascript" src="js/viewability.js"></script>
+    <style>
+    .grey {
+        background-color: #ccc;
+    }
+    
+    .header,
+    .footer {
+        height: 10em;
+        background-color: #ADD8e6;
+    }
+    
+    .header div {
+        width: 80%;
+        margin: 0 auto;
+    }
+    
+    .header .logo {
+        width: 40%;
+        margin: 0 3%;
+        display: inline-block;
+        padding-top: 2em;
+    }
+    
+    .main {
+        width: 70%;
+        float: left;
+    }
+    
+    .right-rail {
+        width: 29%;
+        margin-left: 1%;
+        float: left;
+    }
+    
+    .right-rail .grey {
+        background-color: #aaa;
+    }
+    
+    p {
+        margin: .2em 0;
+        font-size: 5em;
+    }
+    
+    .clear {
+        clear: both;
+    }
+    
+    .block {
+        margin: 1em 0;
+        height: 8em;
+    }
+    
+    .double {
+        height: 16em;
+    }
+    /* Video JS */
+    
+    .video-js {
+        width: 100%;
+        max-width: 100%;
+    }
+    /* Headings */
+    
+    h1 {
+        font: bold 32px Helvetica, Arial, sans-serif;
+    }
+    
+    h1,
+    h1:after,
+    h1:before {
+        background: #1cb9c4;
+    }
+    
+    h2 {
+        font: bold 28px Helvetica, Arial, sans-serif;
+    }
+    
+    h2,
+    h2:after,
+    h2:before {
+        background: #008B8B;
+    }
+
+    h3 {
+        font: bold 28px Helvetica, Arial, sans-serif;
+    }
+    
+    h3,
+    h3:after,
+    h3:before {
+        background: #008B8B;
+    }
+    
+    h1,
+    h2,
+    h3 {
+        position: relative;
+        display: inline-block;
+        margin: 5px 20px;
+        padding: 0 10px;
+        text-align: center;
+        color: #ffffff;
+    }
+    
+    h1:after,
+    h2:after,
+    h3:after {
+        position: absolute;
+        left: -10px;
+        content: " ";
+        width: 15px;
+        height: 100%;
+        transform: skew(-15deg, 0deg);
+    }
+    
+    h1:before,
+    h2:before,
+    h3:before {
+        position: absolute;
+        left: -10px;
+        content: " ";
+        width: 15px;
+        height: 100%;
+        transform: skew(-15deg, 0deg);
+        left: auto;
+        right: -10px !important;
+    }
+    
+    .corners {
+        position: absolute;
+        left: -10px;
+        content: " ";
+        width: 15px;
+        height: 100%;
+        background: #1cb9c4;
+        transform: skew(-15deg, 0deg);
+    }
+    /* Media Queries */
+    
+    @media screen and (max-width: 480px) {
+        .main {
+            float: none;
+            width: 100%;
+        }
+        .right-rail {
+            float: none;
+            width: 100%;
+            margin: 0;
+        }
+        h1 {
+            font: bold 18px Helvetica, Arial, sans-serif !important;
+        }
+        h2 {
+            font: bold 14px Helvetica, Arial, sans-serif !important;
+        }
+    }
+    
+    @media screen and (min-width: 481px) and (max-width: 900px) {
+        h1 {
+            font: bold 22px Helvetica, Arial, sans-serif !important;
+        }
+        h2 {
+            font: bold 18px Helvetica, Arial, sans-serif !important;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="header grey">
+            <div>
+                <img src="img/an.png" class="logo">
+                <img src="img/vjs.png" class="logo">
+            </div>
+        </div>
+        <div class="content">
+            <div class="main" id="articleContainer">
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <h1>AutoPlay Inview Muted : MRC 50</h1>
+                <h2>Source : MP4 / Direct Asset Upload</h2>
+                <div id="an-player-direct-container">
+                    <video id="an-player" class="video-js vjs-default-skin vjs-big-play-centered vjs-16-9" controls preload="auto" poster="https://cdn.adsnative.com/media/18111/21ab554e-619d-44a3-9b94-a9b1ee7ce059.png" data-setup='{}'>
+                        <source src="https://cdn.adsnative.com/media/nw-1297/a0f82e33-c68d-45ed-aa75-a528d50c84a7.mp4" type="video/mp4"></source>
+                        <source src="//vjs.zencdn.net/v/oceans.webm" type="video/webm"></source>
+                        <source src="//vjs.zencdn.net/v/oceans.ogv" type="video/ogg"></source>
+                        <p class="vjs-no-js">
+                            To view this video please enable JavaScript, and consider upgrading to a web browser that
+                            <a href="http://videojs.com/html5-video-support/" target="_blank">
+					      supports HTML5 video
+					    </a>
+                        </p>
+                    </video>
+                </div>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <h1>AutoPlay Inview Muted : MRC 50</h1>
+                <h2>Source : 3rd Party VAST setup</h2>
+                <div id="an-player-vast-container">
+                    <!-- <video id="an-player" class="video-js vjs-default-skin vjs-big-play-centered vjs-16-9" controls preload="auto" poster="https://cdn.adsnative.com/media/18111/21ab554e-619d-44a3-9b94-a9b1ee7ce059.png" data-setup='{"plugins": {"vastClient": {"adTagUrl": "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&correlator=","adsCancelTimeout": 10000,"adsEnabled": true, "vpaidFlashLoaderPath": "vjs-vast-vpaid/VPAIDFlash.swf"}}}'> -->
+                    <video id="an-player" class="video-js vjs-default-skin vjs-big-play-centered vjs-16-9" controls preload="auto" poster="https://cdn.adsnative.com/media/18111/21ab554e-619d-44a3-9b94-a9b1ee7ce059.png" data-setup='{}'>
+                        <source src="https://cdn.adsnative.com/media/nw-1297/a0f82e33-c68d-45ed-aa75-a528d50c84a7.mp4" type="video/mp4"></source>
+                        <source src="//vjs.zencdn.net/v/oceans.webm" type="video/webm"></source>
+                        <source src="//vjs.zencdn.net/v/oceans.ogv" type="video/ogg"></source>
+                        <p class="vjs-no-js">
+                            To view this video please enable JavaScript, and consider upgrading to a web browser that
+                            <a href="http://videojs.com/html5-video-support/" target="_blank">
+					      supports HTML5 video
+					    </a>
+                        </p>
+                    </video>
+                </div>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <h1>AutoPlay Inview Muted : MRC 50</h1>
+                <h2>Source : 3rd Party VPAID setup</h2>
+                <div id="an-player-vpaid-container">
+                    <video id="an-player" class="video-js vjs-default-skin vjs-big-play-centered vjs-16-9" controls preload="auto" poster="https://cdn.adsnative.com/media/18111/21ab554e-619d-44a3-9b94-a9b1ee7ce059.png" data-setup='{}'>
+                        <source src="https://cdn.adsnative.com/media/nw-1297/a0f82e33-c68d-45ed-aa75-a528d50c84a7.mp4" type="video/mp4"></source>
+                        <source src="//vjs.zencdn.net/v/oceans.webm" type="video/webm"></source>
+                        <source src="//vjs.zencdn.net/v/oceans.ogv" type="video/ogg"></source>
+                        <p class="vjs-no-js">
+                            To view this video please enable JavaScript, and consider upgrading to a web browser that
+                            <a href="http://videojs.com/html5-video-support/" target="_blank">
+					      supports HTML5 video
+					    </a>
+                        </p>
+                    </video>
+                </div>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+            </div>
+            <div class="right-rail">
+                <div class="block grey"></div>
+                <div class="block double grey"></div>
+                <div class="block grey"></div>
+                <div class="block grey"></div>
+                <div class="block grey"></div>
+                <h3>MP4 : Click to Play</h3>
+                <div id="an-player-direct-click-container">
+                    <video id="an-player" class="video-js vjs-default-skin vjs-big-play-centered vjs-16-9" controls preload="auto" poster="https://cdn.adsnative.com/media/18111/21ab554e-619d-44a3-9b94-a9b1ee7ce059.png" data-setup='{}'>
+                        <source src="https://cdn.adsnative.com/media/nw-1297/a0f82e33-c68d-45ed-aa75-a528d50c84a7.mp4" type="video/mp4"></source>
+                        <source src="//vjs.zencdn.net/v/oceans.webm" type="video/webm"></source>
+                        <source src="//vjs.zencdn.net/v/oceans.ogv" type="video/ogg"></source>
+                        <p class="vjs-no-js">
+                            To view this video please enable JavaScript, and consider upgrading to a web browser that
+                            <a href="http://videojs.com/html5-video-support/" target="_blank">
+					      supports HTML5 video
+					    </a>
+                        </p>
+                    </video>
+                </div>
+                <div class="block grey"></div>
+                <div class="block grey"></div>
+                <div class="block grey"></div>
+                <div class="block grey"></div>
+                <div class="block grey"></div>
+                <h3>VAST : Click to Play</h3>
+                <div id="an-player-VAST-click-container">
+                    <video id="an-player" class="video-js vjs-default-skin vjs-big-play-centered vjs-16-9" controls preload="auto" poster="https://cdn.adsnative.com/media/18111/21ab554e-619d-44a3-9b94-a9b1ee7ce059.png" data-setup='{}'>
+                        <source src="https://cdn.adsnative.com/media/nw-1297/a0f82e33-c68d-45ed-aa75-a528d50c84a7.mp4" type="video/mp4"></source>
+                        <source src="//vjs.zencdn.net/v/oceans.webm" type="video/webm"></source>
+                        <source src="//vjs.zencdn.net/v/oceans.ogv" type="video/ogg"></source>
+                        <p class="vjs-no-js">
+                            To view this video please enable JavaScript, and consider upgrading to a web browser that
+                            <a href="http://videojs.com/html5-video-support/" target="_blank">
+					      supports HTML5 video
+					    </a>
+                        </p>
+                    </video>
+                </div>
+                <div class="block grey"></div>
+                <div class="block grey"></div>
+                <div class="block double grey"></div>
+                <div class="block grey"></div>
+                <div class="block double grey"></div>
+                <h3>VPAID : Click to Play</h3>
+                <div id="an-player-VPAID-click-container">
+                    <video id="an-player" class="video-js vjs-default-skin vjs-big-play-centered vjs-16-9" controls preload="auto" poster="https://cdn.adsnative.com/media/18111/21ab554e-619d-44a3-9b94-a9b1ee7ce059.png" data-setup='{}'>
+                        <source src="https://cdn.adsnative.com/media/nw-1297/a0f82e33-c68d-45ed-aa75-a528d50c84a7.mp4" type="video/mp4"></source>
+                        <source src="//vjs.zencdn.net/v/oceans.webm" type="video/webm"></source>
+                        <source src="//vjs.zencdn.net/v/oceans.ogv" type="video/ogg"></source>
+                        <p class="vjs-no-js">
+                            To view this video please enable JavaScript, and consider upgrading to a web browser that
+                            <a href="http://videojs.com/html5-video-support/" target="_blank">
+					      supports HTML5 video
+					    </a>
+                        </p>
+                    </video>
+                </div>
+                <div class="block grey"></div>
+                <div class="block double grey"></div>
+                <div class="block grey"></div>
+                <div class="block double grey"></div>
+                <div class="block grey"></div>
+                <div class="block double grey"></div>
+                <div class="block grey"></div>
+                <div class="block grey"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="footer grey"></div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>
+        var IVA_CheckViewabilityInterval;
+        $(document).ready(function() {
+            // check every 100 milliseconds to see if the player is in view
+            // AUTOPLAY PLAYERS
+            var anVjsDirectPlayerContainer = document.querySelector("#an-player-direct-container"),
+                anDirectPlayer = anVjsDirectPlayerContainer.querySelector('#an-player'),
+                anVjsDirectPlayer = videojs(anDirectPlayer);
+
+            var anVjsVASTPlayerContainer = document.querySelector("#an-player-vast-container"),
+                anVASTPlayer = anVjsVASTPlayerContainer.querySelector('#an-player'),
+                anVjsVASTPlayer = videojs(anVASTPlayer);
+
+            var anVjsVPAIDPlayerContainer = document.querySelector("#an-player-VPAID-container"),
+                anVPAIDPlayer = anVjsVPAIDPlayerContainer.querySelector('#an-player'),
+                anVjsVPAIDPlayer = videojs(anVPAIDPlayer);
+
+			// CLICK TO PLAY PLAYERS
+            var anVjsDirectClickPlayerContainer = document.querySelector("#an-player-direct-click-container"),
+                anDirectClickPlayer = anVjsDirectClickPlayerContainer.querySelector('#an-player'),
+                anVjsDirectClickPlayer = videojs(anDirectClickPlayer);
+
+            var anVjsVASTClickPlayerContainer = document.querySelector("#an-player-vast-click-container"),
+                anVASTClickPlayer = anVjsVASTClickPlayerContainer.querySelector('#an-player'),
+                anVjsVASTClickPlayer = videojs(anVASTClickPlayer);
+
+            var anVjsVPAIDClickPlayerContainer = document.querySelector("#an-player-VPAID-click-container"),
+                anVPAIDClickPlayer = anVjsVPAIDClickPlayerContainer.querySelector('#an-player'),
+                anVjsVPAIDClickPlayer = videojs(anVPAIDClickPlayer);
+
+            // Setup VAST Plugins
+            var vastUrl = "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&correlator=" + Math.floor((Math.random() * 10000) + 1);
+            var vastOptions = {
+            	adCancelTimeout: 10000,
+            	adsEnabled: true,
+            	adTagUrl: vastUrl
+            };
+            setupAdsPlugin(anVjsVASTPlayer, vastOptions);
+            vastUrl = "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&correlator=" + Math.floor((Math.random() * 10000) + 1);
+            vastOptions = {
+            	adCancelTimeout: 10000,
+            	adsEnabled: true,
+            	adTagUrl: vastUrl
+            };
+            setupAdsPlugin(anVjsVASTClickPlayer, vastOptions);
+
+            // Setup VPAID Plugins
+            var vpaidUrl = "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dlinearvpaid&correlator=" + Math.floor((Math.random() * 10000) + 1);
+            var vpaidOptions = {
+            	adCancelTimeout: 10000,
+            	adsEnabled: true,
+            	adTagUrl: vpaidUrl
+            };
+            setupAdsPlugin(anVjsVPAIDPlayer, vpaidOptions);
+            vpaidUrl = "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dlinearvpaid&correlator=" + Math.floor((Math.random() * 10000) + 1);
+            vpaidOptions = {
+            	adCancelTimeout: 10000,
+            	adsEnabled: true,
+            	adTagUrl: vpaidUrl
+            };
+            setupAdsPlugin(anVjsVPAIDClickPlayer, vpaidOptions);
+
+            IVA_CheckViewabilityInterval = setInterval(function() {
+            	// Autoplay Inview
+                _checkIVAViewability(anVjsDirectPlayerContainer, anVjsDirectPlayer);
+                _checkIVAViewability(anVjsVASTPlayerContainer, anVjsVASTPlayer);
+                _checkIVAViewability(anVjsVPAIDPlayerContainer, anVjsVPAIDPlayer);
+            }, 200);
+        });
+
+        function isElementInViewport(el) {
+            // Original solution from http://stackoverflow.com/a/7557433/5628
+            // Mod:  Return true if el is 50% in view port.
+            var rect = el.getBoundingClientRect();
+
+            var area = rect.height * rect.width;
+            var inview_height = Math.min(rect.height, rect.bottom, (window.innerHeight || document.documentElement.clientHeight) - rect.top);
+            var inview_width = Math.min(rect.width, rect.right, (window.innerWidth || document.documentElement.clientWidth) - rect.left);
+
+            var inview_area = inview_height * inview_width;
+            return ((inview_area / area) >= 0.5);
+        };
+
+        var publisher = 'adsnative',
+            inView = false;
+
+        function _checkIVAViewability(playerContainer, player) {
+            if (playerContainer && isElementInViewport(playerContainer)) {
+                // console.log('Video scrolled in 50%');
+                // Play video
+                if (!inView) {
+                    if (player.paused()) {
+                        player.muted(true); // mute the volume
+                        player.play(); // play video
+                        inView = true;
+                    }
+                }
+            } else {
+                // console.log('Video scrolled out 50%');
+                if (inView) {
+                    if (!player.paused()) {
+                        player.pause();
+                        inView = false;
+                    }
+                }
+            }
+        }
+
+        function setupAdsPlugin(player, options) {
+            // Setup VAST Player
+            var pluginSettings = {
+                playAdAlways: true,
+                adCancelTimeout: options.adCancelTimeout || 3000,
+                adsEnabled: !!options.adsEnabled,
+                vpaidFlashLoaderPath: 'vjs-vast-vpaid/VPAIDFlash.swf'
+            };
+
+            if (options.adTagUrl) {
+                pluginSettings.adTagUrl = options.adTagUrl;
+            }
+
+            if (options.adTagXML) {
+                pluginSettings.adTagXML = options.adTagXML;
+            }
+
+            var vastAd = player.vastClient(pluginSettings);
+
+            player.on('reset', function() {
+                if (player.options().plugins['ads-setup'].adsEnabled) {
+                    vastAd.enable();
+                } else {
+                    vastAd.disable();
+                }
+            });
+
+            player.on('vast.aderror', function(evt) {
+                var error = evt.error;
+
+                if (error && error.message) {
+                    console.log(error.message);
+                }
+            });
+        }
+
+        </script>
+    </div>
+</body>
+
+</html>
