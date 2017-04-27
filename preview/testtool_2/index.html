@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Adsnative_preview tool</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:500' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="an-layout">
+        <header class="an-layout-header">
+            <div class="header"> Ad Gallery </div>
+        </header>
+        <main class="an-layout-content">
+
+            <div class="an-layout-stage viant">
+                <div class="slide-container viant" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); width: 300%; transform: translateX(0%);">
+                    <div class="slide" id = "viant_first" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
+                        <img src="iphone6.png" />
+                    </div>
+                    <div class="slide" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
+                        <img src="mac.png" />
+                    </div>
+                    <div class="slide" id = "viant_last" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
+                        <img src="logo_disqus.png" />
+                    </div>
+                </div>
+                <div class="prev-next-button previous">
+                    <svg viewbox="0 0 100 100">
+                        <path class="arrow" d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z" transform=" translate(20,0)">
+                    </svg>
+                </div>
+                <div class="prev-next-button next">
+                    <svg viewbox="0 0 100 100">
+                        <path class="arrow" d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z " transform="translate(85,100) rotate(180) ">
+                    </svg>
+                </div>
+            </div>
+
+            <div class="an-layout-stage edmodo">
+
+                <div class="slide-container edmodo" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); width: 300%; transform: translateX(0%);">
+                    <div class="slide" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
+                        <img src="logo_edmodo.png" />
+                    </div>
+                    <div class="slide" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
+                        <img src="mac.png" />
+                    </div>
+                    <div class="slide" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
+                        <img src="iphone6.png" />
+                    </div>
+                </div>
+                <div class="prev-next-button previous">
+                    <svg viewbox="0 0 100 100">
+                        <path class="arrow" d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z" transform=" translate(15,0)">
+                    </svg>
+                </div>
+                <div class="prev-next-button next">
+                    <svg viewbox="0 0 100 100">
+                        <path class="arrow" d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z " transform="translate(85,100) rotate(180) ">
+                    </svg>
+                </div>
+
+
+            </div>
+            <div class="an-layout-stage disqus">
+                <div class="slide-container disqus" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); width: 300%; transform: translateX(0%);">
+                    <div class="slide" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
+                        <img src="logo_disqus.png" />
+                    </div>
+                    <div class="slide" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
+                        <img src="mac.png" />
+                    </div>
+                    <div class="slide" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
+                        <img src="iphone6.png" />
+                    </div>
+                </div>
+                <div class="prev-next-button previous">
+                    <svg viewbox="0 0 100 100">
+                        <path class="arrow" d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z" transform=" translate(15,0)">
+                    </svg>
+                </div>
+                <div class="prev-next-button next">
+                    <svg viewbox="0 0 100 100">
+                        <path class="arrow" d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z " transform="translate(85,100) rotate(180) ">
+                    </svg>
+                </div>
+            </div>
+            <div class="an-layout-stage axios">
+                <div class="slide-container axios" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); width: 300%; transform: translateX(0%);">
+                    <div class="slide" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
+                        <img src="logo_axios.jpeg" />
+                    </div>
+                    <div class="slide" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
+                        <img src="mac.png" />
+                    </div>
+                    <div class="slide" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
+                        <img src="iphone6.png" />
+                    </div>
+                </div>
+                <div class="prev-next-button previous">
+                    <svg viewbox="0 0 100 100">
+                        <path class="arrow" d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z" transform=" translate(15,0)">
+                    </svg>
+                </div>
+                <div class="prev-next-button next">
+                    <svg viewbox="0 0 100 100">
+                        <path class="arrow" d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z " transform="translate(85,100) rotate(180) ">
+                    </svg>
+                </div>
+            </div>
+            <div class="an-layout-stage newsmax">
+                <div class="slide-container newsmax" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); width: 300%; transform: translateX(0%);">
+                    <div class="slide" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
+                        <img src="logo_newsmax.jpg" />
+                    </div>
+                    <div class="slide" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
+                        <img src="mac.png" />
+                    </div>
+                    <div class="slide" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
+                        <img src="iphone6.png" />
+                    </div>
+                </div>
+                <div class="prev-next-button previous">
+                    <svg viewbox="0 0 100 100">
+                        <path class="arrow" d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z" transform=" translate(15,0)">
+                    </svg>
+                </div>
+                <div class="prev-next-button next">
+                    <svg viewbox="0 0 100 100">
+                        <path class="arrow" d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z " transform="translate(85,100) rotate(180) ">
+                    </svg>
+                </div>
+            </div>
+            <div class="an-layout-stage advancenative">
+                <!-- <div class="slide-container" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); width: 300%; transform: translateX(0%);">
+                    <div class="slide" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
+                        <img src="logo_advancenative.png"/>
+                    </div>
+                    <div class="slide" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
+                        <img src="mac.png" />
+                    </div>
+                    <div class="slide" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
+                        <img src="iphone6.png" />
+                    </div>
+                </div>
+                <div class="prev-next-button previous">
+                    <svg viewbox="0 0 100 100">
+                        <path class="arrow" d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z" transform=" translate(15,0)">
+                    </svg>
+                </div>
+                <div class="prev-next-button next">
+                    <svg viewbox="0 0 100 100">
+                        <path class="arrow" d="M 50,0 L 60,10 L 20,50 L 60,90 L 50,100 L 0,50 Z " transform="translate(85,100) rotate(180) ">
+                    </svg>
+                </div> -->
+            </div>
+            <div class="an-page-tiles">
+                <section class="tiles">
+                    <div class="tiles_container">
+                        <div class="contentTilesElement" style="display: inline-block" data-client='viant'>
+                            <div class="contentElement" id="viant">
+                                <a class="an-bar">
+                                    <div class="pubName">
+                                        <p> viantinc</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- contentTilesElement -->
+                        <div class="contentTilesElement" style="display: inline-block" data-client='edmodo'>
+                            <div class="contentElement" id="edmodo">
+                                <a class="an-bar">
+                                    <div class="pubName">
+                                        <p> Edmodo</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- contentTilesElement -->
+                        <div class="contentTilesElement" style="display: inline-block;" data-client='disqus'>
+                            <div class="contentElement" id="disqus">
+                                <a class="an-bar">
+                                    <div class="pubName">
+                                        <p> Disqus</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- contentTilesElement -->
+                        <div class="contentTilesElement" style="display: inline-block;" data-client='axios'>
+                            <div class="contentElement" id="axios">
+                                <a class="an-bar">
+                                    <div class="pubName">
+                                        <p> Axios</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- contentTilesElement -->
+                        <div class="contentTilesElement" style="display: inline-block;" data-client='newsmax'>
+                            <div class="contentElement" id="newsmax">
+                                <a class="an-bar">
+                                    <div class="pubName">
+                                        <p> Newsmax</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- contentTilesElement -->
+                        <div class="contentTilesElement" style="display: inline-block;" data-client='advancenative'>
+                            <div class="contentElement" id="advancenative">
+                                <a class="an-bar">
+                                    <div class="pubName">
+                                        <p> AdvanceNative</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- contentTilesElement -->
+                    </div>
+                    <!-- end of tiles_container" -->
+                </section>
+            </div>
+        </main>
+    </div>
+    <script src="myScript.js"></script>
+    <!--end of an-layout-container -->
+</body>
+
+</html>
