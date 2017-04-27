@@ -222,21 +222,26 @@
                     <div class="header">
                         <img src="https://assets.edmodo.com/one-eye/logo-eb8f69bccb3cb77a8b7534f841aab69e.png" class="logo">
                         <div class="text">
-                            <p class="edmodo-branding">Sponsored</p>
-                            <p class="promoted-prefix"></p>
+                            <p class="edmodo-branding">Edmodo</p>
+                            <p class="promoted-prefix">Sponsored</p>
                         </div>
                     </div>
                     <div class="ad-message">
-                        <p>This sponsored content keeps Edmodo free and accessible to learners everywhere.</p>
+                        <p>Edmodo’s mission is to connect all learners with the people and resources they need to meet their full potential - always &amp; forever free.</p>
                     </div>
                 </div>
-                <!--/* Criteo Asynchronous JavaScript tag START */-->
-                <iframe src='http://cas.criteo.com/delivery/afr.php?zoneid=749884' framespacing='0' frameborder='no' scrolling='no' width='300' height='250'> 
-                    <a href='http://cas.criteo.com/delivery/ck.php?cb=[[CACHEBUSTER]]' target='_blank'> 
-                        <img src='http://cas.criteo.com/delivery/avw.php?zoneid=749884' border='0' alt='' /> 
-                    </a> 
-                </iframe>
-                <!--/* Criteo Asynchronous JavaScript tag START */-->
+                <script type="text/javascript">
+                window.edmodoNoAdFill = function(partner) {
+                    var position = 'in-feed';
+                    if (window && window._an_adNoFill) window._an_adNoFill(partner);
+                    console.log('NO Ad received by OpenX Display Tag for ' + position);
+                    if (AnEdmodo && AnEdmodo.resizeIABContainer) {
+                        AnEdmodo.resizeIABContainer(position, 0, 0);
+                    }
+                }
+                </script>
+                <script type="text/javascript" src=" https://ads.superawesome.tv/v2/ad.js?placement=33862&test=true"></script> 
+                <!--/* OpenX Asynchronous JavaScript tag END */-->
             </div>
         </div>
     </div>

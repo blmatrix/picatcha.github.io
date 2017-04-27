@@ -1,7 +1,7 @@
 (function( AnEdmodo ) {
     // position : in-feed / right-rail
     // floatType : lead-gen / content-ad
-    var integration_version = 1.03,
+    var integration_version = 1.05,
         parentDomain = document.referrer.split('/'),
         debug = false,
         iabResized = false;
@@ -48,7 +48,12 @@
             // No Ad returned (0x0) : Hide the ad container
             var adUnit = document.querySelector('.str-adunit');
             if(adUnit) {
-                hideAd(adUnit, position);
+                var adUnitConfig = {
+                    adData: null,
+                    position: position,
+                    floatType: 'iab-ad'
+                };
+                hideAd(adUnit, adUnitConfig);
             }
         } else {
             // For in-feed : Check if screen is in mobile, to add additional height due to vertical aligned design
@@ -198,7 +203,7 @@
                 e.stopPropagation();
                 edLog('User clicked Hide Ad option');
                 
-                hideAd(adUnit, adUnitConfig.position);
+                hideAd(adUnit, adUnitConfig);
             });
         }
 
@@ -266,14 +271,14 @@
         }
     }
 
-    function hideAd(adUnit, position) {
+    function hideAd(adUnit, adUnitConfig) {
         adUnit.style.display = "none";
 
         // POST : Notify edmodo about hide ad
         if(parent && parent.postMessage) {
             var hideAdPayload = {
                 action: "ads-native:hide",
-                adPosition: position
+                adPosition: (adUnitConfig.position) ? adUnitConfig.position : null
             }
             edLog('sending postmessage with hide ad payload', hideAdPayload);
             parent.postMessage(hideAdPayload, parentDomain);

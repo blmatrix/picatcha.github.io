@@ -1,20 +1,109 @@
-<!DOCTYPE html>
 <html>
+
 <head>
-	<title></title>
 </head>
-<body>>
-	<div id="container1"></div>
-	<div id="container2">
-		
-		<script>
-		    var _AdsNativeOpts = {
-		    	apiKey: "tuEaUpzOS52zlevn2pzMttW6fc1v7BXgDFSmaG8Y"
-		    }
-		</script>
-		<script type="text/javascript" src="//static.adsnative.com/static/js/render.v1.js"></script>
-		
-	</div>
-	<div id="container3"></div>
+
+<body>
+    <style type="text/css">
+    .main-card {
+        border: 1px solid #e2e2e2;
+        height: 210px;
+        margin-bottom: 8px;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    
+    .main-img {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    
+    .ngHalf.ngLeftImg {
+        vertical-align: top;
+        font-family: 'HelveticaNeue Reg', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        text-align: left;
+        width: 50%;
+        font-weight: normal;
+    }
+    
+    .ngTextContainer {
+        height: 210px;
+        position: relative;
+    }
+    
+    .ngTitle {
+        font-size: 22px;
+        line-height: 26px;
+        overflow: hidden;
+        color: #3D8901;
+        padding: 5px 0px 0px 7px;
+    }
+    
+    .ngText {
+        font-size: 14px;
+        line-height: 18px;
+        padding-top: 10px;
+        overflow: hidden;
+    }
+    
+    .ngFooter {
+        font-size: 13px;
+        padding-top: 7px;
+        color: #3D8901;
+        padding: 5px 0px 0px 7px;
+    }
+    
+    .ngBrand {
+        right: 10px;
+        font-size: 14px;
+        position: absolute;
+        bottom: 5px;
+        color: #3D8901;
+    }
+
+    .ngImg {
+        width: 362px;
+        height: 210px;
+    }
+    </style>
+    <div align="left" class="ngTd">
+        <table class="main-card" border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tbody>
+                <tr>
+                    <td style="vertical-align: top;">
+                        <table class="main-img" width="100%" cellpadding="0" cellspacing="0">
+                            <tbody>
+                                <tr>
+                                    <th class="ngHalf ngLeftText" align="center">
+                                    {{ creative_media(a=false, class="ngImg", resize=false) }}
+                                    </th>
+                                    <th class="ngHalf ngLeftImg" align="center">
+                                        <div>
+                                            <div class="ngTextContainer">
+                                                <div class="ngTitle"> {{ creative_title(a=false) }} </div>
+                                                <div class="ngText"> {{ creative_description(a=false) }}</div>
+                                                <div class="ngFooter"> Read more </div>
+                                                <div class="ngBrand">{{ brand_title(a=false) }}</div>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="N2UzdoSpacVZ9lLhcIpKHywQG45S9gOs1sEx-hwE"></div>
+    <script type="text/javascript">
+        var _AdsNativeOpts = {
+            apiKey: 'N2UzdoSpacVZ9lLhcIpKHywQG45S9gOs1sEx-hwE',
+        };
+    </script>
+    <script type="text/javascript" src="//static.adsnative.com/static/js/render.v1.js"></script>
+</script>
 </body>
+
 </html>

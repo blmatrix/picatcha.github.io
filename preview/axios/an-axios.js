@@ -1,6 +1,10 @@
+// http://stackoverflow.com/questions/14573223/set-cookie-and-get-cookie-with-javascript
+// https://plainjs.com/javascript/styles/get-and-set-scroll-position-of-an-element-26/
+// https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+
 (function(AnAxios) {
 
-    var integration_version = 4.2,
+    var integration_version = 4.8,
         topInfeedPlacement = null,
         bottomInfeedPlacement = null,
         widgetContainerCount = 0,
@@ -21,6 +25,7 @@
             peerStoryItems: [],
             placements: []
         },
+        adContainerPrefix = 'ad-container-',
         debug = false;
 
     // AJAX loading new 10 stories
@@ -31,6 +36,10 @@
 
     // Public Methods
     AnAxios.initAdUnits = function() {
+        if(currentAllStories) {
+            Axlog('Previous story count on page : ' + (currentAllStories) ? currentAllStories.length : 0 + ' . Current story count after ajax loaded-more-posts event : ' + document.querySelectorAll('.content__main .axios-post').length);
+        }
+        
         currentAllStories = document.querySelectorAll('.content__main .axios-post');
 
         newsletterName = getNewsletterName();
@@ -61,6 +70,9 @@
                     case 'health-care':
                         placementId = "RwrWRlt2YQfmPPTrHr0VM1J4ipsmIgCZdeQTeskq";
                         break;
+                    case 'smarter-faster':
+                        placementId = "EczO2h52F16zcAn7z9KsZ9U4XbLC4JsF8LNHOiGL";
+                        break;
                     default:
                         placementId = "dqbpjCQilAeKkaWaOs8hiMSzkFPMZ5sHYrJZlBjS";
                         Axlog('ERROR : valid channel name not found');
@@ -74,10 +86,11 @@
 
                 // Loop and process story items based on repeat frequency
                 if(processedStories < currentAllStories.length - adRepeatFrequency) {
-                    // Suffient stories left unprocessed to insert an add at adRepeatFrequency
+                    // Suffient stories left unprocessed to insert an AD at adRepeatFrequency
+                    Axlog('Ad insertion loop starts : processedStories = ' + processedStories + ' | currentAllStories = ' + currentAllStories.length);
 
                     // Example : firstAdPosition : 3 : repeatFrequency : 4 : currentAllStories : 12
-                    for(var i = processedStories; i < currentAllStories.length; i++) {
+                    for(var i = processedStories + 1; i < currentAllStories.length; i++) {
                         // first the repeat frequency story item and use it as peerStory for insertBefore
                         if((i - (firstAdPosition - 1)) % adRepeatFrequency === 0 && (i - (firstAdPosition - 1)) !== 0) {
                             processQueue.peerStoryItems.push(currentAllStories[i]);
@@ -85,6 +98,7 @@
 
                             // Move processed pointer
                             processedStories = i;
+                            Axlog("Adding peer story to insertBefore @ index : " + i + " | processedStories : " + processedStories + " | processQueue : " + processQueue.peerStoryItems.length, currentAllStories[i]);
                         }
                     }
                     
@@ -97,8 +111,10 @@
     }
 
     function processNextPlacement() {
+        Axlog('processNextPlacement invoked')
         if((processQueue.peerStoryItems.length - 1) > currentAdIndex) {
             currentAdIndex++;
+            Axlog('Found peerStory in queue, inserting ad container & fetching ad for currentAdIndex : ' + currentAdIndex);
             fetchWebAdNew(processQueue.placements[currentAdIndex], processQueue.peerStoryItems[currentAdIndex]);
         }
     }
@@ -120,10 +136,16 @@
                 }
             }
 
-            placement.fetchAd(function(adReturned, adData) {
+            Axlog('Placement ID : before fetch : ' + adIndex);
+            placementObj.fetchAd(function(adReturned, adData) {
                 if (adReturned) {
+                    Axlog('Placement ID : after fetch : ' + adIndex);
                     // Get the custom fields from first ad placement and reuse for others.
                     if(!adIndex) {
+                        if(!adData.customFields) {
+                            adData = (placementObj.callbackData && placementObj.callbackData.networks) ? placementObj.callbackData.networks[0] : null;
+                        }
+
                         if(typeof adData.customFields.first_ad_pos !== 'undefined') firstAdPosition = parseInt(adData.customFields.first_ad_pos);
                         if(typeof adData.customFields.repeat_frequency !== 'undefined') adRepeatFrequency = parseInt(adData.customFields.repeat_frequency);
                         if(typeof firstAdPosition === 'undefined') firstAdPosition = 3;
@@ -139,7 +161,7 @@
                                 // Break title into title+imageCaption
                                 var adSlots = document.querySelectorAll('.promotedSlot');
                                 adContainer = adSlots[adSlots.length-1];
-                                addClass(adContainer, getAdContainerIdentifier(adIndex));
+                                addClass(adContainer, adContainerPrefix + adIndex);
                                 if(adContainer) {
                                     titleContainer = adContainer.querySelector('.widget__headline');
                                     if(titleContainer) {
@@ -170,8 +192,6 @@
                                                 // Hide the container
                                                 sponsoredContainer.style.display = 'none';
                                                 Axlog('Removing brand name and logo for content promotion on site. Placement index : ' + adIndex);
-                                            } else {
-                                                Axlog('Advertiser Sponsored on site : ' + adIndex);
                                             }
                                         }
                                     }
@@ -197,6 +217,8 @@
             }, fetchOptions);
 
         })(currentAdIndex, peerStory, placement);
+
+        Axlog('Placement ID : fetch start : ' + currentAdIndex);
     }
 
     // Render the DIV container at the right position for placement to be rendered.
@@ -204,7 +226,7 @@
         var adContainer = document.createElement('div'),
             adContainerRendered = false;
 
-        adContainer.id = getAdContainerIdentifier(placementIndex);
+        adContainer.id = adContainerPrefix + placementIndex;
 
         // Determine Top ad container position 
         if(!placementIndex) {
@@ -316,10 +338,6 @@
         callback(adContainer, adContainerRendered);
     }
 
-    function getAdContainerIdentifier(adIndex) {
-        return 'ad-container-' + adIndex;
-    }
-
     function renderWebEmailAd(posIndex, newsletterName) {
         Axlog("Rendering "+newsletterName+" web placement at position : "+posIndex);
 
@@ -373,6 +391,8 @@
     // Pass those values to JS API to fetch the exact same campaign/creative to be rendered
     // Change the top Ad (First Ad) position to 1 in the feed
     function updateSocialLinks(actionTrackingUrls, adUnit) {
+        if(!actionTrackingUrls || !adUnit) return;
+
         var title, summary, clickUrl, cid, crid;
 
         linkElem = adUnit.querySelector('.widget__headline .adsnative-icon-external-link');
@@ -384,6 +404,13 @@
         clickUrl = getParameterByName('url', clickUrl);
 
         if(clickUrl) {
+            // Bucket users to campaign specific audience segment
+            var campaignAudienceSegment = getParameterByName('c_audience_segment', clickUrl);
+            if(campaignAudienceSegment) {
+                Axlog('Received : c_audience_segment = ' + campaignAudienceSegment);
+                dropANSegmentPixel(campaignAudienceSegment);
+            }
+
             cid = getParameterByName('cid', clickUrl);
             crid = getParameterByName('crid', clickUrl);
 
@@ -404,7 +431,6 @@
         if(linkedIn) linkedIn.href += encodeURIComponent(clickUrl);
         if(copyClip) copyClip.setAttribute('data-clipboard-text', clickUrl);
 
-        console.log('clipboard link : ', clickUrl);
         // Track custom actions
         trackCustomAction(fb, actionTrackingUrls.facebook_share[0], function() {
             Axlog('facebook_share custom action tracked');
@@ -546,6 +572,16 @@
         }
     };
 
+    function dropANSegmentPixel(segmentToken) {
+        if (undefined != typeof segmentToken && segmentToken) {
+            var pxl = document.createElement('img');
+            pxl.src = "https://pdb.adsnative.com/seg.gif?segment_token=" + segmentToken;
+            pxl.width = pxl.height = 0;
+            document.body.appendChild(pxl);
+            Axlog('Dropped audience pixel for segment : ' + segmentToken);
+        }
+    };
+
     function hasClass(el, className) {
       if (el.classList)
         return el.classList.contains(className)
@@ -584,5 +620,6 @@
         debug = true;
         Axlog('Loaded an-axios.js version : ', integration_version);
     }
+
 
 }(window.AnAxios = window.AnAxios || {}));
