@@ -4,6 +4,7 @@ body {
     bottom: 0;
     right: 0;
     left: 0;
+    margin: 0px;
 }
 
 
@@ -26,9 +27,18 @@ body {
 
 .header {
     color: white;
-    margin-left: 6%;
+    margin-left: 1%;
     font-size: 20px;
-    padding-top: 10px;
+    padding-top: 20px;
+    display: block;
+    position: relative;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    font-weight: 400;
+    box-sizing: border-box;
 }
 
 .an-page-content {
@@ -66,7 +76,7 @@ body {
 .tiles {
     display: block;
     position: relative;
-    width: 570px;
+    /*width: 570px;*/
 }
 
 .tiles_container {
@@ -130,11 +140,11 @@ body {
 }
 
 #axios {
-    background-image: url(logo_axios.jpeg);
+    background-image: url(logo_axios.png);
 }
 
 #newsmax {
-    background-image: url(logo_newsmax.jpg);
+    background-image: url(logo_newsmax.png);
 }
 
 #disqus {
@@ -144,6 +154,40 @@ body {
 #advancenative {
     background-image: url(logo_advancenative.png);
 }
+
+#viber {
+    background-image: url(logo_viber.png);
+}
+
+#pocket {
+    background-image: url(logo_pocket.png);
+}
+
+#politico {
+    background-image: url(logo_politico.png);
+}
+
+#medium {
+    background-image: url(logo_medium.png);
+}
+
+#nuzzel {
+    background-image: url(logo_nuzzel.png);
+}
+
+#cafemedia {
+    background-image: url(logo_cafemedia.png);
+}
+
+
+
+
+
+
+
+
+
+
 
 .an-layout-stage.show {
     display: block;
@@ -198,4 +242,15 @@ img {
 
 .arrow {
     fill: #333;
+}
+
+
+
+.an-layout-stage{
+    display:none;
+}
+
+
+.msg{
+    display:none;
 }

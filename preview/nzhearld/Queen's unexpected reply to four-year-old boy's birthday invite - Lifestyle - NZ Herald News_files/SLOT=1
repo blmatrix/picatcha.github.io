@@ -1,0 +1,16 @@
+document.writeln("<div class=\"article\" style=\"display:none;\"> ");
+document.writeln("<a class=\"articleInner\" href=\"http://data.apn.co.nz/apnnz/adclick/FCID=69563/SITE=NZH/NW=NZMEP/AREA=SEC.LIFESTYLE.STY/CHA=LIFESTYLE/SS=LIFESTYLE/S1=ROYALTY/S2=SPOTLIGHT/S3=NONE/S4=NONE/S5=NONE/HB=LIFESTYLE._._._._/SCW=1280/SCH=800/WLOC=NONE/WH=20/WL=15/WC=FEW_SHOWERS/VT=NONE/VV=NONE/VP=NONE/SEGMENT=LIGHT//UT=0/SIZE=NATIVE/SA=3/LO=ARTICLEH1/RANDOM=2021762250/VIEWID=67831374210/KEYWORD=QUEEN+UNEXPECTED+REPLY+FOUR+YEAR+OLD+BOY+BIRTHDAY+INVITE+ROYALTY+SPOTLIGHT+INVITED+ELIZABETH+II+TH+PARTY+RECEIVED+SHAAN+DULAY+PLANNING+JUNE+ASKED+MOTHER+BALJINDER+ORGANISE+MAJESTY+ATTEND+BUSY+BUCKINGHAM+PALACE+SUGGESTED+COME/SLOT=1\" style=\"display:none;\">");
+document.writeln("<h3 style=\"display:none;\">blank</h3>");
+document.writeln("<h4 style=\"display:none;\" class=\"sponsoredStory\">Sponsored Story</h4>									");
+document.writeln("</a>");
+document.writeln("</div>");
+document.writeln("<script type=\"text/javascript\">");
+document.writeln("function ccit(l, auds, k) { if (typeof(auds) != \"undefined\") for (var i = 0; i < auds.length; i++) l.push(auds[i][k]); }");
+document.writeln("function ccauds(auds) { var l=[];");
+document.writeln("if (typeof(auds) != \"undefined\" && typeof(auds.Profile) != \"undefined\" && typeof(auds.Profile.Audiences) != \"undefined\")");
+document.writeln("ccit(l, auds.Profile.Audiences.Audience, \"abbr\");");
+document.writeln("var tags = l.join(\",\"); var url = \"<img width='1' height='1' src='http://data.apn.co.nz/apnnz/settag/name=lotame/tags=\" + tags +\"'>\";");
+document.writeln("document.write(url); }");
+document.writeln("</script>");
+document.writeln("<script type=\"text/javascript\" src=\"http://ad.crwdcntrl.net/5/c=5304/pe=y/callback=ccauds\">");
+document.writeln("</script>");

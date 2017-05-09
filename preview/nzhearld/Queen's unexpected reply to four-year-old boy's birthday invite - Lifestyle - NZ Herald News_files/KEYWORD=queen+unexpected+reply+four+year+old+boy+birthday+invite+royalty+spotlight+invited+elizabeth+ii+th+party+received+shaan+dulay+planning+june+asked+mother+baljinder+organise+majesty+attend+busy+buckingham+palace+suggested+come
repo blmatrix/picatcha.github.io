@@ -1,0 +1,259 @@
+<!--Begin JSERVER Skip-->
+
+// console.log('nc 10.1');
+
+//ntv_spot value of "0" will be prepended to the top, "-1" will be appended to the bottom
+
+var ntv_cfg = {
+	'HP': {
+		'ntv_cont': [{
+			ntv_par: ".c_id698",
+			ntv_kid: ".bkt02",
+			ntv_pos: 2
+		}]
+	},
+	'OLDSEC': {
+		'ntv_cont': [{
+			ntv_par: ".position11",
+			ntv_kid: ".article",
+			ntv_pos: 3
+		}]
+	},
+	'BUS': {
+		'ntv_cont': [{
+			ntv_par: "#headlineArticles section:first-child .articlesWrapper",
+			ntv_kid: "article",
+			ntv_pos: -1
+		}]
+	},
+	'SUBSEC': {
+		'ntv_cont': [{
+			ntv_par: "#articlesContainer",
+			ntv_kid: ".article",
+			ntv_pos: 3
+		}],
+		'ntv_ajax': "#articlesContainer .article"
+	},
+	'WATERFALL': {
+		'ntv_cont': [{
+			ntv_par: ".waterfallSection.mainContainer",
+			ntv_kid: ".headlineArticle",
+			ntv_pos: 3
+		}],
+		'ntv_ajax': ".waterfallSection.mainContainer .headlineArticle"
+	},
+	'THREECOL': {
+		'ntv_cont': [{
+			ntv_par: ".mainContainer .fullWidth div:first-child .articlesWrapper",
+			ntv_kid: "article",
+			ntv_pos: 3
+		}]
+	},
+	'TRAVEL': {
+		'ntv_cont': [{
+			ntv_par: ".mainContainer .waterfallSection",
+			ntv_kid: ".headlineArticle",
+			ntv_pos: 3
+		}],
+		'ntv_ajax': ".mainContainer .waterfallSection .headlineArticle"
+	},
+	'ARTICLEH1': {
+		'ntv_cont': [{
+			ntv_par: "#articleSidebarBkt1",
+			ntv_kid: ".article",
+			ntv_pos: -1
+		}],
+		'ntv_ajax': "#articleSidebarBkt1 .article"
+	},
+	'TRAVELARTICLE': {
+		'ntv_cont': [{
+			ntv_grand: "#sidebar",
+			ntv_par: "aside.stackedWithTitle",
+			ntv_parpos: 0,
+			ntv_kid: "article",
+			ntv_pos: -1
+		}]
+	},
+	'NGMHP': {
+		'ntv_cont': [{
+			ntv_par: ".topStories div",
+			ntv_kid: ".articleWrapper",
+			ntv_pos: 2
+		}]
+	},
+	'NGM': {
+		'ntv_cont': [{
+			ntv_par: "#headlineContainer",
+			ntv_kid: ".articleWrapper",
+			ntv_pos: 4
+		}]
+	}
+};
+
+
+var ntv_lo = 'ARTICLEH1';
+var ntv_site = 'NZH';
+var ntv_area = 'SEC.LIFESTYLE.STY';
+var ntv_path = '/SITE=NZH/NW=NZMEP/AREA=SEC.LIFESTYLE.STY/CHA=LIFESTYLE/SS=LIFESTYLE/S1=ROYALTY/S2=SPOTLIGHT/S3=NONE/S4=NONE/S5=NONE/HB=LIFESTYLE._._._._/SCW=1280/SCH=800/WLOC=none/WH=20/WL=15/WC=few_showers/VT=NONE/VV=NONE/VP=NONE/SEGMENT=light//UT=0/size=nativeContainer/SA=3/LO=ARTICLEH1/random=2021762250/viewid=67831374210/KEYWORD=queen+unexpected+reply+four+year+old+boy+birthday+invite+royalty+spotlight+invited+elizabeth+ii+th+party+received+shaan+dulay+planning+june+asked+mother+baljinder+organise+majesty+attend+busy+buckingham+palace+suggested+come';
+var ntv_loNew;
+
+
+if(ntv_site){
+	ntv_site = ntv_site.toUpperCase();
+}
+if(ntv_area){
+	ntv_area = ntv_area.toUpperCase();
+}
+
+
+
+
+ntv_lo = ntv_lo.toLowerCase();
+ntv_loNew = ntv_lo;
+ntv_loNew = ntv_loNew.toUpperCase();
+
+if (ntv_path){
+	ntv_path = ntv_path.toLowerCase();
+	ntv_path = ntv_path.replace("size=nativecontainer", "size=native");
+}
+
+if(ntv_site == 'NZHMNGM'){
+	if(ntv_loNew == 'HP'){
+		ntv_loNew = 'NGMHP';
+		ntv_path = ntv_path.replace("lo="+ntv_lo, "lo="+ntv_loNew);
+
+	}else{
+		ntv_loNew = 'NGM';
+		ntv_path = ntv_path.replace("lo="+ntv_lo, "lo="+ntv_loNew);
+
+	}
+}else if(ntv_area == 'SEC.ENTERTAINMENT.HME'){
+	ntv_loNew = 'BUS';
+	ntv_path = ntv_path.replace("lo="+ntv_lo, "lo="+ntv_loNew);
+}
+
+
+
+
+var nativecall = "";
+
+var ntv_length = ntv_cfg[ntv_loNew]['ntv_cont'].length;
+
+var ntv_scr;
+var ntv_elmArr, ntv_elPar, ntv_elTar, ntv_elPos;
+
+function addScr(a, i) {
+
+	//create the script element with adcall for src
+	ntv_scr = document.createElement("script");
+	ntv_scr.setAttribute("src", a);
+	ntv_scr.setAttribute("data-nativeslot", i+1);
+
+
+	if( ntv_cfg[ntv_loNew]['ntv_cont'][i].hasOwnProperty("ntv_grand") ){
+
+		ntv_elGrand = document.querySelector(ntv_cfg[ntv_loNew]['ntv_cont'][i].ntv_grand);
+		ntv_elPar = ntv_elGrand.querySelectorAll(ntv_cfg[ntv_loNew]['ntv_cont'][i].ntv_par)[ntv_cfg[ntv_loNew]['ntv_cont'][i].ntv_parpos];
+
+
+	}else{
+		//get the target element's Parent
+		ntv_elPar = document.querySelector(ntv_cfg[ntv_loNew]['ntv_cont'][i].ntv_par);
+	}
+
+
+	//get all Parent's Children into Array
+	ntv_elmArr = ntv_elPar.querySelectorAll(ntv_cfg[ntv_loNew]['ntv_cont'][i].ntv_kid);
+
+	//get the actual target element from the Children Array and insert jserver adcall
+	if(ntv_cfg[ntv_loNew]['ntv_cont'][i].ntv_pos == -1){
+
+
+		//--if the position is set to last
+		ntv_elTar = ntv_elmArr[ntv_elmArr.length - 1];
+		ntv_elPar.insertBefore(ntv_scr, ntv_elTar.nextSibling);
+
+	}else{
+
+		//--if the position is normal
+		ntv_elPos = ntv_cfg[ntv_loNew]['ntv_cont'][i].ntv_pos;
+		ntv_elTar = ntv_elmArr[ntv_elPos];
+		ntv_elPar.insertBefore(ntv_scr, ntv_elTar);
+
+	}
+
+}
+
+function addNative(){
+	for (i = 0; i < (ntv_length); i++) {
+		nativecall = "http://data.apn.co.nz/apnnz/jserver" + ntv_path +"/SLOT="+(i+1);
+		// console.log('nativecall: '+ nativecall);
+		addScr(nativecall, i);
+	}
+}
+
+function prepNative() {
+
+
+	if (ntv_path){
+		ntv_path = ntv_path.toUpperCase();
+		ntv_path = ntv_path.replace("SIZE=NATIVECONTAINER", "SIZE=NATIVE");
+
+
+		if(ntv_loNew == 'WATERFALL' || ntv_loNew == 'SUBSEC' || ntv_loNew == 'TRAVEL' || ntv_loNew == 'ARTICLEH1'){
+
+			var ntv_ajax;
+
+			document.body.addEventListener('DOMSubtreeModified', domChanged);
+
+			function domChanged() {
+				//console.log('domChanged');
+
+				ntv_ajax = document.body.querySelector(ntv_cfg[ntv_loNew]['ntv_ajax']);
+
+				//console.log('ajaxContentLoaded',ajaxContentLoaded);
+				//console.log('has children2 = :'+ntv_ajax.hasChildNodes());
+
+				if(typeof ajaxContentLoaded !=='undefined' && ajaxContentLoaded && ntv_ajax !== null){
+
+					//console.log('ajax condition met');
+
+					if(ntv_ajax.hasChildNodes()){
+
+						//console.log('hasChildNodes, addnative');
+						document.body.removeEventListener('DOMSubtreeModified', domChanged);
+						addNative();
+					}
+				}else if (typeof ajaxContentLoaded ==='undefined') {
+					//console.log('ajaxContentLoaded undefined');
+					document.body.removeEventListener('DOMSubtreeModified', domChanged);
+				} //--end if(ntv_ajax)
+
+			}//--end domChanged()
+
+		}//--end if(WATERFALL || SUBSEC)
+		else{
+			//console.log('addnative');
+			addNative();
+		}
+
+	}//--end if(ntv_path)
+
+};
+
+if (document.readyState != 'loading'){
+	prepNative();
+} else {
+	document.addEventListener('DOMContentLoaded', prepNative);
+}
+<!--End JSERVER Skip-->
+document.writeln("<script type=\"text/javascript\">");
+document.writeln("function ccit(l, auds, k) { if (typeof(auds) != \"undefined\") for (var i = 0; i < auds.length; i++) l.push(auds[i][k]); }");
+document.writeln("function ccauds(auds) { var l=[];");
+document.writeln("if (typeof(auds) != \"undefined\" && typeof(auds.Profile) != \"undefined\" && typeof(auds.Profile.Audiences) != \"undefined\")");
+document.writeln("ccit(l, auds.Profile.Audiences.Audience, \"abbr\");");
+document.writeln("var tags = l.join(\",\"); var url = \"<img width='1' height='1' src='http://data.apn.co.nz/apnnz/settag/name=lotame/tags=\" + tags +\"'>\";");
+document.writeln("document.write(url); }");
+document.writeln("</script>");
+document.writeln("<script type=\"text/javascript\" src=\"http://ad.crwdcntrl.net/5/c=5304/pe=y/callback=ccauds\">");
+document.writeln("</script>");

@@ -1,0 +1,47 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,figure,aside{border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;margin:0;padding:0}
+body{line-height:1;background:#fff;color:#333;font:16px/20px Helvetica, Arial, sans-serif;position:relative;text-rendering:optimizeLegibility;width:970px;margin:0 auto}
+ol,ul{list-style:none}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:none}
+:focus{outline:0}
+ins{text-decoration:none}
+del{text-decoration:line-through}
+table{border-collapse:collapse;border-spacing:0}
+@font-face{font-family:Stag-Serif-Book;src:url(/themes/1/font/StagWeb-Book.eot?#iefix) format(embedded-opentype), url(/themes/1/font/StagWeb-Book.woff) format(woff), url(/themes/1/font/StagWeb-Book.ttf) format(truetype), url(/themes/1/font/StagWeb-Book.svg#svgStag-Serif-Book) format(svg);font-weight:400}
+header,nav,footer,section,article,figure,aside{display:block}
+html{background:#fff no-repeat 50% 0 fixed}
+.clear{clear:both}
+.hiddenTitle{position:absolute;left:-9999px}
+.placeholder{color:#999}
+h3{font:bold 20px/20px Stag-Sans-Medium, Arial, sans-serif;margin:0 0 3px}
+h4{font:bold 15px/16px Stag-Sans-Medium, Arial, sans-serif;margin:0 0 2px}
+.stagSerif{font-weight:700;font-family:Stag-Serif-Medium, Arial, sans-serif!important}
+.stagSans{font-weight:700;font-family:Stag-Sans-Medium, Arial, sans-serif!important}
+.ie7 h1,.ie7 h2,.ie7 h3,.ie7 h4{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=/themes/1/img/ie/hIEfix.png,sizingMethod=crop);zoom:1}
+.ie8 h1,.ie8 h2,.ie8 h3,.ie8 h4{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=/themes/1/img/ie/hIEfix.png,sizingMethod=crop)}
+a{color:#069;cursor:pointer;text-decoration:none}
+article a:visited{color:#44216f}
+a,*{outline:none}
+a:hover,a.hover,article a:hover,article a.hover{color:#00adef}
+a:hover img,a.hover img{filter:alpha(opacity=90);opacity:0.9}
+p{margin:0 0 8px}
+em,i{font-style:italic}
+strong,b{font-weight:700}
+blockquote{clear:both;background:none;border-left:5px solid #0071ba;color:#444;font-size:17px;font-style:italic;line-height:20px;margin:20px 0;padding:0 0 0 20px}
+.blackLink{color:#333}
+.articlePage .advert{clear:both;float:right;margin:0 0 12px 20px}
+figure{margin:14px 0 12px}
+blockquote .author{display:block;font-size:16px;line-height:20px;margin:0 0 0 10px}
+.seeAlso i{color:#666;display:block;font-size:16px;font-style:normal;line-height:19px}
+.seeAlso a{font-family:Stag-Sans-Medium, Helvetica, Arial, sans-serif;font-size:20px;line-height:24px}
+#serverFoot{color:#666;font-size:12px;margin:20px 0 0}
+.articlePage .caption{border-bottom:1px dashed #ccc;color:#666;display:block;font-size:13px;line-height:17px;margin:0 0 5px;padding:10px 0}
+.comment{border-top:1px dashed #ccc;padding:10px 0}
+.commentsSection .commentText{margin:0 0 10px}
+#header,#footer,.quickread,.grb1Bkt,.ylwBkt,.adBox,#homeBar,#bbWrapper,.expandBtn,.icoPhotos,.icoVideo,.icoDocument,.mpnav,.sclnav,.vidnav,.icoComment,#latestNav,.vidOver,.galOver,.carouselNav,.gamesList,#vidBrowserWrap,.shareLinks,.OUTBRAIN,#serverFoot .floatRight,.articleSidebar,.relatedArticles,.nextBox,.detailsLarge,.tagList,#comment-form,.commentsOrdering,.commentOptions,.fullWidthTitle,.waterfallClassification{display:none!important}
+article{margin:0 0 7px}
+section{border-top:1px dashed #ddd;padding:5px 0 0}
+.hidden,.loading{display:none}
+h1,h2{color:#000;font:bold 28px/28px Stag-Serif-Medium, Arial, sans-serif;margin:0 0 4px}
+h2 a,.blackLink:hover,.blackLink .hover{color:#000}
+.seeAlso,.sectionHeader{margin:0 0 20px}
