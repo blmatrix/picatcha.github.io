@@ -1,0 +1,32 @@
+
+<!-- saved from url=(0159)http://www.nzherald.co.nz/adifrm.htm?_=5812386839&i=Banner620x100&w=1&h=1&e=%23Banner620x100%7Cwidth%3A%201px%3B%20height%3A1px%3B%20display%3A%20none%20%21%3B -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head>
+<body>
+<script>
+var a="";
+var i="";
+var w="";
+var h="";
+var e="";
+var aut="";
+	
+a = document.location.href;
+i = a.replace(/.*i=([a-zA-Z]+).*/,"$1"); //iframe id
+w = a.replace(/.*w=(\d+).*/i,"$1"); //iframe width
+h = a.replace(/.*h=(\d+).*/i,"$1"); //iframe height
+e = a.replace(/.*e=(.*)$/i,"$1"); //extraz (css)
+aut = a.replace(/.*a=(.*)$/i,"$1"); //aut json
+
+window.onload  = function() {
+	window.top.expandDiv(i,w,h); //Set the width and height of the ad div
+	//Modify some css for the ad
+	if(e != 'undefined' && e.length && e.indexOf('http://') == -1){
+		window.top.SetCss(e);
+	}
+	//render AUT Ads
+	if(aut != 'undefined' && aut.length && aut.indexOf('http://') == -1){
+		window.top.RenderAUTAds(aut,i);
+	}
+}
+</script>
+ </body></html>

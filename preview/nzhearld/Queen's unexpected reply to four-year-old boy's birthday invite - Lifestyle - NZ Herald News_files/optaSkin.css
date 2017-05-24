@@ -1,0 +1,1870 @@
+/* All references to V3 are to the 'plus' widgets */
+
+/* Global Opta styles
+----------------------------------------------------------*/
+
+	/* Opta container style */
+	.opta-widget-container,
+	.sideContainer > .opta-widget-container:first-child {
+		background: rgba(255,255,255,0.5);
+		font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+		font-size: 14px;
+		line-height: 17px;
+		margin: 0 0 20px;
+		}
+
+	/* Clear specified widget floats */
+	.opta-widget-container .clearfix:after {
+		clear: both;
+		content: ".";
+		display: block;
+		height: 0;
+		visibility: hidden;
+		}
+
+	/* Style empty container text on pages with an error or no data */
+	.opta-empty p,
+	.opta-error p,
+	.no-events {
+		margin: 10px 0;
+		text-align: center;
+		}
+
+	/* Get rid of the underline on hover */
+	.opta-widget-container a.opta-event-link.hover-effect,
+	.opta-widget-container span.match-score a.hover-effect span.match-score-home,
+	.opta-widget-container span.match-score a.hover-effect span.match-score-divider,
+	.opta-widget-container span.match-score a.hover-effect span.match-score-away,
+	.opta-widget-container .fixtures .matches span.team a.hover-effect,
+	.opta-widget-container .fixtures-plus tbody tr.scoreline.hover-effect td a,
+	.opta-widget-container .fixtures-plus tbody tr.aggregate.hover-effect td a {
+		color: #777;
+		text-decoration: none;
+	}
+
+	.opta-widget-container a,
+	.opta-widget-container a:hover,
+	.opta-widget-container a.external-link,
+	.opta-widget-container .match-snapshot a,
+	.opta-widget-container .match-score a,
+	.opta-widget-container .team a,
+	.opta-widget-container .name a,
+	.opta-widget-container .player a {
+		text-decoration: none;
+	}
+
+	.opta-widget-container fieldset {
+		margin: 0;
+		padding: 0;
+	}
+
+	.opta-widget-container h2.opta-v3 span.opta-logo,
+	.opta-widget-container .opta-logo-white {
+		background: url('http://widget.cloud.opta.net/2.0/assets/images/logos/opta-logo-white-small.png') 0 0 no-repeat;
+		float: right;
+		height: 16px;
+		margin: 10px 7px 0 0;
+		padding: 0;
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: 36px;
+	}
+
+	/* overwrite the vague classes of left and right that we shouldn't have used on NZH */
+	.opta-widget-container .left,
+	.opta-widget-container .right {
+		float: none !important;
+	}
+
+	/* global table styling */
+	.opta-widget-container thead {
+		background: #eee;
+	}
+
+		.opta-widget-container .tabs-active .tabs-content li th,
+		.opta-widget-container .light-coverage th,
+		.opta-widget-container .standings.nfl th,
+		.opta-widget-container .cricket-playerstats .tabs-container tbody th,
+		.opta-widget-container thead th {
+			background: none;
+			border: 0;
+			font-size: 12px;
+			height: auto;
+			line-height: 11px;
+			padding: 4px 1px;
+			vertical-align: middle
+		}
+
+	.opta-widget-container li {
+		font-size: 13px;
+	}
+
+	.opta-widget-container .match-linked-item a.opta-event-link {
+		color: #38b248;
+	}
+
+	.opta-widget-container tbody td {
+		text-align: left;
+	}
+
+	.opta-widget-container td.match-linked-item {
+		width: 17%;
+	}
+
+	.opta-widget-container .fixtures-plus td .relative-holder {
+		font-weight: 700;
+		padding: 0 7px;
+	}
+
+	.tpcBkt .opta-widget-container .fixtures-plus td .relative-holder {
+		padding: 0 0 0 5px;
+	}
+
+	.opta-widget-container .matchstats-lineup .lineup-coach {
+		border-radius: 0;
+	}
+
+
+/* Opta Dropdown Styling
+----------------------------------------------------------*/
+
+	.opta-widget-container select,
+	.articlePage .opta-widget-container select {
+		max-width: none;
+	}
+
+/* Opta Title Tags
+----------------------------------------------------------*/
+
+	/* Style the title of each widget */
+	.opta-widget-container h2,
+	.opta-widget-container h2.opta-v3,
+	.previousMatchesTitle {
+		background: #333;
+		border-bottom: 3px solid #38b248;
+		border-radius: 0;
+		color: #eee;
+		height: auto;
+		font: 15px/17px 'Stag-Serif-Medium', serif;
+		padding: 0;
+	}
+
+		/* and the link/span inside of it */
+		.opta-widget-container h2 > span,
+		.opta-widget-container h2 > a,
+		.opta-widget-container h2.opta-v3 > span,
+		.opta-widget-container h2.opta-v3 > a,
+		.previousMatchesTitle {
+			color: #eee;
+			display: block;
+			font-size: 15px;
+			letter-spacing: 0.4px;
+			padding: 10px 45px 10px 10px;
+		}
+
+/* Opta Title Tags - H3
+----------------------------------------------------------*/
+
+	/* Get rid of the silly background gradient, then change some colours */
+	.opta-widget-container .fixtures h3,
+	.opta-widget-container .golf h3,
+	.opta-widget-container .netball.standings.no-nav h3,
+	.opta-widget-container .ice-hockey.c_standings h3,
+	.opta-widget-container .tabs-active div.opta-dropdown span,
+	.opta-widget-container .opta-v3-h3,
+	.opta-widget-container .fixtures-plus-list tbody.grouping td,
+	.opta-widget-container .tabs-active div.opta-dropdown span,
+	.opta-widget-container .tabs-active div.opta-dropdown.active span {
+		background: #eee;
+		border: 0;
+		border-bottom: 3px solid #38b248;
+		color: #000;
+		font: 13px/25px 'Stag-Serif-Book',Georgia,serif;
+		height: auto;
+		letter-spacing: 0.4px;
+		padding: 0 10px;
+		position: relative;
+	}
+
+	dl + .opta-widget-container .fixtures h3,
+	dl + .opta-widget-container .golf h3,
+	dl + .opta-widget-container .netball.standings.no-nav h3,
+	dl + .opta-widget-container .ice-hockey.c_standings h3 {
+		margin: 5px 0 0;
+	}
+
+/* Opta Title Tags - H4
+----------------------------------------------------------*/
+
+	.opta-widget-container .fixtures h4,
+	.opta-widget-container .golf h4,
+	.opta-widget-container .chalkboard div.teams dl.starters dt,
+	.opta-widget-container .chalkboard div.personal>dl>dt,
+	.opta-widget-container .chalkboard div.events dl dt {
+		background: #eee;
+		border: 0;
+		border-radius: 0;
+		color: #000;
+		font-size: 12px;
+		font-weight: normal;
+		line-height: 14px;
+	}
+
+/* Fix for headings
+----------------------------------------------------------*/
+
+	.hiddenTitle + .optaHeading + .opta-widget-container {
+		margin-top: 7px;
+	}
+
+/* Opta Dropdown (V3)
+----------------------------------------------------------*/
+
+	.opta-widget-container .tabs-active div.opta-dropdown,
+	.opta-widget-container .fixtures-plus-list .tabs-active div.opta-dropdown {
+		background: none;
+		border: none;
+		float: none;
+		height: auto;
+		margin: 0;
+		padding: 0;
+		text-indent: 0;
+	}
+
+/* Opta Colours and Borders
+----------------------------------------------------------*/
+
+	/* remove excess borders */
+	.opta-widget-container .opta-widget,
+	.opta-widget-container .standings,
+	.opta-widget-container .standings-container,
+	.opta-widget-container .season-standings,
+	.opta-widget-container .team-container,
+	.opta-widget-container .commentary,
+	.opta-widget-container .goalreplay,
+	.opta-widget-container .comparison,
+	.opta-widget-container .optafacts,
+	.opta-widget-container .ticker,
+	.opta-widget-container .timeline,
+	.opta-widget-container .fixtures,
+	.opta-widget-container .ranking-container,
+	.opta-widget-container .stats,
+	.opta-widget-container .matchstats-teamstats-container,
+	.opta-widget-container .squad,
+	.opta-widget-container .profile,
+	.opta-widget-container .venues,
+	.opta-widget-container .actionareas,
+	.opta-widget-container .averageposition,
+	.opta-widget-container .passingcombination,
+	.opta-widget-container .formation,
+	.opta-widget-container .chalkboard,
+	.opta-widget-container .c_scorecard,
+	.opta-widget-container .teamlist-onerow,
+	.opta-widget-container .teamlist,
+	.opta-widget-container .wagonwheel,
+	.opta-widget-container .rbvis,
+	.opta-widget-container .tracking-player-breakdown,
+	.opta-widget-container .motorsport-liverace .tabs-content,
+	.opta-widget-container .news-article {
+		border: 0;
+	}
+
+	.opta-widget-container .fixtures .matches dt .match-score a {
+		padding: 1px 0;
+	}
+
+	/* change font color to black */
+	.opta-widget-container .fixtures .matches dt .match-score a.external-link,
+	.opta-widget-container .fixtures .matches dt .match-score,
+	.opta-widget-container .fixtures-plus-list td.standout,
+	.opta-widget-container .fixtures-plus-list td.standout a.external-link {
+		color: #000;
+	}
+
+	.opta-widget-container .fixtures .matches dt .match-score a.external-link:hover,
+	.opta-widget-container .fixtures-plus-list td.standout a.external-link {
+		text-decoration: none;
+	}
+
+	.opta-widget-container .fixtures .matches dt .match-score a.external-link {
+		background: #f7f7f7;
+		border: 1px solid #ddd;
+		padding: 0;
+	}
+
+	/* change border color */
+	.opta-widget-container .fixtures .match {
+		border: 0;
+		border-top: 1px solid #ddd;
+		font-size: 16px;
+	}
+
+	.opta-widget-container .fixtures .match > span {
+		font-weight: normal;
+		padding: 6px 0;
+	}
+
+	.opta-widget-container .fixtures-plus tr.scoreline > td {
+		font-weight: normal;
+		padding: 5px 4px;
+	}
+
+	.tpcBkt .opta-widget-container .fixtures-plus tr.scoreline > td {
+		padding: 5px 4px;
+	}
+
+	.opta-widget-container .fixtures .matches dt .match-score {
+		width: 18%;
+	}
+
+	.opta-widget-container .fixtures.narrow .matches dt .match-score {
+		width: 18%;
+	}
+
+	.opta-widget-container .fixtures .matches dt .home-side,
+	.opta-widget-container .fixtures .matches dt .away-side {
+		width: 34%;
+	}
+
+	.opta-widget-container .fixtures.narrow .matches dt .home-side,
+	.opta-widget-container .fixtures.narrow .matches dt .away-side {
+	 	width: 29%;
+	}
+
+
+	.opta-widget-container .fixtures .match:first-of-type {
+		border-top: 0;
+	}
+
+	.opta-widget-container .fixtures .matches dd {
+		background: #fff;
+		box-shadow: inset 0 5px 10px rgba(0,0,0,0.1);
+	}
+
+		.opta-widget-container .fixtures dd .match-details dd {
+			background: none;
+			box-shadow: none;
+		}
+
+	.chalkboard div.events dl ul li:last-child,
+	.opta-widget-container .player-career,
+	.opta-widget-container .fixtures-plus,
+	.opta-widget-container .match-summary {
+		border-radius: 0;
+	}
+
+/* Chalkboard
+----------------------------------------------------------*/
+
+	/* Correct default team key colours */
+	.opta-widget-container .chalkboard dl dt div.teamkey {
+		color: #fff;
+		text-shadow: 0 0 2px rgba(0,0,0,0.2);
+	}
+
+	/* get rid of fixed height */
+	.opta-widget-container .chalkboard.rugby.canvas-pitch .time-panel,
+	.opta-widget-container .chalkboard.rugby.canvas-pitch .button-panel,
+	.canvas-pitch .time-panel,
+	.canvas-pitch .button-panel {
+		height: auto;
+		padding-bottom: 10px;
+	}
+
+	/* and clear the float */
+	.canvas-pitch .time-panel:after,
+	.canvas-pitch .button-panel:after {
+		clear: both;
+		content: '';
+		display: block;
+	}
+
+	/* change blue timebar to green */
+	.opta-timebar .mins-15,
+	.opta-timebar .mins-5,
+	.opta-timebar .mins-1,
+	.canvas-pitch .time-line .mins-15,
+	.canvas-pitch .time-line .mins-5,
+	.canvas-pitch .time-line .mins-1 {
+		background: #38b248;
+	}
+
+	.opta-timebar .time-span,
+	.canvas-pitch .time-line-holder .time-span {
+		background: #cbebd0;
+		position: absolute;
+		top: 1px;
+	}
+
+	.canvas-pitch .time-line-holder {
+		border-left: 1px solid #ababab;
+		border-right: 1px solid #ababab;
+		box-sizing: border-box;
+		float: none;
+		margin: 0 auto;
+		position: relative;
+	}
+
+	.canvas-pitch .time-line-canvas {
+		float: none;
+	}
+
+	.canvas-pitch .time-line-gap {
+		width: 2%;
+	}
+
+	.chalkboard.rugby div.events dl ul li:hover {
+		background: #eee;
+		color: #000;
+	}
+
+
+	.opta-widget-container div.button-panel,
+	.opta-widget-container div.time-strip {
+		margin: 0;
+	}
+
+	.opta-widget-container button.toggle-heat-map,
+	.opta-widget-container button.toggle-touch-map,
+	.canvas-pitch .time-controls button {
+		background: #7d8489;
+		border: 0;
+		border-radius: 3px;
+		color: #fff;
+		cursor: pointer;
+		float: left;
+		font: bold 13px/16px 'Stag-Sans-Medium', Arial, sans-serif;
+		margin: 6px 5px 0 0;
+		padding: 6px 20px 8px;
+		text-align: center;
+		max-width: 30%;
+
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+
+	.opta-widget-container button.toggle-heat-map:first-child,
+	.opta-widget-container button.toggle-touch-map:first-child,
+	.canvas-pitch .time-controls button:first-child {
+		margin-left: 10px;
+	}
+
+	.opta-widget-container button.toggle-heat-map.map-selected,
+	.opta-widget-container button.toggle-touch-map.map-selected,
+	.opta-widget-container button.toggle-heat-map:hover,
+	.opta-widget-container button.toggle-touch-map:hover,
+	.canvas-pitch .time-controls button:hover,
+	.canvas-pitch .time-controls button.selected {
+		background: #333;
+		color: #fff;
+	}
+
+/* Manhattan Worm
+----------------------------------------------------------*/
+
+	.opta-widget-container .details {
+		color: #333;
+		font-size: 14px;
+	}
+
+	.opta-widget-container .c_scorecard.graphs p {
+		background: #38b248;
+		clear: both;
+  		color: #fff;
+		font-size: 15px;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+/* Competition Stats
+----------------------------------------------------------*/
+
+	.opta-widget-container .competitionstats .ts-stat {
+		color: #666;
+	}
+
+	.opta-widget-container .competitionstats .ts-stat-cell .ts-title {
+		background: none;
+		color: #38b248;
+	}
+
+	.opta-widget-container .competitionstats .ts-stat-cell .ts-title:after {
+		content: " >";
+	}
+
+	.opta-widget-container .competitionstats .ts-type-title,
+	.opta-widget-container .competitionstats .ts-overlay-pos,
+	.opta-widget-container .competitionstats .ts-overlay-stat {
+		color: #38b248;
+	}
+
+	.opta-widget-container ol li,
+	.opta-widget-container ul li {
+		list-style: none;
+		margin: 0;
+	}
+
+
+/* Scorecard
+----------------------------------------------------------*/
+
+	.opta-widget-container .c_scorecard .summary dl dt {
+  		color: #333;
+	}
+
+	.opta-widget-container .c_scorecard table thead th,
+	.opta-widget-container .c_scorecard table.minor thead th,
+	.opta-widget-container .c_scorecard table.lite thead th {
+		background: #38b248;
+  		color: #fff;
+	}
+
+	.opta-widget-container .c_scorecard table tfoot td {
+		background: #ddd;
+	}
+
+/* Wagon Wheel
+----------------------------------------------------------*/
+
+	.opta-widget-container .wagonwheel .team li.teamName,
+	.opta-widget-container .wagonwheel .team li:last-child {
+		border-radius: 0;
+	}
+
+
+/* Fixtures
+----------------------------------------------------------*/
+
+/* the buttons have some secondary styles that needed to be overwritten for hover states */
+
+	.opta-widget-container .fixtures .expand,
+	.opta-widget-container button.expansion.details-collapsed,
+	.opta-widget-container button.expansion.details-expanded,
+	.opta-widget-container button.expansion.details-loading,
+	.opta-widget-container button.expansion.details-collapsed:hover,
+	.opta-widget-container button.expansion.details-expanded:hover,
+	.opta-widget-container button.expansion.details-loading:hover,
+	.opta-widget-container div.opta-v3 button.expansion {
+		background: url('/shared/img/optaSprite.png?200114v1') no-repeat 7px 6px;
+		border: 0 none;
+		cursor: pointer;
+		height: 30px;
+		margin: 0;
+		opacity: 0.7;
+		padding: 8px;
+		position: absolute;
+		right: 0;
+		text-indent: -9999px;
+		top: 0;
+		width: 30px;
+	}
+
+	.opta-widget-container div.opta-v3 button.expansion,
+	.opta-widget-container div.opta-v3 button.expansion:hover {
+		top: -10px;
+		right: -7px;
+		}
+
+	.opta-widget-container .fixtures .details-expanded,
+	.opta-widget-container button.expansion.details-expanded,
+	.opta-widget-container button.expansion.details-expanded:hover,
+	.opta-widget-container .fixtures-plus-list button.expansion.details-expanded,
+	.opta-widget-container .fixtures-plus-list button.expansion.details-expanded:hover {
+		background: url('/shared/img/optaSprite.png?200114v1') no-repeat -29px 7px;
+	}
+
+		.opta-widget-container .fixtures .expand:hover,
+		.opta-widget-container .fixtures .expand:focus,
+		.opta-widget-container button.expansion.details-collapsed:hover,
+		.opta-widget-container button.expansion.details-expanded:hover,
+		.opta-widget-container button.expansion.details-loading:hover {
+			opacity: 1;
+		}
+
+	.opta-widget-container .fixtures-plus-list.narrow td.standout,
+	.opta-widget-container .fixtures-plus-list.narrow td.standout a.external-link {
+		font-size: 14px;
+	}
+
+	.opta-widget-container .fixtures .matches dd {
+		font-size: inherit;
+	}
+
+	.opta-widget-container .fixtures .matches dd {
+		box-shadow: none;
+	}
+
+	.opta-widget-container .fixtures.cricket h4 {
+		border-top: 0;
+	}
+
+	.opta-widget-container .fixtures {
+		max-height: 600px;
+		overflow: auto;
+		overflow-x: hidden;
+		overflow-y: auto;
+	}
+
+	.fixturesPage .opta-widget-container .fixtures {
+		max-height: initial;
+	}
+
+	.opta-widget-container .fixtures.cricket.narrow div.matches .home-side,
+	.opta-widget-container .fixtures.cricket.narrow div.matches .match .match-score,
+	.opta-widget-container .fixtures.cricket.narrow div.matches .away-side,
+	.opta-widget-container .fixtures.cricket.narrow div.matches .schedule {
+		color: #666;
+	}
+
+	.opta-widget-container .fixtures.cricket.narrow div.matches .venue,
+	.opta-widget-container .fixtures.handball.narrow div.matches .venue,
+	.opta-widget-container .fixtures.volleyball.narrow div.matches .venue,
+	.opta-widget-container .fixtures.basketball.narrow div.matches .venue,
+	.opta-widget-container .fixtures.cricket.narrow div.matches span {
+		padding: 0;
+	}
+
+	.opta-widget-container .fixtures.cricket.narrow div.matches .schedule {
+		clear: both;
+		float: right;
+	}
+
+/* larger team names and score for the match page */
+
+	.matchFixture .opta-widget-container .fixtures .matches dt .match-time {
+		display: block;
+		float: none;
+		font-size: 14px;
+		line-height: 14px;
+		text-align: center;
+		width: 100%;
+	}
+
+	.opta-widget-container .fixtures-plus-list tbody tr.scoreline td.match-time div {
+		background: none;
+		padding: 0;
+	}
+
+	.opta-widget-container .fixtures-plus-list tr.scoreline.match-linked td {
+		padding: 5px 8px 0;
+	}
+
+	.opta-widget-container .fixtures-plus-list tr.scoreline.match-linked .match-linked-item {
+		padding: 5px 0 0 8px;
+	}
+
+	.tpcBkt .opta-widget-container .fixtures-plus-list tr.scoreline.match-linked td {
+		padding: 5px 4px 0;
+	}
+
+	.tpcBkt .opta-widget-container .fixtures-plus-list tr.scoreline.match-linked .match-linked-item {
+		padding: 5px 0;
+	}
+
+	.opta-widget-container .fixtures-plus tr.aggregate td {
+		padding: 3px 0 5px;
+		text-align: center;
+	}
+
+	.opta-widget-container .fixtures-plus tr.aggregate td a {
+		color: #38b248;
+	}
+
+	.matchFixture .opta-widget-container .fixtures .matches dt .match-time + span {
+		clear: both;
+	}
+
+	.matchFixture .opta-widget-container .fixtures .matches > dd {
+		display: block !important;
+	}
+
+	.matchFixture .opta-widget-container .fixtures .match .team a,
+	.matchFixture .opta-widget-container .fixtures .matches dt .match-score span {
+		font-size: 30px;
+		font-weight: bold;
+		line-height: 40px;
+	}
+
+	@media (max-width: 400px) {
+		.matchFixture .opta-widget-container .fixtures .match .team a,
+		.matchFixture .opta-widget-container .fixtures .matches dt .match-score span {
+			font-size: 20px;
+			line-height: 25px;
+		}
+	}
+
+	.matchFixture .opta-widget-container .fixtures .matches dt .match-score {
+		width: 16%;
+	}
+
+	.matchFixture .opta-widget-container .fixtures .matches dt .home-side {
+		text-align: right;
+		padding-left: 0;
+		width: 42%;
+	}
+
+	.matchFixture .opta-widget-container .fixtures .matches dt .away-side {
+		text-align: left;
+		padding-right: 0;
+		width: 42%;
+	}
+
+	@media (max-width: 600px) {
+		.matchFixture .opta-widget-container .fixtures .matches dt .match-score {
+			width: 24%;
+		}
+
+		.matchFixture .opta-widget-container .fixtures .matches dt .home-side,
+		.matchFixture .opta-widget-container .fixtures .matches dt .away-side {
+			width: 38%;
+		}
+	}
+
+	.matchFixture .opta-widget-container .fixtures dd .match-details {
+		text-align: center;
+	}
+
+	.matchFixture .opta-widget-container .fixtures dd .match-details dt,
+	.matchFixture .opta-widget-container .fixtures dd .match-details dd {
+		display: inline;
+		float: none;
+		width: auto;
+	}
+
+	.matchFixture .expand,
+	.matchFixture .opta-fixtures h2,
+	.matchFixture .opta-fixtures h3 {
+		display: none;
+	}
+
+	.matchFixture > h3:first-child {
+		border-bottom: 1px solid #ccc;
+		padding: 0 0 10px;
+	}
+
+/* Match Stats
+----------------------------------------------------------*/
+
+	.opta-widget-container .match-summary ul li {
+		padding-top: 1px;
+		padding-bottom: 1px;
+	}
+
+	.opta-widget-container .match-summary ul li span,
+	.opta-widget-container .match-summary ul span.event-time {
+		margin: 0 0 0 4px;
+		padding: 0;
+	}
+
+	.opta-widget-container .match-summary ul li span:first-child,
+	.opta-widget-container .match-summary ul span.event-time:first-child,
+	.opta-widget-container .rugby-match-summary ul.away-events li span.event-icon,
+	.opta-widget-container .rugby-match-summary ul.home-events li span.event-icon {
+		margin: 0;
+	}
+		.opta-widget-container .netball-match-summary ul li span:first-child {
+			margin-left: 4px;
+		}
+
+	.opta-widget-container .match-summary .match-score {
+		color: #333;
+		font: 16px/25px 'Stag-Serif-Book',Georgia,serif;
+		letter-spacing: 0.4px;
+		padding: 10px 0;
+	}
+
+	.opta-widget-container .matchstats-teamstats-container .tabs-content dl {
+		margin: 10px auto 0;
+	}
+
+	.opta-widget-container .tabs-active div.opta-dropdown > span:first-child {
+		display: none;
+	}
+
+	.opta-widget-container .matchstats-teamstats-container .tabs-content {
+		clear: both;
+	}
+
+	.opta-widget-container .matchstats-teamstats-container .tabs-content dt,
+	.opta-widget-container .matchstats-teamstats-container.light-coverage dt {
+		font-size: 14px;
+	}
+
+	.opta-widget-container .matchstats-teamstats-container .tabs-content dd thead th,
+	.opta-widget-container .matchstats-teamstats-container.light-coverage dd thead th {
+		left: -9999px;
+		position: absolute;
+	}
+
+	/* changes the exposed menu back to a dropdown on mobile devices */
+	/* we aren't using media queries as opta has some JS that already ads a class */
+
+		.opta-widget-container .matchstats-teamstats-container .narrow .tabs-active div.opta-dropdown > span:first-child {
+			display: block;
+		}
+
+		.opta-widget-container .matchstats-teamstats-container .narrow .tabs-active div.opta-dropdown ul.tabs-nav,
+		.opta-widget-container .matchstats-teamstats-container .narrow .tabs-active div.opta-dropdown.active ul.tabs-nav {
+			display: block;
+			left: -9999px;
+			position: absolute;
+		}
+
+		.opta-widget-container .matchstats-teamstats-container .narrow .tabs-active div.opta-dropdown.active ul.tabs-nav {
+			left: auto;
+			top: 0px;
+			width: 100%;
+		}
+
+			.opta-widget-container .matchstats-teamstats-container .narrow .tabs-active .tabs-nav li {
+				display: block;
+				float: none;
+				-webkit-flex: none;
+				-moz-flex: 1 1 auto;
+				-ms-flex: 1 1 auto;
+				flex: none;
+			}
+
+				.opta-widget-container .matchstats-teamstats-container .narrow .tabs-active .tabs-nav li a {
+					text-align: left;
+				}
+
+	.opta-widget-container .matchstats-teamstats-container .matchup {
+		color: #fff;
+		font: 16px/25px 'Stag-Serif-Book',Georgia,serif;
+		left: 0;
+		letter-spacing: 0.4px;
+		min-height: 20px;
+		padding: 10px 0;
+		position: relative;
+		text-transform: none;
+		top: 0;
+	}
+
+		.opta-widget-container .matchstats-teamstats-container .matchup:before {
+			color: #999;
+			content: 'vs';
+			display: block;
+			font-size: inherit;
+			left: 45%;
+			line-height: inherit;
+			position: absolute;
+			text-align: center;
+			top: 10px;
+			width: 10%;
+		}
+
+		.opta-widget-container .matchstats-teamstats-container .matchup:after {
+			clear: both;
+			content: '';
+		}
+
+	.opta-widget-container .matchstats-teamstats-container .matchup > span {
+		right: 0;
+		padding: 0;
+		position: absolute;
+		text-align: left;
+		top: 10px;
+		width: 44%;
+	}
+
+	.opta-widget-container .matchstats-teamstats-container .matchup > img + span,
+	.opta-widget-container .matchstats-teamstats-container .matchup > span:first-child {
+		left: 0;
+		right: auto;
+		text-align: right;
+	}
+
+	.opta-widget-container .matchstats-teamstats-container .matchup > img:first-child {
+		float: left;
+		position: relative;
+		top: -5px;
+	}
+
+	.opta-widget-container .matchstats-teamstats-container .matchup > img:last-child {
+		float: right;
+		position: relative;
+		top: -5px;
+	}
+
+		.opta-widget-container .matchstats-teamstats-container .matchup .home-team,
+		.opta-widget-container .matchstats-teamstats-container .matchup .away-team {
+			color: #333;
+			font-size: inherit;
+			left: 0;
+			line-height: inherit;
+			padding: 0;
+			position: absolute;
+			text-align: right;
+			top: 10px;
+			width: 45%;
+		}
+
+		.opta-widget-container .matchstats-teamstats-container .matchup .away-team,
+		.opta-widget-container .matchstats-teamstats-container.single-team .matchup .away-team {
+			left: auto;
+			text-align: left;
+			right: 0;
+		}
+
+		.opta-widget-container .match-summary ul li {
+			line-height: 16px;
+		}
+
+		/* fixing up the spacing of icons, as they don't resize well on smaller screens */
+
+		.opta-widget-container .rugby-match-summary ul li span.event-icon,
+		.opta-widget-container .match-summary ul li span,
+		.opta-widget-container .match-summary ul.home-events li span,
+		.opta-widget-container .match-summary ul.home-penalties li span {
+			display: inline-block;
+			float: none;
+		}
+
+			.opta-widget-container .netball-match-summary ul.home-events li span {
+				float: right;
+			}
+
+		.opta-widget-container .rugby-match-summary ul.home-events li span.player-subon,
+		.opta-widget-container .rugby-match-summary ul.away-events li span.player-subon {
+			margin: 0 4px;
+		}
+ 
+		.opta-widget-container .netball-match-summary tbody td {
+			text-align: center;
+		}
+
+
+/* Player Comparison
+----------------------------------------------------------*/
+
+	.opta-widget-container .comparison th.hidden {
+		display: table-cell;
+	}
+
+	.opta-widget-container .comparison tbody th,
+	.opta-widget-container .comparison .tabs-active .tabs-content li tbody th,
+	.opta-widget-container .comparison tbody td,
+	.opta-widget-container .cricket-playerstats .tabs-container tbody th {
+		font-size: 13px;
+	}
+
+	.opta-widget-container .comparison fieldset fieldset {
+		max-width: 45%;
+	}
+
+/* Commentary
+----------------------------------------------------------*/
+
+	.opta-widget-container .commentary {
+		max-height: 500px;
+		overflow: auto;
+		overflow-x: hidden;
+		overflow-y: auto;
+	}
+
+	.opta-widget-container .commentary li {
+		font-size: 15px;
+	}
+
+	.opta-widget-container .commentary.c_commentary li.over-end {
+		background: #333;
+		border-bottom: 3px solid #38b248;
+	}
+
+	.opta-widget-container .commentary.c_commentary li.period-end {
+		background: #38b248;
+		color: #fff;
+	}
+
+/* Results
+----------------------------------------------------------*/
+
+	.opta-widget-container .fixtures.handball div.matches .venue,
+	.opta-widget-container .fixtures.volleyball div.matches .venue,
+	.opta-widget-container .fixtures.basketball div.matches .venue,
+	.opta-widget-container .fixtures.cricket div.matches .venue {
+		font-size: 13px;
+	}
+
+/* Increased click areas for fixtures links
+----------------------------------------------------------*/
+
+	.opta-widget-container .fixtures.handball div.matches,
+	.opta-widget-container .fixtures.volleyball div.matches,
+	.opta-widget-container .fixtures.cricket div.matches,
+	.opta-widget-container .fixtures.basketball div.matches,
+	.opta-widget-container .fixtures .matches dt {
+		font-size: 14px;
+		padding: 0;
+		width: auto;
+	}
+
+	.opta-widget-container .fixtures .matches dt {
+		padding-left: 5px
+	}
+
+	.opta-widget-container .fixtures .matches dt.postmatch {
+		padding-right: 10px;
+	}
+
+		.opta-widget-container .fixtures.handball div.matches > a,
+		.opta-widget-container .fixtures.volleyball div.matches > a,
+		.opta-widget-container .fixtures.cricket div.matches > a,
+		.opta-widget-container .fixtures.basketball div.matches > a,
+		.opta-widget-container .fixtures .matches dt > a {
+			display: block;
+			padding: 6px 0;
+		}
+
+		.opta-widget-container .fixtures.handball div.matches a,
+		.opta-widget-container .fixtures.volleyball div.matches a,
+		.opta-widget-container .fixtures.cricket div.matches a,
+		.opta-widget-container .fixtures.basketball div.matches a,
+		.opta-widget-container .fixtures .matches dt a:after {
+			clear: both;
+			content: '';
+		}
+
+			.opta-widget-container .fixtures.handball div.matches a span,
+			.opta-widget-container .fixtures.volleyball div.matches a span,
+			.opta-widget-container .fixtures.cricket div.matches a span,
+			.opta-widget-container .fixtures.basketball div.matches a span,
+			.opta-widget-container .fixtures .matches dt a span {
+				padding: 0;
+			}
+
+			.opta-widget-container .fixtures .matches dt .match-score span {
+				font-size: 14px;
+				line-height: 17px;
+			}
+
+				.opta-widget-container .fixtures .matches dt .match-score > span {
+					padding: 6px 0;
+				}
+
+				.opta-widget-container .fixtures .matches dt .match-score > .match-score-divider {
+					padding: 0;
+				}
+
+				.opta-widget-container .fixtures .matches dt .match-score br {
+					display: none;
+				}
+
+				.opta-widget-container .fixtures .matches dt .match-score .external-link:after {
+					clear: both;
+					color: #666;
+					content: 'view match';
+					display: block;
+					font-size: 10px;
+					line-height: 11px;
+					position: relative;
+					text-align: center;
+					text-decoration: none;
+					top: -3px;
+					min-width: 47px;
+				}
+
+	/* change font color to grey */
+	.opta-widget-container .fixtures .matches dt .match-time,
+	.opta-widget-container .fixtures.rugby-league.narrow .matches dt .match-time {
+		color: #666;
+		padding: 6px 0;
+	}
+
+	.opta-widget-container .fixtures.rugby-league.narrow .matches dt > span {
+		padding: 6px 0;
+	}
+
+	.opta-widget-container .fixtures .matches .match-page {
+		left: -9999px;
+		position: absolute;
+	}
+
+	.opta-widget-container .fixtures .matches dt .match-score {
+		font-weight: normal;
+	}
+
+/* Navigation Tabs
+----------------------------------------------------------*/
+
+	.opta-widget-container .tabs-active .tabs-nav,
+	.opta-widget-container .tabs-flat .tabs-nav,
+	.opta-widget-container .tabs-active div.opta-dropdown ul.tabs-nav,
+	.opta-widget-container .tabs-flat div.opta-dropdown ul.tabs-nav,
+	.opta-widget-container .tabs-active div.opta-dropdown.active ul.tabs-nav,
+	.opta-widget-container .tabs-flat div.opta-dropdown.active ul.tabs-nav,
+	.opta-widget-container .fixtures-plus .tabs-active div.opta-dropdown.active ul.tabs-nav {
+		background: #eee;
+		border: none;
+		display: block;
+		font: 14px/25px 'Stag-Serif-Book',Georgia,serif;
+		letter-spacing: 0.4px;
+		margin: 0 0 5px;
+		padding: 0;
+		position: static;
+		overflow-y: inherit; 
+	}
+
+	
+	.opta-widget-container .fixtures-plus-list .tabs-active ul.tabs-nav,
+	.opta-widget-container .fixtures-plus-list .tabs-active ul.tabs-nav li,
+	.opta-widget-container .fixtures-plus-list .tabs-active ul.tabs-nav li a {
+		background: #eee;
+		color: #555;
+	}
+
+	.no-flexbox.no-flexboxlegacy .opta-widget-container .tabs-active .tabs-nav:after,
+	.no-flexbox.no-flexboxlegacy .opta-widget-container .tabs-flat .tabs-nav:after,
+	.no-flexbox.no-flexboxlegacy .opta-widget-container .tabs-active div.opta-dropdown ul.tabs-nav:after,
+	.no-flexbox.no-flexboxlegacy .opta-widget-container .tabs-flat div.opta-dropdown ul.tabs-nav:after,
+	.no-flexbox.no-flexboxlegacy .opta-widget-container .tabs-active div.opta-dropdown.active ul.tabs-nav:after,
+	.no-flexbox.no-flexboxlegacy .opta-widget-container .tabs-flat div.opta-dropdown.active ul.tabs-nav:after {
+		clear: both;
+		content: '';
+		display: block;
+		}
+
+		.opta-widget-container .tabs-active .tabs-nav li,
+		.opta-widget-container .tabs-flat .tabs-nav li {
+			float: left;
+			height: auto;
+			padding: 0;
+		}
+
+			.opta-widget-container .tabs-active .tabs-nav li a,
+			.opta-widget-container .tabs-flat .tabs-nav li a,
+			.opta-widget-container .tabs-active div.opta-dropdown ul.tabs-nav li a,
+			.opta-widget-container .tabs-flat div.opta-dropdown ul.tabs-nav li a,
+			.opta-widget-container .fixtures-plus-list .tabs-active div.opta-dropdown ul.tabs-nav li a {
+				background: #eee;
+				border: none;
+				border-bottom: 3px solid #eee;
+				color: #555;
+				cursor: pointer;
+				display: block;
+				float: none;
+				font-size: 14px;
+				line-height: 35px;
+				padding: 0 10px;
+				text-align: center;
+			}
+
+			.no-flexbox.no-flexboxlegacy .opta-widget-container .tabs-active .tabs-nav li a,
+			.no-flexbox.no-flexboxlegacy .opta-widget-container .tabs-flat .tabs-nav li a,
+			.no-flexbox.no-flexboxlegacy .opta-widget-container .tabs-active div.opta-dropdown ul.tabs-nav li a,
+			.no-flexbox.no-flexboxlegacy .opta-widget-container .tabs-flat div.opta-dropdown ul.tabs-nav li a {
+				padding-left: 10px;
+				padding-right: 10px;
+			}
+
+			.opta-widget-container .tabs-active .tabs-nav li a:hover,
+			.opta-widget-container .fixtures-plus-list .tabs-active div.opta-dropdown ul.tabs-nav li a:hover,
+			.opta-widget-container .tabs-active .tabs-nav li.tabs-selected a,
+			.opta-widget-container .tabs-flat .tabs-nav li a:hover,
+			.opta-widget-container .tabs-flat .tabs-nav li.tabs-selected a,
+			.opta-widget-container .tabs-active div.opta-dropdown ul.tabs-nav li a:hover,
+			.opta-widget-container .tabs-active div.opta-dropdown ul.tabs-nav li.tabs-selected a,
+			.opta-widget-container .tabs-flat div.opta-dropdown ul.tabs-nav li a:hover,
+			.opta-widget-container .tabs-flat div.opta-dropdown ul.tabs-nav li.tabs-selected a,
+			.opta-widget-container .fixtures-plus-list .tabs-active div.opta-dropdown ul.tabs-nav li.tabs-selected a,
+			.opta-widget-container .fixtures-plus-list .tabs-active ul.tabs-nav li.tabs-selected a, 
+			.opta-widget-container .fixtures-plus-list .tabs-active ul.tabs-nav li a:hover {
+				background-color: #eee;
+				border: none;
+				border-bottom: 3px solid #38b248;
+				color: #000;
+				padding: 0 10px;
+			}
+
+
+	.opta-widget-container .tabs-active div.opta-dropdown ul.tabs-nav li,
+	.opta-widget-container .tabs-active div.opta-dropdown ul.tabs-nav li a,
+	.opta-widget-container .tabs-active div.opta-dropdown ul.tabs-nav li:hover,
+	.opta-widget-container .tabs-active div.opta-dropdown ul.tabs-nav li a:hover {
+		clear: none;
+	}
+
+/* Corrections to get the widget fitting in smaller spaces
+----------------------------------------------------------*/
+
+	/* removed fixed height, adds border for readability */
+	.opta-widget-container .fixtures .matches dd li {
+		border-top: 1px solid #ccc;
+		height: auto;
+	}
+
+	.opta-widget-container .fixtures .matches dd li:first-child {
+		border-top: 0;
+	}
+
+	/* to show player's names on the same line */
+	.opta-widget-container .fixtures .matches dd li span {
+		display: inline-block;
+	}
+
+	/* remove excess padding */
+	.opta-widget-container .fixtures .matches dd .match-home-events,
+	.opta-widget-container .fixtures .matches dd .match-away-events {
+		padding: 0;
+	}
+
+	.opta-widget-container .tabs-active .tabs-content li td,
+	.opta-widget-container .light-coverage td {
+		height: auto;
+	}
+
+	.opta-widget-container .fixtures .matches dd .match-home-events li,
+	.opta-widget-container .fixtures .matches dd .match-away-events li {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+/* Ranking - Style Fixes
+----------------------------------------------------------*/
+
+	/* getting rid of the shadow background */
+	.opta-widget-container .ranking-category {
+		background: #eee;
+	}
+
+	/* progress bar - making it the right green (home teams) */
+	.opta-widget-container table.colchart tbody td div,
+	.opta-widget-container .matchstats-teamstats-container .tabs-content dd .home-percentage,
+	.opta-widget-container .matchstats-teamstats-container.light-coverage dd .home-percentage {
+		background: #38b248;
+	}
+
+	/* progress bar - default blue */
+	.opta-widget-container .matchstats-teamstats-container .tabs-content dd .away-percentage,
+	.opta-widget-container .matchstats-teamstats-container.light-coverage dd .away-percentage {
+		background: #333;
+	}
+
+	/* no idea why this would ever have a shadow */
+	.opta-widget-container table.colchart.horizontal tbody tr td span.rating {
+		color: #fff;
+		font: 14px/25px 'Stag-Serif-Book',Georgia,serif;
+		text-shadow: none;
+	}
+
+	.opta-widget-container table.colchart.horizontal tbody td div {
+		height: 25px;
+	}
+
+	.opta-widget-container table.colchart.horizontal tbody tr td span.rating {
+		top: 0;
+	}
+
+	.opta-widget-container tbody td, .opta-widget-container .teamlist-onerow tbody th {
+		font-size: 13px;
+	}
+
+	.opta-widget-container table.colchart tbody td {
+		padding: 2px 0;
+	}
+
+	.opta-widget-container table.colchart.horizontal tbody td:first-child {
+		line-height: 15px;
+		padding-right: 10px;
+		padding-left: 5px;
+		text-align: right;
+	}
+
+
+/* Opta Loader
+----------------------------------------------------------*/
+
+	.opta-loader,
+	.sideContainer > .opta-loader:first-child {
+		border: none;
+		direction: ltr;
+		min-height: 250px;
+		text-indent: -9999px;
+		}
+
+	/* Add some space between widgets when loading */
+	.opta-loader {
+		margin-bottom: 20px;
+		}
+
+/* Rugby Dropdown filters
+----------------------------------------------------------- */
+
+	/* Dropdowns container */
+	.fixtureDropdowns {
+		margin-bottom: 10px;
+		padding-bottom: 12px;
+		}
+
+		/* Float dropdowns to the right next to the heading */
+		.dropDownContainer,
+		.dropDownContainerCricket {
+			float: right;
+			}
+
+			/* Labels */
+			.fixtureDropdowns label {
+				float: left;
+				font-size: 12px;
+				line-height: 22px;
+				margin: 0 10px 0 20px;
+				padding: 0;
+				position: relative;
+				text-align: right;
+				top: 2px;
+				vertical-align: bottom;
+				width: auto;
+				}
+
+			/* Select boxes */
+			.fixtureDropdowns select {
+				float: left;
+				}
+
+			.fixtureDropdowns .competitionsDD {
+				background-position: 144px 5px;
+				width: 230px;
+				}
+
+			.fixtureDropdowns .seasonDD {
+				background-position: 73px 5px;
+				width: 97px;
+				}
+
+	/* List of fixture rounds */
+	.fixtureRoundsWrapper {
+		background-color: #eee;
+		border: 0
+		box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		color: #333;
+		height: 38px;
+		margin: 0 0 10px;
+		overflow: hidden;
+		position: relative;
+		}
+
+		/* Round navigation buttons */
+		.roundNav, .teamNav {
+			background-color: #eee;
+			cursor: pointer;
+			height: 38px;
+			position: absolute;
+			top: 0;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			width: 29px;
+			z-index: 1;
+			}
+
+			.roundNav:hover,
+			.teamNav:hover {
+				background-color: #ddd;
+				cursor: pointer;
+				}
+
+			.roundNav.backButton,
+			.teamNav.backButton {
+				border-right: 1px solid #ababab;
+				box-shadow: 10px 0 20px #eee;
+				left: 0;
+				}
+
+			.roundNav.forwardButton,
+			.teamNav.forwardButton{
+				border-left: 1px solid #ababab;
+				box-shadow: -10px 0 20px #eee;
+				right: 0;
+				}
+
+			/* Disabled style if they can't scroll any more rounds in that direction */
+			.roundNav.disabled,
+			.teamNav.disabled {
+				box-shadow: none;
+				cursor: default;
+				}
+
+			.roundNav.disabled span,
+			.teamNav.disabled span {
+				-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+				opacity: 0.5;
+				}
+
+			.roundNav.disabled:hover,
+			.teamNav.disabled:hover {
+				background-color: #eee;
+				cursor: default;
+				}
+
+			/* Icons within the buttons */
+			.roundNav span,
+			.teamNav span {
+				background: url('/shared/img/optaSprite.png?200114v1') no-repeat top left; width: 16px; height: 16px;
+				display: block;
+				margin-top: 10px;
+				text-indent: -9999px;
+				z-index: 2;
+				}
+
+			.roundNav.backButton span,
+			.teamNav.backButton span {
+				background-position: -72px 0;
+				margin-left: 6px;
+				}
+
+			.roundNav.forwardButton span,
+			.teamNav.forwardButton span {
+				background-position: -108px 0;
+				margin-left: 8px;
+				}
+
+		/* Round navigation tabs */
+		.fixtureRoundsSlideWrapper {
+			margin: 0 30px;
+			position: relative;
+			width: 558px;
+			}
+
+		.fixtureRounds, 
+		.fixturesCricketTeams{
+			background: #eee;
+			font: 14px/27px 'Stag-Serif-Medium', Arial, sans-serif;
+			height: 38px;
+			left: 0;
+			overflow: hidden;
+			position: relative;
+			width: 940px;
+			z-index: 0;
+			margin: 0 30px;
+			}
+
+			.fixtureRounds li,
+			.fixturesCricketTeams li {
+				-moz-box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+				float: left;
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+				width: 93px;
+				}
+
+				.fixtureRounds li:first-child,
+				.fixturesCricketTeams li:first-child {
+					border-left: 0;
+					}
+
+				.fixtureRounds a,
+				.fixturesCricketTeams a {
+					border-bottom: 5px solid #eee;
+					color: #555;
+					display: block;
+					padding: 5px 0 1px 0;
+					text-align: center;
+					}
+
+				.fixtureRounds a:hover,
+				.fixtureRounds a.active,
+				.fixturesCricketTeams a:hover,
+				.fixturesCricketTeams a.active {
+					border-bottom-color: #38b248;
+					color: #000;
+					}
+
+
+/* Player profile widget
+----------------------------------------------------------*/
+
+	.opta-widget-container .profile dt, .opta-widget-container .profile dd {
+		font-size: 15px;
+	}
+
+	.opta-widget-container .rugby-squadprofile .rugby-profile-image-on:after,
+	.opta-widget-container .profile, .opta-widget-container .stats:after {
+		clear: both;
+		content: '';
+	}
+
+	.opta-widget-container .comparison td.player1,
+	.opta-widget-container .comparison td.team1,
+	.opta-widget-container .comparison td.player2,
+	.opta-widget-container .comparison td.team2 {		
+		width: 114px;
+	}
+
+
+	@media not screen and (min-width: 380px) {
+		.opta-widget-container .comparison td.player1 img,
+		.opta-widget-container .comparison td.team1 img,
+		.opta-widget-container .comparison td.player2 img,
+		.opta-widget-container .comparison td.team2 img {		
+			width: 65px;
+		}
+	}
+
+	.opta-widget-container .comparison td.player1, 
+	.opta-widget-container .comparison td.team1 {
+		white-space: normal; 
+	}
+
+/* Standings
+----------------------------------------------------------*/
+
+	.opta-widget-container td .image-spacer {
+		margin: 0;
+	}
+
+	.opta-widget-container .tabs-active .tabs-content li td,
+	.opta-widget-container .light-coverage td {
+		line-height: 20px;
+	}
+
+	.opta-widget-container tbody td,
+	.opta-widget-container .fixtures-plus tbody tr td,
+	.opta-widget-container .teamlist-onerow tbody th {
+		padding: 0.3em;
+	}
+
+
+/* Timeline widget
+----------------------------------------------------------*/
+
+	.opta-widget-container .timeline .timeline-graph span {
+		background: #38b248;
+	}
+
+	.timelineLegend {
+		border: 1px solid #ABABAB;
+		color: #ababab;
+		font-size: 12px;
+		padding: 7px;
+		position: relative;
+		top: -20px;
+	}
+
+		.timelineLegend .iconHelp {
+			background: url('/shared/img/timelineIcons.png?200214') no-repeat 0 0;
+			display: inline-block;
+			height: 11px;
+			line-height: 13px;
+			margin-right: 5px;
+			padding-left: 13px;
+		}
+
+			.timelineLegend .try {
+				background-position: 0 -14px;
+			}
+
+			.timelineLegend .conversion {
+				background-position: 0 -27px;
+			}
+
+			.timelineLegend .substitution {
+				background-position: 0 -39px;
+			}
+
+			.timelineLegend .yellowCard {
+				background-position: 0 -50px;
+			}
+
+			.timelineLegend .redCard {
+				background-position: 0 -63px;
+			}
+
+
+/* Previous matches
+----------------------------------------------------------*/
+
+	.previousMatches {
+		height: inherit;
+		margin: 0 0 20px;
+	}
+
+	.previousMatches .roundNav {
+		height: 57px;
+	}
+
+		.previousMatches .roundNav span {
+			margin-top: 22px;
+		}
+
+	.previousMatches .fixtureRounds {
+		font: inherit;
+		height: inherit;
+	}
+
+		.previousMatches .fixtureRounds li:last-child {
+			border-right: 1px solid #EFEFEF;
+		}
+
+		.no-lastchild .previousMatches .fixtureRounds .last-child {
+			border-right: 1px solid #EFEFEF;
+		}
+
+		.previousMatches .fixtureRounds a {
+			border-bottom: 0;
+			height: inherit;
+			padding: 5px 2px 1px;
+		}
+
+		.previousMatches .fixtureRounds a:hover,
+		.previousMatches .fixtureRounds a.active {
+			background-color: #ddd;
+			border-bottom-color: inherit;
+			color: #000;
+		}
+
+		.previousMatches .fixtureRounds span {
+			display: block;
+		}
+
+		.previousMatches .previousResult {
+			font-weight: bold;
+		}
+
+
+/* Stats provided by Opta (near footer)
+----------------------------------------------------------*/
+
+.statsProvidedBy {
+	color: #666;
+	clear: both;
+	font-size: 14px;
+	font-style: italic;
+	margin: 0 auto 28px;
+	text-align: right;
+	max-width: 910px;
+	}
+
+	.optaLogo {
+		background: url('/shared/img/optaSprite.png?200114v1') no-repeat top left;
+		background-position: -144px 0px;
+		direction: ltr;
+		display: inline-block;
+		height: 26px;
+		margin-left: 8px;
+		text-align: left;
+		text-indent: -9999px;
+		vertical-align: middle;
+		width: 60px;
+		}
+
+	@media
+	only screen and (-webkit-min-device-pixel-ratio: 1.5),
+	only screen and (-o-min-device-pixel-ratio: 3/2),
+	only screen and (-moz-min-device-pixel-ratio: 1.5),
+	only screen and (-ms-min-device-pixel-ratio: 1.5),
+	only screen and (min-device-pixel-ratio: 1.5) {
+		.optaLogo {
+			background-image: url('/shared/img/optaSprite2x.png?200114v1');
+			background-size: 240px 26px;
+			}
+		}
+
+
+/* Live game bar
+----------------------------------------------------------*/
+
+	.liveState {
+		border: 1px solid #dfdfdf;
+		font-size: 34px;
+		line-height: 44px;
+		margin: 0 auto 20px;
+		max-width: 940px;
+		overflow: hidden;
+		padding: 10px 60px;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+
+		.liveState p {
+			color: #666;
+			font-family: 'Stag-Sans-Light', Arial, sans-serif;
+			margin: 0 10px 0 0;
+		}
+
+		.liveState .currentGame {
+			color: #333;
+			font-family: 'Stag-Sans-Semibold', Arial, sans-serif;
+			margin-right: 10px;
+			text-transform: uppercase;
+		}
+
+		.liveState .button {
+			background: #38B248;
+			clear: none;
+			margin: 10px 0 0;
+		}
+                
+                
+.optaStandings_StatsCenter {
+    display: none;
+}
+
+/* Cricket scorecard
+----------------------------------------------------------*/
+.opta-widget-container .c_scorecard {
+	padding: 0;
+	text-align: left;
+	}
+
+	.opta-widget-container .c_scorecard h3 {
+	    margin-bottom: 25px;
+		}
+
+	.opta-widget-container .c_scorecard .tabs-active .tabs-content li,
+	.opta-widget-container .c_scorecard .tabs-active .tabs-content li th,
+	.opta-widget-container .c_scorecard .tabs-active .tabs-content li td {
+		font-size: 13px;
+		line-height: 14px;
+		}
+
+	.opta-widget-container .c_scorecard dl {
+		font-size: 13px;
+		}
+
+	.opta-widget-container .c_scorecard .tabs-active .tabs-content li td {
+		padding: 6px;
+		}
+	
+	.opta-widget-container .c_scorecard .tabs-active .tabs-content li th {
+		background-color: #38b248;
+    	padding: 6px;
+    	color: #fff;
+		}
+
+	.opta-widget-container .c_scorecard li abbr {
+		color: #fff;
+		}
+
+	.opta-widget-container .c_scorecard tr {
+		border: 1px solid #ddd;
+		}
+
+	.opta-widget-container .c_scorecard table tbody tr:nth-child(odd) td {
+		background-color: #fff;
+		}
+
+/* Olympics
+----------------------------------------------------------*/
+.opta-widget-container .fixtures-plus-list.olympics .tabs-active ul.tabs-nav {
+	margin: 0;
+}
+
+	.opta-widget-container .fixtures-plus-list.olympics .opta-component-datepicker.opta-jdatepicker .pika-single {
+		left: -207px;
+	}
+
+	.opta-widget-container .fixtures-plus-list.olympics .opta-component-datepicker.opta-jdatepicker .date-list span.no-games {
+		line-height: 31px;
+	}
+
+	.opta-widget-container .fixtures-plus-list.olympics .tabs-active div.opta-dropdown ul.tabs-nav li {
+	    clear: both;
+	}
+
+	.opta-widget-container .fixtures-plus.olympics .tabs-active .tabs-nav li.tabs-selected a {
+		padding: 5px 20px 0;
+		height: 100%;
+
+	}
+
+	.opta-widget-container .fixtures-plus.olympics .tabs-active div.opta-dropdown.active ul.tabs-nav {
+	    display: block;
+	    position: absolute;
+	    top: 41px;
+	    overflow-y: scroll;
+	}
+
+	.opta-widget-container .fixtures-plus-list.olympics .tabs-active div.opta-dropdown {
+	    background: #eee;
+	    /*box-sizing: border-box;*/
+	    height: 40px;
+	    /*padding: 0 10px;*/
+	}
+
+	.opta-widget-container .fixtures-plus-list.olympics .tabs-active div.opta-dropdown > span:first-child {
+	    border: none;
+	    box-sizing: border-box;
+	    color: #555;
+	    font-size: 14px;
+	    display: block;
+	    height: inherit;
+	    padding: 9px 0 0 20px;
+    }
+
+	.opta-widget-container .fixtures-plus-list.olympics .tabs-active div.opta-dropdown.active > span:first-child {
+	    color: #000;
+	}
+
+	.opta-widget-container .fixtures-plus-list.olympics .tabs-active div.opta-dropdown span span {
+	    background: none;
+	    border: none;
+	    color: #555;
+	    display: inline-block;
+	    height: 17px;
+	    width: 17px;
+	    margin: 0;
+	    padding: 0;
+	    vertical-align: middle;
+	    -webkit-transform: rotate(-270deg); 
+	    -moz-transform: rotate(-270deg);
+	    -ms-transform: rotate(-270deg);
+	    -o-transform: rotate(-270deg);
+	    transform: rotate(-270deg);
+	    transform-origin: center;
+	    
+	}
+
+	.opta-widget-container .fixtures-plus-list.olympics .tabs-active div.opta-dropdown.active span span {
+	    -webkit-transform: rotate(-90deg); 
+	    -moz-transform: rotate(-90deg);
+	    -ms-transform: rotate(-90deg);
+	    -o-transform: rotate(-90deg);
+	    transform: rotate(-90deg);
+	    color: #000;
+	}
+
+	.opta-widget-container .fixtures-plus-list.olympics .tabs-active div.opta-dropdown span span:after {
+		content: ">";
+		display: block;
+		font-size: 17px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		text-align: center;
+		line-height: 16px;
+		width: 17px;
+		height: 17px;
+	}
+
+	.opta-widget-container .fixtures-plus-list.olympics .tabs-active div.opta-dropdown ul.tabs-nav {
+	    display: none;
+	}
+
+	.opta-widget-container.opta-schedule .fixtures-plus-list.olympics .opta-jdatepicker .date-list a {
+	    height: 30px;
+	    text-decoration: none;
+	    line-height: 31px;
+	}
+

@@ -1,29 +1,0 @@
-
-var ftGUID_1060575="2401BA777A49EC";
-var ftConfID_1060575="1373947";
-var ftParams_1060575="ftx=&fty=&ftadz=&ftscw=&ft_custom=114283326&ft_dest=http%3A//automobiles.honda.com/shop&ft_referrer=http%3A//the-toast.net/&cachebuster=187135.74833236635";
-var ftKeyword_1060575="";
-var ftCustom_1060575="114283326";
-var ftSection_1060575="";
-var ftSegment_1060575="f5v,fe6";
-var ftSegmentList_1060575=[{s:'f5v'},{s:'fe6'}];
-var ftRuleMatch_1060575="0";
-var ftTimestamp_1060575="1423611029";
-var ftGeoC2_1060575="us";
-var ftGeoState_1060575="ca";
-var ftGeoCity_1060575="san francisco";
-var ftISP_1060575="comcast cable communications inc.";
-var ftSpeed_1060575="cable";
-var ftDMA_1060575="807";
-var ftLong_1060575="-122.409";
-var ftLat_1060575="37.7983";
-var ftPostal_1060575="94133";
-var ftTimeZone_1060575="-800";
-var ftMobileCarrier_1060575="";
-var ftImp1060575 = {};
-ftImp1060575.privacy = "x";
-ftImp1060575.guidAge = "196";
-
-
-document.write('<scr'+'ipt src="https://secure.flashtalking.com/xre/106/1060575/857259/js/j-1060575-857259.js" id="ftscript_m1060575" name="ftscript_m1060575"></scr'+'ipt>');
-                    
