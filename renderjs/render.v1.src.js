@@ -1555,7 +1555,7 @@ var AdsNativeMaster = function(_options) {
         standardIntegrations: ['openx', 'mobilemajority', 'nativeads',
             'kixer', 'urx', 'rubiconproject', 'answermedia', 'distroscale',
             'motiveinteractive', 'aol_marketplace', 'zergnet', 'taboola', 'virool',
-            'criteo_secondary', 'google_dfp', 'optimatic', 'allscreen', 'genesis'],
+            'criteo_secondary', 'google_dfp', 'optimatic', 'allscreen', 'genesis', 'super_awesome'],
 
         feedsArray: ["ntent_feed", "inmobi_feed", "aol_feed", "ebay_feed",
             "gravity_feed", "kixer_feed", "admarketplace_feed", "criteo_feed"],

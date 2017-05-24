@@ -1,10 +1,6 @@
-// http://stackoverflow.com/questions/14573223/set-cookie-and-get-cookie-with-javascript
-// https://plainjs.com/javascript/styles/get-and-set-scroll-position-of-an-element-26/
-// https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
-
 (function(AnAxios) {
 
-    var integration_version = 4.8,
+    var integration_version = 5.5,
         topInfeedPlacement = null,
         bottomInfeedPlacement = null,
         widgetContainerCount = 0,
@@ -26,7 +22,12 @@
             placements: []
         },
         adContainerPrefix = 'ad-container-',
-        debug = false;
+        debug = false,
+        sequentialStory = {
+            'previous_campaign': null,
+            'next_creative': null,
+            'requested': false
+        };
 
     // AJAX loading new 10 stories
     window.addEventListener('loaded-more-posts' , function(e) {
@@ -73,6 +74,9 @@
                     case 'smarter-faster':
                         placementId = "EczO2h52F16zcAn7z9KsZ9U4XbLC4JsF8LNHOiGL";
                         break;
+                    case 'science':
+                        placementId = "U9KQpzqncogdYh8uEiJueQPiNZM4LihB8PDlkynW";
+                        break;
                     default:
                         placementId = "dqbpjCQilAeKkaWaOs8hiMSzkFPMZ5sHYrJZlBjS";
                         Axlog('ERROR : valid channel name not found');
@@ -94,6 +98,32 @@
                         // first the repeat frequency story item and use it as peerStory for insertBefore
                         if((i - (firstAdPosition - 1)) % adRepeatFrequency === 0 && (i - (firstAdPosition - 1)) !== 0) {
                             processQueue.peerStoryItems.push(currentAllStories[i]);
+
+                            // Dedicated 5 placements for axios 'smarter-faster' channel
+                            if(channelName === 'smarter-faster') {
+                                switch(processQueue.placements.length) {
+                                    case 1:
+                                        placementId = 'SXOP-Xqy-DpzoyB2OqTldemI9QEesT6E8KLkvUai';
+                                        Axlog('smarter-faster #2 Infeed placement initiated : ' + placementId);
+                                        break;
+                                    case 2:
+                                        placementId = 'Jm5eGRzGZxWGsHGUGutnTyA0Te6y_VJ6rOWeizTI';
+                                        Axlog('smarter-faster #3 Infeed placement initiated : ' + placementId);
+                                        break;
+                                    case 3:
+                                        placementId = 'opxKTzqqL6YUxG8sR5dplX9f9nDx_gb-o5fDnGHF';
+                                        Axlog('smarter-faster #4 Infeed placement initiated : ' + placementId);
+                                        break;
+                                    // case 4:
+                                    //     placementId = '27U12JCxfVolMDRImz_Svri_U87lCBbVPpuNoWKQ';
+                                    //     Axlog('smarter-faster #5 Infeed placement initiated : ' + placementId);
+                                    //     break;
+                                    default:
+                                        placementId = 'EczO2h52F16zcAn7z9KsZ9U4XbLC4JsF8LNHOiGL';
+                                        Axlog('smarter-faster #'+ processQueue.placements.length +' Infeed placement loaded. Defaulted to #1 : ' + placementId);
+                                        break;
+                                }
+                            }
                             processQueue.placements.push(new AdsNative(placementId, []));
 
                             // Move processed pointer
@@ -134,6 +164,20 @@
                     fetchOptions.cid = parseInt(forceCampaignId);
                     fetchOptions.crid = parseInt(forceCreativeId);
                 }
+            }
+
+            // Sequential Story telling : Log States
+            // START SEQUENCE : cid and crid were null, found next_creative first time
+            // NEXT SEQUENCE : cid and crid were not null, found next_creative in sequence
+            // REQUEST SEQUENCE : requesting polymorph for next sequencial creative if cid and crid are not null and requested=false
+            if(sequentialStory.previous_campaign && sequentialStory.next_creative && !sequentialStory.requested) {
+                fetchOptions.cid = parseInt(sequentialStory.previous_campaign);
+                fetchOptions.crid = parseInt(sequentialStory.next_creative);
+
+                Axlog('Sequential story telling : REQUEST SEQUENCE with previous campaign ID : ' + sequentialStory.previous_campaign + ' current creative ID : ' + sequentialStory.next_creative);
+
+                // Reset sequence
+                sequentialStory.requested = true;
             }
 
             Axlog('Placement ID : before fetch : ' + adIndex);
@@ -182,21 +226,25 @@
                                         }
                                     }
 
-                                    // Hide Sponsored logo, prefix and brand name when "Brand Name" is "axios"/"Axios"
+                                    // Hide Sponsored logo, prefix and brand name when "Brand Name" is "house"/"House"
                                     var sponsoredContainer = adContainer.querySelector('.author-avatar');
                                     if(sponsoredContainer) {
                                         var sponsoredText = sponsoredContainer.querySelector('.author-avatar__name');
                                         if(sponsoredText) {
-                                            sponsoredText = sponsoredText.innerHTML.toLowerCase();
-                                            if(sponsoredText && sponsoredText.match(" axios$")) {
+                                            var sponsoredTextVal = sponsoredText.innerHTML.toLowerCase();
+                                            if(sponsoredTextVal && sponsoredTextVal.match(" house$")) {
                                                 // Hide the container
                                                 sponsoredContainer.style.display = 'none';
                                                 Axlog('Removing brand name and logo for content promotion on site. Placement index : ' + adIndex);
                                             }
+                                            if(sponsoredTextVal && sponsoredTextVal.match(" axios$")) {
+                                                // Remove 'Sponsored By' prefix and add just "Axios"
+                                                sponsoredText.innerHTML = "Axios";
+                                            }
                                         }
                                     }
 
-                                    updateSocialLinks((adData.actionTrackingUrls) ? adData.actionTrackingUrls : null, adContainer);
+                                    updateSocialLinks(adData, adContainer);
                                 }
 
                                 // Ad should not be clickable, prevent render js from taking over the ad click
@@ -390,7 +438,8 @@
     // If user clicks on social feed story, detect 'c_id' & 'cr_id' in url
     // Pass those values to JS API to fetch the exact same campaign/creative to be rendered
     // Change the top Ad (First Ad) position to 1 in the feed
-    function updateSocialLinks(actionTrackingUrls, adUnit) {
+    function updateSocialLinks(adData, adUnit) {
+        var actionTrackingUrls = (adData.actionTrackingUrls) ? adData.actionTrackingUrls : null;
         if(!actionTrackingUrls || !adUnit) return;
 
         var title, summary, clickUrl, cid, crid;
@@ -413,6 +462,31 @@
 
             cid = getParameterByName('cid', clickUrl);
             crid = getParameterByName('crid', clickUrl);
+
+            var ctaTextField = adUnit.querySelector('.cta-text a');
+                sequence = 'NEXT SEQUENCE';
+                if(sequentialStory.previous_campaign === null && sequentialStory.next_creative === null) {
+                    sequence = 'START SEQUENCE'
+                }
+            if(cid && ctaTextField && ctaTextField.innerHTML !== "Install Now") { // Campaign V1 : Sequential Story Telling
+                var ctaTextField = ctaTextField.innerHTML.split('=');
+                if(ctaTextField.length > 1) {
+                    sequentialStory.previous_campaign = cid;
+                    sequentialStory.next_creative = ctaTextField[1];
+                    sequentialStory.requested = false;
+                    Axlog('V1 Sequential story telling : '+ sequence +' with current campaign ID : ' + sequentialStory.previous_campaign + ' next creative ID : ' + sequentialStory.next_creative);
+                }
+            } else if(cid && adData.customFields && adData.customFields.next_creative) { // Campaign V2 : Sequential Story Telling
+                sequentialStory.previous_campaign = cid;
+                sequentialStory.next_creative = adData.customFields.next_creative;
+                sequentialStory.requested = false;
+                Axlog('V2 Sequential story telling : '+ sequence +' with current campaign ID : ' + sequentialStory.previous_campaign + ' next creative ID : ' + sequentialStory.next_creative);
+            } else {
+                // Reset sequence since no next_creative flag found
+                sequentialStory.previous_campaign = null;
+                sequentialStory.next_creative = null;
+                sequentialStory.requested = false;
+            }
 
             if(cid && crid) {
                 var baseUrl = (window.location.href) ? window.location.href.split('?')[0] : 'https://www.axios.com/'

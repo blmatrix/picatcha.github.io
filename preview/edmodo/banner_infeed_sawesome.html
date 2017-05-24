@@ -16,6 +16,10 @@
         margin: 0px !important;
     }
     
+    div[id^="aa_display_ad_"] {
+        display: inline-block;
+    }
+
     .stream-item {
         border-bottom: 1px solid #dfe4e8;
         border-top: 1px solid #dfe4e8;
@@ -126,7 +130,8 @@
         width: 200px;
         float: right;
         position: absolute;
-        left: 343px;
+        left: 370px;
+        top: 10px;
     }
     
     .user_fb__list {
@@ -227,7 +232,7 @@
                         </div>
                     </div>
                     <div class="ad-message">
-                        <p>Edmodo’s mission is to connect all learners with the people and resources they need to meet their full potential - always &amp; forever free.</p>
+                        <p>Edmodos mission is to connect all learners with the people and resources they need to meet their full potential - always &amp; forever free.</p>
                     </div>
                 </div>
                 <script type="text/javascript">
@@ -239,9 +244,31 @@
                         AnEdmodo.resizeIABContainer(position, 0, 0);
                     }
                 }
+                window.edmodoAdFill = function(partner) {
+                    var position = 'in-feed';
+                    if (window && window._an_adFill) window._an_NoFill(partner);
+                    console.log('Ad received by Super Awesome Display Tag for ' + position);
+                    if (AnEdmodo && AnEdmodo.resizeIABContainer) {
+                        AnEdmodo.resizeIABContainer(position, 300, 250);
+                    }
+                }
                 </script>
-                <script type="text/javascript" src=" https://ads.superawesome.tv/v2/ad.js?placement=33862&test=true"></script> 
-                <!--/* OpenX Asynchronous JavaScript tag END */-->
+                <script type="text/javascript" src=" https://ads.superawesome.tv/v2/ad.js?placement=33862&test=true"></script>
+                <script type="text/javascript">
+                (function() {
+                    AwesomeDisplay.check(33862, function(available) {
+                        if (available) {
+                            // proceed to display
+                            alert('fill');
+                            window.edmodoAdFill('super_awesome');
+                        } else {
+                            alert('NO fill');
+                            window.edmodoNoAdFill('super_awesome');
+                        }
+                    })
+                })();
+                </script>
+                <!--/* Super Awesome Asynchronous JavaScript tag END */-->
             </div>
         </div>
     </div>

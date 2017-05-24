@@ -203,7 +203,7 @@
 </head>
 
 <body>
-    <div class="stream-item str-adunit str-card-exp an-item in-feed iab-ad">
+    <div class="stream-item str-adunit str-card-exp an-item right-rail iab-ad">
         <div class="item-container">
             <div id="8ybQAnXdk0XwWYPq4Yo9KhrVedhvyz9gvSJO5imF" data-event-type="post" class="message-item">
                 <div class="content">
@@ -220,23 +220,39 @@
                         </ul>
                     </div>
                     <div class="header">
-                        <img src="https://assets.edmodo.com/one-eye/logo-eb8f69bccb3cb77a8b7534f841aab69e.png" class="logo">
                         <div class="text">
-                            <p class="edmodo-branding">Sponsored</p>
-                            <p class="promoted-prefix"></p>
+                            <p class="promoted-prefix">Sponsored</p>
                         </div>
                     </div>
-                    <div class="ad-message">
-                        <p>This sponsored content keeps Edmodo free and accessible to learners everywhere.</p>
-                    </div>
                 </div>
-                <!--/* Criteo Asynchronous JavaScript tag START */-->
-                <iframe src='http://cas.criteo.com/delivery/afr.php?zoneid=749884' framespacing='0' frameborder='no' scrolling='no' width='300' height='250'> 
-                    <a href='http://cas.criteo.com/delivery/ck.php?cb=[[CACHEBUSTER]]' target='_blank'> 
-                        <img src='http://cas.criteo.com/delivery/avw.php?zoneid=749884' border='0' alt='' /> 
-                    </a> 
-                </iframe>
-                <!--/* Criteo Asynchronous JavaScript tag START */-->
+                <!-- Criteo RR Code START -->
+                <script type="text/javascript" src="//static.criteo.net/js/ld/publishertag.js"></script>
+                <script type="text/javascript">
+                Criteo.DisplayAd({
+                    "zoneid": 749883,
+                    "async": true,
+                    "containerid": '8ybQAnXdk0XwWYPq4Yo9KhrVedhvyz9gvSJO5imF'
+                });
+
+                function edmodoNoAdFill(partner) {
+                    // Positions
+                    // in-feed
+                    // right-rail
+                    // logout-top
+                    // logout-left
+                    // logout-right
+                    position = 'right-rail';
+
+                    // Update AdsNative about no-fill
+                    window._an_adNoFill(partner);
+
+                    console.log('NO Ad received by Students Criteo Display Tag for ' + position);
+                    if (AnEdmodo && AnEdmodo.resizeIABContainer) {
+                        AnEdmodo.resizeIABContainer(position, 0, 0);
+                    }
+                }
+                </script>
+                <!-- Criteo RR Code END -->
             </div>
         </div>
     </div>
