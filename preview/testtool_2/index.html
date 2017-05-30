@@ -11,13 +11,16 @@
 <body>
     <div class="an-layout">
         <header class="an-layout-header">
-            <div class="header"> PolyMorph Ad Gallery </div>
+             <div id="polymorph"> </div>
+            <div class="header"> 
+              Ad Gallery </div>
         </header>
         <main class="an-layout-content">
-            <div class="an-layout-stage  msg viant">
+            <div class="an-layout-stage viant">
                 <div class="slide-container viant" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); width: 300%; transform: translateX(0%);">
-                    <div class="slide" id="viant_first" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
-                        <svg width="412px" height="806px" viewBox="4422 750 412 806" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin-left:40%;">
+                    <div class="slide mobile" id="viant_first" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
+                    <!--style="margin-left:40%; padding-top: 75px;"-->
+                        <svg viewBox="4422 750 412 806" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <desc>Created with Sketch.</desc>
                             <defs>
                                 <rect id="path-1" x="0" y="0" width="360" height="640" rx="2"></rect>
@@ -43,8 +46,9 @@
                             </g>
                         </svg>
                     </div>
-                    <div class="slide" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
-                        <svg width="884px" height="820px" viewBox="366 307 884 1249" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin-left:15%;">
+                    <div class="slide tab" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
+                    <!--style="margin-left:15%; padding-top: 30px;"-->
+                        <svg viewBox="366 307 884 1249" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <desc>Created with Sketch.</desc>
                             <defs>
                                 <circle id="path-1" cx="439" cy="1191" r="28"></circle>
@@ -74,13 +78,16 @@
                             </g>
                         </svg>
                     </div>
-                    <div class="slide" id="viant_last" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
-                        <svg width="1300px" height="820px" viewBox="2219 447 1931 1114" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <div class="slide macbook" id="viant_last" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
+                    <!-- padding-top: 30px; -->
+                    <div class="image-container">
+                        <svg viewBox="2219 447 1931 1114" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
                             <desc>Created with Sketch.</desc>
                             <defs>
                                 <rect id="path-1" x="0" y="0" width="1440" height="900" rx="2"></rect>
                             </defs>
+                            <!-- Ratio : 324 : 187 -->
                             <g id="Macbook" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(2224.000000, 450.000000)">
                                 <g id="Body">
                                     <path d="M427,-234.001286 C427,-243.941701 435.061961,-252 444.999601,-252 L1434.00164,-252 C1466.58554,-252 1493,-225.575543 1493,-193.001184 L1493,1260.00118 C1493,1292.58533 1466.58292,1319 1434.00164,1319 L444.999601,1319 C435.058696,1319 427,1310.94514 427,1301.00129 L427,-234.001286 Z" id="Rectangle-2" stroke="#CCD2D5" stroke-width="6" fill="#EAF0F2" transform="translate(960.000000, 533.500000) rotate(-90.000000) translate(-960.000000, -533.500000) "></path>
@@ -104,6 +111,10 @@
                                 </g>
                             </g>
                         </svg>
+                        <div class="videoWrapper">
+                            <iframe style="width: 100%; height: 100%;position: absolute;" src="https://www.getpolymorph.com"  frameborder="0"></iframe>
+                        </div>
+                    </div>
                     </div>
                 </div>
                 <div class="prev-next-button previous">
@@ -378,7 +389,7 @@
                                 <a class="an-bar">
                                     <div class="pubName">
                                         <p> viantinc</p>
-                                    </div>s
+                                    </div>
                                 </a>
                             </div>
                         </div>
@@ -495,7 +506,7 @@
                         <!-- contentTilesElement -->
 
                     </div>
-                    <!-- end of tiles_container" -->s
+                    <!-- end of tiles_container" -->
                 </section>
             </div>
         </main>

@@ -10,6 +10,7 @@ stories.on("click", function(e) {
     // Get clicked story index
     var clientName = $(this).data('client'),
         clientStage = $('.an-layout-stage.' + clientName),
+    
         allStages = $('.an-layout-stage');
         console.log (clientName);
         global_client_name = clientName;
@@ -101,7 +102,7 @@ $('.prev-next-button').on('click', function(e) {
         slideCount = $('.slide-container.' + global_client_name).find('.slide').length,
         translateX = getTranslateXValue(slideContainer);
         console.log ('The name of client is' + global_client_name);
-console.log('SlideCount value now is' + slideCount);
+        console.log('SlideCount value now is' + slideCount);
 
     // Check if "prev" / "next" was clicked
     if ($(this).hasClass('next')) {

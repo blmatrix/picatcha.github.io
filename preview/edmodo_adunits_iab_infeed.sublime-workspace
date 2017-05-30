@@ -1,0 +1,504 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"st",
+				"style\tTag"
+			],
+			[
+				"po",
+				"postData"
+			],
+			[
+				"An",
+				"AnEdmodo"
+			],
+			[
+				"adUn",
+				"adUnitParent"
+			],
+			[
+				"adU",
+				"adUnitMainParent"
+			],
+			[
+				"l",
+				"log"
+			],
+			[
+				"get",
+				"getElementsByClassName"
+			],
+			[
+				"cid",
+				"cid1"
+			],
+			[
+				"im",
+				"img_html_string"
+			],
+			[
+				"img",
+				"imageSrc"
+			],
+			[
+				"res",
+				"result"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"log",
+				"logResults"
+			],
+			[
+				"re",
+				"request"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"act",
+				"activeTabId"
+			],
+			[
+				"standard",
+				"standardImage"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 87.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"pac",
+				"Install Package Control"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Applications/MAMP/htdocs/edmodoadex.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/edmodo/logout_top.html",
+		"/Applications/MAMP/htdocs/gallery/galleryindex.html",
+		"/Applications/MAMP/htdocs/xfi/Access My Account _ Email _ Online News _ My XFINITY®.htm",
+		"/Applications/MAMP/htdocs/xfitestcode.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/internet_brands/weddingbee_rr.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/internet_brands/Weddingbee_tile.htm",
+		"/Users/Shaheeda/Desktop/test_weddingbee.html",
+		"/Users/Shaheeda/code/native-preview/public/js/imgur_preview.js",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/internet_brands/weddingbee_tile.html",
+		"/Users/Shaheeda/Desktop/testimgur.html",
+		"/Users/Shaheeda/Desktop/testimgurrr.html",
+		"/Users/Shaheeda/Desktop/testimgur_widget.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/imgur/index_placements.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/imgur/index.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/myspace_video.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/imgur/index.html",
+		"/Users/Shaheeda/Desktop/cheetah.json",
+		"/Users/Shaheeda/Desktop/goldlasso.json",
+		"/Users/Shaheeda/Desktop/xfi.html",
+		"/Users/Shaheeda/Desktop/viantxfinity.html",
+		"/Users/Shaheeda/Desktop/test123.html",
+		"/Users/Shaheeda/Desktop/test123",
+		"/Users/Shaheeda/Desktop/disqus.json",
+		"/Users/Shaheeda/code/adsnative_renderjs/src/newsmax/connect.v5.src.js",
+		"/Users/Shaheeda/Desktop/connectv5.js",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/newsmax/connectV5.js",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/newsmax/newsmax_template_new.html",
+		"/Users/Shaheeda/Desktop/dq_whitelable.css",
+		"/Applications/MAMP/htdocs/picatcha.github.io/sheknows/test2_whitelabel.4f0949270c22.css",
+		"/Users/Shaheeda/Desktop/test_nm.css",
+		"/Users/Shaheeda/Desktop/test_nm.html",
+		"/Applications/MAMP/htdocs/health_widget.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/edmodo/logout.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/edmodologout.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/health_iframe/healthvinat1.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/health_iframe/index.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/health_iframe/healthvinat.html",
+		"/Applications/MAMP/htdocs/new_myspace_articlewidget/myspaceindex.htm",
+		"/Applications/MAMP/htdocs/myspceRR1_iframe/myspacerr1iframe.html",
+		"/Applications/MAMP/htdocs/myspceRR1_iframe/index.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/sheknows/sheknows_template.html",
+		"/Users/Shaheeda/Desktop/test.css",
+		"/Users/Shaheeda/Desktop/testad.html",
+		"/Users/Shaheeda/code/API/api_cid.html",
+		"/Applications/MAMP/htdocs/nm_alltemplates.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/healthvinat.html",
+		"/Users/Shaheeda/code/native-preview/views/bbm_feed.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/cheetahmobile/newsrepublic_feed.html",
+		"/Users/Shaheeda/code/native-preview/views/bbm_preview.html",
+		"/Users/Shaheeda/code/Duplicate-native-preview /public/js/preview.js",
+		"/Users/Shaheeda/code/Duplicate-native-preview /public/js/edmodo_preview.js",
+		"/Users/Shaheeda/code/Duplicate-native-preview /views/edmodo_adunits.html",
+		"/Users/Shaheeda/code/Duplicate-native-preview /public/js/an-edmodo.js",
+		"/Users/Shaheeda/code/Duplicate-native-preview /public/js/an-edmodo_parent.js",
+		"/Users/Shaheeda/code/Duplicate-native-preview /views/iframe_infeed.html",
+		"/Users/Shaheeda/Desktop/testmsporx.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/msporx_rw.html",
+		"/Users/Shaheeda/Desktop/test_twitch.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/Twitch/twitch_homefeed.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/axios_newsletter.html",
+		"/Users/Shaheeda/Desktop/test_newsletter.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/axios.html",
+		"/Users/Shaheeda/code/API/api.html",
+		"/Users/Shaheeda/Desktop/testbusiness.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/trustx/espn.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/trustx/time.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/trustx/businesinsider.html",
+		"/Users/Shaheeda/code/Chrome_extension/background.html",
+		"/Users/Shaheeda/code/Chrome_extension/popup.html",
+		"/Users/Shaheeda/code/broken-links/devtools.html",
+		"/Users/Shaheeda/code/Chrome_extension/background.js",
+		"/Users/Shaheeda/code/Chrome_extension/content_script.js",
+		"/Users/Shaheeda/code/Chrome_extension/popup.js",
+		"/Users/Shaheeda/code/Chrome_extension/manifest.json",
+		"/Users/Shaheeda/Desktop/vianttest.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/sunset_infeed1.html",
+		"/Applications/MAMP/htdocs/demosunset.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/sunset_infeed.html",
+		"/Users/Shaheeda/code/Chrome_extension/API/api.html",
+		"/Users/Shaheeda/code/Chrome_extension/API /api.html",
+		"/Users/Shaheeda/Desktop/testentrepreneur.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/enrepreneur.html",
+		"/Applications/MAMP/htdocs/entrepreneur_infeed.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/qaviant.html",
+		"/Users/Shaheeda/Desktop/testvidio.html",
+		"/Users/Shaheeda/Library/Application Support/Sublime Text 3/Packages/HTML-CSS-JS Prettify/.jsbeautifyrc",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/vidio_infeed.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/xfinity_infeed.html",
+		"/Users/Shaheeda/code/broken-links/manifest.json",
+		"/Users/Shaheeda/Desktop/testxfinity.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/livestrong-mop.html",
+		"/Users/Shaheeda/code/broken-links/content.js",
+		"/Users/Shaheeda/code/broken-links/devtools.js",
+		"/Users/Shaheeda/code/broken-links/background.js",
+		"/Users/Shaheeda/code/Chrome_extension/style.css",
+		"/Users/Shaheeda/code/Chrome_extension/stats.js",
+		"/Users/Shaheeda/Desktop/ladder.html",
+		"/Users/Shaheeda/Desktop/123.css",
+		"/Users/Shaheeda/Desktop/singleline.html",
+		"/Users/Shaheeda/Desktop/testgoliath.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/goliath_infeed.html",
+		"/Applications/MAMP/htdocs/newsmax_iframe/index.html",
+		"/Applications/MAMP/htdocs/newsmax_iframe/nm.html",
+		"/Users/Shaheeda/Desktop/test.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/newsmax_iframe.html",
+		"/Users/Shaheeda/Desktop/popup.html",
+		"/Applications/MAMP/htdocs/banner_template.html",
+		"/Users/Shaheeda/Desktop/banner.html",
+		"/Applications/MAMP/htdocs/livestrong/livestrong_infeed.html",
+		"/Applications/MAMP/htdocs/ehow/ehow.html",
+		"/Users/Shaheeda/Desktop/testehow.html",
+		"/Applications/MAMP/htdocs/testlivestrong.html",
+		"/Applications/MAMP/htdocs/livestrong/livestrong.html",
+		"/Applications/MAMP/htdocs/myspceRR1_iframe/indexrmop.html",
+		"/Applications/MAMP/htdocs/livestrong/index.html",
+		"/Users/Shaheeda/Desktop/testlivestrong.html",
+		"/Users/Shaheeda/Desktop/Office JS/forloop_print.html",
+		"/Users/Shaheeda/Desktop/Office JS/untitled.html",
+		"/Users/Shaheeda/Desktop/testsoprr.html",
+		"/Applications/MAMP/htdocs/picatcha.github.io/preview/socialrenegade.html",
+		"/Users/Shaheeda/Desktop/testsocial.html",
+		"/Users/Shaheeda/Desktop/instream_single.css",
+		"/Users/Shaheeda/Desktop/instream_native.css",
+		"/Users/Shaheeda/Desktop/sidebarText.css",
+		"/Applications/MAMP/htdocs/newsmax1.html",
+		"/Applications/MAMP/htdocs/newsmax/newsmax_redesign.html",
+		"/Applications/MAMP/htdocs/newsmax_instream.html"
+	],
+	"find":
+	{
+		"height": 29.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"my xfinity adver",
+			"1mmpNncpbu4zUe7dhf9iUoBVrYWr3vKwEeHq6IbH",
+			"OPts",
+			"adsnativeOpts",
+			"1mmpNncpbu4zUe7dhf9iUoBVrYWr3vKwEeHq6IbH",
+			"gallery-list",
+			"LUjqAgn",
+			"tctGSOU",
+			"LUjqAgn",
+			"post-hea",
+			"post-container",
+			".js",
+			"right-content",
+			"300rectangle",
+			"an-con",
+			"#sidebar2Col",
+			"float",
+			".thum2Col",
+			".Thesidebar",
+			".sidebar2Col",
+			".sidebarText",
+			".sidebarText ",
+			".sidebarThumbnails",
+			".leaderboard",
+			".footerUnit",
+			"an-con",
+			"an-co",
+			"</bod",
+			"iframe",
+			"l77M7mKkb3Q7UJLn_GseKUuzyCx_HgSlreJA6JnZ",
+			"max-height: ",
+			"max-height: 60px;",
+			"display",
+			"NewsMax Feed Network",
+			"news",
+			"en42Pf2JOuBPivMkTLWNKz0s2a9pNc8NdzQmmRJh",
+			"vMLlQKZc1mgCRkx5rjPQ_rBakMWSc9Q8pHmLI8qi",
+			"vMLlQKZc1mgCRkx5rjPQ_rBakMWSc9Q8pHmLI8qi 05",
+			"YfAZMD6d7WGvBWqmKnLb7dv2gwnWpjg3ROTdvlWG",
+			"nm",
+			"init",
+			"nm",
+			"an-container",
+			"an-contai",
+			"listner",
+			"action",
+			"hide",
+			"ads-native:hide",
+			"lead",
+			"iframe",
+			"c-button",
+			"user_fb__list",
+			"c-button",
+			"span",
+			"ifram",
+			"ads-native-message-item-iframe",
+			"the kids like",
+			"In FEED",
+			"hide",
+			"an-c",
+			"star wars",
+			"star",
+			"starwars",
+			"touts",
+			"tltpvid_56691",
+			"3lift",
+			"lift",
+			".css",
+			"href=\"/",
+			"href=\"",
+			"href=“",
+			"href=“/",
+			"href=\"/",
+			"src=\"/",
+			"src=\"//",
+			"src=//",
+			"spe",
+			"caoching",
+			"class=\"_2th news-article\"",
+			"2th",
+			"send",
+			"div",
+			"9kShl1l7RTrh8luohfKAGp6WsDv9LlJupNV35RUn",
+			"nm13",
+			"5MkYfJaKAl3Pf1BVzQAZ5d80PBUzEHHAQGDArCya",
+			"J1mEPplmShXs50_ymjmu9JGzEr3R3LExOTNMyrFm",
+			"9kShl1l7RTrh8luohfKAGp6WsDv9LlJupNV35RUn",
+			"\n         widgetId: \"",
+			"NM08",
+			"uaG3oxsYX0tO6rlviDmcmBDdXONVayHfem7ZtAr0",
+			"connectv5",
+			"nm.init",
+			"iframe",
+			"connect.v",
+			"connect",
+			"adsnative",
+			"module_content_list__item",
+			"l77M7mKkb3Q7UJLn_GseKUuzyCx_HgSlreJA6JnZ",
+			"#nmWidget.sidebarText ul.nmWidgetUl .nmWidgetList",
+			"Nmw",
+			"V4iMbIJBp90urCcKW6tJ-1P912NtUNQ-aNtoB7FZ",
+			"rede",
+			"redesign",
+			"standardimage",
+			"\"standardtext",
+			"standardtext",
+			"nmWidget",
+			"powered by news",
+			"sidebar",
+			"connectv3",
+			"render.v1"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"#rectangle2x2",
+			"#thum2Col",
+			"#Thesidebar",
+			"#sidebar2Col",
+			"#sidebarText",
+			"#sidebarThumbnails",
+			"#leaderboard",
+			"href=\"http://www.sunset.com/",
+			"src=\"http://www.sunset.com/"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 29.0
+	},
+	"input":
+	{
+		"height": 37.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "edmodo_adunits_iab_infeed.sublime-project",
+	"replace":
+	{
+		"height": 54.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"myspace",
+				"myspace_video.html"
+			],
+			[
+				"preview/xfinity_infeed.html",
+				"picatcha.github.io/preview/xfinity_infeed.html"
+			],
+			[
+				"connectv5.",
+				"adsnative_renderjs/src/newsmax/connect.v5.src.js"
+			],
+			[
+				"newsmax1.",
+				"htdocs/newsmax1.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 195.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
