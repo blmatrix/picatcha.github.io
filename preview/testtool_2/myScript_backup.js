@@ -23,77 +23,17 @@ stories.on("click", function(e) {
 });
 //End of Bringing the relevant slides on clicking the right side button 
 
-$('#viant').click(function(){
-    $(this).css("background-color", "#9BBE78");
-    $('.viant').css("background", "linear-gradient(#9BBE78, #37A7B9)");
+// Add background color for publisher tiles when clicked
+// Display associated stage on the left
+$('.publisher-tile').click(function() {
+    $('.publisher-tile').removeClass('active');
+    $(this).addClass('active');
+
+    // Show Stage 
+    var publisherName = $(this).attr('id');
+    $('.an-layout-stage').removeClass('active');
+    $('.an-layout-stage.' + publisherName).addClass('active');
 });
-
-$('#edmodo').click(function(){
-    console.log('Entering Edmodo color change');
-    $(this).css("background-color", "rgb(242, 185, 81)");
-    $('.edmodo').css("background", "linear-gradient(rgb(242, 185, 81), rgb(233, 103, 70))");
-});
-
-
-$('#disqus').click(function(){
-    $(this).css("background-color", "rgb(211, 103, 121)");
-    $('.disqus').css("background", "linear-gradient(rgb(211, 103, 121), rgb(55, 59, 125))");
-});
-
-
-$('#axios').click(function(){
-    $(this).css("background-color", "rgb(59, 208, 220)");
-    $('.axios').css("background", "linear-gradient(rgb(59, 208, 220), rgb(55, 90, 119))");
-});
-
-
-$('#newsmax').click(function(){
-    $(this).css("background-color", "#fad0c4");
-    $('.newsmax').css("background", "linear-gradient(#fad0c4 0%, #fad0c4 1%, #ffd1ff 100%)");
-});
-
-$('#advancenative').click(function(){
-    $(this).css("background-color", "#ff8177");
-    $('.advancenative').css("background", "linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%)");
-});
-
-
-$('#viber').click(function(){
-    $(this).css("background-color", "#9BBE78");
-    $('.viber').css("background", "linear-gradient(#9BBE78, #37A7B9)");
-});
-
-$('#pocket').click(function(){
-    $(this).css("background-color", "#fad0c4");
-    $('.pocket').css("background", "linear-gradient(#fad0c4 0%, #fad0c4 1%, #ffd1ff 100%)");
-});
-
-
-$('#politico').click(function(){
-    $(this).css("background-color", "rgb(59, 208, 220)");
-    $('.politico').css("background", "linear-gradient(rgb(59, 208, 220), rgb(55, 90, 119))");
-});
-
-
-$('#medium').click(function(){
-    $(this).css("background-color", "rgb(242, 185, 81)");
-    $('.medium').css("background", "linear-gradient(rgb(242, 185, 81), rgb(233, 103, 70))");
-});
-
-
-$('#nuzzel').click(function(){
-    $(this).css("background-color", "#ff8177");
-    $('.nuzzel').css("background", "linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%)");
-});
-
-
-$('#cafemedia').click(function(){
-    $(this).css("background-color", "rgb(211, 103, 121)");
-    $('.cafemedia').css("background", "linear-gradient(rgb(211, 103, 121), rgb(55, 59, 125))");
-});
-
-//End of Background change functino 
-
 
  // Slider navigation - START
 $('.prev-next-button').on('click', function(e) {
