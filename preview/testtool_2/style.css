@@ -26,19 +26,18 @@ body {
 }
 
 .header {
-    color: white;
-    margin-left: 14%;
+    color: #31BEB9;
+    margin-left: 210px;
     font-size: 20px;
-    padding-top: 31px;
     display: block;
     position: relative;
-    font-family: "Roboto","Helvetica","Arial",sans-serif;
     font-size: 20px;
     font-weight: 500;
-    line-height: 1;
+    line-height: 70px;
     letter-spacing: 0.02em;
     font-weight: 400;
     box-sizing: border-box;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
 }
 
 .an-page-content {
@@ -106,7 +105,7 @@ body {
     border-radius: 2px;
     box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
     opacity: 1;
-    margin-right: 2px;
+    margin-right: 0px;
     margin-bottom: 5px;
 }
 
@@ -134,6 +133,10 @@ body {
 /* Hide all stages on load */
 .an-layout-stage {
     display: none;
+}
+
+.an-layout-stage.active{
+    display: block;
 }
 
 #viant {
@@ -281,15 +284,12 @@ body {
 
 
 #polymorph{
-    background-image: url(polymorph_logo.png);
-    width: 13% !important;
-    height: 100px;
+    width: 175px !important;
     position: absolute;
     z-index: 10000;
     background-size: cover;
     background-repeat: no-repeat;
-    top: -30px;
-    /*margin-left: 10px;*/
+    left: 20px;
 }
 
 .clicked {
@@ -387,10 +387,10 @@ img {
     }
 
     .slide.mobile .videoWrapper {
-        left: calc((100% - 125px) / 2);
-        top: 316px;
+       left: calc((100% - 125px) / 2);
+        top: 221px;
         width: 125px;
-        padding-bottom: 225px
+        padding-bottom: 224px;
     }
 
     .slide.tab svg {
@@ -402,7 +402,7 @@ img {
 
     .slide.tab .videoWrapper {
         left: calc((100% - 125px) / 2);
-        top: 305px;
+        top: 210px;
         width: 125px;
         padding-bottom: 167px;
     }
@@ -416,7 +416,7 @@ img {
 
     .slide.macbook .videoWrapper {
         left: calc((100% - 140px) / 2);
-        top: 295px;
+        top: 200px;
         width: 140px;
         padding-bottom: 88px;
     }
@@ -432,6 +432,15 @@ img {
     .pubName p {
         margin: 5px 0px 0px 5px !important;
     }
+
+    #poly-img {
+        width: 200px !important;
+    }
+
+    .name img {
+        left: -80px !important;
+        top: -175% !important;
+    }
 }
 
 @media screen and (min-width: 481px) and (max-width: 720px) {
@@ -445,7 +454,7 @@ img {
 
     .slide.mobile .videoWrapper {
         left: calc((100% - 162px) / 2);
-        top: 274px;
+        top: 195px;
         width: 162px;
         padding-bottom: 288px;
     }
@@ -460,9 +469,9 @@ img {
 
      .slide.tab .videoWrapper {
         left: calc((100% - 182px) / 2);
-        top: 263px;
+        top: 184px;
         width: 182px;
-        padding-bottom: 242px;
+        padding-bottom: 243px;
     }
 
 
@@ -475,7 +484,7 @@ img {
 
     .slide.macbook .videoWrapper {
         left: calc((100% - 222px) / 2);
-        top: 258px;
+        top: 177px;
         width: 222px;
         padding-bottom: 139px;
     }
@@ -491,6 +500,20 @@ img {
     .pubName p {
         margin: 5px 0px 0px 5px !important;
     }
+    
+    body .name {
+        font-size: 2rem !important;
+    }
+
+    .name img {
+        left: -97px !important;
+    }
+
+    #poly-img {
+        width: 340px !important;
+    
+    }
+
 }
 
 @media screen and (min-width: 721px) and (max-width: 1024px) {
@@ -503,7 +526,7 @@ img {
 
    .slide.mobile .videoWrapper {
         left: calc((100% - 195px) / 2);
-        top: 172px;
+        top: 130px;
         width: 195px;
         padding-bottom: 348px;
     }
@@ -517,7 +540,7 @@ img {
 
     .slide.tab .videoWrapper {
         left: calc((100% - 260px) / 2);
-        top: 165px;
+        top: 123px;
         width: 260px;
         padding-bottom: 346px;
     }
@@ -531,7 +554,7 @@ img {
 
     .slide.macbook .videoWrapper {
         left: calc((100% - 312px) / 2);
-        top: 247px;
+        top: 172px;
         width: 312px;
         padding-bottom: 196px;
     }
@@ -546,6 +569,16 @@ img {
     .pubName p {
         margin: 5px 0px 0px 5px !important;
     }
+
+    body .name {
+        font-size: 2.8rem !important;
+    }
+
+    #poly-img {
+        width: 380px !important;
+    }
+
+
 }
 
 @media screen and (min-width: 1025px)  and (max-width: 1280px) {
@@ -559,7 +592,7 @@ img {
 
      .slide.mobile .videoWrapper {
         left: calc((100% - 234px) / 2);
-        top: 106px;
+        top: 89px;
         width: 234px;
         padding-bottom: 418px;
     }
@@ -572,9 +605,9 @@ img {
 
     .slide.tab .videoWrapper {
         left: calc((100% - 338px) / 2);
-        top: 84px;
+        top: 72px;
         width: 338px;
-        padding-bottom: 450px;
+        padding-bottom: 451px;
     }
 
     .slide.macbook svg {
@@ -585,14 +618,18 @@ img {
     }
     .slide.macbook .videoWrapper {
         left: calc((100% - 560px) / 2);
-        top: 187px;
+        top: 136px;
         width: 560px;
-        padding-bottom: 349px;
+        padding-bottom: 350px;
     }
 
     /* Single tile height */
     .contentTilesElement {
         height: 165px !important;
+    }
+
+    body .name {
+       font-size: 3.7rem; 
     }
 }
 
@@ -644,4 +681,72 @@ img {
     .contentTilesElement {
         height: 205px !important;
     }
+
+    body .name {
+       font-size: 4rem; 
+    }
 }
+
+/* OnLoad Text Animation */
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  height: auto;
+  font-family: "Unica One";
+  /*font-size: 4rem;*/
+  color: #31BEB9;
+  background: #f1f1f1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+body .name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: auto;
+  padding: 0 1rem 1rem;
+  position: relative;
+  top: 40%;
+  left: 15%;
+}
+body .name:before {
+  content: '';
+  width: 100%;
+  background: #16a085;
+  opacity: 0.3;
+  bottom: 0;
+  height: 1px;
+  left: 0;
+  position: absolute;
+}
+body .name .letter {
+  display: inline-block;
+  opacity: 0;
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+z-index: 100;
+}
+
+/* Powered by Polymorph */
+.name img {
+    position: absolute;
+    left: -150px;
+    top: -175%;
+    z-index: -0;
+    opacity: 0;
+    width: inherit !important;
+    -webkit-transition: opacity 2s ease-in;
+    -moz-transition: opacity 2s ease-in;
+    -o-transition: opacity 2s ease-in;
+    -ms-transition: opacity 2s ease-in;
+    transition: opacity 2s ease-in;
+}
+.name img.load {
+    opacity: 1;
+}
+
+

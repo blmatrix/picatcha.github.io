@@ -2,22 +2,49 @@
 <html>
 
 <head>
-    <title> Adsnative_preview tool</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Polymorph Ad Gallery</title>
+    <link rel="stylesheet" type="text/css" href="style.css?v=3">
     <link href='https://fonts.googleapis.com/css?family=Roboto:500' rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="anime.min.js"></script>
+
+    <!-- Le favicon -->
+    <link rel="icon" href="https://d3m9pgf48clj74.cloudfront.net/static/img/favicon.ca9519c79bf2.png">
+    <!--[if IE]><link rel="shortcut icon" href="https://d3m9pgf48clj74.cloudfront.net/static/img/favicon.2124f39f2941.ico"><![endif]-->
+
 </head>
 
 <body>
     <div class="an-layout">
         <header class="an-layout-header">
-            <div id="polymorph"> </div>
+            <img src="Polymorph-logo-Transparent.png" id="polymorph">
             <div class="header">
                 Ad Gallery </div>
         </header>
         <main class="an-layout-content">
-            <div class="an-layout-stage active viant">
-                <div class="slide-container viant" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); width: 300%; transform: translateX(0%);">
+            <div class="an-layout-stage active onload">
+                <div class="name">
+                    <div class="letter" style="margin-left: 33%;">A</div>
+                    <div class="letter">D</div>
+                    <div class="letter">-</div>
+                    <div class="letter">E</div>
+                    <div class="letter">X</div>
+                    <div class="letter">P</div>
+                    <div class="letter">E</div>
+                    <div class="letter">R</div>
+                    <div class="letter">I</div>
+                    <div class="letter">E</div>
+                    <div class="letter">N</div>
+                    <div class="letter">C</div>
+                    <div class="letter">E</div>
+                    <div class="letter">S</div>
+                    <img src="Polymorph-Mark.png" id="poly-img">
+                </div>
+
+                <link href="https://fonts.googleapis.com/css?family=Unica+One" rel="stylesheet">
+            </div>
+            <div class="an-layout-stage viant">
+                <div class="slide-container viant" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); transform: translateX(0%);">
                     <div class="slide mobile" id="viant_first" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
                         <!--style="margin-left:40%; padding-top: 75px;"-->
                         <svg viewBox="4422 750 412 806" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -135,8 +162,7 @@
                 </div>
             </div>
             <div class="an-layout-stage edmodo">
-                <div class="slide-container edmodo" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); width: 300%; transform: translateX(0%);">
-                    
+                <div class="slide-container edmodo" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); transform: translateX(0%);">
                     <div class="slide macbook" id="" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
                         <!-- padding-top: 30px; -->
                         <div class="image-container">
@@ -171,7 +197,7 @@
                                 </g>
                             </svg>
                             <div class="videoWrapper">
-                                <iframe style="width: 100%; height: 100%;position: absolute;" src="http://native-preview.herokuapp.com/edmodo_adunits?adsnative_preview=1&cid=11994" frameborder="0"></iframe>
+                                <!-- <iframe style="width: 100%; height: 100%;position: absolute;" src="http://native-preview.herokuapp.com/edmodo_adunits?adsnative_preview=1&cid=11994" frameborder="0"></iframe> -->
                             </div>
                         </div>
                     </div>
@@ -207,7 +233,7 @@
                             </g>
                         </svg>
                         <div class="videoWrapper">
-                            <iframe style="width: 100%; height: 100%;position: absolute;" src="iframe_infeed?placement_id=wmz8pH9XxPWu7dtu0HEh4n5c6UmgtxaiqigcH0d6&position=in-feed&key_values=%7B%22ck_audience_type%22%3A%22TEACHER%22%2C%22ck_grades%22%3A%2210th%20Grade%22%2C%22ck_languages%22%3A%22en%22%2C%22ck_subjects%22%3A%22mathematics%22%2C%22ck_test%22%3A%221%22%7D" frameborder="0"></iframe>
+                            <!-- <iframe style="width: 100%; height: 100%;position: absolute;" src="http://localhost:8050/edmodo_adunits?adsnative_preview=1&cid=12772" frameborder="0"></iframe> -->
                         </div>
                     </div>
                     <div class="slide macbook" id="" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
@@ -244,7 +270,7 @@
                                 </g>
                             </svg>
                             <div class="videoWrapper">
-                                <iframe style="width: 100%; height: 100%;position: absolute;" src="http://native-preview.herokuapp.com/edmodo_adunits?adsnative_preview=1&cid=13294" frameborder="0"></iframe>
+                                <!-- <iframe style="width: 100%; height: 100%;position: absolute;" src="http://native-preview.herokuapp.com/edmodo_adunits?adsnative_preview=1&cid=13294" frameborder="0"></iframe> -->
                             </div>
                         </div>
                     </div>
@@ -276,10 +302,9 @@
                             </g>
                         </svg>
                         <div class="videoWrapper">
-                            <iframe style="width: 100%; height: 100%; position: absolute;" src="http://native-preview.herokuapp.com/edmodo_adunits_iab_infeed?adsnative_preview=1&cid=17165" frameborder="0"></iframe>
+                            <!-- <iframe style="width: 100%; height: 100%; position: absolute;" src="http://native-preview.herokuapp.com/edmodo_adunits_iab_infeed?adsnative_preview=1&cid=17165" frameborder="0"></iframe> -->
                         </div>
                     </div>
-                    
                     <div class="slide macbook" id="" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
                         <!-- padding-top: 30px; -->
                         <div class="image-container">
@@ -314,7 +339,7 @@
                                 </g>
                             </svg>
                             <div class="videoWrapper">
-                                <iframe style="width: 100%; height: 100%;position: absolute;" src="http://docs.adsnative.com/preview/edmodo/logout.html" frameborder="0"></iframe>
+                                <!-- <iframe style="width: 100%; height: 100%;position: absolute;" src="http://docs.adsnative.com/preview/edmodo/logout.html" frameborder="0"></iframe> -->
                             </div>
                         </div>
                     </div>
@@ -331,7 +356,7 @@
                 </div>
             </div>
             <div class="an-layout-stage disqus">
-                <div class="slide-container disqus" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); width: 300%; transform: translateX(0%);">
+                <div class="slide-container disqus" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); transform: translateX(0%);">
                     <div class="slide" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
                         <img src="logo_disqus.png" />
                     </div>
@@ -354,7 +379,7 @@
                 </div>
             </div>
             <div class="an-layout-stage axios">
-                <div class="slide-container axios" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); width: 300%; transform: translateX(0%);">
+                <div class="slide-container axios" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); transform: translateX(0%);">
                     <div class="slide macbook" id="" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
                         <!-- padding-top: 30px; -->
                         <div class="image-container">
@@ -389,8 +414,8 @@
                                 </g>
                             </svg>
                             <div class="videoWrapper">
-                                <iframe style="width: 100%; height: 100%;position: absolute;" src="http://docs.adsnative.com/preview/axios-feed.html?adsntaive_preview=1&cid=11994&zid=Tks4hf_9zB6HCnRzoUTTpjUa7UPmn8om9jo4TtC0
-" frameborder="0"></iframe>
+                                <!-- <iframe style="width: 100%; height: 100%;position: absolute;" src="http://docs.adsnative.com/preview/axios-feed.html?adsntaive_preview=1&cid=11994&zid=Tks4hf_9zB6HCnRzoUTTpjUa7UPmn8om9jo4TtC0
+                                " frameborder="0"></iframe> -->
                             </div>
                         </div>
                     </div>
@@ -426,8 +451,8 @@
                             </g>
                         </svg>
                         <div class="videoWrapper">
-                            <iframe style="width: 100%; height: 100%;position: absolute;" src="http://docs.adsnative.com/preview/axios-feed.html?adsntaive_preview=1&cid=11994&zid=Tks4hf_9zB6HCnRzoUTTpjUa7UPmn8om9jo4TtC0
-" frameborder="0"></iframe>
+                            <!-- <iframe style="width: 100%; height: 100%;position: absolute;" src="http://docs.adsnative.com/preview/axios-feed.html?adsntaive_preview=1&cid=11994&zid=Tks4hf_9zB6HCnRzoUTTpjUa7UPmn8om9jo4TtC0
+                            " frameborder="0"></iframe> -->
                         </div>
                     </div>
                     <div class="slide mobile" id="" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
@@ -458,7 +483,7 @@
                             </g>
                         </svg>
                         <div class="videoWrapper">
-                            <iframe style="width: 100%; height: 100%; position: absolute;" src="" frameborder="0"></iframe>
+                            <!-- <iframe style="width: 100%; height: 100%; position: absolute;" src="" frameborder="0"></iframe> -->
                         </div>
                     </div>
                     <div class="slide macbook" id="" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
@@ -495,7 +520,7 @@
                                 </g>
                             </svg>
                             <div class="videoWrapper">
-                                <iframe style="width: 100%; height: 100%;position: absolute;" src="" frameborder="0"></iframe>
+                                <!-- <iframe style="width: 100%; height: 100%;position: absolute;" src="" frameborder="0"></iframe> -->
                             </div>
                         </div>
                     </div>
@@ -512,7 +537,7 @@
                 </div>
             </div>
             <div class="an-layout-stage newsmax">
-                <div class="slide-container newsmax" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); width: 300%; transform: translateX(0%);">
+                <div class="slide-container newsmax" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); transform: translateX(0%);">
                     <div class="slide macbook" id="" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
                         <!-- padding-top: 30px; -->
                         <div class="image-container">
@@ -547,8 +572,8 @@
                                 </g>
                             </svg>
                             <div class="videoWrapper">
-                                <iframe style="width: 100%; height: 100%;position: absolute; background: white;" src="http://docs.adsnative.com/preview/newsmax/newsmax_preview/leadeboard.html
-" frameborder="0"></iframe>
+                                <!-- <iframe style="width: 100%; height: 100%;position: absolute; background: white;" src="http://docs.adsnative.com/preview/newsmax/newsmax_preview/leadeboard.html
+                                " frameborder="0"></iframe> -->
                             </div>
                         </div>
                     </div>
@@ -584,8 +609,8 @@
                             </g>
                         </svg>
                         <div class="videoWrapper">
-                            <iframe style="width: 100%; height: 100%;position: absolute;" src="http://docs.adsnative.com/preview/newsmax/newsmax_preview/standard_image.html
-" frameborder="0"></iframe>
+                            <!-- <iframe style="width: 100%; height: 100%;position: absolute;" src="http://docs.adsnative.com/preview/newsmax/newsmax_preview/standard_image.html
+                            " frameborder="0"></iframe> -->
                         </div>
                     </div>
                     <div class="slide macbook" id="" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
@@ -622,8 +647,8 @@
                                 </g>
                             </svg>
                             <div class="videoWrapper">
-                                <iframe style="width: 100%; height: 100%;position: absolute; background: white;" src="http://docs.adsnative.com/preview/newsmax/newsmax_preview/footer.html
-" frameborder="0"></iframe>
+                                <!-- <iframe style="width: 100%; height: 100%;position: absolute; background: white;" src="http://docs.adsnative.com/preview/newsmax/newsmax_preview/footer.html
+                                " frameborder="0"></iframe> -->
                             </div>
                         </div>
                     </div>
@@ -655,7 +680,7 @@
                             </g>
                         </svg>
                         <div class="videoWrapper">
-                            <iframe style="width: 100%; height: 100%; position: absolute; background: white;" src="http://docs.adsnative.com/preview/newsmax/newsmax_preview/300x250_rectangle2x2.html" frameborder="0"></iframe>
+                            <!-- <iframe style="width: 100%; height: 100%; position: absolute; background: white;" src="http://docs.adsnative.com/preview/newsmax/newsmax_preview/300x250_rectangle2x2.html" frameborder="0"></iframe> -->
                         </div>
                     </div>
                     <div class="slide macbook" id="" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
@@ -692,8 +717,8 @@
                                 </g>
                             </svg>
                             <div class="videoWrapper">
-                                <iframe style="width: 100%; height: 100%;position: absolute; background: white;" src=" http://docs.adsnative.com/preview/newsmax/newsmax_preview/sidebar.html
-" frameborder="0"></iframe>
+                                <!-- <iframe style="width: 100%; height: 100%;position: absolute; background: white;" src=" http://docs.adsnative.com/preview/newsmax/newsmax_preview/sidebar.html
+                                " frameborder="0"></iframe> -->
                             </div>
                         </div>
                     </div>
@@ -710,9 +735,8 @@
                 </div>
             </div>
             <div class="an-layout-stage advancenative">
-                <div class="slide-container advancenative" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); width: 300%; transform: translateX(0%);">
-                     
-                     <div class="slide mobile" id="" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
+                <div class="slide-container advancenative" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); transform: translateX(0%);">
+                    <div class="slide mobile" id="" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
                         <!--style="margin-left:40%; padding-top: 75px;"-->
                         <svg viewBox="4422 750 412 806" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <desc>Created with Sketch.</desc>
@@ -740,7 +764,7 @@
                             </g>
                         </svg>
                         <div class="videoWrapper">
-                            <iframe style="width: 100%; height: 100%; position: absolute;" src="http://docs.adsnative.com/preview//advancenative_ads.html?adsnative_preview=1&cid=11994" frameborder="0"></iframe>
+                            <!-- <iframe style="width: 100%; height: 100%; position: absolute;" src="http://docs.adsnative.com/preview//advancenative_ads.html?adsnative_preview=1&cid=11994" frameborder="0"></iframe> -->
                         </div>
                     </div>
                     <div class="slide tab" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
@@ -775,7 +799,7 @@
                             </g>
                         </svg>
                         <div class="videoWrapper">
-                            <iframe style="width: 100%; height: 100%;position: absolute;" src="http://docs.adsnative.com/preview//advancenative_ads.html?adsnative_preview=1&cid=11994" frameborder="0"></iframe>
+                            <!-- <iframe style="width: 100%; height: 100%;position: absolute;" src="http://docs.adsnative.com/preview//advancenative_ads.html?adsnative_preview=1&cid=11994" frameborder="0"></iframe> -->
                         </div>
                     </div>
                     <div class="slide macbook" id="viant_last" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
@@ -812,13 +836,10 @@
                                 </g>
                             </svg>
                             <div class="videoWrapper">
-                                <iframe style="width: 100%; height: 100%;position: absolute;" src="http://docs.adsnative.com/preview//advancenative-rr.html?adsnative_preview=1&cid=11994" frameborder="0"></iframe>
+                                <!-- <iframe style="width: 100%; height: 100%;position: absolute;" src="http://docs.adsnative.com/preview//advancenative-rr.html?adsnative_preview=1&cid=11994" frameborder="0"></iframe> -->
                             </div>
                         </div>
                     </div>
-
-
-
                 </div>
                 <div class="prev-next-button previous">
                     <svg viewbox="0 0 100 100">
@@ -832,8 +853,7 @@
                 </div>
             </div>
             <div class="an-layout-stage viber">
-                <div class="slide-container viber" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); width: 300%; transform: translateX(0%);">
-                    
+                <div class="slide-container viber" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); transform: translateX(0%);">
                     <div class="slide" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
                         <img src="mac.png" />
                     </div>
@@ -853,7 +873,7 @@
                 </div>
             </div>
             <div class="an-layout-stage pocket">
-                <div class="slide-container pocket" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); width: 300%; transform: translateX(0%);">
+                <div class="slide-container pocket" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); transform: translateX(0%);">
                     <div class="slide mobile" id="" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
                         <!--style="margin-left:40%; padding-top: 75px;"-->
                         <svg viewBox="4422 750 412 806" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -882,7 +902,7 @@
                             </g>
                         </svg>
                         <div class="videoWrapper">
-                            <iframe style="width: 100%; height: 100%; position: absolute;" src="http://docs.adsnative.com/preview/pocket_gallery.html?adsnative_preview=1&cid=11994" frameborder="0"></iframe>
+                            <!-- <iframe style="width: 100%; height: 100%; position: absolute;" src="http://docs.adsnative.com/preview/pocket_gallery.html?adsnative_preview=1&cid=11994" frameborder="0"></iframe> -->
                         </div>
                     </div>
                     <div class="slide tab" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
@@ -917,7 +937,7 @@
                             </g>
                         </svg>
                         <div class="videoWrapper">
-                            <iframe style="width: 100%; height: 100%;position: absolute;" src="http://docs.adsnative.com/preview/pocket_gallery.html?adsnative_preview=1&cid=11994" frameborder="0"></iframe>
+                            <!-- <iframe style="width: 100%; height: 100%;position: absolute;" src="http://docs.adsnative.com/preview/pocket_gallery.html?adsnative_preview=1&cid=11994" frameborder="0"></iframe> -->
                         </div>
                     </div>
                     <div class="slide macbook" id="" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
@@ -954,12 +974,10 @@
                                 </g>
                             </svg>
                             <div class="videoWrapper">
-                                <iframe style="width: 100%; height: 100%;position: absolute;" src="http://docs.adsnative.com/preview/pocket_gallery.html?adsnative_preview=1&cid=11994" frameborder="0"></iframe>
+                                <!-- <iframe style="width: 100%; height: 100%;position: absolute;" src="http://docs.adsnative.com/preview/pocket_gallery.html?adsnative_preview=1&cid=11994" frameborder="0"></iframe> -->
                             </div>
                         </div>
                     </div>
-
-
                 </div>
                 <div class="prev-next-button previous">
                     <svg viewbox="0 0 100 100">
@@ -973,8 +991,7 @@
                 </div>
             </div>
             <div class="an-layout-stage politico">
-                <div class="slide-container politico" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); width: 300%; transform: translateX(0%);">
-
+                <div class="slide-container politico" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); transform: translateX(0%);">
                     <div class="slide mobile" id="" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
                         <!--style="margin-left:40%; padding-top: 75px;"-->
                         <svg viewBox="4422 750 412 806" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -1038,7 +1055,7 @@
                             </g>
                         </svg>
                         <div class="videoWrapper">
-                            <iframe style="width: 100%; height: 100%;position: absolute;" src="http://www.politico.com/?adsnative_preview=1&cid=11994" frameborder="0"></iframe>
+                            <!-- <iframe style="width: 100%; height: 100%;position: absolute;" src="http://www.politico.com/?adsnative_preview=1&cid=11994" frameborder="0"></iframe> -->
                         </div>
                     </div>
                     <div class="slide macbook" id="viant_last" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
@@ -1075,14 +1092,10 @@
                                 </g>
                             </svg>
                             <div class="videoWrapper">
-                                <iframe style="width: 100%; height: 100%;position: absolute;" src="http://www.politico.com/?adsnative_preview=1&cid=11994" frameborder="0"></iframe>
+                                <!-- <iframe style="width: 100%; height: 100%;position: absolute;" src="http://www.politico.com/?adsnative_preview=1&cid=11994" frameborder="0"></iframe> -->
                             </div>
                         </div>
                     </div>
-
-
-
-
                 </div>
                 <div class="prev-next-button previous">
                     <svg viewbox="0 0 100 100">
@@ -1096,8 +1109,7 @@
                 </div>
             </div>
             <div class="an-layout-stage medium">
-                <div class="slide-container medium" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); width: 300%; transform: translateX(0%);">
-                    
+                <div class="slide-container medium" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); transform: translateX(0%);">
                     <div class="slide" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
                         <img src="mac.png" />
                     </div>
@@ -1117,8 +1129,7 @@
                 </div>
             </div>
             <div class="an-layout-stage nuzzel">
-                <div class="slide-container nuzzel" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); width: 300%; transform: translateX(0%);">
-                   
+                <div class="slide-container nuzzel" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); transform: translateX(0%);">
                     <div class="slide" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
                         <img src="mac.png" />
                     </div>
@@ -1138,7 +1149,7 @@
                 </div>
             </div>
             <div class="an-layout-stage cafemedia">
-                <div class="slide-container cafemedia" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); width: 300%; transform: translateX(0%);">
+                <div class="slide-container cafemedia" style="display: block; overflow: hidden; position: relative; height: inherit; transition: -webkit-transform 800ms cubic-bezier(0.4, 0, 0.2, 1); transform: translateX(0%);">
                     <div class="slide mobile" id="viant_first" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
                         <!--style="margin-left:40%; padding-top: 75px;"-->
                         <svg viewBox="4422 750 412 806" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -1167,7 +1178,7 @@
                             </g>
                         </svg>
                         <div class="videoWrapper">
-                            <iframe style="width: 100%; height: 100%; position: absolute;" src="http://docs.adsnative.com/preview/cafemediamom_infeed.html?adsnative_preview=1&cid=11994" frameborder="0"></iframe>
+                            <!-- <iframe style="width: 100%; height: 100%; position: absolute;" src="http://docs.adsnative.com/preview/cafemediamom_infeed.html?adsnative_preview=1&cid=11994" frameborder="0"></iframe> -->
                         </div>
                     </div>
                     <div class="slide tab" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
@@ -1202,7 +1213,7 @@
                             </g>
                         </svg>
                         <div class="videoWrapper">
-                            <iframe style="width: 100%; height: 100%;position: absolute;" src="http://docs.adsnative.com/preview/cafemediamom_infeed.html?adsnative_preview=1&cid=11994" frameborder="0"></iframe>
+                            <!-- <iframe style="width: 100%; height: 100%;position: absolute;" src="http://docs.adsnative.com/preview/cafemediamom_infeed.html?adsnative_preview=1&cid=11994" frameborder="0"></iframe> -->
                         </div>
                     </div>
                     <div class="slide macbook" id="viant_last" style="display: block; float: left; height: 100%; overflow: hidden; position: relative; transform: translateZ(0px); width: 33.3333%;">
@@ -1239,11 +1250,10 @@
                                 </g>
                             </svg>
                             <div class="videoWrapper">
-                                <iframe style="width: 100%; height: 100%;position: absolute;" src="http://docs.adsnative.com/preview/cafemediamom_infeed.html?adsnative_preview=1&cid=11994" frameborder="0"></iframe>
+                                <!-- <iframe style="width: 100%; height: 100%;position: absolute;" src="http://docs.adsnative.com/preview/cafemediamom_infeed.html?adsnative_preview=1&cid=11994" frameborder="0"></iframe> -->
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="prev-next-button previous">
                     <svg viewbox="0 0 100 100">
@@ -1385,7 +1395,7 @@
             </div>
         </main>
     </div>
-    <script src="myScript_backup.js"></script>
+    <script src="myScript_backup.js?v=3"></script>
     <!--end of an-layout-container -->
 </body>
 
