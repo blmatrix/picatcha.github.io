@@ -24,8 +24,23 @@ $('.publisher-tile').click(function() {
     $('.publisher-tile').removeClass('active');
     $(this).addClass('active');
 
-    // Show Stage 
+    // Active Publisher 
     publisherName = $(this).attr('id');
+
+    // Add iFrames before showing stage
+    frameUrls = iframe_mapping['clients'][publisherName];
+    for(var i = 0; i < frameUrls.length; i++) {
+
+        if(i == 0) {
+            addIframe(frameUrls[i], publisherName, i);
+        } else {
+            setTimeout(function(frameUrls, publisherName, i) {
+                addIframe(frameUrls[i], publisherName, i);
+            }.bind(this, frameUrls, publisherName, i), 3000);
+        }
+    }
+
+    // Show Stage 
     $('.an-layout-stage').removeClass('active');
     $('.an-layout-stage.' + publisherName).addClass('active');
 
@@ -97,6 +112,8 @@ function getTranslateXValue(element) {
 
     return res;
 }
+
+
 // Slider navigation - END
 
 // On Load Text Animation 
@@ -115,3 +132,114 @@ var opac = anime({
 setTimeout(function() {
     $('.name img').css('opacity', 1);
 }, 300);
+
+
+
+
+
+
+
+// code for Dynamically rendering Iframe.
+function addIframe(frameUrl, publisherName, index) {
+    var iframeElements = $(".an-layout-stage." + publisherName + " .iframe-container"),
+        iframeElement = $(iframeElements[index]);
+
+    if(!iframeElement.find('iframe').length) {
+        var ifrm = document.createElement("iframe");
+        ifrm.src = frameUrl;
+        ifrm.scrolling = "auto";
+        ifrm.frameborder = "0";
+        ifrm.width = "100%";
+        ifrm.height = "100%";
+
+        // Add iframe to publisher stage -> slide if no iframe exists
+        iframeElement.append(ifrm);
+    }
+}
+
+// JSON Array for Iframe mapping
+var iframe_mapping = { 
+    "clients" :  {
+        "viant": [
+            "http://docs.adsnative.com/preview/health_infeed.html?adsnative_preview=1&cid=11994",
+            "http://docs.adsnative.com/preview/health_infeed.html?adsnative_preview=1&cid=11994",
+            "http://docs.adsnative.com/preview/xfinity_infeed.html?adsnative_preview=1&cid=11993"
+        ],
+
+        "edmodo": [
+            "http://native-preview.herokuapp.com/edmodo_adunits?adsnative_preview=1&cid=11994",
+            "http://localhost:8050/edmodo_adunits?adsnative_preview=1&cid=12772",
+            "http://native-preview.herokuapp.com/edmodo_adunits?adsnative_preview=1&cid=13294",
+            "http://native-preview.herokuapp.com/edmodo_adunits_iab_infeed?adsnative_preview=1&cid=17165",
+            "http://docs.adsnative.com/preview/edmodo/logout.html"
+        ],
+
+        "disqus": [
+            "",
+            "",
+            ""
+        ],
+
+        "axios": [
+            "http://docs.adsnative.com/preview/axios-feed.html?adsntaive_preview=1&cid=11994&zid=Tks4hf_9zB6HCnRzoUTTpjUa7UPmn8om9jo4TtC0",
+            "http://docs.adsnative.com/preview/axios-feed.html?adsntaive_preview=1&cid=11994&zid=Tks4hf_9zB6HCnRzoUTTpjUa7UPmn8om9jo4TtC0",
+            "http://docs.adsnative.com/preview/axios-feed.html?adsntaive_preview=1&cid=11994&zid=Tks4hf_9zB6HCnRzoUTTpjUa7UPmn8om9jo4TtC0"
+        ],
+
+        "newsmax": [
+            "http://docs.adsnative.com/preview/newsmax/newsmax_preview/leadeboard.html?cid=11993",
+            "http://docs.adsnative.com/preview/newsmax/newsmax_preview/standard_image.html?cid=11994",
+            "http://docs.adsnative.com/preview/newsmax/newsmax_preview/footer.html?cid=11993",
+            "http://docs.adsnative.com/preview/newsmax/newsmax_preview/300x250_rectangle2x2.html?cid=11994",
+            "http://docs.adsnative.com/preview/newsmax/newsmax_preview/sidebar.html?cid=11993"
+        ],
+
+        "advancenative": [
+            "http://docs.adsnative.com/preview//advancenative_ads.html?adsnative_preview=1&cid=11994",
+            "http://docs.adsnative.com/preview//advancenative_ads.html?adsnative_preview=1&cid=11994",
+            "http://docs.adsnative.com/preview//advancenative-rr.html?adsnative_preview=1&cid=11994"
+        ],
+
+        "viber": [
+            "",
+            "",
+            ""
+        ],
+
+        "pocket": [
+            "http://docs.adsnative.com/preview/pocket_gallery.html?adsnative_preview=1&cid=11994",
+            "http://docs.adsnative.com/preview/pocket_gallery.html?adsnative_preview=1&cid=11994",
+            "http://docs.adsnative.com/preview/pocket_gallery.html?adsnative_preview=1&cid=11994"
+        ],
+
+        "politico": [
+            "http://www.politico.com/?adsnative_preview=1&cid=11994",
+            "http://www.politico.com/?adsnative_preview=1&cid=11994",
+            "http://www.politico.com/?adsnative_preview=1&cid=11994"
+        ],
+
+        "medium": [
+            "",
+            "",
+            ""
+        ],
+
+         "nuzzel": [
+            "",
+            "",
+            ""
+        ],
+
+         "cafemedia": [
+            "http://docs.adsnative.com/preview/cafemediamom_infeed.html?adsnative_preview=1&cid=11994",
+            "http://docs.adsnative.com/preview/cafemediamom_infeed.html?adsnative_preview=1&cid=11994",
+            "http://docs.adsnative.com/preview/cafemediamom_infeed.html?adsnative_preview=1&cid=11994"
+        ]
+    }// end of "clients"
+}; // end of variable iframe_mapping
+    
+
+
+
+
+

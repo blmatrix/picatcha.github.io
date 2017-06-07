@@ -1,73 +1,89 @@
-var stories = $('.contentTilesElement');
-var slide_counter = 1;
-var global_client_name = "";
+var stories = $('.contentTilesElement'),
+    slide_counter = 1,
+    publisherName = "",
+    slideContainer = null,
+    slideCount = 0,
+    translateX = 0;
 
+//End of Bringing the relevant slides on clicking the right side button 
 
-stories.on("click", function(e) {
-    stories.removeClass('clicked');
-    $(this).addClass('clicked');
-
-    // Get clicked story index
-    var clientName = $(this).data('client'),
-        clientStage = $('.an-layout-stage.' + clientName),
-        allStages = $('.an-layout-stage');
-console.log (clientName);
-        global_client_name = clientName;
-        slide_counter = 1; // Reset the slide_counter to 1 if client is changed
-
-
-    if (clientStage) {
-        allStages.removeClass('show');
-        $(clientStage).addClass('show');
-    }
+$('#polymorph').click(function() {
+    $('.an-layout-stage').removeClass('active');
+    $('.an-layout-stage.onload').addClass('active');
 });
 
- // Slider navigation - START
-$('.prev-next-button').on('click', function(e) {
-    // Get current translate X value
-    var slideContainer = $('.slide-container.' + global_client_name),
-        slideCount = $('.slide-container.' + global_client_name).find('.slide').length,
-        translateX = getTranslateXValue(slideContainer);
-        console.log ('The name of client is' + global_client_name);
-console.log('SlideCount value now is' + slideCount);
+// Add background color for publisher tiles when clicked
+// Display associated stage on the left
+$('.publisher-tile').click(function() {
+    // Reset the previous client stage to translateX = 0
+    updateTranslateX(0);
 
+    // Reset the slide_counter to 1 if client is changed
+    slide_counter = 1;
+
+    $('.publisher-tile').removeClass('active');
+    $(this).addClass('active');
+
+    // Show Stage 
+    publisherName = $(this).attr('id');
+    $('.an-layout-stage').removeClass('active');
+    $('.an-layout-stage.' + publisherName).addClass('active');
+
+    // Set stage and slide width dynamically based on slide count
+    slideContainer = $('.slide-container.' + publisherName);
+    var slides = $('.slide-container.' + publisherName + ' .slide');
+    slideCount = slides.length;
+
+    console.log('New Client : CurrentSlide : ' + slide_counter + ' & total SlideCount : ' + slideCount);
+
+    slideContainer.css('width', 100 * slideCount + '%');
+    slides.css('width', 100 / slideCount + '%');
+
+    // Get current translate X value
+    translateX = getTranslateXValue(slideContainer);
+
+    console.log('New Client : transition X = ' + translateX);
+});
+
+// Slider navigation - START
+$('.prev-next-button').on('click', function(e) {
     // Check if "prev" / "next" was clicked
     if ($(this).hasClass('next')) {
-        // Next was clicked : Translate ahead by one item
-        translateX -= (100 / slideCount ); // tranlateX = translateX - 33.33;
-        translateX += '%'; // translateX = translateX + '%';
+        if (slide_counter < slideCount) {
+            // Next was clicked : Translate ahead by one item
+            translateX = parseInt(translateX) - (100 / slideCount); // tranlateX = translateX - 33.33;
+            translateX = translateX + '%'; // translateX = translateX + '%';
 
-if (slide_counter<slideCount){
+            updateTranslateX(translateX);
 
-        slideContainer.css({
-            "-webkit-transform": "translateX("+ translateX + ")",
-            "-ms-transform": "translateX("+ translateX + ")",
-            "transform": "translateX("+ translateX + ")",
-        });
-        slide_counter = slide_counter + 1;
-        console.log(slide_counter);
-} // CSS Translate only if current slide_counter is less than total # of slides
-
-
+            slide_counter = slide_counter + 1;
+            console.log(slide_counter);
+        } // CSS Translate only if current slide_counter is less than total # of slides
     } else {
-        // Previous was clicked : Translate backwards by one item
-        translateX += (100 / slideCount);
-        translateX += '%';
+        if (slide_counter > 1) {
+            // Previous was clicked : Translate backwards by one item
+            translateX = parseInt(translateX) + (100 / slideCount);
+            translateX = translateX + '%';
 
-if (slide_counter > 1) {
+            updateTranslateX(translateX);
 
-        slideContainer.css({
-            "-webkit-transform": "translateX("+ translateX + ")",
-            "-ms-transform": "translateX("+ translateX + ")",
-            "transform": "translateX("+ translateX + ")",
-        });
-                slide_counter = slide_counter - 1;
-                console.log(slide_counter);
-
-    } // CSS Translate only if current slide_counter is > 1
-
+            slide_counter = slide_counter - 1;
+            console.log(slide_counter);
+        } // CSS Translate only if current slide_counter is > 1
     }
+
+    console.log('NEXT|Prev : CurrentSlide : ' + slide_counter + ' & total SlideCount : ' + slideCount);
 });
+
+function updateTranslateX(translateX) {
+    if(!slideContainer) return;
+
+    slideContainer.css({
+        "-webkit-transform": "translateX(" + translateX + ")",
+        "-ms-transform": "translateX(" + translateX + ")",
+        "transform": "translateX(" + translateX + ")",
+    });
+}
 
 function getTranslateXValue(element) {
     element = element[0];
@@ -81,6 +97,21 @@ function getTranslateXValue(element) {
 
     return res;
 }
- // Slider navigation - END
+// Slider navigation - END
 
+// On Load Text Animation 
+var opac = anime({
+  targets: '.letter',
+    opacity:1,
+  scale:1, 
+    easing:'easeInBounce',
+    delay: function(el, index) {
+      return index * 80;
+    },
+  // direction: 'alternate',
+  // loop: true
+});
 
+setTimeout(function() {
+    $('.name img').css('opacity', 1);
+}, 300);
