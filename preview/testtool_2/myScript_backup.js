@@ -175,9 +175,9 @@ var iframe_mapping = {
         ],
 
         "disqus": [
-            "",
-            "",
-            ""
+            "http://demo.com/picatcha.github.io/preview/disqus/disqus_gallery.html",
+            "http://demo.com/picatcha.github.io/preview/disqus/disqus_gallery.html",
+            "http://demo.com/picatcha.github.io/preview/disqus/disqus_gallery.html"
         ],
 
         "axios": [
@@ -213,9 +213,9 @@ var iframe_mapping = {
         ],
 
         "politico": [
-            "http://www.politico.com/?adsnative_preview=1&cid=11994",
-            "http://www.politico.com/?adsnative_preview=1&cid=11994",
-            "http://www.politico.com/?adsnative_preview=1&cid=11994"
+            "http://docs.adsnative.com/preview/politico_gallery.html?adsnative_preview=1&cid=11994",
+            "http://docs.adsnative.com/preview/politico_gallery.html?adsnative_preview=1&cid=11994",
+            "http://docs.adsnative.com/preview/politico_gallery.html?adsnative_preview=1&cid=11994"
         ],
 
         "medium": [
@@ -231,10 +231,15 @@ var iframe_mapping = {
         ],
 
          "cafemedia": [
-            "http://docs.adsnative.com/preview/cafemediamom_infeed.html?adsnative_preview=1&cid=11994",
-            "http://docs.adsnative.com/preview/cafemediamom_infeed.html?adsnative_preview=1&cid=11994",
-            "http://docs.adsnative.com/preview/cafemediamom_infeed.html?adsnative_preview=1&cid=11994"
-        ]
+            "",
+        ],
+
+        "scienceinc": [
+            "http://docs.adsnative.com/preview/politico_gallery.html?adsnative_preview=1&cid=11994",
+            "http://docs.adsnative.com/preview/politico_gallery.html?adsnative_preview=1&cid=11994",
+            "http://docs.adsnative.com/preview/politico_gallery.html?adsnative_preview=1&cid=11994"
+        ],
+
     }// end of "clients"
 }; // end of variable iframe_mapping
     
