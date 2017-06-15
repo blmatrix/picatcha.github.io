@@ -168,7 +168,7 @@ var iframe_mapping = {
 
         "edmodo": [
             "http://native-preview.herokuapp.com/edmodo_adunits?adsnative_preview=1&cid=11994",
-            "http://localhost:8050/edmodo_adunits?adsnative_preview=1&cid=12772",
+            "http://native-preview.herokuapp.com/edmodo_adunits?adsnative_preview=1&cid=12772",
             "http://native-preview.herokuapp.com/edmodo_adunits?adsnative_preview=1&cid=13294",
             "http://native-preview.herokuapp.com/edmodo_adunits_iab_infeed?adsnative_preview=1&cid=17165",
             "http://docs.adsnative.com/preview/edmodo/logout.html"
