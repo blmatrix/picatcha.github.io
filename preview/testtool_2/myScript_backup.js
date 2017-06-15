@@ -175,9 +175,9 @@ var iframe_mapping = {
         ],
 
         "disqus": [
-            "http://demo.com/picatcha.github.io/preview/disqus/disqus_gallery.html",
-            "http://demo.com/picatcha.github.io/preview/disqus/disqus_gallery.html",
-            "http://demo.com/picatcha.github.io/preview/disqus/disqus_gallery.html"
+            "http://docs.adsnative.com/preview/disqus/disqus_gallery.html",
+            "http://docs.adsnative.com/preview/disqus/disqus_gallery.html",
+            "http://docs.adsnative.com/preview/disqus/disqus_gallery.html"
         ],
 
         "axios": [
@@ -225,9 +225,9 @@ var iframe_mapping = {
         ],
 
          "nuzzel": [
-            "",
-            "",
-            ""
+            "https://native-preview.herokuapp.com/email/nuzzel_email.html",
+            "https://native-preview.herokuapp.com/email/nuzzel_email.html",
+            "https://native-preview.herokuapp.com/email/nuzzel_email.html"
         ],
 
          "cafemedia": [
