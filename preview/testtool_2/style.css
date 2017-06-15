@@ -57,10 +57,10 @@ body {
 }
 
 .an-layout-stage .slide img {
-    margin: 10% auto;
+    /*margin: 10% auto;
     margin-right: auto;
-    width: 20%;
-    display: block;
+    /*width: 20%;*/
+    /*display: block;*/
 }
 
 .an-page-tiles {
@@ -366,7 +366,8 @@ img {
     height: 0;
     background: white;
 }
-.iframe-container iframe {
+.iframe-container iframe,
+.iframe-container img {
     position: absolute;
     top: 0;
     left: 0;
@@ -374,6 +375,8 @@ img {
     height: 100%;
 
 }
+
+
 
 /* Hide tiles < 420px */
 @media screen and (max-width: 420px) {
@@ -402,7 +405,7 @@ img {
 
     .slide.mobile .iframe-container {
        left: calc((100% - 125px) / 2);
-        top: 221px;
+        top: 37%;
         width: 125px;
         padding-bottom: 224px;
     }
@@ -416,7 +419,7 @@ img {
 
     .slide.tab .iframe-container {
         left: calc((100% - 125px) / 2);
-        top: 210px;
+        top: 35.7%;
         width: 125px;
         padding-bottom: 167px;
     }
@@ -430,7 +433,7 @@ img {
 
     .slide.macbook .iframe-container {
         left: calc((100% - 140px) / 2);
-        top: 200px;
+        top: 35%;
         width: 140px;
         padding-bottom: 88px;
     }
@@ -468,7 +471,7 @@ img {
 
     .slide.mobile .iframe-container {
         left: calc((100% - 162px) / 2);
-        top: 195px;
+        top: 32%;
         width: 162px;
         padding-bottom: 288px;
     }
@@ -483,7 +486,7 @@ img {
 
      .slide.tab .iframe-container {
         left: calc((100% - 182px) / 2);
-        top: 184px;
+        top: 30.5%;
         width: 182px;
         padding-bottom: 243px;
     }
@@ -498,7 +501,7 @@ img {
 
     .slide.macbook .iframe-container {
         left: calc((100% - 222px) / 2);
-        top: 177px;
+        top: 30.5%;
         width: 222px;
         padding-bottom: 139px;
     }
@@ -540,7 +543,7 @@ img {
 
    .slide.mobile .iframe-container {
         left: calc((100% - 195px) / 2);
-        top: 130px;
+        top: 20%;
         width: 195px;
         padding-bottom: 348px;
     }
@@ -554,7 +557,7 @@ img {
 
     .slide.tab .iframe-container {
         left: calc((100% - 260px) / 2);
-        top: 123px;
+        top: 19%;
         width: 260px;
         padding-bottom: 346px;
     }
@@ -568,7 +571,7 @@ img {
 
     .slide.macbook .iframe-container {
         left: calc((100% - 312px) / 2);
-        top: 172px;
+        top: 29%;
         width: 312px;
         padding-bottom: 196px;
     }
@@ -610,7 +613,7 @@ img {
 
      .slide.mobile .iframe-container {
         left: calc((100% - 234px) / 2);
-        top: 89px;
+        top: 14.2%;
         width: 234px;
         padding-bottom: 418px;
     }
@@ -623,7 +626,7 @@ img {
 
     .slide.tab .iframe-container {
         left: calc((100% - 338px) / 2);
-        top: 72px;
+        top: 9.5%;
         width: 338px;
         padding-bottom: 451px;
     }
@@ -636,7 +639,7 @@ img {
     }
     .slide.macbook .iframe-container {
         left: calc((100% - 560px) / 2);
-        top: 136px;
+        top: 22%;
         width: 560px;
         padding-bottom: 350px;
     }
@@ -661,7 +664,7 @@ img {
 
     .slide.mobile .iframe-container {
         left: calc((100% - 260px) / 2);
-        top: 112px;
+        top: 12.8%;
         width: 260px;
         padding-bottom: 464px;
     }
@@ -675,10 +678,10 @@ img {
     
 
     .slide.tab .iframe-container {
-        left: calc((100% - 390px) / 2);
-        top: 92px;
-        width: 390px;
-        padding-bottom: 519px;
+        left: calc((100% - 388px) / 2);
+        top: 11%;
+        width: 384px;
+        padding-bottom: 514px;
     }
 
 
@@ -689,10 +692,10 @@ img {
         width: 750px;
     }
     .slide.macbook .iframe-container {
-        left: calc((100% - 558px) / 2);
-        top: 187px;
-        width: 558px;
-        padding-bottom: 348px;
+        left: calc((100% - 559px) / 2);
+        top: 22%;
+        width: 556px;
+        padding-bottom: 347px;
     }
 
     /* Single tile height */
