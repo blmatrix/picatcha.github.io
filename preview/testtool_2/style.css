@@ -271,7 +271,7 @@ body {
 
 
 #cafemedia {
-    background-image: url(logo_cafemedia.png);
+    background-image: url(cafemedia_logo.png);
 }
 #cafemedia.active {
    background-color: rgb(211, 103, 121);
