@@ -373,6 +373,7 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
+    border: none !important;
 
 }
 
@@ -399,13 +400,13 @@ img {
      .slide.mobile svg {
         position: absolute;
         left: calc((100% - 145px) / 2);
-        top: 34%;
+        top: 150px;
         width: 145px;
     }
 
     .slide.mobile .iframe-container {
        left: calc((100% - 125px) / 2);
-        top: 37%;
+        top: 180px;
         width: 125px;
         padding-bottom: 224px;
     }
@@ -413,13 +414,13 @@ img {
     .slide.tab svg {
         position: absolute;
         left: calc((100% - 145px) / 2);
-        top: 34%;
+        top: 210px;
         width: 145px;
     }
 
     .slide.tab .iframe-container {
         left: calc((100% - 125px) / 2);
-        top: 35.7%;
+        top: 229px;
         width: 125px;
         padding-bottom: 167px;
     }
@@ -427,15 +428,15 @@ img {
     .slide.macbook svg {
         position: absolute;
         left: calc((100% - 190px) / 2);
-        top: 34%;
+        top: 216px;
         width: 190px;
     }
 
     .slide.macbook .iframe-container {
         left: calc((100% - 140px) / 2);
-        top: 35%;
+        top: 226px;
         width: 140px;
-        padding-bottom: 88px;
+        padding-bottom: 87px;
     }
 
     /* Single column of tiles */
@@ -464,14 +465,14 @@ img {
       .slide.mobile svg {   
         position: absolute;
         left: calc((100% - 186px) / 2);
-        top: 28%;
+        top: 158px;
         width: 186px;
    }
 
 
     .slide.mobile .iframe-container {
-        left: calc((100% - 162px) / 2);
-        top: 32%;
+        left: calc((100% - 161px) / 2);
+        top: 196px;
         width: 162px;
         padding-bottom: 288px;
     }
@@ -480,13 +481,13 @@ img {
     .slide.tab svg {
         position: absolute;
         left: calc((100% - 210px) / 2);
-        top: 28%;
+        top: 157px;
         width: 210px;
     }
 
      .slide.tab .iframe-container {
         left: calc((100% - 182px) / 2);
-        top: 30.5%;
+        top: 184px;
         width: 182px;
         padding-bottom: 243px;
     }
@@ -495,13 +496,13 @@ img {
     .slide.macbook svg {
         position: absolute;
         left: calc((100% - 300px) / 2);
-        top: 29%;
+        top: 162px;
         width: 300px;
     }
 
     .slide.macbook .iframe-container {
         left: calc((100% - 222px) / 2);
-        top: 30.5%;
+        top: 177px;
         width: 222px;
         padding-bottom: 139px;
     }
@@ -537,13 +538,13 @@ img {
     .slide.mobile svg { 
         position: absolute;
         left: calc((100% - 225px) / 2);
-        top: 15%;
+        top: 85px;
         width: 225px;
     }
 
    .slide.mobile .iframe-container {
         left: calc((100% - 195px) / 2);
-        top: 20%;
+        top: 131px;
         width: 195px;
         padding-bottom: 348px;
     }
@@ -551,13 +552,13 @@ img {
     .slide.tab svg {
         position: absolute;
         left: calc((100% - 300px) / 2);
-        top: 15%;
+        top: 85px;
         width: 300px;
     }
 
     .slide.tab .iframe-container {
         left: calc((100% - 260px) / 2);
-        top: 19%;
+        top: 124px;
         width: 260px;
         padding-bottom: 346px;
     }
@@ -565,15 +566,15 @@ img {
      .slide.macbook svg {
         position: absolute;
         left: calc((100% - 420px) / 2);
-        top: 27%;
+        top: 152px;
         width: 420px;
     }
 
     .slide.macbook .iframe-container {
         left: calc((100% - 312px) / 2);
-        top: 29%;
+        top: 172px;
         width: 312px;
-        padding-bottom: 196px;
+        padding-bottom: 194px;
     }
 
     /* Single tile height */
@@ -606,27 +607,27 @@ img {
     .slide.mobile svg { 
         position: absolute;
         left: calc((100% - 270px) / 2);
-        top: 6%;
+        top: 35px;
         width: 270px;
         }
 
 
      .slide.mobile .iframe-container {
         left: calc((100% - 234px) / 2);
-        top: 14.2%;
+        top: 90px;
         width: 234px;
         padding-bottom: 418px;
     }
     .slide.tab svg {
         position: absolute;
         left: calc((100% - 390px) / 2);
-        top: 4%;
+        top: 22px;
         width: 390px;
        }
 
     .slide.tab .iframe-container {
         left: calc((100% - 338px) / 2);
-        top: 9.5%;
+        top: 72px;
         width: 338px;
         padding-bottom: 451px;
     }
@@ -634,13 +635,13 @@ img {
     .slide.macbook svg {
         position: absolute;
         left: calc((100% - 750px) / 2);
-        top: 18%;
+        top: 75px;
         width: 750px;
     }
     .slide.macbook .iframe-container {
-        left: calc((100% - 560px) / 2);
-        top: 22%;
-        width: 560px;
+        left: calc((100% - 558px) / 2);
+        top: 110px;
+        width: 559px;
         padding-bottom: 350px;
     }
 
@@ -658,44 +659,45 @@ img {
     .slide.mobile svg { 
         position: absolute;
         left: calc((100% - 300px) / 2);
-        top: 6%;
+        top: 51px;
         width: 300px;
         }
 
     .slide.mobile .iframe-container {
         left: calc((100% - 260px) / 2);
-        top: 12.8%;
+        top: 112px;
         width: 260px;
         padding-bottom: 464px;
     }
 
-    .slide.tab svg {
+    .slide.tab svg { 
         position: absolute;
         left: calc((100% - 450px) / 2);
-        top: 4%;
+        top: 34px;
         width: 450px;
-       }
+           }
     
 
     .slide.tab .iframe-container {
-        left: calc((100% - 388px) / 2);
-        top: 11%;
-        width: 384px;
-        padding-bottom: 514px;
+       left: calc((100% - 390px) / 2);
+        top: 92px;
+        width: 390px;
+        padding-bottom: 520px;
     }
 
 
     .slide.macbook svg {
         position: absolute;
         left: calc((100% - 750px) / 2);
-        top: 18%;
+        top: 151px;
         width: 750px;
     }
     .slide.macbook .iframe-container {
-        left: calc((100% - 559px) / 2);
-        top: 22%;
-        width: 556px;
-        padding-bottom: 347px;
+        left: calc((100% - 560px) / 2);
+        top: 185px;
+        width: 561px;
+        padding-bottom: 352px;
+}
     }
 
     /* Single tile height */
