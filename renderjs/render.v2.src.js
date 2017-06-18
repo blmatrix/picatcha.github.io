@@ -423,8 +423,15 @@ var utils = new function() {
 
     this.encodeQueryData = function(data) {
        var ret = [];
-       for (var d in data)
-          ret.push(encodeURIComponent(d) + "=" + encodeURIComponent(data[d]));
+       for (var d in data){
+            if( Object.prototype.toString.call( data[d] ) === '[object Array]' ) {
+                for(var i=0;i<data[d].length;i++){
+                    ret.push(encodeURIComponent(d) + "=" + encodeURIComponent(data[d][i]));
+                }
+            }
+            else
+                ret.push(encodeURIComponent(d) + "=" + encodeURIComponent(data[d]));
+       }
        return ret.join("&");
     };
 
@@ -777,6 +784,22 @@ var utils = new function() {
         if(ifrm)
             ifrm.contentWindow.postMessage(msg, url);
     }
+
+    this.generatePublicKey = function(){
+        var arr = [];
+        var key = '';
+        function randomChar(){
+            return Math.floor(Math.random() * 25) + 97;
+        }
+        for(var i=0;i<15;i++){
+            arr.push(randomChar());
+            key += String.fromCharCode(arr[i]);
+        }
+        arr.push(arr[0]+arr[1]-arr[14])
+        key += String.fromCharCode(arr[i]);
+        return key;
+    }
+    
 }
 
 
@@ -1073,6 +1096,56 @@ var session_helper = new function() {
     }
 
 }
+
+/*
+    Session helper to store and maintain placement objects for API V2
+*/
+
+var session_api = new function() {
+    'use strict';
+
+    var adUnits = {};
+    /*
+        config = {
+            apiKey: "",
+            widgetId: "",
+            networkKey: ""
+        }
+    */
+
+    this.set = function(config, key, value){
+        if(config.hasOwnProperty('apiKey')){
+            if(!adUnits.hasOwnProperty(config.apiKey)){
+                adUnits[config.apiKey] = {};
+            }
+            adUnits[config.apiKey][key] = value;
+        } else if(config.hasOwnProperty('networkKey') && config.hasOwnProperty('widgetId')) {
+            var lookupKey = config.networkKey + config.widgetId;
+            if(!adUnits.hasOwnProperty(lookupKey)){
+                adUnits[lookupKey] = {};
+            }
+            adUnits[lookupKey][key] = value;
+        }
+    };
+
+    this.get = function(config, key){
+        if(config.hasOwnProperty('apiKey')){
+            if(!adUnits.hasOwnProperty(config.apiKey))
+                return null;
+            if(!adUnits[config.apiKey].hasOwnProperty(key))
+                return null;
+            return adUnits[config.apiKey][key];
+        } else if(config.hasOwnProperty('networkKey') && config.hasOwnProperty('widgetId')) {
+            var lookupKey = config.networkKey + config.widgetId;
+            if(!adUnits.hasOwnProperty(lookupKey))
+                return null;
+            if(!adUnits[lookupKey].hasOwnProperty(key))
+                return null;
+            return adUnits[lookupKey][key];
+        }
+    }
+
+};
 
 /*
     Ad viewability tracking
@@ -1728,41 +1801,125 @@ var AdsNativeMaster = function(_options) {
     // Extendable settings
     var settings = {
         /* Private settings */
-        version: '1.0',
-        subversion: '1.488',
+        version: '2.0',
+        subversion: '2.002',
         apiUrl: utils.urlPrefix() + '//api.adsnative.com',
         apiEndpoint: '/v1/ad-template.json',
         domainLookupUrl: utils.urlPrefix() + '//api-cache.adsnative.com',
         domainLookupEndpoint: '/v1/host/',
         staticUrl: utils.urlPrefix() + '//static.adsnative.com/static/',
         /* Global settings */
-        preview: false,
-        onready: null,
-        blockAdLoad: false,
-        blockAdDisplay: false,
-        forceMobile: false,
-        //adUnits: [],
-        currentPageUrl: null,
-        /* Placement specific settings */
-        apiKey: '',
-        userCallbackOnAdLoad: null,
-        processNativeAdElement: null, /* This allows publisher to tinker with the native ad element when its rendered */
-        numAds: 0,
-        callbackOnNoAds: null, /* Legacy: Deprecate at some point */
-        nativeAdElementId: null,
-        cssPath: null,
-        keywords: null,
         keyValues: null,
-        autoPosition: false,
-        templateKey: null,
-        inviewEvent: null,
-        outviewEvent: null,
-        onClick: null,
-        /* Enterprise Integration Options */
-        networkKey: null,
-        categories: null,
-        widgetId: null,
-        safetyLevel: null
+        keywords: null,
+        preview: false,
+        forceMobile: false,
+        currentPageUrl: null,
+        enableHeaderBidding: false,
+        headerbidTimeout: 700, 
+    };
+
+    var getGlobalQueryParams = function(){
+        var queryData = {};
+        queryData.force_mobile = (settings.forceMobile ? 1 : 0);
+        if(settings.keywords)
+            queryData.kw = settings.keywords;
+        if(settings.keyValues){
+            for (var key in settings.keyValues) {
+                var values = [];
+                if( Object.prototype.toString.call( settings.keyValues[key] ) === '[object Array]' ) {
+                    values = settings.keyValues[key];
+                } else if (Object.prototype.toString.call( settings.keyValues[key] ) === 'String')
+                    values = settings.keyValues[key].split(",");
+                key = (key.indexOf('ck_') === 0) ? key : 'ck_' + key;
+                queryData[key] = values;
+            }
+        }
+
+        if(!settings.currentPageUrl){
+            try {
+                if(window.top.document && window.top != window.self && typeof window.top.location.href !== 'undefined' && window.top.location.href){
+                    queryData.url = window.top.location.href;
+                    queryData.ref = window.top.document.referrer;
+                } else {
+                    queryData.url = window.location.href;
+                    queryData.ref = document.referrer;
+                }
+            } catch(err) {
+                queryData.url = window.location.href;
+                queryData.ref = document.referrer;
+            }
+        } else 
+            queryData.url = settings.currentPageUrl;
+
+        if(session.isPreviewMode){
+            if(session.forceCampaignID){
+                queryData.preview = 1;
+                queryData.cid = session.forceCampaignID;
+            }
+            if(session.forceCreativeID){
+                queryData.crid = session.forceCreativeID;
+            }
+            if(session.forceBidUrl){
+                queryData.mock_bid_urls = session.forceBidUrl;
+                queryData.mock_api_version = (session.forceBidVersion) ? session.forceBidVersion : 'v23';
+            }
+        }
+
+        queryData.public_key = utils.generatePublicKey();
+
+        return queryData
+    };
+
+    /*  This object holds all the placement configuration setup by the publisher
+    */
+    var adUnitConfig = function(setupObj){
+        var __construct = function(that) {
+            that.apiKey = (setupObj.hasOwnProperty('apiKey') ? setupObj.apiKey : '');
+            that.networkKey = (setupObj.hasOwnProperty('networkKey') ? setupObj.networkKey : null);
+            that.categories = (setupObj.hasOwnProperty('categories') ? setupObj.categories : null);
+            that.widgetId = (setupObj.hasOwnProperty('widgetId') ? setupObj.widgetId : null);
+            that.safetyLevel = (setupObj.hasOwnProperty('safetyLevel') ? setupObj.safetyLevel : null);
+            // userCallbackOnAdLoad: null,
+            // processNativeAdElement: null, /* This allows publisher to tinker with the native ad element when its rendered */
+            that.numAds = (setupObj.hasOwnProperty('numAds') ? setupObj.numAds : 1);
+            // nativeAdElementId: null,
+            // cssPath: null,
+            that.keywords = (setupObj.hasOwnProperty('keywords') ? setupObj.keywords : null);
+            that.keyValues = (setupObj.hasOwnProperty('keyValues') ? setupObj.keyValues : null);
+            // autoPosition: false,
+            that.templateKey = (setupObj.hasOwnProperty('templateKey') ? setupObj.templateKey : null);
+            // inviewEvent: null,
+            // outviewEvent: null,
+            // onClick: null,
+            // clickTags: "",
+            // impressionTags: "",
+            // viewabilityTags: ""
+        }(this);
+    }; 
+
+    adUnitConfig.prototype.getQueryParams = function(){
+        var queryData = {};
+        queryData.zid = (this.apiKey ? this.apiKey : '');
+        queryData.network_key = (this.networkKey ? this.networkKey : '');
+        queryData.widget_id = (this.widgetId ? this.widgetId : '');
+        queryData.cat = (this.categories ? this.categories : '');
+        queryData.safety_level = (this.safetyLevel ? this.safetyLevel : '');
+        queryData.template_key = (this.templateKey ? this.templateKey : '');
+        queryData.num_ads = (this.numAds ? this.numAds : 1);
+        if(this.keywords)
+            queryData.kw = this.keywords;
+        if(this.keyValues){
+            for (var key in this.keyValues) {
+                var values = [];
+                if( Object.prototype.toString.call( this.keyValues[key] ) === '[object Array]' ) {
+                    values = this.keyValues[key];
+                } else if (Object.prototype.toString.call( this.keyValues[key] ) === 'String')
+                    values = this.keyValues[key].split(",");
+                key = (key.indexOf('ck_') === 0) ? key : 'ck_' + key;
+                queryData[key] = values;
+            }
+        }
+        return queryData;
     };
 
     var session = {
@@ -1778,23 +1935,13 @@ var AdsNativeMaster = function(_options) {
 
     var constants = {
 
-        whitelistedNetworks: ['ntent_feed', 'aol_feed', 'ebay_feed',
-            'gravity_feed', 'inmobi_feed', 'kixer_feed', 'triple_lift', 'federated_media',
-            'kixer', 'saymedia', 'contentad', 'connatix', 'outbrain',
-            'sharethrough', 'taboola', 'nativo', 'other', 'admarketplace_feed',
-            'medianet', 'dianomi', 'criteo_feed', 'criteo_secondary', 'openx', 'mobilemajority', 'nativeads',
-            'urx','rubiconproject', 'answermedia', 'distroscale', 'motiveinteractive',
-            'aol_marketplace', 'virool'],
-
         standardIntegrations: ['openx', 'mobilemajority', 'nativeads',
             'kixer', 'urx', 'rubiconproject', 'answermedia', 'distroscale',
             'motiveinteractive', 'aol_marketplace', 'zergnet', 'taboola', 'virool',
-            'criteo_secondary', 'google_dfp', 'optimatic', 'allscreen', 'genesis', 'zergnet'],
+            'criteo_secondary', 'google_dfp', 'optimatic', 'allscreen', 'genesis'],
 
         feedsArray: ["ntent_feed", "inmobi_feed", "aol_feed", "ebay_feed",
-            "gravity_feed", "kixer_feed", "admarketplace_feed", "criteo_feed"],
-
-        criteoExceptions: ["7d73dc363b2b42598976e36cf5d52888"]
+            "gravity_feed", "kixer_feed", "admarketplace_feed", "criteo_feed"]
 
     }
 
@@ -1829,6 +1976,7 @@ var AdsNativeMaster = function(_options) {
                     responseObj['error'] = errObj;
                 if(message == "name: TypeError message: null is not an object (evaluating 'this.referenceElement.parentNode')" || message == "name: TypeError message: 'null' is not an object (evaluating 'this.referenceElement.parentNode')" || message == "name: TypeError message: Cannot read property 'parentNode' of null")
                     return;
+                console.error(message, JSON.stringify(responseObj), type);
                 _postErrorMessage(message, JSON.stringify(responseObj), type);
             }
         };
@@ -1858,7 +2006,7 @@ var AdsNativeMaster = function(_options) {
     };
 
     // private constructor
-    var __construct = function() {
+    var __construct = function(that) {
         settings = utils.extend(settings, _options);
         session.isScriptInBody = utils.isScriptInBody();
         session.isPreviewMode = utils.isPreviewMode() || settings.preview;
@@ -1893,12 +2041,10 @@ var AdsNativeMaster = function(_options) {
         if(settings.currentPageUrl)
             settings.currentPageUrl = decodeURIComponent(settings.currentPageUrl);
 
-    }();
-
-    function isMobile(){
-        return (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) || settings.forceMobile);
-    }
-
+        window.pbjs = window.pbjs || {};
+        window.pbjs.que = window.pbjs.que || [];
+        that.prebidUnits = null;
+    }(this);
 
 
     /*
@@ -2028,6 +2174,17 @@ var AdsNativeMaster = function(_options) {
         }(this);
     }
 
+    PlacementProcessor.prototype.getHighestRate = function(){
+        if(this.content.hasOwnProperty('networks') && this.content.networks && this.content.networks.length && this.content.networks[0].hasOwnProperty('ecpm')){
+            return this.content.networks[0].ecpm;
+        } else if(this.content.hasOwnProperty('ads') && this.content.ads && this.content.ads.length && this.content.ads[0].hasOwnProperty('ecpm')) {
+            return this.content.ads[0].ecpm;
+        } else if(this.content.hasOwnProperty('ad') && this.content.ad && this.content.ad.hasOwnProperty('ecpm')){
+            return this.content.ad.ecpm;
+        }
+        return -1;
+    }
+
     PlacementProcessor.prototype.applyCommonStyle = function(additional_style){
         var style = document.createElement('style');
         style.setAttribute("type", "text/css");
@@ -2109,12 +2266,6 @@ var AdsNativeMaster = function(_options) {
         if(ad.ctaUrl && ad.ctaTitle && ad.ctaTitle != "")
             nativeAdElement.appendChild(this.ctaButton);
 
-        try {
-            this.origClientHeight = (window.getComputedStyle(nativeAdElement).getPropertyValue('height')) ? parseInt(window.getComputedStyle(nativeAdElement).getPropertyValue('height').slice(0, -2)) : nativeAdElement.clientHeight;
-        } catch(err){
-            this.origClientHeight = nativeAdElement.getBoundingClientRect().bottom - nativeAdElement.getBoundingClientRect().top;
-        }
-
         this.setupClick(ad, nativeAdElement, this.apiKey);
 
         //Track viewability
@@ -2148,20 +2299,19 @@ var AdsNativeMaster = function(_options) {
     };
 
     PlacementProcessor.prototype.setupClick = function(ad, adElement, apiKey){
-        var origClientHeight = this.origClientHeight;
         var that = this;
         adElement.onclick = function (event) {
             if (event.target.className.indexOf("adsnative-privacy-button") > -1) {
                 return true;
             }
             else if (event.target.className.indexOf("adsnative-share-button") === -1 && event.target.className.indexOf("adsnative-cta-button") === -1 && event.target.className.indexOf("adsnative-read-more") === -1) {
-                return that.onUserClick(ad, adElement, origClientHeight, apiKey);
+                return that.onUserClick(ad, adElement, apiKey);
             }
         };
         adElement.style.cursor = "pointer";
     };
 
-    PlacementProcessor.prototype.onUserClick = function(ad, adElement, origClientHeight, apiKey){
+    PlacementProcessor.prototype.onUserClick = function(ad, adElement, apiKey){
 
         var status = true;
 
@@ -2812,43 +2962,12 @@ var AdsNativeMaster = function(_options) {
         return true;
     };
 
-    
-    function _writeDummyDiv(){
-        var arrScripts = document.getElementsByTagName('script');
-        var currScript = arrScripts[arrScripts.length - 1];
-        var dummyElem = document.createElement('div');
-        var elemId = 'adsnative-dummy-';
-        if(settings.apiKey)
-            elemId += settings.apiKey;
-        else if(settings.widgetId)
-            elemId += settings.widgetId;
-        dummyElem.id = elemId;
-        currScript.parentNode.insertBefore(dummyElem, currScript.nextSibling);
-        return elemId;
-    }
 
-    function _getApplicablePlacements(apiKey, callback){
-        if(utils.getPageHostName(settings.currentPageUrl)){
-            var url = settings.domainLookupUrl +
-                    settings.domainLookupEndpoint +
-                    utils.getPageHostName(settings.currentPageUrl) + '/?';
-
-            if(apiKey && (typeof apiKey === "string" || apiKey instanceof String)){
-                var callbackHandler = 'lookup_' + apiKey.positiveIntegerHash();
-            } else {
-                var callbackHandler = 'lookup';
-            }
-            logger.log('console', 'Loading host file from: ' + url + 'callback=' + callbackHandler);
-            async.getJSONP(url, callback, callbackHandler);
-        } else {
-            callback([]);
-        }
-    }
-
-    function _getAdData(tag_settings, numAds, keywords, callback, keyValues, opts) {
+    function _getAdData(adUnitConfigs, callback) {
         var that = this;
         var _callback;
-        if(arguments.length > 3 && callback){
+        var adQueryString='';
+        if(arguments.length > 1 && callback){
             _callback = function(callbackData){
                 profiler.end('GET AD DATA');
                 //Catch-all try-catch so we can send any error we get to sentry
@@ -2856,295 +2975,68 @@ var AdsNativeMaster = function(_options) {
                     if(callback)
                         callback(callbackData);
                 } catch(e){
-                    //logger.log('error', "name: " + e.name + " message: " + e.message, e);
+                    logger.log('error', "name: " + e.name + " message: " + e.message, e);
                 }
             };
         } else {
-            _callback = function(callbackData){
-                profiler.end('GET AD DATA');
-                //Catch-all try-catch so we can send any error we get to sentry
-                //try {
-                    _render(callbackData);
-                // } catch(e){
-                //     logger.log('error', "name: " + e.name + " message: " + e.message, e);
-                // }
-            };
+            logger.log('error', "Callback not defined error.");
+            return;
         }
 
-        var getAdUnitsByCSSPath = function(data){
-            profiler.start('DOMAIN LOOKUP CHECK');
-            var adUnits = [];
-            for(var i=0;i<data.length;i++){
-                if(utils.checkCSSPath(data[i].cssPath)){
-                    adUnits.push(data[i].zid);
-                }
-            }
-            logger.log('console', 'CSS path found: ');
-            logger.log('console', adUnits);
-            return adUnits;
+        //Ad unit level configs
+        for(var i=0;i<adUnitConfigs.length;i++){
+            var queryParams = adUnitConfigs[i].getQueryParams();
+            adQueryString = adQueryString + utils.encodeQueryData(queryParams);
         }
 
-        var getAdUnitsAndLoadAds = function(apiKey, data){
-            var adUnits = [];
-            if(apiKey || !utils.getPageHostName(settings.currentPageUrl)){
-                _loadAds([apiKey], data);
-            } else {
-                if(tag_settings.widgetId && tag_settings.networkKey){
-                    var adUnits = [];
-                    for(var i=0;i<data.length;i++){
-                        if(data[i].hasOwnProperty('widgetId')
-                            && data[i].widgetId == tag_settings.widgetId
-                            && data[i].hasOwnProperty('networkKey')
-                            && data[i].networkKey == tag_settings.networkKey){
-                            adUnits.push(data[i].zid);
-                            break;
-                        }
-                    }
-                    _loadAds(adUnits, data, true);
-                } else {
-                    if(!session.isScriptInBody){
-                        profiler.start('SCRIPT IN BODY WAIT');
-                        $an.fn.ready(function(){
-                            profiler.end('SCRIPT IN BODY WAIT');
-                            _loadAds(getAdUnitsByCSSPath(data), data);
-                        });
-                    } else {
-                        _loadAds(getAdUnitsByCSSPath(data), data)
-                    }
-                }
-            }
-        };
-
-        var _loadAds = function(adUnits, data, is_widget_network_case){
-            if(adUnits.length){
-                _preloadClientAdData(adUnits, data);
-                if(arguments.length > 2 && is_widget_network_case)
-                    _callAdData(null, numAds, keywords, _callback, keyValues, opts);
-                else
-                    _callAdData(adUnits, numAds, keywords, _callback, keyValues, opts);
-            } else if(arguments.length > 2 && is_widget_network_case) {
-                logger.log('console', 'Placements not found in criteo lookup. Fetching ad directly');
-                _callAdData(null, numAds, keywords, _callback, keyValues, opts);
-            } else {
-                logger.log('console', 'No valid placements found for this domain');
-            }
-        };
-
-        profiler.start('HOST FILE FETCH');
-        if(tag_settings.widgetId && tag_settings.networkKey && constants.criteoExceptions.indexOf(tag_settings.networkKey) > -1){
-            /* No need to do domain lookup */
-            _callAdData(null, numAds, keywords, _callback, keyValues, opts);
-        } else { 
-            /* Do domain lookup for all since we also need to check whether to run criteo */
-            _getApplicablePlacements(tag_settings.apiKey, function(data){
-                profiler.end('HOST FILE FETCH');
-                if(!data || !data.length){
-                    logger.log('console', 'No active placements in host file');
-                }
-                logger.log('console', 'Domain placements: ');
-                logger.log('console', data);
-                getAdUnitsAndLoadAds(tag_settings.apiKey, data);
-            });
-        }
-    }
-
-    function _preloadClientAdData(adUnits, data){
-        window.clientSideData = window.clientSideData || {};
-
-        var _fetchClientSideAdData = function(zid, url){
-            profiler.start('PRELOAD CLIENT-SIDE AD DATA: ' + zid);
-            async.getJSONP(url, function(clientData){
-                profiler.end('PRELOAD CLIENT-SIDE AD DATA: ' + zid);
-                window.clientSideData[zid] = clientData;
-            });
-        };
-
-        for(var i=0;i<data.length;i++){
-            if(adUnits.indexOf(data[i].zid) > -1 && data[i].clientUrl) {
-                _fetchClientSideAdData(data[i].zid, data[i].clientUrl);
-            } else {
-                window.clientSideData[data[i].zid] = {}
-            }
-        }
-    }
-
-    function _callAdData(adUnits, numAds, keywords, callback, keyValues, opts){
-        var data = {'force_mobile': (settings.forceMobile ? 1 : 0)},
-            queryString = [],
-            apiKeyQuery = '',
-            len;
-
-        if(adUnits) {
-            len = adUnits.length;
-            while(len--) {
-                queryString.push('zid=' + adUnits[len]);
-            }
-        } else {
-            data.widget_id = settings.widgetId;
-            data.network_key = settings.networkKey;
-            if(settings.safetyLevel)
-                data.safety_level = settings.safetyLevel;
-            data.url = settings.currentPageUrl;
-            if(settings.categories){
-                for(var i=0;i<settings.categories.length;i++){
-                    queryString.push('cat=' + settings.categories[i]);
-                }
-            }
-        }
-
-        if(settings.templateKey)
-            data.template_key = settings.templateKey;
-
-        function addKeyValues(keyValues){
-            for (var key in keyValues) {
-                var values = keyValues[key].split(",");
-                key = (key.indexOf('ck_') === 0) ? key : 'ck_' + key;
-                for(var i=0;i<values.length;i++)
-                    queryString.push(key + '=' + values[i].trim());
-            }
-        }
-
-        if(arguments.length > 4 && typeof keyValues !== 'undefined' && keyValues){
-            addKeyValues(keyValues);
-        } 
-        if(settings.keyValues){
-           addKeyValues(settings.keyValues);
-        }
-
-        apiKeyQuery = queryString.join('&');
-
-        if(keywords)
-            data.kw = keywords;
-
-        if(numAds > 0)
-            data.num_ads = numAds;
-
-        if(!data.hasOwnProperty('url') || !data.url){
-            try {
-                if(window.top.document && window.top != window.self && typeof window.top.location.href !== 'undefined' && window.top.location.href){
-                    data.url = window.top.location.href;
-                    data.ref = window.top.document.referrer;
-                } else {
-                    data.url = window.location.href;
-                    data.ref = document.referrer;
-                }
-            } catch(err) {
-                data.url = window.location.href;
-                data.ref = document.referrer;
-            }
-        }
-
-        if(session.isPreviewMode){
-            if(session.forceCampaignID){
-                data.preview = 1;
-                data.cid = session.forceCampaignID;
-            }
-            if(session.forceCreativeID){
-                data.crid = session.forceCreativeID;
-            }
-            if(session.forceBidUrl){
-                data.mock_bid_urls = session.forceBidUrl;
-                data.mock_api_version = (session.forceBidVersion) ? session.forceBidVersion : 'v23';
-            }
-        }
-
-        if(typeof(opts) !== 'undefined'){
-            if(opts.hasOwnProperty('cid')){
-                data.specific_ad = 1;
-                data.cid = opts.cid;
-            }
-            if(opts.hasOwnProperty('crid')){
-                data.crid = opts.crid;
-            }
-        }
+        // Global configuration
+        var queryParams = getGlobalQueryParams();
+        adQueryString = adQueryString + '&' + utils.encodeQueryData(queryParams);
 
         var url = settings.apiUrl +
             settings.apiEndpoint + '?' +
-            apiKeyQuery + '&' +
-            utils.encodeQueryData(data);
-
-        try {          
-            if(apiKeyQuery.indexOf("dqbpjCQilAeKkaWaOs8hiMSzkFPMZ5sHYrJZlBjS") !== -1
-                || apiKeyQuery.indexOf("ogEn-wxjnlx6EOFDwTWiF9ftaHHzn7RMQ3FldamU") !== -1
-                || apiKeyQuery.indexOf("8s0xMKz8FuXuP6SdKsowrs88GuyzEOpLPm8Refm2") !== -1
-                || apiKeyQuery.indexOf("VcTu2azGAQ7OZZ0vm2p2RiUbQWSrPqjC7UIFuZ6B") !== -1
-                || apiKeyQuery.indexOf("RwrWRlt2YQfmPPTrHr0VM1J4ipsmIgCZdeQTeskq") !== -1
-                || apiKeyQuery.indexOf("EczO2h52F16zcAn7z9KsZ9U4XbLC4JsF8LNHOiGL") !== -1){
-                var force_uuid = _uuid.getUUID()
-                url = url + '&uuid=' + force_uuid;
-            }
-        } catch(err){
-
-        }
+            adQueryString;
 
         logger.log('console', 'Loading ad data from: ' + url);
         profiler.start('GET AD DATA');
-        async.getJSONP(url, callback);
-    }
-
-    function _render(callbackData){
-        session.apiData = callbackData;
-        _processResponse(callbackData);
-    };
-
-    function _processResponse(adunits_content){
-        profiler.start('TOTAL RENDER');
-
-        if(adunits_content instanceof Array) {
-            for(var i=0;i<adunits_content.length;i++){
-                var config = null;
-                if(adunits_content[i].hasOwnProperty('zid')){
-                    config = session_helper.popPlacementConfig(adunits_content[i].zid)
-                }
-                var p = new PlacementProcessor(adunits_content[i], config);
-                p.processPlacement();
-            }
-        } else {
-            var config = null;
-            if(adunits_content.hasOwnProperty('zid')){
-                config = session_helper.popPlacementConfig(adunits_content.zid)
-            }
-            var p = new PlacementProcessor(adunits_content, config);
-            p.processPlacement();
-        }
-
-        profiler.end('TOTAL RENDER');
-        profiler.end('TOTAL CLIENT');
-        profiler.timeSincePageStart('TOTAL OVERALL');
+        async.getJSONP(url, _callback);
+        return;
     }
 
     //**** JS API: Start ****//
 
-    window.AdsNative = function(_apiKey, _keywords, _keyValues){
-        var __construct = function(that) {
-            that.apiKey = _apiKey;
-            if(_keywords !== 'undefined')
-                that.keywords = _keywords;
-            else
-                that.keywords = '';
-            if(_keyValues !== 'undefined')
-                that.keyValues = _keyValues;
-            else
-                that.keyValues = null;
+    window.AdsNative = function(adUnitConfigObj){
+        var __construct = function(that, _arguments) {
             that.status = false;
+            that.requestComplete = false;
             that.adRendered = false;
-        }(this);
+            that.queuedDisplayElementId = null;
+            that.config = new adUnitConfig(adUnitConfigObj);
+        }(this, arguments);
     };
 
-    window.AdsNative.prototype.fetchAd = function(callback, opts){
+    window.AdsNative.prototype.fetchAd = function(callback){
         var that = this;
-        _getAdData({ 'apiKey': this.apiKey }, 1, (settings.keywords ? settings.keywords : this.keywords), function(callbackData){
+        _getAdData([this.config], function(callbackData){
             that.callbackData = callbackData;
             that.placementProcessor = new PlacementProcessor(that.callbackData);
+            that.requestComplete = true;
             if(callbackData.hasOwnProperty('status') && callbackData.status == 'OK'){
                 that.status = true;
                 that.adRendered = false;
             }
+            if(that.queuedDisplayElementId){
+                that.displayAd(that.queuedDisplayElementId);
+            }
             callback(that.status, that.placementProcessor.getAdObject());
-        }, (settings.keyValues ? settings.keyValues : this.keyValues), opts);
+        });
     };
 
     window.AdsNative.prototype.displayAd = function(elementId){
+        if(!this.requestComplete){
+            this.queuedDisplayElementId = elementId;
+            return false;
+        }
         if(!this.status){
             logger.log('console', 'Placement ' + this.apiKey + ' : No valid campaign returned');
             return false;
@@ -3187,146 +3079,171 @@ var AdsNativeMaster = function(_options) {
 
     //**** JS API: End ****//
 
-    this.load = function(){
-        logger.log('console', 'RenderJS Loaded!');
+    //**** JS API (V2): Start ****//
+    this.cmdQ = this.cmdQ || [];
+    this.adUnitObjs = [];
+    this.headerBidAdUnits = null;
+    this.headerbidResponses = null;
 
-        if(settings.onready)
-            settings.onready();
+    this.cmdQ.push = function (cmd) {
+      if (typeof cmd === 'function') {
+        try {
+          cmd.call();
+        } catch (e) {
+          logger.log('error', 'Error processing command', e.message);
+        }
+      } else {
+        logger.log('error', 'Commands must wrapped in a function');
+      }
+    };
 
-        if(settings.blockAdLoad)
+    this.processCmdQ = function() {
+      for (var i = 0; i < adsnativetag.cmdQ.length; i++) {
+        if (typeof adsnativetag.cmdQ[i].called === 'undefined') {
+          try {
+            adsnativetag.cmdQ[i].call();
+            adsnativetag.cmdQ[i].called = true;
+          }
+          catch (e) {
+            logger.log('error', 'Error processing command', e.message);
+          }
+        }
+      }
+    }
+
+    this.updateConfig = function(tagSettings){
+        utils.extend(settings, tagSettings);
+    };
+
+    this.defineAdUnit = function(adUnitConfig){
+        var adUnit = new AdsNative(adUnitConfig);
+        this.adUnitObjs.push(adUnit);
+        return adUnit;
+    };
+
+    this.defineHeaderBidAdUnits = function(headerBidAdUnits){
+        this.headerBidAdUnits = headerBidAdUnits;
+
+        // TODO: check whether prebidjs is included
+        if(typeof window.pbjs === 'undefined'){
+            console.error('Please import PrebidJS in the page before configuring prebidjs options');
             return;
+        }
 
-        if(settings.hasOwnProperty('adUnits')){
-            for(var i in settings.adUnits){
-                var adUnit = settings.adUnits[i];
-                if(adUnit.hasOwnProperty('apiKey') && adUnit.apiKey){
-                    session_helper.pushPlacementConfig(adUnit);
-                    var keywords=[],keyValues={},numAds=1; 
-                    if(adUnit.hasOwnProperty('keywords') && adUnit.keywords){
-                        keywords = adUnit.keywords;
-                    }
-                    if(adUnit.hasOwnProperty('keyValues') && adUnit.keyValues){
-                        keyValues = adUnit.keyValues;
-                    }
-                    if(adUnit.hasOwnProperty('numAds') && adUnit.numAds){
-                        numAds = adUnit.numAds;
-                    }
-                    _getAdData({ 'apiKey': adUnit.apiKey }, numAds, keywords, null, keyValues);
-                }
-            }
-        } else {
-            if((settings.apiKey || (settings.widgetId && settings.networkKey)) && !settings.nativeAdElementId && !settings.cssPath && !settings.autoPosition){
-                _writeDummyDiv();
-            }
-            _getAdData(settings, settings.numAds, settings.keywords);
+        window.pbjs = window.pbjs || {};
+        window.pbjs.que = window.pbjs.que || [];
+        window.pbjs.que.push(function() {
+            window.pbjs.addAdUnits(self.headerBidAdUnits);
+        });
+        for(var i=0;i<this.headerBidAdUnits.length;i++){
+            session_api.set(this.headerBidAdUnits[i], "headerbidEnabled", true);
+            session_api.set(this.headerBidAdUnits[i], "headerbidConfig", this.headerBidAdUnits[i]);
         }
     };
 
-    //**** JS API (Legacy): Start ****//
-
-    this.fetchAds = function(_apiKeys, _keywords, _callback){
-        var that = this;
-        settings.blockAdDisplay = true;
-        for(var i=0; i < _apiKeys.length; i++){
-            _getAdData({ 'apiKey': _apiKeys[i] }, 1, (settings.keywords ? settings.keywords : _keywords), function(callbackData){
-                var status = false;
-                var apiKey = null;
-                var adObject = {};
-                if(callbackData.hasOwnProperty('zid'))
-                    apiKey = callbackData.zid;
-                if(callbackData.hasOwnProperty('status') && callbackData.status == 'OK'){
-                    status = true;
-                    if(!session.adUnits.hasOwnProperty(apiKey)){
-                        session.adUnits[apiKey] = new PlacementProcessor(callbackData);
-                    }
-                    adObject = {
-                        "type": callbackData.ad.type,
-                        "url": callbackData.ad.url,
-                        "embedUrl": callbackData.ad.embedUrl,
-                        "title": callbackData.ad.title,
-                        "summary": callbackData.ad.summary,
-                        "brand_name": callbackData.ad.promotedBy,
-                        "image": callbackData.ad.imageSrc
-                    }
-                }
-                _callback(status, apiKey, adObject);
+    this.requestAds = function(callback){
+        // TODO: Convert this into single API request
+        for(var i=0;i<this.adUnitObjs.length;i++){
+            this.adUnitObjs[i].fetchAd(function(status){
+                callback(status);
             });
         }
-    };
 
-    this.displayAd = function(_apiKey, _elementId){
-        var placementProcessor;
-        if(session.adUnits.hasOwnProperty(_apiKey) && session.adUnits[_apiKey])
-            placementProcessor = session.adUnits[_apiKey];
-        else {
-            logger.log('console', 'Unable to display placement. Ad response is not available.')
-            return
-        }
-        var element = document.getElementById(_elementId);
-        placementProcessor.referenceElement = element;
-        placementProcessor.startRender();
-    };
+        if(this.headerBidAdUnits){
+            window.pbjs.que.push(function() {
+                window.pbjs.requestBids({
+                    bidsBackHandler: sendAdserverRequest
+                });
+            });
 
-    this.renderAd = function(_elementId, _keywords, _callback, _apiKey){
-        var that = this;
-        this.fetchAds([_apiKey], _keywords, function(status, apiKey){
-            if(status){
-                that.displayAd(apiKey, _elementId);
+            var that = this;
+
+            function sendAdserverRequest() {
+                if (window.pbjs.adserverRequestSent) return;
+                console.log('timeout or header bids returned. displaying on DFP/AN')
+                window.pbjs.adserverRequestSent = true;
+                pbjs.que.push(function() {
+                    console.log("All bids: ");
+                    console.log(window.pbjs.getBidResponses());
+                    that.headerbidResponses = window.pbjs.getBidResponses();
+                    // TODO: Add AN response to prebidjs
+                    //window.pbjs.setTargetingForGPTAsync();
+                    //googletag.cmd.push(function() {
+                        //googletag.pubads().refresh();
+                    //});
+                    that.displayAllHeaderbidAdUnits();
+                });
+                
             }
-            _callback(status);
-        })
+
+            setTimeout(function() {
+                console.log('timed out: '+ settings.headerbidTimeout);
+                sendAdserverRequest();
+            }, settings.headerbidTimeout);
+        }
     };
 
-    this.getVersion = function (){
-        return settings.version;
+    this.displayAdUnit = function(adUnit, elementId){
+        if(!session_api.get(adUnit.config, "headerbidEnabled"))
+            return adUnit.displayAd(elementId);
+        else {
+            session_api.set(adUnit.config, "displayInitiated", true);
+            session_api.set(adUnit.config, "displayElementId", elementId);
+            return this.displayHighestBid(adUnit, elementId);
+        }
     };
 
-    //**** JS API (Legacy): End ****//
+    function getHeaderBidResponse(adUnitConfig){
+        var headerbidConfig = session_api.get(adUnitConfig, "headerbidConfig");
+        if(window.pbjs.getHighestCpmBids(headerbidConfig.code).length)
+            return window.pbjs.getHighestCpmBids(headerbidConfig.code)[0];
+        else
+            return null;
+    }
+
+    this.displayHighestBid = function(adUnit, elementId){
+        if(session_api.get(adUnit.config, "displayInitiated") && this.headerbidResponses) {
+            try {
+                var highestBid = getHeaderBidResponse(adUnit.config);
+                console.log('Highest Bid:');
+                console.log(highestBid);
+                console.log(adUnit.placementProcessor.getHighestRate());
+                if(highestBid && highestBid.cpm > adUnit.placementProcessor.getHighestRate()) {
+                    var referenceElement = document.getElementById(elementId);
+                    var bannerElement = document.createElement('div');
+                    bannerElement.innerHTML = '<iframe src="'+ highestBid.adUrl +'" width="'+ highestBid.width +'" height="'+ highestBid.height +'" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" allowtransparency="true"></iframe>';
+                    referenceElement.parentNode.insertBefore(bannerElement, referenceElement);
+                } else {
+                    return adUnit.displayAd(elementId);
+                }
+            } catch(e){
+                return adUnit.displayAd(elementId);
+            }
+        } else 
+            return false;
+    }
+
+    this.displayAllHeaderbidAdUnits = function(){
+        for(var i=0;i<this.adUnitObjs.length;i++){
+            this.displayHighestBid(this.adUnitObjs[i], session_api.get(this.adUnitObjs[i].config, "displayElementId"));
+        }
+    }
+
+    //**** JS API (V2): End ****//
 };
 
 // Start the default processes
 
-//This instance is for default behaviour and it queues all instances in case there are multiple tags on the page
-if(typeof _AdsNativeQ === 'undefined'){
-    var _AdsNativeQ = [];
-    var _AdsNativeOptsQ = [];
-}
-
-function startProcessing(opts){
-    _AdsNativeOptsQ.push(opts);
-    _AdsNativeQ.push(new AdsNativeMaster(_AdsNativeOptsQ[_AdsNativeOptsQ.length - 1]));
-    _AdsNativeQ[_AdsNativeQ.length - 1].load();
-}
-
-/* _AdRenderOpts is for white-labelled clients */
-if(typeof window._AdsNativeOpts === 'undefined' && typeof window._AdRenderOpts === 'undefined'){
-    window._AdsNativeOpts = { autoPosition: true };
-    startProcessing(window._AdsNativeOpts);
+if(typeof window.adsnativetag !== 'undefined' && typeof window.adsnativetag.cmdQ !== 'undefined'){
+    var temp = window.adsnativetag.cmdQ;
+    window.adsnativetag = new AdsNativeMaster({ blockAdLoad: true });
+    Array.prototype.push.apply(window.adsnativetag.cmdQ, temp);
 } else {
-    if (typeof window._AdsNativeOpts !== 'undefined'){
-        if(!window._AdsNativeOpts.hasOwnProperty('apiKey') && !window._AdsNativeOpts.hasOwnProperty('widgetId') && !window._AdsNativeOpts.hasOwnProperty('adUnits') && !window._AdsNativeOpts.hasOwnProperty('blockAdLoad') ){
-            window._AdsNativeOpts.autoPosition = true;
-        }
-        startProcessing(window._AdsNativeOpts);
-    } else if(typeof window._AdRenderOpts !== 'undefined'){
-        if(!window._AdRenderOpts.hasOwnProperty('apiKey') && !window._AdRenderOpts.hasOwnProperty('widgetId') && !window._AdRenderOpts.hasOwnProperty('adUnits') && !window._AdRenderOpts.hasOwnProperty('blockAdLoad') ){
-            window._AdRenderOpts.autoPosition = true;
-        }
-        startProcessing(window._AdRenderOpts);
-    }
+    window.adsnativetag = new AdsNativeMaster({ blockAdLoad: true });
 }
+window.adsnativetag.processCmdQ();
 
 
-//This instance is for out facing Legacy JS SDK API
-if(typeof window._AdsNative === 'undefined'){
-    window._AdsNative = new AdsNativeMaster({ blockAdLoad: true });
-    window._AdsNative.load();
-}
-
-// Skip Cookie syncing for Edmodo Client
-if(window.location.hostname.indexOf("a.edim.co") < 0 && window.location.hostname.indexOf("edmodo.com") < 0 && document.referrer.indexOf('edmodo.com') < 0 && 
-    window.location.hostname.indexOf("axios.com") < 0) {
-    AdsNativeCookieDrop.dropCookieMatchingPixel();
-}
+AdsNativeCookieDrop.dropCookieMatchingPixel();
 
 }());
