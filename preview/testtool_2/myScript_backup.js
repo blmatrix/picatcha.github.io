@@ -201,9 +201,6 @@ var iframe_mapping = {
         ],
 
         "viber": [
-            "",
-            "",
-            ""
         ],
 
         "pocket": [
@@ -219,9 +216,6 @@ var iframe_mapping = {
         ],
 
         "medium": [
-            "",
-            "",
-            ""
         ],
 
          "nuzzel": [
@@ -231,13 +225,10 @@ var iframe_mapping = {
         ],
 
          "cafemedia": [
-            "",
         ],
 
         "scienceinc": [
-            "http://docs.adsnative.com/preview/politico_gallery.html?adsnative_preview=1&cid=11994",
-            "http://docs.adsnative.com/preview/politico_gallery.html?adsnative_preview=1&cid=11994",
-            "http://docs.adsnative.com/preview/politico_gallery.html?adsnative_preview=1&cid=11994"
+            
         ],
 
     }// end of "clients"
