@@ -187,11 +187,11 @@ var iframe_mapping = {
         ],
 
         "newsmax": [
-            "http://docs.adsnative.com/preview/newsmax/newsmax_preview/leadeboard.html?cid=11993",
-            "http://docs.adsnative.com/preview/newsmax/newsmax_preview/standard_image.html?cid=11994",
-            "http://docs.adsnative.com/preview/newsmax/newsmax_preview/footer.html?cid=11993",
-            "http://docs.adsnative.com/preview/newsmax/newsmax_preview/300x250_rectangle2x2.html?cid=11994",
-            "http://docs.adsnative.com/preview/newsmax/newsmax_preview/sidebar.html?cid=11993"
+            "http://docs.adsnative.com/preview/newsmax/newsmax_preview/leadeboard.html?adsnative_preview=1&cid=11993",
+            "http://docs.adsnative.com/preview/newsmax/newsmax_preview/standard_image.html?adsnative_preview=1&cid=11994",
+            "http://docs.adsnative.com/preview/newsmax/newsmax_preview/footer.html?adsnative_preview=1&cid=11993",
+            "http://docs.adsnative.com/preview/newsmax/newsmax_preview/300x250_rectangle2x2.html?adsnative_preview=1&cid=11994",
+            "http://docs.adsnative.com/preview/newsmax/newsmax_preview/sidebar.html?adsnative_preview=1&cid=11993"
         ],
 
         "advancenative": [
