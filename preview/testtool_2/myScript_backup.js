@@ -27,6 +27,13 @@ $('.publisher-tile').click(function() {
     // Active Publisher 
     publisherName = $(this).attr('id');
 
+    // Hide the prev/next buttons when there is only one slide
+    var slides = $(".an-layout-stage." + publisherName + " .slide")
+    if(slides.length === 1) {
+        $(".an-layout-stage." + publisherName + ' .prev-next-button').hide();
+    }
+    debugger;
+
     // Add iFrames before showing stage
     frameUrls = iframe_mapping['clients'][publisherName];
     for(var i = 0; i < frameUrls.length; i++) {
@@ -135,14 +142,28 @@ setTimeout(function() {
 
 
 
-
-
+function setUserAgent(window, userAgent) {
+    if (window.navigator.userAgent != userAgent) {
+        var userAgentProp = { get: function () { return userAgent; } };
+        try {
+            Object.defineProperty(window.navigator, 'userAgent', userAgentProp);
+        } catch (e) {
+            window.navigator = Object.create(navigator, {
+                userAgent: userAgentProp
+            });
+        }
+    }
+}
 
 
 // code for Dynamically rendering Iframe.
 function addIframe(frameUrl, publisherName, index) {
-    var iframeElements = $(".an-layout-stage." + publisherName + " .iframe-container"),
+    var slides = $(".an-layout-stage." + publisherName + " .slide"),
+        slide = slides[index],
+        iframeElements = $(".an-layout-stage." + publisherName + " .iframe-container")
         iframeElement = $(iframeElements[index]);
+
+    deviceType = $(slide).data('device-type');
 
     if(!iframeElement.find('iframe').length) {
         var ifrm = document.createElement("iframe");
@@ -154,6 +175,12 @@ function addIframe(frameUrl, publisherName, index) {
 
         // Add iframe to publisher stage -> slide if no iframe exists
         iframeElement.append(ifrm);
+
+        if(deviceType === 'mobile' || deviceType === 'tablet') {
+            setUserAgent(ifrm.contentWindow, "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) CriOS/56.0.2924.75 Mobile/14E5239e Safari/602.1");
+        } else if(deviceType === 'laptop') {
+            setUserAgent(ifrm.contentWindow, "Mozilla/5.0 (Linux; Android 4.0.4; Galaxy Nexus Build/IMM76B) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.133 (?!Mobile) Safari/535.19");
+        }
     }
 }
 
