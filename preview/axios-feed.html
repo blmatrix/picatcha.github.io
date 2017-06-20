@@ -2850,8 +2850,31 @@ return Hogan.compile('<a data-id="{{id}}" class="title {{#isPrivate}}private{{/i
         apiKey: 'Tks4hf_9zB6HCnRzoUTTpjUa7UPmn8om9jo4TtC0',
         autoPosition: true
     };
+
     </script> -->
+    <script type="text/javascript">
+      var _AdsNativeOpts = {
+          blockAdLoad: true
+      };
+    </script>
     <script type="text/javascript" src="//static.adsnative.com/static/js/render.v1.js"></script>
+
+    <script type="text/javascript">
+        var  fetchOptions = {};
+        fetchOptions.cid = 11994; 
+
+        var infeed_placement = new AdsNative('Tks4hf_9zB6HCnRzoUTTpjUa7UPmn8om9jo4TtC0', []);
+          infeed_placement.fetchAd(function(status){
+            if(status){ // If returned a valid campaign to display.
+              $(document).ready(function(){
+                      var didDisplay = infeed_placement.displayAd('Tks4hf_9zB6HCnRzoUTTpjUa7UPmn8om9jo4TtC0');
+                if(!didDisplay)
+                  console.log('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
+                    });
+            }
+          },  fetchOptions);
+
+    </script>
     <!-- End ADSNATIVE Code -->
 
 </body>
