@@ -32,7 +32,7 @@ $('.publisher-tile').click(function() {
     if(slides.length === 1) {
         $(".an-layout-stage." + publisherName + ' .prev-next-button').hide();
     }
-    debugger;
+    
 
     // Add iFrames before showing stage
     frameUrls = iframe_mapping['clients'][publisherName];
