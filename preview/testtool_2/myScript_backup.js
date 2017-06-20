@@ -195,9 +195,9 @@ var iframe_mapping = {
         ],
 
         "advancenative": [
-            "http://docs.adsnative.com/preview//advancenative_ads.html?adsnative_preview=1&cid=11994",
-            "http://docs.adsnative.com/preview//advancenative_ads.html?adsnative_preview=1&cid=11994",
-            "http://docs.adsnative.com/preview//advancenative-rr.html?adsnative_preview=1&cid=11994"
+            "http://docs.adsnative.com/preview/advancenative_ads.html?adsnative_preview=1&cid=11994",
+            "http://docs.adsnative.com/preview/advancenative_ads.html?adsnative_preview=1&cid=11994",
+            "http://docs.adsnative.com/preview/advancenative-rr.html?adsnative_preview=1&cid=11994"
         ],
 
         "viber": [
