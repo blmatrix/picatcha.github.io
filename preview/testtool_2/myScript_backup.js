@@ -247,7 +247,6 @@ var iframe_mapping = {
 
          "nuzzel": [
             "https://native-preview.herokuapp.com/email/nuzzel_email.html",
-            "https://native-preview.herokuapp.com/email/nuzzel_email.html",
             "https://native-preview.herokuapp.com/email/nuzzel_email.html"
         ],
 
