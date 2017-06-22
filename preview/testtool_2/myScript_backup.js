@@ -206,7 +206,7 @@ var iframe_mapping = {
         ],
 
         "axios": [
-            "http://docs.adsnative.com/preview/axios-feed.html?adsntaive_preview=1&cid=11994&zid=Tks4hf_9zB6HCnRzoUTTpjUa7UPmn8om9jo4TtC0",
+            "http://docs.adsnative.com/preview/axios-video.html?adsntaive_preview=1&cid=11994&zid=Tks4hf_9zB6HCnRzoUTTpjUa7UPmn8om9jo4TtC0",
             "http://docs.adsnative.com/preview/axios-feed.html?adsntaive_preview=1&cid=11994&zid=Tks4hf_9zB6HCnRzoUTTpjUa7UPmn8om9jo4TtC0",
             "http://docs.adsnative.com/preview/axios-feed.html?adsntaive_preview=1&cid=11994&zid=Tks4hf_9zB6HCnRzoUTTpjUa7UPmn8om9jo4TtC0"
         ],
