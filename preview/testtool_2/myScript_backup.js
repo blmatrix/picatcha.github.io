@@ -202,8 +202,6 @@ var iframe_mapping = {
         ],
 
         "disqus": [
-            "http://docs.adsnative.com/preview/disqus/disqus_gallery.html",
-            "http://docs.adsnative.com/preview/disqus/disqus_gallery.html",
             "http://docs.adsnative.com/preview/disqus/disqus_gallery.html"
         ],
 
