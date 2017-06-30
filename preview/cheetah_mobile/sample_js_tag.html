@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <script> 
-    </script>
-    <script async='async' type='text/javascript' src='//static.adsnative.com/static/js/render.v2.js'></script>
+  <head></head>
+  <body style="background-color: black;">
+    <!-- Cheetah Mobile - Polymorph : JS Tag START -->
+    <script async='async' type='text/javascript' src='//static.adsnative.com/static/js/pm-cm.js'></script>
     <script>
       var adsnativetag = adsnativetag || {};
       adsnativetag.cmdQ = adsnativetag.cmdQ || [];
@@ -14,7 +14,7 @@
           uuid: '6D92078A-8246-4BA4-AE5B-76104861E7DC',       // User Device ID
           lat: '37.605644',                                   // Latitude
           long: '-122.426827',                                // Longitude
-          ver: '2.10',                                        // App version
+          ver: '2.10.1',                                      // App version
           app: true                                           // Enable App Flag
         });
         // Add global config
@@ -25,14 +25,16 @@
         adsnativetag.requestAds();
       });
     </script>
-  </head>
-  <body>
-    <!-- Cheetah Mobile - Polymorph : Placement -->
     <div id='dynamic-ad-slot'>
         <script type='text/javascript'>
           // Render ad
-          adsnativetag.cmdQ.push(function() { var display_status = adsnativetag.displayAdUnit(dynamicAdUnit, 'dynamic-ad-slot'); });
+          adsnativetag.cmdQ.push(function() {
+            adsnativetag.displayAdUnit(dynamicAdUnit, 'dynamic-ad-slot', function(adData) {
+              CheetahMobile.initAdUnit('medrec', adData);
+            });
+          });
         </script>
     </div>
+    <!-- Cheetah Mobile - Polymorph : JS Tag END -->
   </body>
 </html>

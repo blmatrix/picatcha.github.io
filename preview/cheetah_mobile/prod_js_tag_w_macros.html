@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
+  <head></head>
   <body>
     <!-- Cheetah Mobile - Polymorph : JS Tag START -->
-    <script async='async' type='text/javascript' src='//static.adsnative.com/static/js/render.v2.js'></script>
+    <script async='async' type='text/javascript' src='//static.adsnative.com/static/js/pm-cm.js'></script>
     <script>
       var adsnativetag = adsnativetag || {};
       adsnativetag.cmdQ = adsnativetag.cmdQ || [];
@@ -13,7 +14,7 @@
           uuid: '[IDFA]' / '[GAID]',
           lat: '[LATITUDE]',
           long: '[LONGITUDE]',
-          ver: '[APP_VERSION]',
+          ver: '[APP_VERSION]',   // Must be in the format <number>.<number>.<number>
           app: true
         });
         // Add global config
@@ -27,7 +28,11 @@
     <div id='dynamic-ad-slot'>
         <script type='text/javascript'>
           // Render ad
-          adsnativetag.cmdQ.push(function() { var display_status = adsnativetag.displayAdUnit(dynamicAdUnit, 'dynamic-ad-slot'); });
+          adsnativetag.cmdQ.push(function() {
+            adsnativetag.displayAdUnit(dynamicAdUnit, 'dynamic-ad-slot', function(adData) {
+              CheetahMobile.initAdUnit('medrec', adData);
+            });
+          });
         </script>
     </div>
     <!-- Cheetah Mobile - Polymorph : JS Tag END -->
