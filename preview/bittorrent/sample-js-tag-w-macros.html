@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body style="background-color: black;">
+
+
+    <!-- Bittorrent - Polymorph : JS Tag START -->
+    <script async='async' type='text/javascript' src='//static.adsnative.com/static/js/pm-cm.js'></script>
+
+    <script>
+      var adsnativetag = adsnativetag || {};
+      adsnativetag.cmdQ = adsnativetag.cmdQ || [];
+      adsnativetag.cmdQ.push(function(){
+        // Create ad unit
+        window.dynamicAdUnit = adsnativetag.defineAdUnit({
+          apiKey: '4eevunuWE9ormUU1UFRqn-Z2GHIC8yGD-g2Vmsag', // Desktop App Placement ID : https://console.adsnative.com/placements/#/edit/30359
+          uuid: '6D92078A-8246-4BA4-AE5B-76104861E7DC'        // User ID / Desktop App ID
+        });
+        // Add global config
+        adsnativetag.updateConfig({
+          currentPageUrl: "http://www.bittorrent.com/"        // App Domain / Site Name
+        });
+        // Fetch ads
+        adsnativetag.requestAds();
+      });
+    </script>
+    <div id='dynamic-ad-slot'>
+        <script type='text/javascript'>
+          // Render ad
+          adsnativetag.cmdQ.push(function() {
+            adsnativetag.displayAdUnit(dynamicAdUnit, 'dynamic-ad-slot', function(adData) {
+              Polymorph.initAdUnit('medrec', adData);
+            });
+          });
+        </script>
+    </div>
+    <!-- Bittorrent - Polymorph : JS Tag END -->
+
+    
+  </body>
+</html>
