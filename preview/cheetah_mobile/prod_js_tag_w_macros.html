@@ -22,7 +22,13 @@
           currentPageUrl: '[PAGE-DOMAIN]'
         });
         // Fetch ads
-        adsnativetag.requestAds();
+        adsnativetag.requestAds(function(status) {
+          // Mopub passback
+          if(!status) {
+            loaded=true; 
+            window.location="mopub://failLoad";
+          }
+        });
       });
     </script>
     <div id='dynamic-ad-slot'>
