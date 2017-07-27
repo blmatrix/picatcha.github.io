@@ -1,0 +1,32 @@
+<html>
+<head>
+</head>
+<body>
+
+<!-- Polymorph : JS Tag START -->
+<script type="text/javascript" src="http://static.adsnative.com/static/js/render.v2.js"></script>
+<script>
+  var adsnativetag = adsnativetag || {};
+  adsnativetag.cmdQ = adsnativetag.cmdQ || [];
+  adsnativetag.cmdQ.push(function(){
+    // Create ad unit
+    window.dynamicAdUnit = adsnativetag.defineAdUnit({
+      apiKey: '1ASyswnHXq9LP7N6ox99zQLS-Tb83RXlSqk05TG6',
+    });
+    // Fetch ads
+    adsnativetag.requestAds();
+  });
+</script>
+<div id='dynamic-ad-slot'>
+    <script type='text/javascript'>
+      // Render ad
+      adsnativetag.cmdQ.push(function() {
+        adsnativetag.displayAdUnit(dynamicAdUnit, 'dynamic-ad-slot', function(adData) {
+        });
+      });
+    </script>
+</div>
+<!-- Polymorph : JS Tag END -->
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!-- Polymorph : JS Tag START -->
+<script type="text/javascript" src="http://static.adsnative.com/static/js/render.v2.js"></script>
+<script>
+  var adsnativetag = adsnativetag || {};
+  adsnativetag.cmdQ = adsnativetag.cmdQ || [];
+  adsnativetag.cmdQ.push(function(){
+    // Create ad unit
+    window.dynamicAdUnit = adsnativetag.defineAdUnit({
+      apiKey: <PLACEMENT_ID> // https://dev.getpolymorph.com/docs/publisher-faqs#4-how-to-get-placement-id-,
+    });
+    // Fetch ads
+    adsnativetag.requestAds();
+  });
+</script>
+<div id='dynamic-ad-slot'>
+    <script type='text/javascript'>
+      // Render ad
+      adsnativetag.cmdQ.push(function() {
+        adsnativetag.displayAdUnit(dynamicAdUnit, 'dynamic-ad-slot', function(adData) {
+        });
+      });
+    </script>
+</div>
+<!-- Polymorph : JS Tag END -->
