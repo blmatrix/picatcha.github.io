@@ -1,0 +1,388 @@
+<html>
+
+<head>
+    <title>Polymorph // Video JS</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <!-- <script type='text/javascript' src='https://rawgit.com/picatcha/OpenAdViewability/master/src/js/viewability.js'></script> -->
+    <style>
+    .grey {
+        background-color: #ccc;
+    }
+    
+    .header,
+    .footer {
+        height: 10em;
+        background-color: #002341;
+    }
+    
+    .header div {
+        width: 80%;
+        margin: 0 auto;
+    }
+    
+    .header .logo {
+        width: 40%;
+        max-width: 400px;
+        margin: 0 3%;
+        display: inline-block;
+        padding-top: 2em;
+    }
+
+    .header .logo.pm {
+        padding-top: 3em;   
+    }
+    .header .logo.vjs {
+        width: 23% !important;
+        margin-bottom: 20px !important;
+    }
+
+    .main {
+        width: 60%;
+        float: left;
+    }
+    
+    .right-rail {
+        width: 39%;
+        margin-left: 1%;
+        float: left;
+    }
+    
+    .right-rail .grey {
+        background-color: #aaa;
+    }
+    
+    p {
+        margin: .2em 0;
+        font-size: 5em;
+    }
+    
+    .clear {
+        clear: both;
+    }
+    
+    .block {
+        margin: 1em 0;
+        height: 8em;
+    }
+    
+    .double {
+        height: 16em;
+    }
+    /* Video JS */
+    
+    .video-js {
+        width: 100%;
+        max-width: 100%;
+    }
+    /* Headings */
+    
+    h1 {
+        font: bold 32px Helvetica, Arial, sans-serif;
+    }
+    
+    h1,
+    h1:after,
+    h1:before {
+        background: #1cb9c4;
+    }
+    
+    h2 {
+        font: bold 28px Helvetica, Arial, sans-serif;
+    }
+    
+    h2,
+    h2:after,
+    h2:before {
+        background: #008B8B;
+    }
+
+    h3 {
+        font: bold 28px Helvetica, Arial, sans-serif;
+    }
+    
+    h3,
+    h3:after,
+    h3:before {
+        background: #008B8B;
+    }
+    
+    h1,
+    h2,
+    h3 {
+        position: relative;
+        display: inline-block;
+        margin: 5px 20px;
+        padding: 0 10px;
+        text-align: center;
+        color: #ffffff;
+    }
+    
+    h1:after,
+    h2:after,
+    h3:after {
+        position: absolute;
+        left: -10px;
+        content: " ";
+        width: 15px;
+        height: 100%;
+        transform: skew(-15deg, 0deg);
+    }
+    
+    h1:before,
+    h2:before,
+    h3:before {
+        position: absolute;
+        left: -10px;
+        content: " ";
+        width: 15px;
+        height: 100%;
+        transform: skew(-15deg, 0deg);
+        left: auto;
+        right: -10px !important;
+    }
+    
+    .corners {
+        position: absolute;
+        left: -10px;
+        content: " ";
+        width: 15px;
+        height: 100%;
+        background: #1cb9c4;
+        transform: skew(-15deg, 0deg);
+    }
+
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        padding-top: 25px;
+        height: 0;
+    }
+    .video-container iframe {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    /* Media Queries */
+    @media screen and (max-width: 480px) {
+        .main {
+            float: none;
+            width: 100%;
+        }
+        .right-rail {
+            float: none;
+            width: 100%;
+            margin: 0;
+        }
+        h1 {
+            font: bold 18px Helvetica, Arial, sans-serif !important;
+        }
+        h2 {
+            font: bold 14px Helvetica, Arial, sans-serif !important;
+        }
+    }
+    
+    @media screen and (min-width: 481px) and (max-width: 900px) {
+        h1 {
+            font: bold 22px Helvetica, Arial, sans-serif !important;
+        }
+        h2 {
+            font: bold 18px Helvetica, Arial, sans-serif !important;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="header grey">
+            <div>
+                <img src="img/pm.svg" class="logo pm">
+                <img src="img/vjs.png" class="logo vjs">
+            </div>
+        </div>
+        <div class="content">
+            <div class="main" id="articleContainer">
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <h1>AutoPlay Inview Muted : MRC 50</h1>
+                <h2>Source : MP4 / Direct Asset Upload</h2>
+                <div id="video-inline-slot" class="video-container">
+                    <div id="DTYZBPeemkORKxRsUa9bPqZrPCINfpFeknft62fP"></div>
+                </div>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <h1>AutoPlay Inview Muted : MRC 50</h1>
+                <h2>Source : 3rd Party VAST setup</h2>
+                <div id="video-vast-slot" class="video-container">
+                    <div id="ziCTBbWN6v2ytjastuPAGdiOl7JszEUCXzIYBx_r"></div>
+                </div>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <h1>AutoPlay Inview Muted : MRC 50</h1>
+                <h2>Source : 3rd Party VPAID setup</h2>
+                <div id="video-vpaid-slot" class="video-container">
+                    <div id="w-ebpY-FiEO_vO2SiVTGOh35J5QpUNy8qOIzyYK7"></div>
+                </div>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+                <p class="grey">&nbsp;</p>
+            </div>
+            <div class="right-rail">
+                <div class="block grey"></div>
+                <div class="block double grey"></div>
+                <div class="block grey"></div>
+                <div class="block grey"></div>
+                <div class="block grey"></div>
+                <h3>MP4 : Click to Play</h3>
+                <div id="video-inline-slot" class="video-container">
+                    <div id="peh55dimpmRAYqFmCDI0zoOIS77efXdC8SiD4ZrI"></div>
+                </div>
+                <div class="block grey"></div>
+                <div class="block grey"></div>
+                <div class="block grey"></div>
+                <div class="block grey"></div>
+                <div class="block grey"></div>
+                <h3>VAST : Click to Play</h3>
+                <div id="video-vast-slot" class="video-container">
+                    <div id="gsTOOpo4vcvP-Ob1ebJ_X0cWjCg7IjmJIRvJ5eR1"></div>
+                </div>
+                <div class="block grey"></div>
+                <div class="block grey"></div>
+                <div class="block double grey"></div>
+                <div class="block grey"></div>
+                <div class="block double grey"></div>
+                <h3>VPAID : Click to Play</h3>
+                <div id="video-vpaid-slot" class="video-container">
+                    <div id="QgRyHQ2dLOEqiF3OIvCD-QW2LTqU2vvJTWgDTeM3"></div>
+                </div>
+                <div class="block grey"></div>
+                <div class="block double grey"></div>
+                <div class="block grey"></div>
+                <div class="block double grey"></div>
+                <div class="block grey"></div>
+                <div class="block double grey"></div>
+                <div class="block grey"></div>
+                <div class="block grey"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="footer grey"></div>
+    </div>
+
+    <!-- Polymorph V1 : JS Tag START -->
+    <script type="text/javascript">
+      var _AdsNativeOpts = {
+          blockAdLoad: true
+      };
+    </script>
+    <script type="text/javascript" src="//static.adsnative.com/static/js/render.v1.js"></script>
+
+    <script type="text/javascript">
+        // =============
+        // Autoplay
+        // =============
+        var  directAutoplay = {};
+        directAutoplay.cid = 10223;
+        directAutoplay.crid = 171541;
+        var directAdUnit = new AdsNative('DTYZBPeemkORKxRsUa9bPqZrPCINfpFeknft62fP', []);
+        directAdUnit.fetchAd(function(status){
+            if(status) { // If returned a valid campaign to display.
+                var didDisplay = directAdUnit.displayAd('DTYZBPeemkORKxRsUa9bPqZrPCINfpFeknft62fP');
+                if(!didDisplay)
+                    console.log('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
+            }
+        }, directAutoplay);
+        
+        var  vastAutoplay = {};
+        vastAutoplay.cid = 21789;
+        vastAutoplay.crid = 1810837;
+        var vastAdUnit = new AdsNative('ziCTBbWN6v2ytjastuPAGdiOl7JszEUCXzIYBx_r', []);
+        vastAdUnit.fetchAd(function(status){
+        if(status) { // If returned a valid campaign to display.
+            var didDisplay = vastAdUnit.displayAd('ziCTBbWN6v2ytjastuPAGdiOl7JszEUCXzIYBx_r');
+            if(!didDisplay)
+                console.log('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
+            };
+        }, vastAutoplay);
+
+        var  vpaidAutoplay = {};
+        vpaidAutoplay.cid = 21790;
+        vpaidAutoplay.crid = 1810838;
+        var vpaidAdUnit = new AdsNative('w-ebpY-FiEO_vO2SiVTGOh35J5QpUNy8qOIzyYK7', []);
+        vpaidAdUnit.fetchAd(function(status){
+        if(status) { // If returned a valid campaign to display.
+            var didDisplay = vpaidAdUnit.displayAd('w-ebpY-FiEO_vO2SiVTGOh35J5QpUNy8qOIzyYK7');
+            if(!didDisplay)
+                console.log('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
+            };
+        }, vpaidAutoplay);
+
+        // =============
+        // Click to play
+        // =============
+        var  directClicktoplay = {};
+        directClicktoplay.cid = 10223;
+        directClicktoplay.crid = 1812747;
+        var directClickAdUnit =  new AdsNative('peh55dimpmRAYqFmCDI0zoOIS77efXdC8SiD4ZrI', []);
+        directClickAdUnit.fetchAd(function(status){
+            if(status) { // If returned a valid campaign to display.
+                var didDisplay = directClickAdUnit.displayAd('peh55dimpmRAYqFmCDI0zoOIS77efXdC8SiD4ZrI');
+                if(!didDisplay)
+                    console.log('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
+            }
+        }, directClicktoplay);
+        
+        var  vastClicktoplay = {};
+        vastClicktoplay.cid = 21789;
+        vastClicktoplay.crid = 1812748;
+        var vastClickAdUnit = new AdsNative('gsTOOpo4vcvP-Ob1ebJ_X0cWjCg7IjmJIRvJ5eR1', []);
+        vastClickAdUnit.fetchAd(function(status){
+        if(status) { // If returned a valid campaign to display.
+            var didDisplay = vastClickAdUnit.displayAd('gsTOOpo4vcvP-Ob1ebJ_X0cWjCg7IjmJIRvJ5eR1');
+            if(!didDisplay)
+                console.log('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
+            };
+        }, vastClicktoplay);
+
+        var  vpaidClicktoplay = {};
+        vpaidClicktoplay.cid = 21790;
+        vpaidClicktoplay.crid = 1812749;
+        var vpaidClickAdUnit = new AdsNative('QgRyHQ2dLOEqiF3OIvCD-QW2LTqU2vvJTWgDTeM3', []);
+        vpaidClickAdUnit.fetchAd(function(status){
+        if(status) { // If returned a valid campaign to display.
+            var didDisplay = vpaidClickAdUnit.displayAd('QgRyHQ2dLOEqiF3OIvCD-QW2LTqU2vvJTWgDTeM3');
+            if(!didDisplay)
+                console.log('Ad could not be displayed. Most likely due to invalid element ID or double rendering of ad.');
+            };
+        }, vpaidClicktoplay);
+    </script>
+    <!-- Polymorph V1 : JS Tag START -->
+
+  </body>
+</html>
+</body>
+
+</html>
