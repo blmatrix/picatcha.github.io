@@ -3,6 +3,30 @@
   <head></head>
   <body style="background-color: black;">
     <!-- Cheetah Mobile - Polymorph : JS Tag START -->
+
+    <script type="text/javascript">
+      if(typeof trackImpressionHelper !== 'undefined') {
+        var trackImpressionHelperResume = trackImpressionHelper;
+        trackImpressionHelper = null;
+      }
+
+      mopubFinishLoad = null;
+
+      // Polymorph to signal finishload to mopub 
+      function loadSuccess() {
+        setTimeout(function() {
+          if(typeof mopubFinishLoad == 'function') { mopubFinishLoad(); }
+          window.location = 'mopub://finishLoad'
+        }, 0);
+
+        if(typeof trackImpressionHelperResume == 'function') trackImpressionHelperResume();
+      }
+
+      // If polymorph tag is delayed more than 1.5 seconds, track failLoad in mopub
+      setTimeout(function() {
+        if(!window.adFilled) window.location = 'mopub://failLoad';
+      }, 1500);
+    </script>
     <script type='text/javascript' src='//static.adsnative.com/static/js/pm-cm.js'></script>
     <script type='text/javascript' src='//static.adsnative.com/static/js/render.v2.js'></script>
     <script>
@@ -11,7 +35,7 @@
       adsnativetag.cmdQ.push(function(){
         // Create ad unit
         window.dynamicAdUnit = adsnativetag.defineAdUnit({
-          apiKey: 'dQX9E07WKel4tDf-b_OWzvUs6e49Mgq-YPj58Cqk', // 360 Security Placement ID : https://console.adsnative.com/placements/#/edit/29716
+          apiKey: 'TmazFIj5XCiW7egxcCh82Kz5NJtcUrzGpdukAcbo', // 360 Security Placement ID : https://console.adsnative.com/placements/#/edit/29716
           uuid: '6D92078A-8246-4BA4-AE5B-76104861E7DC',       // User Device ID
           lat: '37.605644',                                   // Latitude
           long: '-122.426827',                                // Longitude
@@ -26,7 +50,7 @@
           // Mopub passback
           if(!status) {
             loaded=true; 
-            window.location="mopub://failLoad";
+            window.location = "mopub://failLoad";
           }
         });
       });
@@ -37,6 +61,8 @@
           adsnativetag.cmdQ.push(function() {
             adsnativetag.displayAdUnit(dynamicAdUnit, 'dynamic-ad-slot', function(adData) {
               CheetahMobile.initAdUnit('medrec', adData);
+              window.adFilled = true;
+              if(typeof loadSuccess == 'function') loadSuccess();
             });
           });
         </script>

@@ -1,0 +1,28 @@
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+
+<head>
+</head>
+
+<body>
+    <div id="pubmatic"></div>
+    <!-- Blog adsnative pixel  -->
+    <!-- AdsNative Cookie Sync Code START -->
+    <script type="text/javascript" src="cookie_sync.js"></script>
+    <script type="text/javascript">
+    function VBgetUrlParam(name, url) {
+        if (!url) url = location.href;
+        name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+        var regexS = "[\\?&]" + name + "=([^&#]*)";
+        var regex = new RegExp(regexS);
+        var results = regex.exec(url);
+        return results == null ? null : results[1];
+    }
+
+    if (VBgetUrlParam('udid')) {
+        window.CookieSync.init(decodeURIComponent(VBgetUrlParam('udid')), '82372e12bed54dcdab1accf207bef821');
+    }
+    </script>
+    <!-- AdsNative Cookie Sync Code END -->
+</body>
+
+</html>

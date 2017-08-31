@@ -1,4 +1,27 @@
 <!-- Cheetah Mobile - Polymorph : JS Tag START -->
+<script type="text/javascript">
+  if(typeof trackImpressionHelper !== 'undefined') {
+    var trackImpressionHelperResume = trackImpressionHelper;
+    trackImpressionHelper = null;
+  }
+
+  mopubFinishLoad = null;
+
+  // Polymorph to signal finishload to mopub 
+  function loadSuccess() {
+    setTimeout(function() {
+      if(typeof mopubFinishLoad == 'function') { mopubFinishLoad(); }
+      window.location = 'mopub://finishLoad'
+    }, 0);
+
+    if(typeof trackImpressionHelperResume == 'function') trackImpressionHelperResume();
+  }
+
+  // If polymorph tag is delayed more than 1.5 seconds, track failLoad in mopub
+  setTimeout(function() {
+    if(!window.adFilled) window.location = 'mopub://failLoad';
+  }, 1500);
+</script>
 <script type='text/javascript' src='//static.adsnative.com/static/js/pm-cm.js'></script>
 <script type='text/javascript' src='//static.adsnative.com/static/js/render.v2.js'></script>
 <script>
@@ -7,7 +30,7 @@
   adsnativetag.cmdQ.push(function(){
     // Create ad unit
     window.dynamicAdUnit = adsnativetag.defineAdUnit({
-      apiKey: 'TmazFIj5XCiW7egxcCh82Kz5NJtcUrzGpdukAcbo',
+      apiKey: '[POLYMORPH-PLACEMENT-ID]',
       uuid: '%eudid!',
       lat: '%%LATITUDE%%',
       long: '%%LONGITUDE%%',
@@ -22,19 +45,21 @@
       // Mopub passback
       if(!status) {
         loaded=true; 
-        window.location="mopub://failLoad";
+        window.location = "mopub://failLoad";
       }
     });
   });
 </script>
 <div id='dynamic-ad-slot'>
-    <script type='text/javascript'>
-      // Render ad
-      adsnativetag.cmdQ.push(function() {
-        adsnativetag.displayAdUnit(dynamicAdUnit, 'dynamic-ad-slot', function(adData) {
-          CheetahMobile.initAdUnit('medrec', adData);
-        });
+  <script type='text/javascript'>
+    // Render ad
+    adsnativetag.cmdQ.push(function() {
+      adsnativetag.displayAdUnit(dynamicAdUnit, 'dynamic-ad-slot', function(adData) {
+        CheetahMobile.initAdUnit('medrec', adData);
+        window.adFilled = true;
+        if(typeof loadSuccess == 'function') loadSuccess();
       });
-    </script>
+    });
+  </script>
 </div>
 <!-- Cheetah Mobile - Polymorph : JS Tag END -->
