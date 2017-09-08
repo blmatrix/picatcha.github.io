@@ -139,24 +139,24 @@ body {
     display: block;
 }
 
-#viant {
-    background-image: url(logo_viant.png);
+#cheetahmobile {
+    background-image: url(logo_cheetahmobile.png);
 }
-#viant.active {
+#cheetahmobile.active {
    background-color: #9BBE78;
 }
-.an-layout-stage.active.viant{
+.an-layout-stage.active.cheetahmobile{
     background: linear-gradient(#9BBE78, #37A7B9);
     display: block;
 }
 
-#edmodo {
-    background-image: url(logo_edmodo.png);
+#zowdow {
+    background-image: url(logo_zowdow.png);
 }
-#edmodo.active{
+#zowdow.active{
     background-color: rgb(242, 185, 81);
 }
-.an-layout-stage.active.edmodo{
+.an-layout-stage.active.zowdow{
     background:linear-gradient(rgb(242, 185, 81), rgb(233, 103, 70));
     display: block;
 }
