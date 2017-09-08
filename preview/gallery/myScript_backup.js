@@ -15,6 +15,10 @@ $('#polymorph').click(function() {
 // Add background color for publisher tiles when clicked
 // Display associated stage on the left
 $('.publisher-tile').click(function() {
+    publisherClicked($(this).attr('id'), this);
+});
+
+function publisherClicked(pubName, that) {
     // Reset the previous client stage to translateX = 0
     updateTranslateX(0);
 
@@ -22,10 +26,10 @@ $('.publisher-tile').click(function() {
     slide_counter = 1;
 
     $('.publisher-tile').removeClass('active');
-    $(this).addClass('active');
+    $(that).addClass('active');
 
-    // Active Publisher 
-    publisherName = $(this).attr('id');
+    // Active Publisher
+    publisherName = pubName;
 
     // Hide the prev/next buttons when there is only one slide
     var slides = $(".an-layout-stage." + publisherName + " .slide")
@@ -33,7 +37,6 @@ $('.publisher-tile').click(function() {
         $(".an-layout-stage." + publisherName + ' .prev-next-button').hide();
     }
     
-
     // Add iFrames before showing stage
     frameUrls = iframe_mapping['clients'][publisherName];
     for(var i = 0; i < frameUrls.length; i++) {
@@ -43,7 +46,7 @@ $('.publisher-tile').click(function() {
         } else {
             setTimeout(function(frameUrls, publisherName, i) {
                 addIframe(frameUrls[i], publisherName, i);
-            }.bind(this, frameUrls, publisherName, i), 3000);
+            }.bind(that, frameUrls, publisherName, i), 3000);
         }
     }
 
@@ -65,7 +68,7 @@ $('.publisher-tile').click(function() {
     translateX = getTranslateXValue(slideContainer);
 
     console.log('New Client : transition X = ' + translateX);
-});
+}
 
 // Slider navigation - START
 $('.prev-next-button').on('click', function(e) {
@@ -187,18 +190,10 @@ function addIframe(frameUrl, publisherName, index) {
 // JSON Array for Iframe mapping
 var iframe_mapping = { 
     "clients" :  {
-        "viant": [
-            "http://docs.adsnative.com/preview/health_infeed.html?adsnative_preview=1&cid=11994",
-            "http://docs.adsnative.com/preview/health_infeed.html?adsnative_preview=1&cid=11994",
-            "http://docs.adsnative.com/preview/xfinity_infeed.html?adsnative_preview=1&cid=11993"
+        "cheetahmobile": [
         ],
 
-        "edmodo": [
-            "http://native-preview.herokuapp.com/edmodo_adunits?adsnative_preview=1&cid=11994",
-            "http://native-preview.herokuapp.com/edmodo_adunits?adsnative_preview=1&cid=12772",
-            "http://native-preview.herokuapp.com/edmodo_adunits?adsnative_preview=1&cid=13294",
-            "http://native-preview.herokuapp.com/edmodo_adunits_iab_infeed?adsnative_preview=1&cid=17165",
-            "http://docs.adsnative.com/preview/edmodo/logout.html"
+        "zowdow": [
         ],
 
         "disqus": [
@@ -219,9 +214,6 @@ var iframe_mapping = {
             "http://docs.adsnative.com/preview/newsmax/newsmax_preview/sidebar.html?adsnative_preview=1&cid=11993"
         ],
 
-        "advancenative": [
-        ],
-
         "viber": [
         ],
 
@@ -240,16 +232,15 @@ var iframe_mapping = {
         "medium": [
         ],
 
-         "nuzzel": [
-            "https://native-preview.herokuapp.com/email/nuzzel_email.html",
-            "https://native-preview.herokuapp.com/email/nuzzel_email.html"
+        "nuzzel": [
+            "http://native-preview.herokuapp.com/email/nuzzel_email.html",
+            "http://native-preview.herokuapp.com/email/nuzzel_email.html"
         ],
 
-         "cafemedia": [
+        "cafemedia": [
         ],
 
         "scienceinc": [
-            
         ],
 
     }// end of "clients"
