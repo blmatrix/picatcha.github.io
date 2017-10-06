@@ -17,7 +17,7 @@
     _nm.widgetAlreadyExists = false;
     _nm.exitWidgetShownOnce = false;
     _nm.queueEnded = false;
-    _nm.version = 2.3;
+    _nm.version = 2.8;
     _nm.instreamTemplates = ['NM10', 'NM11', 'NM12'];
     _nm.widgets = {
         currentIndex: 0,
@@ -508,7 +508,7 @@
             if(typeof template === 'undefined') {
                 var keyValues = {},
                     widgetType = _nm.getWidgetType(_nm.inArticleWidgets.template);
-                if(widgetType) keyValues[widget_type] = widgetType;
+                if(widgetType) keyValues['widget_type'] = widgetType;
                 _AdRenderOpts = {
                     networkKey: '5a86d53377e54819b9d1d7d92f6af887',
                     widgetId: _nm.inArticleWidgets.widgetId+'',
@@ -525,7 +525,7 @@
                 // New Publishers : Post Launch Approach
                 var keyValues = {},
                     widgetType = _nm.getWidgetType(_nm.inArticleWidgets.template);
-                if(widgetType) keyValues[widget_type] = widgetType;
+                if(widgetType) keyValues['widget_type'] = widgetType;
                 _AdRenderOpts = {
                     apiKey: _nm.inArticleWidgets.widgetId,
                     templateKey: _nm.inArticleWidgets.template,
@@ -594,7 +594,7 @@
         if(typeof template === 'undefined') {
             var keyValues = {},
                 widgetType = _nm.getWidgetType(adData.template);
-            if(widgetType) keyValues[widget_type] = widgetType;
+            if(widgetType) keyValues['widget_type'] = widgetType;
             _AdRenderOpts = {
                 networkKey: '5a86d53377e54819b9d1d7d92f6af887',
                 widgetId: widgetId+'',
@@ -614,7 +614,7 @@
             // New Publishers : Post Launch Approach
             var keyValues = {},
                 widgetType = _nm.getWidgetType(template);
-            if(widgetType) keyValues[widget_type] = widgetType;
+            if(widgetType) keyValues['widget_type'] = widgetType;
             _AdRenderOpts = {
                 apiKey: widgetId,
                 templateKey: template,
@@ -658,7 +658,7 @@
                     if(typeof template === 'undefined') {
                         var keyValues = {},
                             widgetType = _nm.getWidgetType(adData.template);
-                        if(widgetType) keyValues[widget_type] = widgetType;
+                        if(widgetType) keyValues['widget_type'] = widgetType;
                         _AdRenderOpts = {
                             networkKey: '5a86d53377e54819b9d1d7d92f6af887',
                             widgetId: widgetId+'',
@@ -674,7 +674,7 @@
                         // New Publishers : Post Launch Approach
                         var keyValues = {},
                             widgetType = _nm.getWidgetType(template);
-                        if(widgetType) keyValues[widget_type] = widgetType;
+                        if(widgetType) keyValues['widget_type'] = widgetType;
                         _AdRenderOpts = {
                             apiKey: widgetId,
                             templateKey: template,
@@ -902,9 +902,8 @@
           else if(template === 'NM20') { // medrecLinks
             numAds = 6;
             template = 'NM20';
-        } else if(template === 'NM21') { // Sidebar Text Health
+        } else if(template === 'NM21' || template === 'NM22') { // Sidebar Text Health / Sidebar Text
             numAds = 10;
-            template = 'NM21';
         }
 
         return {numAds: numAds, template: template};
