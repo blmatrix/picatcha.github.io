@@ -17,7 +17,7 @@
     _nm.widgetAlreadyExists = false;
     _nm.exitWidgetShownOnce = false;
     _nm.queueEnded = false;
-    _nm.version = 2.1;
+    _nm.version = 2.3;
     _nm.instreamTemplates = ['NM10', 'NM11', 'NM12'];
     _nm.widgets = {
         currentIndex: 0,
@@ -506,10 +506,13 @@
         if(currentIndex < _nm.inArticleWidgets.placementIds.length) {
             // Current Publishers : Backward Compatible Migration Approach
             if(typeof template === 'undefined') {
+                var keyValues = {},
+                    widgetType = _nm.getWidgetType(_nm.inArticleWidgets.template);
+                if(widgetType) keyValues[widget_type] = widgetType;
                 _AdRenderOpts = {
                     networkKey: '5a86d53377e54819b9d1d7d92f6af887',
                     widgetId: _nm.inArticleWidgets.widgetId+'',
-                    keyValues: {widget_type: _nm.getWidgetType(_nm.inArticleWidgets.template)},
+                    keyValues: keyValues,
                     nativeAdElementId: _nm.inArticleWidgets.placementIds[currentIndex],
                     userCallbackOnAdLoad: function(status) {
                         if(_nm.inArticleWidgets.currentIndex === 1 || _nm.inArticleWidgets.template === 'NM11') {
@@ -520,10 +523,13 @@
                 };
             } else {
                 // New Publishers : Post Launch Approach
+                var keyValues = {},
+                    widgetType = _nm.getWidgetType(_nm.inArticleWidgets.template);
+                if(widgetType) keyValues[widget_type] = widgetType;
                 _AdRenderOpts = {
                     apiKey: _nm.inArticleWidgets.widgetId,
                     templateKey: _nm.inArticleWidgets.template,
-                    keyValues: {widget_type: _nm.getWidgetType(_nm.inArticleWidgets.template)},
+                    keyValues: keyValues,
                     nativeAdElementId: _nm.inArticleWidgets.placementIds[currentIndex],
                     userCallbackOnAdLoad: function(status) {
                         if(_nm.inArticleWidgets.currentIndex === 1 || _nm.inArticleWidgets.template === 'NM11') {
@@ -586,10 +592,13 @@
 
         // Current Publishers : Backward Compatible Migration Approach
         if(typeof template === 'undefined') {
+            var keyValues = {},
+                widgetType = _nm.getWidgetType(adData.template);
+            if(widgetType) keyValues[widget_type] = widgetType;
             _AdRenderOpts = {
                 networkKey: '5a86d53377e54819b9d1d7d92f6af887',
                 widgetId: widgetId+'',
-                keyValues: {widget_type: _nm.getWidgetType(adData.template)},
+                keyValues: keyValues,
                 cssPath: '#' + adContainerId + ':append',
                 userCallbackOnAdLoad: function(status) {
                     _nm.log('Migrated Widget loaded successfully');
@@ -603,10 +612,13 @@
             };
         } else {
             // New Publishers : Post Launch Approach
+            var keyValues = {},
+                widgetType = _nm.getWidgetType(template);
+            if(widgetType) keyValues[widget_type] = widgetType;
             _AdRenderOpts = {
                 apiKey: widgetId,
                 templateKey: template,
-                keyValues: {widget_type: _nm.getWidgetType(template)},
+                keyValues: keyValues,
                 cssPath: '#' + adContainerId + ':append',
                 userCallbackOnAdLoad: function(status) {
                     _nm.log('New Publisher Widget loaded successfully');
@@ -644,10 +656,13 @@
                     
                     // Current Publishers : Backward Compatible Migration Approach
                     if(typeof template === 'undefined') {
+                        var keyValues = {},
+                            widgetType = _nm.getWidgetType(adData.template);
+                        if(widgetType) keyValues[widget_type] = widgetType;
                         _AdRenderOpts = {
                             networkKey: '5a86d53377e54819b9d1d7d92f6af887',
                             widgetId: widgetId+'',
-                            keyValues: {widget_type: _nm.getWidgetType(adData.template)},
+                            keyValues: keyValues,
                             cssPath: '#' + adContainerId + ':append',
                             userCallbackOnAdLoad: function(status) {
                                 _nm.log('Exit Widget loaded successfully');
@@ -657,10 +672,13 @@
                         };
                     } else {
                         // New Publishers : Post Launch Approach
+                        var keyValues = {},
+                            widgetType = _nm.getWidgetType(template);
+                        if(widgetType) keyValues[widget_type] = widgetType;
                         _AdRenderOpts = {
                             apiKey: widgetId,
                             templateKey: template,
-                            keyValues: {widget_type: _nm.getWidgetType(template)},
+                            keyValues: keyValues,
                             cssPath: '#' + adContainerId + ':append',
                             userCallbackOnAdLoad: function(status) {
                                 _nm.log('New Publisher Exit loaded successfully');
@@ -737,12 +755,7 @@
         var antag = document.createElement('script');
         antag.async = true;
         antag.type = 'text/javascript';
-
-        if (window.location.protocol != "https:") {
-            antag.src ='http://s.newsmaxfeednetwork.com/static/js/render.v1.js';
-        } else {
-            antag.src ='https://s.newsmaxfeednetwork.com/static/js/render.v1.js';
-        }
+        antag.src ='//s.newsmaxfeednetwork.com/static/js/render.v1.js';
 
         var node = document.getElementsByTagName('script')[0];
         node.parentNode.insertBefore(antag, node);
@@ -889,6 +902,9 @@
           else if(template === 'NM20') { // medrecLinks
             numAds = 6;
             template = 'NM20';
+        } else if(template === 'NM21') { // Sidebar Text Health
+            numAds = 10;
+            template = 'NM21';
         }
 
         return {numAds: numAds, template: template};
