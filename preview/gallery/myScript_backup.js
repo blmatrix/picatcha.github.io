@@ -235,9 +235,6 @@ var iframe_mapping = {
         "geniee": [
         ],
 
-        "medium": [
-        ],
-
         "nuzzel": [
             "http://native-preview.herokuapp.com/email/nuzzel_email.html",
             "http://native-preview.herokuapp.com/email/nuzzel_email.html"

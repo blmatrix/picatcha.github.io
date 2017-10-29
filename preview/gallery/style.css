@@ -270,18 +270,6 @@ body {
 }
 
 
-#medium {
-    background-image: url(logo_medium.png);
-}
-#medium.active {
-   background-color: rgb(242, 185, 81) ;
-}
-.an-layout-stage.active.medium{
-    background: linear-gradient(rgb(242, 185, 81), rgb(233, 103, 70));
-    display: block;
-}
-
-
 #nuzzel {
     background-image: url(logo_nuzzel.png);
 }
