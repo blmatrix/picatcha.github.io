@@ -51,6 +51,7 @@ $('.prev-next-button').on('click', function(e) {
     if ($(this).hasClass('next')) {
         if (slide_counter < slideCount) {
             // Next was clicked : Translate ahead by one item
+            debugger;
             translateX = parseInt(translateX) - (100 / slideCount); // tranlateX = translateX - 33.33;
             translateX = translateX + '%'; // translateX = translateX + '%';
 

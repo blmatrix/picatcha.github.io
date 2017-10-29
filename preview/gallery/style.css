@@ -174,6 +174,18 @@ body {
 }
 
 
+#carousell {
+    background-image: url(logo_carousell.png);
+}
+#carousell.active {
+   background-color: rgb(59, 208, 220);
+}
+.an-layout-stage.active.carousell{
+    background: linear-gradient(rgb(59, 208, 220), rgb(55, 90, 119));
+    display: block;
+}
+
+
 #axios {
     background-image: url(logo_axios.png);
 }
@@ -202,7 +214,7 @@ body {
     background-image: url(logo_advancenative.png);
 }
 #advancenative.active {
-   background-color: #ff8177 ;
+   background-color:#ff8177;
 }
 .an-layout-stage.active.advancenative{
     background: linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%);
@@ -246,6 +258,18 @@ body {
 }
 
 
+#geniee {
+    background-image: url(logo_geniee.png);
+}
+#geniee.active {
+   background-color: rgb(242, 185, 81) ;
+}
+.an-layout-stage.active.geniee{
+    background: linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%);
+    display: block;
+}
+
+
 #medium {
     background-image: url(logo_medium.png);
 }
@@ -270,6 +294,18 @@ body {
 }
 
 
+#voodoocoding {
+    background-image: url(logo_voodoocoding.jpg);
+}
+#voodoocoding.active {
+   background-color: rgb(242, 185, 81);
+}
+.an-layout-stage.active.voodoocoding{
+    background:linear-gradient(rgb(242, 185, 81), rgb(233, 103, 70));
+    display: block;
+}
+
+
 #cafemedia {
     background-image: url(cafemedia_logo.png);
 }
@@ -282,13 +318,13 @@ body {
 }
 
 
-#scienceinc {
-    background-image: url(logo-scienceinc.png);
+#mammothmedia {
+    background-image: url(logo_mammothmedia.png);
 }
-#scienceinc.active {
+#mammothmedia.active {
    background-color: rgb(59, 208, 220);
 }
-.an-layout-stage.active.scienceinc{
+.an-layout-stage.active.mammothmedia{
     background:linear-gradient(rgb(59, 208, 220), rgb(55, 90, 119));
     display: block;
 }
@@ -358,6 +394,20 @@ img {
 .slide,
 .an-layout-stage {
     min-width: 300px !important;
+}
+
+.slide .placement-name {
+    font-size: 25px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 20px auto;
+    width: 350px;
+    height: 28px;
+    text-align: center;
+    background-color: white;
+    border-radius: 15px;
+    z-index: 100;
 }
 
 /* iframe embed */

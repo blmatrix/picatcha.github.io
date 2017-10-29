@@ -76,7 +76,7 @@ $('.prev-next-button').on('click', function(e) {
     if ($(this).hasClass('next')) {
         if (slide_counter < slideCount) {
             // Next was clicked : Translate ahead by one item
-            translateX = parseInt(translateX) - (100 / slideCount); // tranlateX = translateX - 33.33;
+            translateX = parseFloat(translateX) - (100 / slideCount); // tranlateX = translateX - 33.33;
             translateX = translateX + '%'; // translateX = translateX + '%';
 
             updateTranslateX(translateX);
@@ -87,7 +87,7 @@ $('.prev-next-button').on('click', function(e) {
     } else {
         if (slide_counter > 1) {
             // Previous was clicked : Translate backwards by one item
-            translateX = parseInt(translateX) + (100 / slideCount);
+            translateX = parseFloat(translateX) + (100 / slideCount);
             translateX = translateX + '%';
 
             updateTranslateX(translateX);
@@ -217,6 +217,9 @@ var iframe_mapping = {
         "viber": [
         ],
 
+        "carousell": [
+        ],
+
         "pocket": [
             "http://docs.adsnative.com/preview/pocket_gallery.html?adsnative_preview=1&cid=11994",
             "http://docs.adsnative.com/preview/pocket_gallery.html?adsnative_preview=1&cid=11994",
@@ -227,6 +230,9 @@ var iframe_mapping = {
             "http://docs.adsnative.com/preview/politico_gallery.html?adsnative_preview=1&cid=11994",
             "http://docs.adsnative.com/preview/politico_gallery.html?adsnative_preview=1&cid=11994",
             "http://docs.adsnative.com/preview/politico_gallery.html?adsnative_preview=1&cid=11994"
+        ],
+
+        "geniee": [
         ],
 
         "medium": [
@@ -240,7 +246,10 @@ var iframe_mapping = {
         "cafemedia": [
         ],
 
-        "scienceinc": [
+        "voodoocoding": [
+        ],
+
+        "mammothmedia": [
         ],
 
     }// end of "clients"
