@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script> 
+        var adsnativetag = adsnativetag || {};
+        adsnativetag.cmdQ = adsnativetag.cmdQ || [];
+    </script>
+    <script async='async' type='text/javascript' src='//static.adsnative.com/static/js/render.v2.js'></script>
+    <script>
+      adsnativetag.cmdQ.push(function(){
+        // Affle native placement
+        window.firstAdUnit = adsnativetag.defineAdUnit({
+          apiKey: 'bdAhrxnRLphQQteU3Uzi6fbXfpdaFMct3dqj-0i1'
+        });
+
+        adsnativetag.requestAds(function(status, adObject){});
+      });
+    </script>
+
+    <div id='firstAdUnit'>
+        <script type='text/javascript'>
+            adsnativetag.cmdQ.push(function() { var display_status = adsnativetag.displayAdUnit(firstAdUnit, 'firstAdUnit'); });
+        </script>
+    </div>
+
+  </head>
+  <body>
+  </body>
+</html>
+
+
+
