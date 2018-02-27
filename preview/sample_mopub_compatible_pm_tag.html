@@ -62,7 +62,7 @@
           // Render ad
           adsnativetag.cmdQ.push(function() {
             adsnativetag.displayAdUnit(dynamicAdUnit, 'dynamic-ad-slot', function(adData) {
-              CheetahMobile.initAdUnit('medrec', adData);
+              window.Polymorph.initAdUnit('medrec', adData);
               window.adFilled = true;
               if(typeof loadSuccess == 'function') loadSuccess();
             });
