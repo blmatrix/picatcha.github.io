@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RenderJS v2 Test Page</title>
+
+  <script>
+
+      var adsnativetag = adsnativetag || {};
+      adsnativetag.cmdQ = adsnativetag.cmdQ || [];
+
+      adsnativetag.cmdQ.push(function(){
+       console.log('Pre-configuration');
+       adsnativetag.updateConfig({
+            currentPageUrl: 'https://www.mediaite.com/online/trump-reportedly-asked-fbi-acting-director-mccabe-who-he-voted-for-in-meeting/',
+        });
+      });
+
+  </script>
+
+    <script type='text/javascript' src='http://static.adsnative.com/static/js/render.v2.js'></script>
+  <script>
+
+      adsnativetag.cmdQ.push(function(){
+        // Create ad unit
+        // window.dynamicAdUnit = adsnativetag.defineAdUnit({
+        //   //apiKey: 'ping'
+        //   networkKey: '7d73dc363b2b42598976e36cf5d52888',
+        //   widgetId: 'mediaite',
+        //   templateKey: 'g8hgrf2l',
+        //   categories: ['IAB12'],
+        //   safetyLevel: 1
+        // });
+
+        window.dynamicAdUnit2 = adsnativetag.defineAdUnit({
+          apiKey: 'k-hDc8G3PbKlybywfWqF2svGIXJuy5l4qMe7n0Iz'
+        });
+
+        // Fetch ads
+        adsnativetag.requestAds(function(status, adObject){
+          console.log(status);
+          console.log(adObject);
+        });
+      });
+
+  </script>
+
+</head>
+<body>
+
+<h2>AdsNative Ad</h2>
+<!-- <div id='div-an-ad-1'>
+    <script type='text/javascript'>
+        adsnativetag.cmdQ.push(function() { 
+          adsnativetag.displayAdUnit(dynamicAdUnit, 'div-an-ad-1', function(adObject){
+              console.log('Displayed: ');
+              console.log(adObject);
+            });
+          
+        });
+    </script>
+</div> -->
+
+<div id='div-an-ad-2'>
+    <script type='text/javascript'>
+        adsnativetag.cmdQ.push(function() { 
+          adsnativetag.displayAdUnit(dynamicAdUnit2, 'div-an-ad-2', function(adObject){
+              console.log('Displayed: ');
+              console.log(adObject);
+            });
+          
+        });
+    </script>
+</div>
+
+</body>
+</html>
