@@ -1,0 +1,760 @@
+    /* =================
+    Base Elements - In Order
+================= */
+
+/* ---- Basic Styling ---- */
+
+* {
+    box-sizing: border-box /* Changing the default width calculations to include padding and border, instead of padding and border adding onto the width of an element */
+}
+
+img {
+    display: block;
+    min-width: 100%;
+    max-width: 100%; /* Responsive Images */
+    max-height: 100%;
+}
+
+/* ---- Layout Styling ----*/
+
+body {
+    display: flex; /* Making the body a flex container */
+    flex-direction: column; /* All direct children stack vertically (<header>,<main>,<footer>) */
+    min-height: 100vh; /* The body will always have a minimum height of 100% of the device viewport */
+    font-family: sans-serif;
+}
+
+header {
+    background-color: rgba(255,255,255,.90);
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    border-bottom: .0625em solid #D6D6D6;
+/*    box-shadow: inset 0px -2px 7.5px rgba(0,0,0,0.25); */
+}
+
+nav {
+    width: 100%;
+    height: 2.9375em; /* 3em - .0625em = 2.9375em */
+    display: flex; /* nav is flex container- 1 .nav-logo and 3 .nav-link elements are flex items */
+    flex-direction: row; /* Already default- this is just for reference */
+    justify-content: space-between; /* Default mobile horizontal layout - center */
+    align-items: center; /* Default mobile vertical layout - center */
+}
+
+main {
+    margin-top: 3em;
+    display: flex; /* Making main a flex container - Three <section> elements are flex items */
+    flex-direction: column; /* Stacking flex items vertically */
+    justify-content: center; /* All <section> flex items will center */
+}
+
+section {
+    width: 100%; /* A section flex item always grows to fill all available space equally, it's basis is 100% width */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer {
+    margin-top: auto;
+    background-color: #F2F2F2;
+    height: 3em;
+}
+
+footer .content-wrap {
+    height: 100%;
+}
+
+.product-wrap img {
+    min-width: 70% !important;
+    max-width: 70% !important;
+    margin: 0 auto !important;
+}
+
+.logo-wrap p span {
+  color: #449ED4;
+}
+.logo-wrap div {
+  font-size: 0.3em;
+  margin: -58px 0px 40px 0px;
+}
+/* =================
+    Classes - In Order
+================= */
+
+.container {
+    padding: 0 1em;
+}
+
+.content-wrap {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-logo {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .5em;
+}
+
+.nav-link {
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    padding: 0.75em; /* .8125em = 13 pixels, scaled for nav height of 3em .75em = 12 pixel */
+    border: .0625em; /* Subtracted .0625em from .8125 padding - 1 pixel border width */
+}
+
+/* =================
+    Navigation
+================= */
+
+.nav-link:hover {
+    border-bottom: solid black;
+}
+
+/* =================
+    Sections - In Order
+================= */
+
+/* ---- Mavic Air Section ---- */
+
+#mavic-air-section {
+    background-image: linear-gradient(#141414,#333333);
+    color: white;
+}
+
+.logo-wrap {
+    width: 70%;
+    font-size: 3.5em;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    font-weight: normal;
+    margin: .25em 0 0;
+    font-size: 1.5em;
+}
+
+/* ---- Form Section ---- */
+
+#form-section {
+    /*background-image: url(https://www.pickr.com.au/media/2018/01/7479CA24-2F37-4368-A68E-C9208963F5DE.jpeg);*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    margin-top: .75em;
+    color: white;
+}
+
+#form-wrap {
+    justify-content: space-between;
+}
+
+#form-section h2 {
+    font-weight: bold;
+    font-size: 2em;
+}
+
+form label {
+    margin-top: 5em;
+}
+
+#email {
+    width: 20em;
+    border-color: #D6D6D6;
+    border-width: 1px;
+    text-align: center;
+    color: black;
+}
+
+#submit {
+    padding: 0;
+    background-color: transparent;
+    border-color: none;
+    -webkit-appearance: none;
+    border-color: transparent;
+}
+
+#submit:hover {
+    text-decoration: underline;
+}
+
+/* ---- Form Media Queries ---- */
+
+@media (max-width: 375px) {
+
+    #form-section {
+        height: 253px;
+    }
+
+    #form-wrap {
+        max-height: 253px;
+        height: 253px;
+    }
+
+    #form-section h2 {
+        margin: .25em 0 0 0;
+    }
+
+    #submit {
+        margin-bottom: .25em;
+    }
+
+}
+
+@media (max-width: 414px) {
+
+    #form-section {
+        height: 279px;
+    }
+
+    #form-wrap {
+        max-height: 279px;
+        height: 279px;
+    }
+
+    #form-section h2 {
+        margin: .50em 0 0 0;
+    }
+
+    #submit {
+        margin-bottom: .50em;
+    }
+
+}
+
+/* ---- Video Section ---- */
+
+#video-section {
+    background-color: black;
+    margin-top: .75em;
+    color: black;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 ratio */
+    height: 0;
+    margin: 2em auto;
+    width: 100%;
+}
+
+iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+/* ---- Features Section ---- */
+
+#features-section {
+    background-color: black;
+    color: white;
+    margin-top: .75rem;
+}
+
+#features-section ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 1em 0;
+}
+
+#features-section ul li {
+    width: 50%;
+    text-align: center;
+    padding: 1em;
+}
+
+/* =================
+    Layout Media Queries
+================= */
+
+/* ---- Mobile Phone ---- */
+
+@media (max-width: 575px) {
+
+    #mavic-air-link {
+        display: none; /* Default styling removes #mavic-air-link on mobile */
+    }
+    
+    #video-link {
+        order: -1; /* Video link comes first in flexbox order */
+    }
+
+    .nav-logo
+    .nav-link {
+        flex: 1 0;
+    }
+
+    /* ---- Form Section ---- */
+
+    #form-section {
+        height: 388px;
+    }
+
+    #form-wrap {
+        max-height: 388px;
+        height: 388px;
+    }
+
+    #form-section h2 {
+        margin: .50em 0 0 0; /* ---- .50em because the font size is 2em, which is 32px default ---- */
+    }
+
+    #submit {
+        margin: .50em 0 1em; /* ---- Bottom margin 1em ---- */
+    }
+
+}
+
+/* ---- Landscape ---- */
+
+@media (min-width: 576px) and (orientation: landscape) and (max-width: 812px) {
+
+    /* ---- Content Condensors ---- */
+
+    .container { /* Removes Default Padding */
+        padding: 0;
+    }
+
+    nav,
+    .content-wrap { /* Initialize New Margin */
+        width: 90%; 
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #video-section .content-wrap { /* Initialize New Margin */
+        width: 70%;
+    }
+
+    /* ---- Nav Changes ---- */
+
+    nav {
+        justify-content: flex-start;
+    }
+
+    .nav-logo {
+        margin-right: auto;
+    }
+
+    /* ---- Mavic Air Section ---- */
+
+    .logo-wrap {
+        width: 70%;
+        padding-top: 4em;
+    }
+
+    /* ---- Form Section ---- */
+
+    #form-section {
+        height: 325px;
+    }
+
+    #form-wrap {
+        max-height: 325px;
+        height: 325px;
+    }
+
+    #form-section h2 {
+        margin: .50em 0 0 0; /* ---- .50em because the font size is 2em, which is 32px default ---- */
+    }
+
+    #submit {
+        margin: .50em 0 1em; /* ---- Bottom margin 1em ---- */
+    }
+
+}
+
+/* ---- Small Tablets - Portrait ---- */
+
+@media (min-width: 576px) and (orientation: portrait) {
+
+    /* ---- Content Condensors ---- */
+
+    .container { /* Removes Default Padding */
+        padding: 0;
+    }
+
+    nav,
+    .content-wrap { /* Initialize New Margin */
+        width: 90%; 
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #video-section .content-wrap { /* Initialize New Margin */
+        width: 70%;
+    }
+    /* ---- Nav Changes ---- */
+
+    nav {
+        justify-content: flex-start;
+    }
+
+    .nav-logo {
+        margin-right: auto;
+    }
+
+    /* ---- Mavic Air Section ---- */
+
+    .logo-wrap {
+        width: 70%;
+    }
+
+    /* ---- Form Section ---- */
+
+    #form-section {
+        height: 506px;
+    }
+
+    #form-wrap {
+        max-height: 506px;
+        height: 506px;
+    }
+
+    #form-section h2 {
+        margin: 2rem 0 0 0;
+        font-size: 3em;
+    }
+
+    #submit {
+        margin: .50em 0 2em; /* ---- Bottom margin 2em ---- */
+    }
+
+}
+
+/* ---- Tablets ---- */
+
+@media (min-width: 750px) {
+
+    /* ---- Content Condensors ---- */
+
+    .container { /* Removes Default Padding */
+        padding: 0;
+    }
+
+    nav,
+    .content-wrap { /* Initialize New Margin */
+        width: 90%; 
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #video-section .content-wrap { /* Initialize New Margin */
+        width: 70%;
+    }
+
+    /* ---- Nav Changes ---- */
+
+    nav {
+        justify-content: flex-start;
+    }
+
+    .nav-logo {
+        margin-right: auto;
+    }
+
+    /* ---- Mavic Air Section ---- */
+
+    .logo-wrap {
+        width: 70%;
+    }
+
+    /* ---- Form Section ---- */
+
+    #form-section {
+        height: 550px;
+    }
+
+    #form-wrap {
+        max-height: 550px;
+        height: 550px;
+    }
+
+    #form-section h2 {
+        margin: 2rem 0 0 0;
+        font-size: 3em;
+    }
+
+    #submit {
+        margin: .50em 0 2em; /* ---- Bottom margin 2em ---- */
+    }
+
+    #features-section ul {
+        flex-wrap: nowrap;
+        flex-direction: row;
+    }
+
+    #features-section ul li {
+        width: auto;
+    }
+
+}
+
+/* ---- Desktops ---- */
+
+@media (min-width: 992px) {
+
+    nav,
+    .content-wrap { /* Initialize New Margin */
+        width: 80%; 
+    }
+
+    #video-section .content-wrap { /* Initialize New Margin */
+        width: 70%;
+    }
+/*    .logo-wrap {
+    }
+*/
+
+}
+
+/* ---- Large Desktops ---- */
+
+@media (min-width: 1200px) {
+    #video-section
+    .content-wrap {
+        width: 70%;
+        margin: 2.50em auto;
+    }
+}
+
+ul {
+  list-style: none;
+}
+
+/* Accordian - Features */
+@import url('https://fonts.googleapis.com/css?family=Open Sans:400,700|Montserrat');
+
+#tabs {
+  width: 700px;
+  display: flex;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 50px;
+  height: auto;
+  min-height: 200px;
+  max-height: 600px;
+  overflow: hidden;
+}
+
+ul {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  vertical-align: top;
+  width: 50%;
+}
+
+ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  color: #3b3b3b;
+  border-top: solid 2px #e9e9e9;
+  padding: 20px 5px;
+  z-index: 1;
+  opacity: .5;
+  -webkit-transition: 0.3s ease;
+  -moz-transition: 0.3s ease;
+  -o-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+
+ul li:focus, a:focus {
+  outline: none;
+}
+
+ul li:nth-child(1) a {
+  border-top: none;
+}
+
+ul li a.active {
+  opacity: 1;
+}
+
+.para-a {
+  font-weight: bold;
+  margin-top: 10px;
+  padding: 0;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 1px;
+  border: none;
+  color: #2b2b2b;
+}
+
+.tag {
+  position: relative;
+  width: 100%;
+}
+
+.icon {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background: #c7c7c7;
+  border-radius: 100%;
+  vertical-align: middle;
+}
+
+.block {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  border: solid 2px #7b7b7b;
+  border-radius: 5px;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.circle {
+  position: absolute;
+  padding: 2px;
+  border: solid 2px #7b7b7b;
+  border-radius: 100%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.title {
+  display: inline-block;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0 10px;
+  vertical-align: middle;
+  color: #7b7b7b;
+}
+
+.addon {
+  position: relative;
+  width: 80%;
+  top: -25px;
+  margin-left: 70px;
+  letter-spacing: 0;
+  font-size: 13px;
+  color: #9b9b9b;
+  opacity: 0;
+  font-family: sans-serif;
+}
+
+.addon.fadein {
+  opacity: 1;
+}
+
+.browser {
+  width: 45%;
+  height: 95%;
+  position: absolute;
+  border-style: solid;
+  border-width: 2px 0 2px 2px;
+  border-color: #7b7b7b transparent #7b7b7b #7b7b7b;
+  right: 0;
+  border-radius: 10px 0 0 10px;
+  overflow: hidden;
+}
+
+.top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  background: #fff;
+  border-bottom: solid 2px #7b7b7b;
+  z-index: 2;
+}
+
+.dot {
+  position: relative;
+  display: inline-block;
+  padding: 4px;
+  background: #c7c7c7;
+  border-radius: 100%;
+}
+
+.dot:nth-child(1) {
+  margin-left: 7px;
+}
+
+#tabs-1, #tabs-2, #tabs-3 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(#141414,#333333);
+}
+
+#tabs-1 .single-vast {
+  margin: 90px 20px 50px 20px;
+  font-size: large;
+  text-align: center;
+  font-family: sans-serif;
+  color: #ffffff;
+}
+#tabs-1 .single-vast span {
+  color: #449ED4;
+}
+#tabs-1 .input-tip {
+  margin: 20px 0px 0px 5px;
+  font-size: xx-small;
+  color: white;
+  font-weight: 800;
+}
+#tabs-1 input[type=text] {
+    width: 95%;
+    padding: 12px;
+    margin: 0px 5px 0px 5px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+#tabs-2 {
+  margin-top: 20px;
+}
+#tabs-2 .unified-auction {
+  font-size: x-large;
+  text-align: center;
+  font-family: sans-serif;
+  color: #449ED4;
+  margin-top: 70px;
+}
+
+#tabs-3 img {
+  margin: 20px 0px 0px 20px;
+}

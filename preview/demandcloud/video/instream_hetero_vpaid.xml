@@ -1,0 +1,36 @@
+<VAST xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vast.xsd" version="3.0">
+    <Ad id="1234567">
+        <InLine>
+            <AdSystem>Polymorph</AdSystem>
+            <AdTitle>Instream Multiform VPAID JS Example</AdTitle>
+            <Description>Vpaid Linear Native/Banner In-Video Ad</Description>
+            <Error>http://www.getpolymorph.com/example/error</Error>
+            <Impression>http://www.getpolymorph.com/example/impression</Impression>
+            <Creatives>
+                <Creative sequence="1">
+                    <Linear>
+                        <Duration>00:00:10</Duration>
+                        <TrackingEvents>
+                        </TrackingEvents>
+                        <VideoClicks>
+                        </VideoClicks>
+                        <AdParameters>
+                            <![CDATA[
+							{"videos":[
+							 {"url": "http://native-preview.herokuapp.com/demandcloud/video/polymorph_10s.mp4","mimetype":"video/mp4"}],
+							 "overlay":"https://s3.amazonaws.com/adsnative-logos/Polymorph-Mark.png"}
+							]]>
+                        </AdParameters>
+                        <MediaFiles>
+                            <MediaFile apiFramework="VPAID" type="application/javascript">
+                                http://localhost:8050/demandcloud/video/html5vpaid.js
+                                <!-- http://native-preview.herokuapp.com/demandcloud/video/html5vpaid.js -->
+                            </MediaFile>
+                        </MediaFiles>
+                    </Linear>
+                </Creative>
+                <Creative sequence="1"></Creative>
+            </Creatives>
+        </InLine>
+    </Ad>
+</VAST>

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--=============================================
+Polymorph Video Embed : Video JS
+Copyright (c) 2013-present, Polymorph Labs Inc.
+All rights reserved.
+==============================================-->
+
+<head>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+
+    <!-- Video JS Stylesheet  -->
+    <link href="//static.adsnative.com/static/css/videojs_5.min.css" rel="stylesheet">
+    <!-- Video JS VAST VPAID Plugin Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="//static.adsnative.com/static/js/videojs-5-vast-vpaid-plugin/videojs.vast.vpaid.min.css">
+    <!-- Video JS Library -->
+    <script src="//static.adsnative.com/static/js/videojs_5.min.js"></script>
+    <!-- Video JS VAST VPAID Plugin Library -->
+    <script type="text/javascript" src="//static.adsnative.com/static/js/videojs-5-vast-vpaid-plugin/videojs_5.vast.vpaid.min.js"></script>
+    <style type="text/css">
+    body {
+        margin: 0px;
+        cursor: pointer;
+    }
+    /* Match ad controls to default vjs content player */
+
+    .vjs-ad-playing .vjs-play-control.vjs-paused,
+    .vjs-ad-playing .vjs-volume-level {
+        background-color: transparent !important;
+    }
+
+    .vjs-ad-playing .vjs-play-progress {
+        background-color: white !important;
+    }
+    </style>
+    <link rel="stylesheet" type="text/css" href="/preview/demandcloud/assets/index.css">
+</head>
+
+<body>
+    <header id="header">
+        <nav class="container" id="nav-bar">
+            <a class="nav-item nav-logo" target="_blank" href="https://www.getpolymorph.com/"><img class="logo-img" id="header-img" src="https://s3.amazonaws.com/adsnative-logos/Polymorph-Mark.png" alt="Polymorph Logo"></a>
+            <a class="nav-item nav-link" target="_blank" id="video-link" href="https://www.dropbox.com/s/hwkvk9fl754msj5/streamable_case_study.pages?dl=0">Case Study</a>
+        </nav>
+    </header>
+    <main>
+        <section class="container" id="video-section">
+            <div class="content-wrap">
+                <div class="video-container">
+                    <div id="pm-vjs-container">
+                        <video id="pm-vjs-player" class="video-js vjs-default-skin vjs-big-play-centered vjs-16-9" controls preload="auto" poster="https://rozeminho.files.wordpress.com/2014/02/130910155412-rush-movie-poster-horizontal-gallery.jpg?w=640&h=360" data-setup='{
+                    "techOrder": ["html5", "flash"],
+                    "sources": [
+                            { "src": "http://cdn.adsnative.com/media/nw-652/0358fa79-e984-4dc2-a3c3-2c0c9fecfe99.mp4", "type": "video/mp4" }
+                        ],
+                    "autoplay": false,
+                    "loop":  false ,
+                    "muted":  true 
+                }'>
+                            <p class="vjs-no-js">
+                                To view this video please enable JavaScript, and consider upgrading to a web browser that
+                                <a href="//videojs.com/html5-video-support/" target="_blank">
+                supports HTML5 video
+                </a>
+                            </p>
+                        </video>
+                        <script type="text/javascript">
+                        function TrackVideo() {
+                            this.trackedStatus = {
+                                play: false,
+                                pause: false,
+                                resume: false,
+                                impression: false,
+                                mute: false,
+                                unmute: false,
+                                click: false,
+                                autoplayInit: false,
+                                fullscreen: false,
+                                duration: {
+                                    first_quartile: false,
+                                    second_quartile: false,
+                                    third_quartile: false
+                                },
+                                complete: false,
+                                error: false
+                            };
+
+                            this.getTrackingStatus = function() {
+                                return this.trackedStatus;
+                            };
+
+                            this.dropTrackingTag = function(url) {
+                                var pixel = document.createElement("img");
+                                pixel.src = url;
+                                pixel.width = '0px';
+                                pixel.height = '0px';
+                                pixel.style.border = 'none';
+                                pixel.style.display = 'none';
+                                pmVjsPlayerContainerDiv.appendChild(pixel);
+                            };
+
+                            this.logTimeSpent = function(time_spent) {
+                                this.dropTrackingTag('http://bevo-us-east-1.adsnative.com/vv.gif?tag_name=vvts&data=YmZiYjUyMzk0ODRlMDNhOWNiNWIwZTM2MWJiMGE0OTQwMGQ2MGU1M2Q0OWFhMzIwOGI2N2M1YjY2YjI1NDcwMjg3ZWVhMTE4YTc1NDc2ODdmNTg2NmQ5OWNlYjRjYmRmYTZkMzZjMDY3MzA3YzJkYjI1M2Q3ZWRlMjJhNjE1OTEyMzdkNzkyYWM1YTdhY2JiYjBlODY2MDcwMjA5OTc0OTFmMjRhYjgzNTliNzNiOWYxYTA0YTgwNmE2ODZiZmY4OTk5YzNhMDg2ODE4ZDU4MGJjZTAwYzExNDY0YWIxZGYzMTE2MDNkODFkYjBiNDM0NmU1MGM0M2RiMGZkNmY4Mzg2YjgwODFmMWRhN2Q0ZWZiMmZiMDg1MDYwZjIzYzFkZGI1M2IzNDg4OTdlMTM2ZWE3YzA4OGFkZDMyMjdkMzlmNzMwOWYzYTg5ZWZkODE4MTZhNzhkOWM4M2Y1NjdjOA%3D%3D&sid=840b5b11d7f14707897f6eebb12e705c_a8706821&tag_value=' + time_spent);
+                            };
+                        }
+
+                        TrackVideo.prototype.play = function() {
+                            if (!this.trackedStatus.play) {
+                                this.dropTrackingTag('http://bevo-us-east-1.adsnative.com/vv.gif?tag_name=v&data=YmZiYjUyMzk0ODRlMDNhOWNiNWIwZTM2MWJiMGE0OTQwMGQ2MGU1M2Q0OWFhMzIwOGI2N2M1YjY2YjI1NDcwMjg3ZWVhMTE4YTc1NDc2ODdmNTg2NmQ5OWNlYjRjYmRmYTZkMzZjMDY3MzA3YzJkYjI1M2Q3ZWRlMjJhNjE1OTEyMzdkNzkyYWM1YTdhY2JiYjBlODY2MDcwMjA5OTc0OTFmMjRhYjgzNTliNzNiOWYxYTA0YTgwNmE2ODZiZmY4OTk5YzNhMDg2ODE4ZDU4MGJjZTAwYzExNDY0YWIxZGYzMTE2MDNkODFkYjBiNDM0NmU1MGM0M2RiMGZkNmY4Mzg2YjgwODFmMWRhN2Q0ZWZiMmZiMDg1MDYwZjIzYzFkZGI1M2IzNDg4OTdlMTM2ZWE3YzA4OGFkZDMyMjdkMzlmNzMwOWYzYTg5ZWZkODE4MTZhNzhkOWM4M2Y1NjdjOA%3D%3D&sid=840b5b11d7f14707897f6eebb12e705c_a8706821');
+
+                                <!-- no extra view tags -->
+
+                                this.trackedStatus.play = true;
+                            }
+                        };
+
+                        TrackVideo.prototype.pause = function() {
+
+                            this.trackedStatus.pause = true;
+                        };
+
+                        TrackVideo.prototype.resume = function() {
+
+                            this.trackedStatus.resume = true;
+                        };
+
+                        TrackVideo.prototype.impression = function() {
+
+                            this.dropTrackingTag("http://bevo-us-east-1.adsnative.com/vv.gif?tag_name=vvi&data=YmZiYjUyMzk0ODRlMDNhOWNiNWIwZTM2MWJiMGE0OTQwMGQ2MGU1M2Q0OWFhMzIwOGI2N2M1YjY2YjI1NDcwMjg3ZWVhMTE4YTc1NDc2ODdmNTg2NmQ5OWNlYjRjYmRmYTZkMzZjMDY3MzA3YzJkYjI1M2Q3ZWRlMjJhNjE1OTEyMzdkNzkyYWM1YTdhY2JiYjBlODY2MDcwMjA5OTc0OTFmMjRhYjgzNTliNzNiOWYxYTA0YTgwNmE2ODZiZmY4OTk5YzNhMDg2ODE4ZDU4MGJjZTAwYzExNDY0YWIxZGYzMTE2MDNkODFkYjBiNDM0NmU1MGM0M2RiMGZkNmY4Mzg2YjgwODFmMWRhN2Q0ZWZiMmZiMDg1MDYwZjIzYzFkZGI1M2IzNDg4OTdlMTM2ZWE3YzA4OGFkZDMyMjdkMzlmNzMwOWYzYTg5ZWZkODE4MTZhNzhkOWM4M2Y1NjdjOA%3D%3D&sid=840b5b11d7f14707897f6eebb12e705c_a8706821");
+                            this.dropTrackingTag('http://bevo-us-east-1.adsnative.com/dd.gif?key=v_player&sid=840b5b11d7f14707897f6eebb12e705c_a8706821');
+                            this.trackedStatus.impression = true;
+                        };
+
+                        TrackVideo.prototype.muteState = function(state) {
+                            if (state) {
+
+                                this.trackedStatus.mute = true;
+                            }
+                            if (!state) {
+
+                                this.trackedStatus.unmute = true;
+                            }
+                        };
+
+                        TrackVideo.prototype.fullscreen = function() {
+
+                            this.trackedStatus.fullscreen = true;
+                        };
+
+                        TrackVideo.prototype.click = function() {
+
+                            this.dropTrackingTag('http://bevo-us-east-1.adsnative.com/vv.gif?tag_name=vvc&data=YmZiYjUyMzk0ODRlMDNhOWNiNWIwZTM2MWJiMGE0OTQwMGQ2MGU1M2Q0OWFhMzIwOGI2N2M1YjY2YjI1NDcwMjg3ZWVhMTE4YTc1NDc2ODdmNTg2NmQ5OWNlYjRjYmRmYTZkMzZjMDY3MzA3YzJkYjI1M2Q3ZWRlMjJhNjE1OTEyMzdkNzkyYWM1YTdhY2JiYjBlODY2MDcwMjA5OTc0OTFmMjRhYjgzNTliNzNiOWYxYTA0YTgwNmE2ODZiZmY4OTk5YzNhMDg2ODE4ZDU4MGJjZTAwYzExNDY0YWIxZGYzMTE2MDNkODFkYjBiNDM0NmU1MGM0M2RiMGZkNmY4Mzg2YjgwODFmMWRhN2Q0ZWZiMmZiMDg1MDYwZjIzYzFkZGI1M2IzNDg4OTdlMTM2ZWE3YzA4OGFkZDMyMjdkMzlmNzMwOWYzYTg5ZWZkODE4MTZhNzhkOWM4M2Y1NjdjOA%3D%3D&sid=840b5b11d7f14707897f6eebb12e705c_a8706821');
+
+                            this.trackedStatus.click = true;
+                        };
+
+                        TrackVideo.prototype.autoInitiatePlay = function() {
+                            if (!this.trackedStatus.autoplayInit)
+                                pmVideoPlayer.log("Autoplay Inview : play initiated");
+                            this.dropTrackingTag("http://bevo-us-east-1.adsnative.com/vv.gif?tag_name=vvp&data=YmZiYjUyMzk0ODRlMDNhOWNiNWIwZTM2MWJiMGE0OTQwMGQ2MGU1M2Q0OWFhMzIwOGI2N2M1YjY2YjI1NDcwMjg3ZWVhMTE4YTc1NDc2ODdmNTg2NmQ5OWNlYjRjYmRmYTZkMzZjMDY3MzA3YzJkYjI1M2Q3ZWRlMjJhNjE1OTEyMzdkNzkyYWM1YTdhY2JiYjBlODY2MDcwMjA5OTc0OTFmMjRhYjgzNTliNzNiOWYxYTA0YTgwNmE2ODZiZmY4OTk5YzNhMDg2ODE4ZDU4MGJjZTAwYzExNDY0YWIxZGYzMTE2MDNkODFkYjBiNDM0NmU1MGM0M2RiMGZkNmY4Mzg2YjgwODFmMWRhN2Q0ZWZiMmZiMDg1MDYwZjIzYzFkZGI1M2IzNDg4OTdlMTM2ZWE3YzA4OGFkZDMyMjdkMzlmNzMwOWYzYTg5ZWZkODE4MTZhNzhkOWM4M2Y1NjdjOA%3D%3D&sid=840b5b11d7f14707897f6eebb12e705c_a8706821");
+                            this.trackedStatus.autoplayInit = true;
+                        };
+
+                        TrackVideo.prototype.durationMetrics = function(position, duration) {
+
+
+                            var diff = (Math.floor(position)) / duration,
+                                perc = diff * 100;
+
+
+                            if (!this.trackedStatus.duration.first_quartile && (parseInt(perc) >= 25 && parseInt(perc) < 50)) {
+                                this.dropTrackingTag("http://bevo-us-east-1.adsnative.com/vv.gif?tag_name=vv25&data=YmZiYjUyMzk0ODRlMDNhOWNiNWIwZTM2MWJiMGE0OTQwMGQ2MGU1M2Q0OWFhMzIwOGI2N2M1YjY2YjI1NDcwMjg3ZWVhMTE4YTc1NDc2ODdmNTg2NmQ5OWNlYjRjYmRmYTZkMzZjMDY3MzA3YzJkYjI1M2Q3ZWRlMjJhNjE1OTEyMzdkNzkyYWM1YTdhY2JiYjBlODY2MDcwMjA5OTc0OTFmMjRhYjgzNTliNzNiOWYxYTA0YTgwNmE2ODZiZmY4OTk5YzNhMDg2ODE4ZDU4MGJjZTAwYzExNDY0YWIxZGYzMTE2MDNkODFkYjBiNDM0NmU1MGM0M2RiMGZkNmY4Mzg2YjgwODFmMWRhN2Q0ZWZiMmZiMDg1MDYwZjIzYzFkZGI1M2IzNDg4OTdlMTM2ZWE3YzA4OGFkZDMyMjdkMzlmNzMwOWYzYTg5ZWZkODE4MTZhNzhkOWM4M2Y1NjdjOA%3D%3D&sid=840b5b11d7f14707897f6eebb12e705c_a8706821");
+                                pmVideoPlayer.log('25% complete');
+                                this.trackedStatus.duration.first_quartile = true;
+                            } else if (!this.trackedStatus.duration.second_quartile && (parseInt(perc) >= 50 && parseInt(perc) < 75)) {
+                                this.dropTrackingTag("http://bevo-us-east-1.adsnative.com/vv.gif?tag_name=vv50&data=YmZiYjUyMzk0ODRlMDNhOWNiNWIwZTM2MWJiMGE0OTQwMGQ2MGU1M2Q0OWFhMzIwOGI2N2M1YjY2YjI1NDcwMjg3ZWVhMTE4YTc1NDc2ODdmNTg2NmQ5OWNlYjRjYmRmYTZkMzZjMDY3MzA3YzJkYjI1M2Q3ZWRlMjJhNjE1OTEyMzdkNzkyYWM1YTdhY2JiYjBlODY2MDcwMjA5OTc0OTFmMjRhYjgzNTliNzNiOWYxYTA0YTgwNmE2ODZiZmY4OTk5YzNhMDg2ODE4ZDU4MGJjZTAwYzExNDY0YWIxZGYzMTE2MDNkODFkYjBiNDM0NmU1MGM0M2RiMGZkNmY4Mzg2YjgwODFmMWRhN2Q0ZWZiMmZiMDg1MDYwZjIzYzFkZGI1M2IzNDg4OTdlMTM2ZWE3YzA4OGFkZDMyMjdkMzlmNzMwOWYzYTg5ZWZkODE4MTZhNzhkOWM4M2Y1NjdjOA%3D%3D&sid=840b5b11d7f14707897f6eebb12e705c_a8706821");
+                                pmVideoPlayer.log('50% complete');
+                                this.trackedStatus.duration.second_quartile = true;
+                            } else if (!this.trackedStatus.duration.third_quartile && (parseInt(perc) >= 75 && parseInt(perc) < 100)) {
+                                this.dropTrackingTag("http://bevo-us-east-1.adsnative.com/vv.gif?tag_name=vv75&data=YmZiYjUyMzk0ODRlMDNhOWNiNWIwZTM2MWJiMGE0OTQwMGQ2MGU1M2Q0OWFhMzIwOGI2N2M1YjY2YjI1NDcwMjg3ZWVhMTE4YTc1NDc2ODdmNTg2NmQ5OWNlYjRjYmRmYTZkMzZjMDY3MzA3YzJkYjI1M2Q3ZWRlMjJhNjE1OTEyMzdkNzkyYWM1YTdhY2JiYjBlODY2MDcwMjA5OTc0OTFmMjRhYjgzNTliNzNiOWYxYTA0YTgwNmE2ODZiZmY4OTk5YzNhMDg2ODE4ZDU4MGJjZTAwYzExNDY0YWIxZGYzMTE2MDNkODFkYjBiNDM0NmU1MGM0M2RiMGZkNmY4Mzg2YjgwODFmMWRhN2Q0ZWZiMmZiMDg1MDYwZjIzYzFkZGI1M2IzNDg4OTdlMTM2ZWE3YzA4OGFkZDMyMjdkMzlmNzMwOWYzYTg5ZWZkODE4MTZhNzhkOWM4M2Y1NjdjOA%3D%3D&sid=840b5b11d7f14707897f6eebb12e705c_a8706821");
+                                pmVideoPlayer.log('75% complete');
+                                this.trackedStatus.duration.third_quartile = true;
+                            }
+                        };
+
+                        TrackVideo.prototype.complete = function() {
+                            // 
+                            this.dropTrackingTag("http://bevo-us-east-1.adsnative.com/vv.gif?tag_name=vv100&data=YmZiYjUyMzk0ODRlMDNhOWNiNWIwZTM2MWJiMGE0OTQwMGQ2MGU1M2Q0OWFhMzIwOGI2N2M1YjY2YjI1NDcwMjg3ZWVhMTE4YTc1NDc2ODdmNTg2NmQ5OWNlYjRjYmRmYTZkMzZjMDY3MzA3YzJkYjI1M2Q3ZWRlMjJhNjE1OTEyMzdkNzkyYWM1YTdhY2JiYjBlODY2MDcwMjA5OTc0OTFmMjRhYjgzNTliNzNiOWYxYTA0YTgwNmE2ODZiZmY4OTk5YzNhMDg2ODE4ZDU4MGJjZTAwYzExNDY0YWIxZGYzMTE2MDNkODFkYjBiNDM0NmU1MGM0M2RiMGZkNmY4Mzg2YjgwODFmMWRhN2Q0ZWZiMmZiMDg1MDYwZjIzYzFkZGI1M2IzNDg4OTdlMTM2ZWE3YzA4OGFkZDMyMjdkMzlmNzMwOWYzYTg5ZWZkODE4MTZhNzhkOWM4M2Y1NjdjOA%3D%3D&sid=840b5b11d7f14707897f6eebb12e705c_a8706821");
+                            this.trackedStatus.complete = true;
+                        };
+
+                        TrackVideo.prototype.error = function() {
+                            this.dropTrackingTag("http://bevo-us-east-1.adsnative.com/vv.gif?tag_name=vve&data=YmZiYjUyMzk0ODRlMDNhOWNiNWIwZTM2MWJiMGE0OTQwMGQ2MGU1M2Q0OWFhMzIwOGI2N2M1YjY2YjI1NDcwMjg3ZWVhMTE4YTc1NDc2ODdmNTg2NmQ5OWNlYjRjYmRmYTZkMzZjMDY3MzA3YzJkYjI1M2Q3ZWRlMjJhNjE1OTEyMzdkNzkyYWM1YTdhY2JiYjBlODY2MDcwMjA5OTc0OTFmMjRhYjgzNTliNzNiOWYxYTA0YTgwNmE2ODZiZmY4OTk5YzNhMDg2ODE4ZDU4MGJjZTAwYzExNDY0YWIxZGYzMTE2MDNkODFkYjBiNDM0NmU1MGM0M2RiMGZkNmY4Mzg2YjgwODFmMWRhN2Q0ZWZiMmZiMDg1MDYwZjIzYzFkZGI1M2IzNDg4OTdlMTM2ZWE3YzA4OGFkZDMyMjdkMzlmNzMwOWYzYTg5ZWZkODE4MTZhNzhkOWM4M2Y1NjdjOA%3D%3D&sid=840b5b11d7f14707897f6eebb12e705c_a8706821");
+                            this.trackedStatus.error = true;
+                        };
+
+                        // Player Object
+                        function PmVideoPlayer() {
+                            this.eventsReceived = {
+                                ready: false,
+                                play: false,
+                                timeupdate: false,
+                                fullscreenchange: false,
+                                volumechange: false,
+                                ended: false,
+                                pause: false,
+                                click: false,
+                                error: false,
+                                adStart: false,
+                                adEnd: false,
+                                contentEnd: false,
+                                adError: false
+                            };
+                            this.userInitiatedPlay = true;
+                            this.pmFaviconUrl = "//d3m9pgf48clj74.cloudfront.net/static/img/favicon.ca9519c79bf2.png";
+                            this.logLogoStyle = "background-image: url('" + this.pmFaviconUrl + "');" +
+                                "background-repeat: no-repeat;" +
+                                "display: block;" +
+                                "background-size: 13px 13px;" +
+                                "padding-left: 13px;" +
+                                "margin-left: 5px;";
+                            this.autoplayEvent = null;
+
+                            this.getEventsReceived = function() {
+                                return this.eventsReceived;
+                            };
+
+                            this.enableMobileAutoplay = function() {
+                                if (!trackVideo.trackedStatus.autoplayInit) return;
+
+                                var userAgent = navigator.userAgent,
+                                    videoTag = window.player.el_.querySelector('video');
+
+                                // Enable autoplay only on ios & android mobile devices
+                                if (videoTag && userAgent && (/iPad|iPhone|iPod/.test(userAgent) || /Android/i.test(userAgent))) {
+                                    videoTag.setAttribute('playsinline', '');
+                                    videoTag.setAttribute('autoplay', '');
+                                    videoTag.setAttribute('muted', '');
+                                    videoTag.setAttribute('loop', '');
+                                }
+                            };
+
+                            this.autoplayMsgListener = function(event) {
+                                var message = event.message || event.data;
+                                pmVideoPlayer.log("PostMessage : received message : " + message);
+
+
+                                if (message == 'disqus.view:50in' || message == 'adsnative.mrc50.view:in') {
+                                    if (window.player) {
+                                        // Mark video initiation as "autoplay in-view" and not default "user initiated"
+                                        pmVideoPlayer.userInitiatedPlay = false;
+                                        pmVideoPlayer.enableMobileAutoplay();
+                                        window.player.play();
+                                        trackVideo.autoInitiatePlay();
+                                        pmVideoPlayer.log("PostMessage : received autoplay start/resume event : " + message);
+                                    } else {
+                                        pmVideoPlayer.autoplayEvent = event;
+                                    }
+                                } else if ((message == 'disqus.view:50out' || message == 'adsnative.mrc50.view:out') && !pmVideoPlayer.userInitiatedPlay) {
+                                    window.player.pause();
+                                    pmVideoPlayer.userInitiatedPlay = false;
+                                    pmVideoPlayer.log("PostMessage : received autoplay stop event : " + message);
+                                }
+
+                            };
+
+                            this.setupVideoEventListeners = function() {
+                                window.player.on('play', function(e) {
+                                    if (!window.started) {
+                                        window.started = true;
+                                        trackVideo.play();
+                                        pmVideoPlayer.log("Player play start");
+
+                                        // Unmute video if video play was user initiated
+                                        if (pmVideoPlayer.userInitiatedPlay) {
+                                            this.muted(false);
+                                        }
+                                    } else {
+                                        trackVideo.resume();
+                                        pmVideoPlayer.log("Player play resume");
+                                    }
+                                    window.start_time = this.currentTime();
+                                    pmVideoPlayer.eventsReceived.play = true;
+                                });
+
+                                window.player.on('timeupdate', function(e) {
+                                    trackVideo.durationMetrics(this.currentTime(), this.duration());
+                                    if (!pmVideoPlayer.eventsReceived.timeupdate) pmVideoPlayer.eventsReceived.timeupdate = true;
+                                });
+
+                                window.player.on('fullscreenchange', function(e) {
+                                    if (this.isFullscreen()) {
+                                        pmVideoPlayer.log("Player entered fullscreen");
+                                        trackVideo.fullscreen();
+                                        pmVideoPlayer.eventsReceived.fullscreenchange = true;
+                                    } else {
+                                        pmVideoPlayer.log("Player exited fullscreen");
+                                    }
+                                });
+
+                                window.player.on('volumechange', function(e) {
+                                    if (this.muted()) {
+                                        pmVideoPlayer.log("Player muted");
+                                        trackVideo.muteState(true);
+                                    } else {
+                                        pmVideoPlayer.log("Player unmuted");
+                                        trackVideo.muteState(false);
+                                    }
+                                    pmVideoPlayer.eventsReceived.volumechange = true;
+                                });
+
+                                window.player.on('ended', function(e) {
+                                    pmVideoPlayer.log("100% complete");
+                                    pmVideoPlayer.log("Player ended");
+                                    trackVideo.complete();
+                                    pmVideoPlayer.eventsReceived.ended = true;
+                                });
+
+                                window.player.on('pause', function(e) {
+                                    pmVideoPlayer.log("Player paused");
+                                    trackVideo.logTimeSpent(Math.floor((player.currentTime() - window.start_time) * 1000));
+                                    trackVideo.pause();
+                                    pmVideoPlayer.eventsReceived.pause = true;
+                                });
+
+                                window.player.on('error', function(e) {
+                                    e.stopImmediatePropagation();
+                                    trackVideo.error();
+
+                                    var errorMsg = null,
+                                        errorStates = {
+                                            // MEDIA_ERR_ABORTED
+                                            1: "The video download was cancelled",
+                                            // MEDIA_ERR_NETWORK
+                                            2: "The video connection was lost, please confirm you're connected to the internet",
+                                            // MEDIA_ERR_DECODE
+                                            3: "The video is bad or in a format that can't be played on your browser",
+                                            // MEDIA_ERR_SRC_NOT_SUPPORTED
+                                            4: "This video is either unavailable or not supported in this browser",
+                                            // MEDIA_ERR_ENCRYPTED (Chrome)
+                                            5: "The video you're trying to watch is encrypted and we don't know how to decrypt it",
+                                            unknown: "An unanticipated problem was encountered, check back soon and try again"
+                                        };
+
+                                    if (this.networkState() && errorStates[this.networkState()]) {
+                                        errorMsg = errorStates[this.networkState()];
+                                    } else {
+                                        errorMsg = errorStates["unknown"];
+                                    }
+
+                                    pmVideoPlayer.log('Error : ', errorMsg);
+                                    pmVideoPlayer.eventsReceived.error = true;
+                                });
+
+                                // Player click handler (Content / AD)
+                                pmPlayerDiv.addEventListener("click", function(e) {
+                                    // If video is playing and user clicked on non-control bar area
+                                    var clickedElem = e.target;
+                                    if (clickedElem.parentElement.className.indexOf("vjs-control-bar") < 0 &&
+                                        clickedElem.className.indexOf("vjs-big-play-button") < 0) {
+                                        pmVideoPlayer.log("Player play area Clicked");
+                                        trackVideo.click();
+                                    }
+                                    pmVideoPlayer.eventsReceived.click = true;
+                                });
+                            };
+
+
+                            this.setupAdsPlugin = function(player, options) {
+                                // Setup VAST Player
+                                var pluginSettings = {
+                                    playAdAlways: true,
+                                    adCancelTimeout: options.adCancelTimeout || 3000,
+                                    adsEnabled: !!options.adsEnabled
+                                    // vpaidFlashLoaderPath: '//static.adsnative.com/static/js/videojs-5-vast-vpaid-plugin/VPAIDFlash.swf'
+                                };
+
+                                if (options.adTagUrl) {
+                                    pluginSettings.adTagUrl = options.adTagUrl;
+                                }
+
+                                if (options.adTagXML) {
+                                    pluginSettings.adTagXML = options.adTagXML;
+                                }
+
+                                vastAd = window.player.vastClient(pluginSettings);
+                                this.setupAdEventHandlers(vastAd);
+
+                                pmVideoPlayer.log("VAST/VPAID plugin enabled");
+                            };
+
+                            this.setupAdEventHandlers = function(vastAd) {
+                                // VAST/VPAID events handlers
+                                window.player.on('vast.adStart', function(e) {
+                                    pmVideoPlayer.log("VAST/VPAID plugin : Play start : ", window.player.vast.vastResponse);
+                                    pmVideoPlayer.eventsReceived.adStart = true;
+                                });
+
+                                window.player.on('vast.adEnd', function(e) {
+                                    pmVideoPlayer.log("VAST/VPAID plugin : AD End");
+                                    pmVideoPlayer.eventsReceived.adEnd = true;
+                                });
+
+                                window.player.on('vast.contentEnd', function(evt) {
+                                    pmVideoPlayer.log("VAST/VPAID plugin : Content ended");
+                                    trackVideo.complete();
+                                    pmVideoPlayer.eventsReceived.contentEnd = true;
+
+                                    // Log all the metrics tracked to console
+                                    pmVideoPlayer.log("Player metrics tracked : ", trackVideo.getTrackingStatus());
+                                    // Log all the events received to console
+                                    pmVideoPlayer.log("Player events received : ", pmVideoPlayer.getEventsReceived());
+                                });
+
+                                window.player.on('vast.adError', function(evt) {
+                                    var error = evt.error;
+
+                                    if (error && error.message) {
+                                        pmVideoPlayer.log('VAST/VPAID plugin : ERROR : ' + error.message);
+                                    }
+                                    pmVideoPlayer.eventsReceived.adError = true;
+                                });
+                            };
+
+
+                            this.log = function(msg, data) {
+                                if (window.debug && console && console.log && msg) {
+                                    console.log('%c VideoJS : ' + msg, this.logLogoStyle);
+                                    if (data) {
+                                        console.log('', data);
+                                    }
+                                }
+                            };
+                        }
+
+                        // Root Objects
+                        pmVideoPlayer = new PmVideoPlayer();
+                        trackVideo = new TrackVideo();
+
+                        // Register iFrame postmessage listeners
+                        if (window.addEventListener) {
+                            addEventListener("message", pmVideoPlayer.autoplayMsgListener, false);
+                        } else {
+                            attachEvent("onmessage", pmVideoPlayer.autoplayMsgListener);
+                        }
+
+                        $(document).ready(function() {
+                            pmVjsPlayerContainerDiv = document.querySelector("#pm-vjs-container"),
+                                pmPlayerDiv = pmVjsPlayerContainerDiv.querySelector('#pm-vjs-player'),
+                                pmVjsPlayer = videojs(pmPlayerDiv),
+                                embed_version = 0.1,
+                                rootDomain = (document.referrer) ? document.referrer : document.location.href,
+                                qString = rootDomain.split('?')[1];
+
+                            window.player = pmVjsPlayer;
+                            window.started = false;
+                            window.debug = false;
+
+                            // Enable Debug logs
+                            rootDomain = rootDomain.split('/');
+                            rootDomain = (rootDomain.length > 2) ? rootDomain[0] + '//' + rootDomain[2] : null;
+                            if (qString && qString.indexOf('pmvideo_preview') >= 0) window.debug = true;
+
+
+                            // Setup VAST/VPAID Plugin
+                            var vastUrl = "/preview/demandcloud/video/instream_multiform_vpaid.xml",
+                                vastOptions = {
+                                    adCancelTimeout: 10000,
+                                    adsEnabled: true,
+                                    adTagUrl: vastUrl
+                                };
+                            pmVideoPlayer.setupAdsPlugin(pmVjsPlayer, vastOptions);
+
+                            // Player Ready
+                            pmVjsPlayer.ready(function() {
+                                // Video player loaded
+                                trackVideo.impression();
+                                pmVideoPlayer.setupVideoEventListeners();
+
+                                // Signal the parent page about player ready status
+                                pmVideoPlayer.log("Player Ready");
+                                window.parent.postMessage("ready", rootDomain);
+
+                                // Mark player ready
+                                pmVideoPlayer.eventsReceived.ready = true;
+
+                                // Fire autoplay if event was received before player was ready
+                                if (pmVideoPlayer.autoplayEvent) {
+                                    pmVideoPlayer.log("Autoplay msg received, but Player not Ready. Saving the event");
+                                    pmVideoPlayer.autoplayMsgListener(pmVideoPlayer.autoplayEvent);
+                                    pmVideoPlayer.autoplayEvent = null;
+                                }
+                            });
+                        });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="container" id="mavic-air-section">
+            <div class="content-wrap">
+                <div class="logo-wrap">
+                    <p>INSTREAM <span>MULTIFORM</span></p>
+                    <div>Empower Instream Video Ad slot with a Native/Banner Ad</div>
+                </div>
+                <h1>POWERED BY</h1>
+                <div class="product-wrap">
+                    <img id="mavic-air-img" src="/preview/demandcloud/assets/imgs/demandcloud.png" alt="Demand Cloud">
+                </div>
+            </div>
+        </section>
+        <section class="container" id="form-section">
+            <div class="content-wrap" id="form-wrap">
+                <div id="tabs">
+                    <ul id="accordion">
+                        <li>
+                            <a class="active" href="#tabs-1">
+                                <div class="tag">
+                                    <div class="icon">
+                                        <div class="block">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                                    <span class="title">Simple Inline VAST Tag</span>
+                                </div>
+                            </a>
+                            <div class="addon fadein">
+                                <span>
+                                    <b>Inline VAST Tag (VPAID JS creative)</b> 
+                                    </br>Setup in your Video Ad server as a standard VAST campaign. Integration is that simple. 
+                                    </br></br>
+                                    <b>Native / Banner / Video Creatives</b>
+                                    </br>Winning creative will be returned and appropriately rendered by the same single VAST tag
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#tabs-2">
+                                <div class="tag">
+                                    <div class="icon">
+                                        <div class="block">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                                    <span class="title">POWERED BY DEMANDCLOUD</span>
+                                </div>
+                            </a>
+                            <div class="addon">
+                                <span>
+                                    <b>75+ S2S integrations</b> 
+                                    </br> Allows you to increase the bid density by adding more demand from ad partners via Cloud without any client side waterfall / auctioning.
+                                    </br></br>
+                                    <b>LOW LATENCY</b>
+                                    </br>Multiform Tags load instream native/banner Ads in less than 500 milliseconds*</br>
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#tabs-3">
+                                <div class="tag">
+                                    <div class="icon">
+                                        <div class="block">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                                    <span class="title">HIGH PERFORMANCE</span>
+                                </div>
+                            </a>
+                            <div class="addon">
+                                <span>
+                                    <b>Instream Ad Placement</b> 
+                                    </br>Being the prime AD position with close to 100% viewability, any lost opportunity means you are leaving considerable revenue on the table
+                                    </br></br>
+                                    <b>Remnant Video Tag</b>
+                                    </br>Instream Multiform VAST tag can be served at the final position in the publisher VAST waterfall to minimize the lost opportunities by filling the slots with multiform adtypes and maximize the revenue without impacting user experience.
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="browser">
+                        <div class="top-bar">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                        <div id="tabs-1">
+                            <p class="single-vast">Try a sample </br><span><b>Instream Multiform</b></span> tag in your Video player</p>
+                            <p class="input-tip">Copy</p>
+                            <input type="text" id="vpaidurl" name="vpaidtag" placeholder="Vpaid Tag" value="https://docs.adsnative.com/preview/demandcloud/video/instream_multiform_vpaid.xml">
+                            <script type="text/javascript">
+                                window.onload = function () {
+                                  var input = document.getElementById('vpaidurl');
+                                  input.focus();
+                                  input.select();
+                                }
+                            </script>
+                        </div>
+                        <div id="tabs-2">
+                            <img src="/preview//demandcloud/assets/imgs/unified-auction.png">
+                            <p class="unified-auction">VPAID AD < 500ms</p>
+                        </div>
+                        <div id="tabs-3">
+                            <img src="/preview/demandcloud/assets/imgs/high-performance.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="container">
+        <div class="content-wrap">
+        </div>
+    </footer>
+    <script type="text/javascript">
+        // $(document).ready(function() {
+        //     debugger;
+            $(function() {
+                $("#tabs").tabs({
+                    show: { effect: "blind", direction: "right", duration: 300 }
+                });
+                $("#accordion").accordion();
+
+                var btn = $('#accordion li a');
+                var wrapper = $('#accordion li');
+
+                $(btn).on('click', function() {
+                    $(btn).removeClass('active');
+                    $(btn).parent().find('.addon').removeClass('fadein');
+
+                    $(this).addClass('active');
+                    $(this).parent().find('.addon').addClass('fadein');
+                });
+            });
+        // });
+    </script>
+</body>
+
+</html>

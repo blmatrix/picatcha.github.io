@@ -1,0 +1,47 @@
+<VAST xmlns:MM="http://api.mediamind.com/V1/DataContracts" version="2.0">
+    <Ad id="14432293">
+        <InLine>
+            <AdSystem><![CDATA[ Polymorph ]]></AdSystem>
+            <AdTitle><![CDATA[ Instream Multiform VPAID JS Example ]]></AdTitle>
+            <Description><![CDATA[ Vpaid Linear Native/Banner In-Video Ad ]]></Description>
+            <Impression id="Impression">
+                <![CDATA[https://www.getpolymorph.com/example/impression]]>
+            </Impression>
+            <Creatives>
+                <Creative id="123456" AdID="123456" sequence="1">
+                    <Linear>
+                        <Duration>00:00:10</Duration>
+                        <TrackingEvents>
+                            <Tracking event="start"><![CDATA[https://www.getpolymorph.com/example/start]]></Tracking>
+                            <Tracking event="firstQuartile"><![CDATA[https://www.getpolymorph.com/example/firstQuartile]]></Tracking>
+                            <Tracking event="midpoint"><![CDATA[https://www.getpolymorph.com/example/midpoint]]></Tracking>
+                            <Tracking event="thirdQuartile"><![CDATA[https://www.getpolymorph.com/example/thirdQuartile]]></Tracking>
+                            <Tracking event="complete"><![CDATA[https://www.getpolymorph.com/example/complete]]></Tracking>
+                            <Tracking event="mute"><![CDATA[https://www.getpolymorph.com/example/mute]]></Tracking>
+                            <Tracking event="unmute"><![CDATA[https://www.getpolymorph.com/example/unmute]]></Tracking>
+                            <Tracking event="rewind"><![CDATA[https://www.getpolymorph.com/example/rewind]]></Tracking>
+                            <Tracking event="pause"><![CDATA[https://www.getpolymorph.com/example/pause]]></Tracking>
+                            <Tracking event="resume"><![CDATA[https://www.getpolymorph.com/example/resume]]></Tracking>
+                            <Tracking event="fullscreen"><![CDATA[https://www.getpolymorph.com/example/fullscreen]]></Tracking>
+                            <Tracking event="creativeView"><![CDATA[https://www.getpolymorph.com/example/creativeView]]></Tracking>
+                            <Tracking event="acceptInvitation"><![CDATA[https://www.getpolymorph.com/example/acceptInvitation]]></Tracking>
+                        </TrackingEvents>
+                        <AdParameters>
+                            <![CDATA[
+                            {"videos":[
+                             {"url": "http://docs.adsnative.com/preview/demandcloud/video/polymorph_10s.mp4","mimetype":"video/mp4"}],
+                             "overlay":"httpss://s3.amazonaws.com/adsnative-logos/Polymorph-Mark.png"}
+                            ]]>
+                        </AdParameters>
+                        <MediaFiles>
+                            <MediaFile id="3224257" height="480" width="640" type="application/javascript" delivery="progressive" maintainAspectRatio="true" scalable="true" apiFramework="VPAID">
+                                <![CDATA[http://docs.adsnative.com/preview/demandcloud/video/html5vpaid.js]]>
+                            </MediaFile>
+                        </MediaFiles>
+                    </Linear>
+                </Creative>
+                <Creative sequence="1"></Creative>
+            </Creatives>
+        </InLine>
+    </Ad>
+</VAST>

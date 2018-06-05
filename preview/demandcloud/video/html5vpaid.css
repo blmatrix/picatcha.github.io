@@ -1,0 +1,206 @@
+#ad-overlay {
+    background-color: transparent;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+#ad-overlay .ad-container {
+    padding-top: 10%;
+    background: rgba(198, 198, 198, 0.98);
+    height: 100%;
+    width: 100%;
+}
+
+#ad-overlay .ad-container iframe {
+    display: block;
+    margin: 0 auto;
+}
+
+div.ad-fuse {
+    width: 5px;
+    height: 100%;
+    bottom: 0px;
+    background: #000000;
+    position: absolute;
+    right: 0px;
+
+    -webkit-animation-name: fuse; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 5s; /* Safari 4.0 - 8.0 */
+    -webkit-transition: height; /* For Safari 3.1 to 6.0 */
+    -webkit-transition-timing-function: linear;
+
+    animation-name: fuse;
+    animation-duration: 5s;
+    transition: height;
+    transition-timing-function: linear;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes fuse {
+    from {
+    	height: 2px;
+        bottom: 50%;
+    }
+    to {
+    	height: 100%;
+        bottom: 0px;
+    }
+}
+
+/* Standard syntax */
+@keyframes fuse {
+    from {
+    	height: 2px;
+        bottom: 50%;
+    }
+    to {
+    	height: 100%;
+        bottom: 0px;
+    }
+}
+
+/* Skip Ad Button */
+#skipad {
+    display: none;
+}
+
+.skipad {
+  font-family: Arial, Helvetica, sans-serif;
+  display: inline-block;
+  letter-spacing: 2px;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+}
+
+/* Button Outline 
+----------------------------*/
+.skipad-outline {
+  transition: color 0.3s;
+}
+
+.skipad-outline.color {
+  margin-left: 1rem;
+  box-shadow: inset 0 0 0 2px #000;
+}
+
+/* When animating the lines simply move in a certain direction, so we need to make sure that they are hidden when outside of the button. This way we will get our realistic animating border effect. */
+.skipad-outline {
+  overflow: hidden;
+  position: absolute;
+  right: 10px;
+  bottom: 15%;
+}
+/* Left & Right Lines Container */
+.skipad-outline .lines {
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+}
+/* All Lines */
+.skipad-outline:before,
+.skipad-outline:after,
+.skipad-outline .lines:before,
+.skipad-outline .lines:after{
+  background-color: #fff;
+  content: "";
+  position: absolute;
+  transition: transform 0.3s;
+}
+/* Top & Bottom Lines */
+.skipad-outline:before,
+.skipad-outline:after {
+  left: 0;
+  width: 100%;
+  height: 2px;
+}
+/* Top Line */
+.skipad-outline:after {
+  bottom: auto;
+  top: 0;
+}
+
+/* Bottom Line */
+.skipad-outline:before {
+  bottom: 0;
+  top: auto;
+}
+
+/* Left & Right Lines */
+.skipad-outline .lines:before,
+.skipad-outline .lines:after {
+  top: 0;
+  height: 100%;
+  width: 2px;
+}
+/* Left Line */
+.skipad-outline .lines:before {
+  left: 0;
+  right: auto;
+}
+/* Right Line */
+.skipad-outline .lines:after {
+  left: auto;
+  right: 0;
+}
+
+
+/***************
+ * Hover State *
+ ***************/
+/* Text */
+.skipad-outline:hover {
+  color: black;
+}
+/* Top */
+.skipad-outline:hover:after {
+  transform: translateX(100%);
+}
+
+/* Bottom */
+.skipad-outline:hover:before {
+  transform: translateX(-100%);
+}
+
+/* Left */
+.skipad-outline:hover .lines:before {
+  transform: translateY(-100%);
+}
+
+/* Right */
+.skipad-outline:hover .lines:after {
+  transform: translateY(100%);
+}
+
+/* Branding Text + Logo */
+.branding {
+    position: absolute;
+    top: 2px;
+    left: 3px;
+}
+
+.branding .powered {
+  display: inline-block;
+  font-size: xx-small;
+  line-height: 12px;
+  font-weight: bold;
+  float: left;
+  font-family: Arial, Helvetica, sans-serif;
+  color: grey;
+}
+
+.branding .logo {
+  float: right;
+  padding: 0px 0px 30px 3px;
+  width: 10px;
+}
+
