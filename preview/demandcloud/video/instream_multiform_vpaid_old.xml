@@ -1,0 +1,50 @@
+<VAST xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vast.xsd" version="3.0">
+    <Ad id="1234567">
+        <InLine>
+            <AdSystem>Polymorph</AdSystem>
+            <AdTitle>Instream Multiform VPAID JS Example</AdTitle>
+            <Description>Vpaid Linear Native/Banner In-Video Ad</Description>
+            <Error>https://www.getpolymorph.com/example/error</Error>
+            <Impression>https://www.getpolymorph.com/example/impression</Impression>
+            <Creatives>
+                <Creative sequence="1">
+                    <Linear>
+                        <Duration>00:00:10</Duration>
+                        <TrackingEvents>
+                            <Tracking event="start">https://www.getpolymorph.com/example/start</Tracking>
+                            <Tracking event="firstQuartile">https://www.getpolymorph.com/example/firstQuartile</Tracking>
+                            <Tracking event="midpoint">https://www.getpolymorph.com/example/midpoint</Tracking>
+                            <Tracking event="thirdQuartile">https://www.getpolymorph.com/example/thirdQuartile</Tracking>
+                            <Tracking event="complete">https://www.getpolymorph.com/example/complete</Tracking>
+                            <Tracking event="mute">https://www.getpolymorph.com/example/mute</Tracking>
+                            <Tracking event="unmute">https://www.getpolymorph.com/example/unmute</Tracking>
+                            <Tracking event="rewind">https://www.getpolymorph.com/example/rewind</Tracking>
+                            <Tracking event="pause">https://www.getpolymorph.com/example/pause</Tracking>
+                            <Tracking event="resume">https://www.getpolymorph.com/example/resume</Tracking>
+                            <Tracking event="fullscreen">https://www.getpolymorph.com/example/fullscreen</Tracking>
+                            <Tracking event="creativeView">https://www.getpolymorph.com/example/creativeView</Tracking>
+                            <Tracking event="acceptInvitation">https://www.getpolymorph.com/example/acceptInvitation</Tracking>
+                        </TrackingEvents>
+                        <VideoClicks>
+                            <ClickThrough id="123">https://google.com</ClickThrough>
+                            <ClickTracking id="123">https://www.getpolymorph.com/example/click</ClickTracking>
+                        </VideoClicks>
+                        <AdParameters>
+                            <![CDATA[
+							{"videos":[
+							 {"url": "http://localhost:7777/preview/demandcloud/video/polymorph_10s.mp4","mimetype":"video/mp4"}],
+							 "overlay":"httpss://s3.amazonaws.com/adsnative-logos/Polymorph-Mark.png"}
+							]]>
+                        </AdParameters>
+                        <MediaFiles>
+                            <MediaFile apiFramework="VPAID" type="application/javascript">
+                                http://localhost:7777/preview/demandcloud/video/html5vpaid.js
+                            </MediaFile>
+                        </MediaFiles>
+                    </Linear>
+                </Creative>
+                <Creative sequence="1"></Creative>
+            </Creatives>
+        </InLine>
+    </Ad>
+</VAST>
