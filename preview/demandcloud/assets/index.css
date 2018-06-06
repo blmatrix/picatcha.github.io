@@ -87,7 +87,7 @@ footer .content-wrap {
     Classes - In Order
 ================= */
 
-.container {
+main .container {
     padding: 0 1em;
 }
 
@@ -327,7 +327,7 @@ iframe {
 
     /* ---- Content Condensors ---- */
 
-    .container { /* Removes Default Padding */
+    main .container { /* Removes Default Padding */
         padding: 0;
     }
 
@@ -386,7 +386,7 @@ iframe {
 
     /* ---- Content Condensors ---- */
 
-    .container { /* Removes Default Padding */
+    main .container { /* Removes Default Padding */
         padding: 0;
     }
 
@@ -444,7 +444,7 @@ iframe {
 
     /* ---- Content Condensors ---- */
 
-    .container { /* Removes Default Padding */
+    main .container { /* Removes Default Padding */
         padding: 0;
     }
 
