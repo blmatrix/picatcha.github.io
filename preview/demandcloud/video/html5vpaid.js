@@ -262,8 +262,7 @@ VpaidVideoPlayer.prototype.startAd = function() {
   var stylesheet = document.createElement('link');
   stylesheet.setAttribute('rel', 'stylesheet');
   stylesheet.setAttribute('type', 'text/css');
-  // stylesheet.setAttribute('href', 'https://localhost:7777/preview/demandcloud/video/html5vpaid.css');
-  stylesheet.setAttribute('href', 'https://docs.adsnative.com/preview/demandcloud/video/html5vpaid.css');
+  stylesheet.setAttribute('href', 'https://docs.getpolymorph.com/preview/demandcloud/video/html5vpaid.css');
   overlay.appendChild(stylesheet);
 
   // Ad Fuse
