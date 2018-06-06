@@ -718,7 +718,7 @@ ul li a.active {
 }
 
 #tabs-1 .single-vast {
-  margin: 90px 20px 50px 20px;
+  margin: 70px 20px 20px 20px;
   font-size: large;
   text-align: center;
   font-family: sans-serif;
@@ -734,13 +734,33 @@ ul li a.active {
   font-weight: 800;
 }
 #tabs-1 input[type=text] {
-    width: 95%;
-    padding: 12px;
+    width: 85%;
+    padding: 10px;
     margin: 0px 5px 0px 5px;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    color: black;
+}
+#tabs-1 a {
+  color: white;
+  font-size: small;
+  margin: 11px 0px 0px 30px;
+  display: block;
+  text-decoration: underline;
+}
+#tabs-1 .copy-btn {
+  display: inline-block;
+  padding: 1px 2px;
+  border-radius: 4px;
+}
+#tabs-1 .icon {
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
 }
 
 
