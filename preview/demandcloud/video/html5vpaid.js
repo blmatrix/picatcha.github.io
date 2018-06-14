@@ -271,10 +271,12 @@ VpaidVideoPlayer.prototype.startAd = function() {
   adFuse.id = 'ad-fuse';
   overlay.appendChild(adFuse);
   this.adFuse = document.getElementById('ad-fuse');
-  // Code for Safari 3.1 to 6.0
-  this.adFuse.addEventListener("webkitAnimationEnd", this.showSkipAd.bind(this), false);
-  // Standard syntax
-  this.adFuse.addEventListener("animationend", this.showSkipAd.bind(this), false);
+  if(this.adFuse) {
+    // Code for Safari 3.1 to 6.0
+    this.adFuse.addEventListener("webkitAnimationEnd", this.showSkipAd.bind(this), false);
+    // Standard syntax
+    this.adFuse.addEventListener("animationend", this.showSkipAd.bind(this), false);
+  }
 
   // Fetch Ad
   adsnativetag.cmdQ.push(function() {
