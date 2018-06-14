@@ -10,6 +10,9 @@ var VpaidVideoPlayer = function() {
    */
   this.slot_ = null;
 
+  /* Version tag */
+  this.version_ = 0.56;
+
   /**
    * The video slot is the video element used by the ad to render video content.
    * @type {Object}
@@ -582,7 +585,7 @@ var getVPAIDAd = function() {
 
   pmads.async = true;
   pmads.type = 'text/javascript';
-  pmads.src = '//static.adsnative.com/static/js/render.v2.js';
+  pmads.src = 'https://static.adsnative.com/static/js/render.v2.js';
   node.parentNode.insertBefore(pmads, node);
 
   return new VpaidVideoPlayer();
