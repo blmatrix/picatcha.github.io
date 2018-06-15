@@ -11,7 +11,7 @@ var VpaidVideoPlayer = function() {
   this.slot_ = null;
 
   /* Version tag */
-  this.version_ = 0.60;
+  this.version_ = 0.61;
 
   /**
    * The video slot is the video element used by the ad to render video content.
@@ -299,21 +299,21 @@ VpaidVideoPlayer.prototype.startAd = function() {
   overlay.appendChild(pmads);
 
   // Fetch Ad
-  this.adWindow_.adsnativetag.cmdQ.push(function() {
-      videoAdUnit = this.adWindow_.adsnativetag.defineAdUnit({
+  this.adWindow_.adsnativetag.cmdQ.push(function(this) {
+      videoAdUnit = this.adsnativetag.defineAdUnit({
           // apiKey: 'RWx-CgMg6nqEqGVkUH6F_5LRnlsUr3RrnQ24ticS'
           // apiKey: 'PUsdGuPU-D0ppa62liGjTqcRWERXpOoJ0_hpi0IX'
           apiKey: 'gOQ0VEscL2dvGjWpov-wtuHSX5FgC0jVfXaeT77B',  // Demo placement
           templateKey: 'streamable_01'
       });
 
-      adsnativetag.requestAds(function(responseStatus, adObject){
+      this.adsnativetag.requestAds(function(responseStatus, adObject){
         console.log('Instream Multiform Overall ad response callback')
         console.log('Instream Multiform : ', responseStatus);
         console.log('Instream Multiform : ', adObject);
       });
 
-      adsnativetag.displayAdUnit(videoAdUnit, 'ad-display', function(responseStatus, displayStatus, adObject){
+      this.adsnativetag.displayAdUnit(videoAdUnit, 'ad-display', function(responseStatus, displayStatus, adObject){
         console.log('Instream Multiform ad rendered callback');
         console.log('Instream Multiform displayStatus : ', displayStatus);
       });
@@ -597,5 +597,6 @@ VpaidVideoPlayer.prototype.videoResume_ = function() {
  * @return {Object} The VPAID compliant ad.
  */
 var getVPAIDAd = function() {
-  return new VpaidVideoPlayer();
+  window.vpaidPlayer = new VpaidVideoPlayer();
+  return window.vpaidPlayer;
 };
