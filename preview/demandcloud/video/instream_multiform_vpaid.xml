@@ -28,14 +28,25 @@
                         </TrackingEvents>
                         <AdParameters>
                             <![CDATA[
-                            {"videos":[
-                             {"url": "https://docs.getpolymorph.com/preview/demandcloud/video/polymorph_10s.mp4","mimetype":"video/mp4"}],
-                             "overlay":"httpss://s3.amazonaws.com/adsnative-logos/Polymorph-Mark.png"}
+                            {
+                                "tag": "https://docs.getpolymorph.com/preview/demandcloud/video/instream_multiform_vpaid.xml",
+                                "skipoffset": "5",
+                                "zIndex": "",
+                                "vpaidPath": "https://docs.getpolymorph.com/preview/demandcloud/video/html5vpaid.js",
+                                "vpaidFileName": "html5vpaid.js",
+                                "adDuration": "00:00:10",
+                                "impOnVidStart": true,
+                                "videos": [{
+                                    "url": "https://docs.getpolymorph.com/preview/demandcloud/video/polymorph_10s.mp4",
+                                    "mimetype": "video/mp4"
+                                }],
+                                "overlay": "httpss://s3.amazonaws.com/adsnative-logos/Polymorph-Mark.png"
+                            }
                             ]]>
                         </AdParameters>
                         <MediaFiles>
                             <MediaFile id="3224257" height="480" width="640" type="application/javascript" delivery="progressive" maintainAspectRatio="true" scalable="true" apiFramework="VPAID">
-                                <![CDATA[https://docs.getpolymorph.com/preview/demandcloud/video/html5vpaid.js?v=0.63]]>
+                                <![CDATA[https://docs.getpolymorph.com/preview/demandcloud/video/html5vpaid.js?v=0.64]]>
                             </MediaFile>
                         </MediaFiles>
                     </Linear>
