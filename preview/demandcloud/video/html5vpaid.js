@@ -153,19 +153,21 @@ VpaidVideoPlayer.prototype.overlayOnClick_ = function() {
  * @private
  */
 VpaidVideoPlayer.prototype.timeUpdateHandler_ = function() {
-  this.attributes_['remainingTime'] =
-      this.videoSlot_.duration - this.videoSlot_.currentTime;
-      // this.log('timeupdate received : currentTime ='+this.videoSlot_.currentTime+ '  duration = '+this.videoSlot_.duration);
+  this.attributes_['remainingTime'] = this.videoSlot_.duration - this.videoSlot_.currentTime;
+  // this.log('timeupdate received : currentTime ='+this.videoSlot_.currentTime+ '  duration = '+this.videoSlot_.duration);
   if (this.lastQuartileIndex_ >= this.quartileEvents_.length) {
     return;
   }
-  var percentPlayed =
-      this.videoSlot_.currentTime * 100.0 / this.videoSlot_.duration;
+
+  var percentPlayed = this.videoSlot_.currentTime * 100.0 / this.videoSlot_.duration;
   if (percentPlayed >= this.quartileEvents_[this.lastQuartileIndex_].value) {
-    var lastQuartileEvent = this.quartileEvents_[this.lastQuartileIndex_].event;
-    this.eventsCallbacks_[lastQuartileEvent]();
-    this.lastQuartileIndex_ += 1;
+    var lastQuartileEvent = (this.quartileEvents_[this.lastQuartileIndex_]) ? this.quartileEvents_[this.lastQuartileIndex_].event : null;
+    if(lastQuartileEvent) {
+      this.eventsCallbacks_[lastQuartileEvent]();
+      this.lastQuartileIndex_ += 1;
+    }
   }
+
   if (this.attributes_['duration'] != this.videoSlot_.duration) {
     this.attributes_['duration'] = this.videoSlot_.duration;
     this.callEvent_('AdDurationChange');
