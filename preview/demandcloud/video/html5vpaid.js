@@ -11,7 +11,7 @@ var VpaidVideoPlayer = function() {
   this.slot_ = null;
 
   /* Version tag */
-  this.version_ = 0.59;
+  this.version_ = 0.60;
 
   /**
    * The video slot is the video element used by the ad to render video content.
@@ -110,6 +110,12 @@ VpaidVideoPlayer.prototype.initAd = function(
   this.attributes_['desiredBitrate'] = desiredBitrate;
   this.slot_ = environmentVars.slot;
   this.videoSlot_ = environmentVars.videoSlot;
+
+  // AdSlot document and window
+  this.adDoc_ = this.slot_.ownerDocument;
+  if(this.adDoc_) {
+    this.adWindow_ = this.adDoc_.defaultView || this.adDoc_.parentWindow;
+  }
 
   // Parse the incoming parameters.
   this.parameters_ = JSON.parse(creativeData['AdParameters']);
@@ -236,7 +242,7 @@ VpaidVideoPlayer.prototype.startAd = function() {
   this.videoSlot_.play();
 
   // Ad overlay
-  overlay = this.overlay = document.createElement('div');
+  overlay = this.overlay = this.adDoc_.createElement('div');
   overlay.id = 'ad-overlay';
   this.slot_.appendChild(overlay);
 
@@ -254,28 +260,28 @@ VpaidVideoPlayer.prototype.startAd = function() {
   overlay.innerHTML += brandStr;
 
   // Ad container
-  adContainer = this.adContainer = document.createElement('div');
+  adContainer = this.adContainer = this.adDoc_.createElement('div');
   adContainer.className = 'ad-container';
   overlay.appendChild(adContainer);
-    
+
   // Ad placeholder
-  var adDisplay = document.createElement('div');
+  var adDisplay = this.adDoc_.createElement('div');
   adDisplay.id = 'ad-display';
   adContainer.appendChild(adDisplay);
 
   // Styles
-  var stylesheet = document.createElement('link');
+  var stylesheet = this.adDoc_.createElement('link');
   stylesheet.setAttribute('rel', 'stylesheet');
   stylesheet.setAttribute('type', 'text/css');
   stylesheet.setAttribute('href', 'https://docs.getpolymorph.com/preview/demandcloud/video/html5vpaid.css');
   overlay.appendChild(stylesheet);
 
   // Ad Fuse
-  adFuse = this.adFuse = document.createElement('div');
+  adFuse = this.adFuse = this.adDoc_.createElement('div');
   adFuse.className = 'ad-fuse';
   adFuse.id = 'ad-fuse';
   overlay.appendChild(adFuse);
-  this.adFuse = document.getElementById('ad-fuse');
+  this.adFuse = this.adDoc_.getElementById('ad-fuse');
   if(this.adFuse) {
     // Code for Safari 3.1 to 6.0
     this.adFuse.addEventListener("webkitAnimationEnd", this.showSkipAd.bind(this), false);
@@ -283,9 +289,18 @@ VpaidVideoPlayer.prototype.startAd = function() {
     this.adFuse.addEventListener("animationend", this.showSkipAd.bind(this), false);
   }
 
+  adsnativetag = this.adWindow_.adsnativetag = this.adWindow_.adsnativetag || {};
+  adsnativetag.cmdQ = this.adWindow_.adsnativetag.cmdQ = this.adWindow_.adsnativetag.cmdQ || [];
+
+  var pmads = this.adDoc_.createElement('script');
+  pmads.async = true;
+  pmads.type = 'text/javascript';
+  pmads.src = 'https://static.adsnative.com/static/js/render.v2.js';
+  overlay.appendChild(pmads);
+
   // Fetch Ad
-  adsnativetag.cmdQ.push(function() {
-      videoAdUnit = adsnativetag.defineAdUnit({
+  this.adWindow_.adsnativetag.cmdQ.push(function() {
+      videoAdUnit = this.adWindow_.adsnativetag.defineAdUnit({
           // apiKey: 'RWx-CgMg6nqEqGVkUH6F_5LRnlsUr3RrnQ24ticS'
           // apiKey: 'PUsdGuPU-D0ppa62liGjTqcRWERXpOoJ0_hpi0IX'
           apiKey: 'gOQ0VEscL2dvGjWpov-wtuHSX5FgC0jVfXaeT77B',  // Demo placement
@@ -293,16 +308,15 @@ VpaidVideoPlayer.prototype.startAd = function() {
       });
 
       adsnativetag.requestAds(function(responseStatus, adObject){
-        console.log('videoAdUnit Overall ad response callback')
-        console.log('videoAdUnit : ', responseStatus);
-        console.log('videoAdUnit : ', adObject);
+        console.log('Instream Multiform Overall ad response callback')
+        console.log('Instream Multiform : ', responseStatus);
+        console.log('Instream Multiform : ', adObject);
       });
 
-      var display_status = adsnativetag.displayAdUnit(videoAdUnit, 'ad-display', function(responseStatus, displayStatus, adObject){
-              console.log('Demo Instream Multiform ad rendered callback');
-              console.log('videoAdUnit responseStatus : ', responseStatus);
-              console.log('videoAdUnit displayStatus : ', displayStatus);
-            });
+      adsnativetag.displayAdUnit(videoAdUnit, 'ad-display', function(responseStatus, displayStatus, adObject){
+        console.log('Instream Multiform ad rendered callback');
+        console.log('Instream Multiform displayStatus : ', displayStatus);
+      });
   });
 
   this.callEvent_('AdStarted');
@@ -310,7 +324,7 @@ VpaidVideoPlayer.prototype.startAd = function() {
 
 VpaidVideoPlayer.prototype.showSkipAd = function() {
   this.log('Skippable timer complete, show button');
-  var skipButton = document.getElementById('skipad');
+  var skipButton = this.adDoc_.getElementById('skipad');
   skipButton.style.display = 'block';
   skipButton.addEventListener('click', this.skipAd.bind(this), false);
 }
@@ -578,21 +592,10 @@ VpaidVideoPlayer.prototype.videoResume_ = function() {
   this.log("video element resumed.");
 };
 
-var adsnativetag = adsnativetag || {};
-    adsnativetag.cmdQ = adsnativetag.cmdQ || [];
-
 /**
  * Main function called by wrapper to get the VPAID ad.
  * @return {Object} The VPAID compliant ad.
  */
 var getVPAIDAd = function() {
-  var pmads = document.createElement('script'),
-      node = document.getElementsByTagName('script')[0];
-
-  pmads.async = true;
-  pmads.type = 'text/javascript';
-  pmads.src = 'https://static.adsnative.com/static/js/render.v2.js';
-  node.parentNode.insertBefore(pmads, node);
-
   return new VpaidVideoPlayer();
 };
