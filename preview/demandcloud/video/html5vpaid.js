@@ -11,7 +11,7 @@ var VpaidVideoPlayer = function() {
   this.slot_ = null;
 
   /* Version tag */
-  this.version_ = 0.56;
+  this.version_ = 0.57;
 
   /**
    * The video slot is the video element used by the ad to render video content.
