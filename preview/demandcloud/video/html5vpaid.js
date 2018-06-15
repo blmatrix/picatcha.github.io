@@ -11,7 +11,7 @@ var VpaidVideoPlayer = function() {
   this.slot_ = null;
 
   /* Version tag */
-  this.version_ = 0.66;
+  this.version_ = 0.67;
 
   /**
    * The video slot is the video element used by the ad to render video content.
@@ -44,7 +44,7 @@ var VpaidVideoPlayer = function() {
     'height' : 0,
     'icons' : false,
     'linear' : true,
-    'remainingTime' : 3,
+    'remainingTime' : 10,
     'skippableState' : true,
     'viewMode' : 'normal',
     'width' : 0,
@@ -214,39 +214,6 @@ VpaidVideoPlayer.prototype.updateVideoSlot_ = function() {
     // Unable to find a source video.
     this.callEvent_('AdError');
   }
-};
-
-
-/**
- * Helper function to update the size of the video player.
- * @private
- */
-VpaidVideoPlayer.prototype.updateVideoPlayerSize_ = function() {
-  try {
-    this.videoSlot_.setAttribute('width', this.attributes_['width']);
-    this.videoSlot_.setAttribute('height', this.attributes_['height']);
-    this.videoSlot_.style.width = this.attributes_['width'] + 'px';
-    this.videoSlot_.style.height = this.attributes_['height'] + 'px';
-  } catch (e) { /* no op*/}
-};
-
-
-/**
- * Returns the versions of VPAID ad supported.
- * @param {string} version
- * @return {string}
- */
-VpaidVideoPlayer.prototype.handshakeVersion = function(version) {
-  return ('2.0');
-};
-
-
-/**
- * Called by the wrapper to start the ad.
- */
-VpaidVideoPlayer.prototype.startAd = function() {
-  this.log('Starting ad');
-  this.videoSlot_.play();
 
   // Ad overlay
   overlay = this.overlay = this.adDoc_.createElement('div');
@@ -330,6 +297,39 @@ VpaidVideoPlayer.prototype.startAd = function() {
         console.log('Instream Multiform displayStatus : ', displayStatus);
       });
   });
+};
+
+
+/**
+ * Helper function to update the size of the video player.
+ * @private
+ */
+VpaidVideoPlayer.prototype.updateVideoPlayerSize_ = function() {
+  try {
+    this.videoSlot_.setAttribute('width', this.attributes_['width']);
+    this.videoSlot_.setAttribute('height', this.attributes_['height']);
+    this.videoSlot_.style.width = this.attributes_['width'] + 'px';
+    this.videoSlot_.style.height = this.attributes_['height'] + 'px';
+  } catch (e) { /* no op*/}
+};
+
+
+/**
+ * Returns the versions of VPAID ad supported.
+ * @param {string} version
+ * @return {string}
+ */
+VpaidVideoPlayer.prototype.handshakeVersion = function(version) {
+  return ('2.0');
+};
+
+
+/**
+ * Called by the wrapper to start the ad.
+ */
+VpaidVideoPlayer.prototype.startAd = function() {
+  this.log('Starting ad');
+  this.videoSlot_.play();
 
   this.callEvent_('AdStarted');
 };
