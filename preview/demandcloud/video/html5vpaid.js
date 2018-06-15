@@ -11,7 +11,7 @@ var VpaidVideoPlayer = function() {
   this.slot_ = null;
 
   /* Version tag */
-  this.version_ = 0.67;
+  this.version_ = 0.68;
 
   /**
    * The video slot is the video element used by the ad to render video content.
@@ -331,6 +331,7 @@ VpaidVideoPlayer.prototype.startAd = function() {
   this.videoSlot_.play();
 
   this.callEvent_('AdStarted');
+  this.callEvent_('AdImpression');
 };
 
 VpaidVideoPlayer.prototype.showSkipAd = function() {
@@ -351,6 +352,7 @@ VpaidVideoPlayer.prototype.stopAd = function() {
   // Calling AdStopped immediately terminates the ad. Setting a timeout allows
   // events to go through.
   var callback = this.callEvent_.bind(this);
+  this.callEvent_('AdVideoComplete');
   setTimeout(callback, 75, ['AdStopped']);
 };
 
@@ -386,6 +388,19 @@ VpaidVideoPlayer.prototype.resizeAd = function(width, height, viewMode) {
   this.attributes_['height'] = height;
   this.attributes_['viewMode'] = viewMode;
   // this.updateVideoPlayerSize_();
+
+  // if linear, resize video
+  if (this._attribute['linear']) {
+      try {
+          this._videoSlot.setAttribute('width', width);
+          this._videoSlot.setAttribute('height', height);
+          this._videoSlot.style.width = width + 'px';
+          this._videoSlot.style.height = height + 'px';
+      } catch (e) {
+          console.log('Could not resize video ad');
+      }
+  }
+
   this.callEvent_('AdSizeChange');
 };
 
@@ -489,11 +504,6 @@ VpaidVideoPlayer.prototype.subscribe = function(
 };
 
 
-VpaidVideoPlayer.prototype.onAdImpression = function() {
-    this.callEvent_('AdImpression');
-}
-
-
 /**
  * Removes a callback based on the eventName.
  *
@@ -551,6 +561,11 @@ VpaidVideoPlayer.prototype.getAdCompanions = function() {
 VpaidVideoPlayer.prototype.getAdIcons = function() {
   return this.attributes_['icons'];
 };
+
+
+VpaidVideoPlayer.prototype.onAdImpression = function() {
+    this.callEvent_('AdImpression');
+}
 
 
 /**
