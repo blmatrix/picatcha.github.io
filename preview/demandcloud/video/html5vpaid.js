@@ -11,7 +11,7 @@ var VpaidVideoPlayer = function() {
   this.slot_ = null;
 
   /* Version tag */
-  this.version_ = 0.57;
+  this.version_ = 0.58;
 
   /**
    * The video slot is the video element used by the ad to render video content.
@@ -162,7 +162,7 @@ VpaidVideoPlayer.prototype.timeUpdateHandler_ = function() {
   var percentPlayed = this.videoSlot_.currentTime * 100.0 / this.videoSlot_.duration;
   if (percentPlayed >= this.quartileEvents_[this.lastQuartileIndex_].value) {
     var lastQuartileEvent = (this.quartileEvents_[this.lastQuartileIndex_]) ? this.quartileEvents_[this.lastQuartileIndex_].event : null;
-    if(lastQuartileEvent) {
+    if(lastQuartileEvent && this.eventsCallbacks_[lastQuartileEvent]) {
       this.eventsCallbacks_[lastQuartileEvent]();
       this.lastQuartileIndex_ += 1;
     }
