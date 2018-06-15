@@ -11,7 +11,7 @@ var VpaidVideoPlayer = function() {
   this.slot_ = null;
 
   /* Version tag */
-  this.version_ = 0.65;
+  this.version_ = 0.66;
 
   /**
    * The video slot is the video element used by the ad to render video content.
@@ -332,7 +332,6 @@ VpaidVideoPlayer.prototype.startAd = function() {
   });
 
   this.callEvent_('AdStarted');
-  AdVideoStart
 };
 
 VpaidVideoPlayer.prototype.showSkipAd = function() {
@@ -469,6 +468,7 @@ VpaidVideoPlayer.prototype.skipAd = function() {
   this.log('skipAd');
   var skippableState = this.attributes_['skippableState'];
   if (skippableState) {
+    this.callEvent_('AdSkipped');
     this.callEvent_('AdStopped');
   }
 };
