@@ -11,7 +11,7 @@ var VpaidVideoPlayer = function() {
   this.slot_ = null;
 
   /* Version tag */
-  this.version_ = 0.61;
+  this.version_ = 0.62;
 
   /**
    * The video slot is the video element used by the ad to render video content.
@@ -112,9 +112,9 @@ VpaidVideoPlayer.prototype.initAd = function(
   this.videoSlot_ = environmentVars.videoSlot;
 
   // AdSlot document and window
-  this.adDoc_ = this.slot_.ownerDocument;
+  this.adDoc_ = window.adDoc = this.slot_.ownerDocument;
   if(this.adDoc_) {
-    this.adWindow_ = this.adDoc_.defaultView || this.adDoc_.parentWindow;
+    this.adWindow_ = window.adWindow = this.adDoc_.defaultView || this.adDoc_.parentWindow;
   }
 
   // Parse the incoming parameters.
@@ -299,21 +299,26 @@ VpaidVideoPlayer.prototype.startAd = function() {
   overlay.appendChild(pmads);
 
   // Fetch Ad
-  this.adWindow_.adsnativetag.cmdQ.push(function(this) {
-      videoAdUnit = this.adsnativetag.defineAdUnit({
+  this.adWindow_.adsnativetag.cmdQ.push(function() {
+      if(!this.adWindow) {
+        console.log('Instream Multiform Ad Window reference error');
+        return;
+      }
+
+      videoAdUnit = this.adWindow.adsnativetag.defineAdUnit({
           // apiKey: 'RWx-CgMg6nqEqGVkUH6F_5LRnlsUr3RrnQ24ticS'
           // apiKey: 'PUsdGuPU-D0ppa62liGjTqcRWERXpOoJ0_hpi0IX'
           apiKey: 'gOQ0VEscL2dvGjWpov-wtuHSX5FgC0jVfXaeT77B',  // Demo placement
           templateKey: 'streamable_01'
       });
 
-      this.adsnativetag.requestAds(function(responseStatus, adObject){
+      this.adWindow.adsnativetag.requestAds(function(responseStatus, adObject){
         console.log('Instream Multiform Overall ad response callback')
         console.log('Instream Multiform : ', responseStatus);
         console.log('Instream Multiform : ', adObject);
       });
 
-      this.adsnativetag.displayAdUnit(videoAdUnit, 'ad-display', function(responseStatus, displayStatus, adObject){
+      this.adWindow.adsnativetag.displayAdUnit(videoAdUnit, 'ad-display', function(responseStatus, displayStatus, adObject){
         console.log('Instream Multiform ad rendered callback');
         console.log('Instream Multiform displayStatus : ', displayStatus);
       });
