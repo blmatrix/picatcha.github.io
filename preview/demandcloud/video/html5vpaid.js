@@ -165,7 +165,6 @@ VpaidVideoPlayer.prototype.overlayOnClick_ = function() {
  * @private
  */
 VpaidVideoPlayer.prototype.timeUpdateHandler_ = function() {
-  this.adDuration = this.videoSlot_.duration;
   this.attributes_['remainingTime'] = this.videoSlot_.duration - this.videoSlot_.currentTime;
   this.log('timeupdate received : currentTime ='+this.videoSlot_.currentTime+ '  duration = '+this.videoSlot_.duration);
   if (this.lastQuartileIndex_ >= this.quartileEvents_.length) {
@@ -488,6 +487,11 @@ VpaidVideoPlayer.prototype.subscribe = function(
   var callBack = aCallback.bind(aContext);
   this.eventsCallbacks_[eventName] = callBack;
 };
+
+
+VpaidVideoPlayer.prototype.onAdImpression = function() {
+    this.callEvent_('AdImpression');
+}
 
 
 /**
