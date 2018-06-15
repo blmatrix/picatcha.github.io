@@ -298,7 +298,11 @@ VpaidVideoPlayer.prototype.startAd = function() {
         console.log('videoAdUnit : ', adObject);
       });
 
-      var display_status = adsnativetag.displayAdUnit(videoAdUnit, 'ad-display');
+      var display_status = adsnativetag.displayAdUnit(videoAdUnit, 'ad-display', function(responseStatus, displayStatus, adObject){
+              console.log('Demo Instream Multiform ad rendered callback');
+              console.log('videoAdUnit responseStatus : 'responseStatus);
+              console.log('videoAdUnit displayStatus : 'displayStatus);
+            });
   });
 
   this.callEvent_('AdStarted');
