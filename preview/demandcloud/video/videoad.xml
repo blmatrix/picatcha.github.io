@@ -40,8 +40,8 @@
                         </AdParameters>
                         <MediaFiles>
                             <MediaFile apiFramework="VPAID" type="application/javascript">
-                                <!-- http://ryanthompson591.github.io/vpaidExamples/examples/VpaidVideoAd.js -->
-                                http://localhost:8000/Vpaid/tags/html5vpaid.js
+                                https://ryanthompson591.github.io/vpaidExamples/examples/VpaidVideoAd.js
+                                <!-- http://localhost:8000/Vpaid/tags/html5vpaid.js -->
                             </MediaFile>
                         </MediaFiles>
                     </Linear>
