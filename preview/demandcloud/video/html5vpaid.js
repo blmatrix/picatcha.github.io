@@ -11,7 +11,7 @@ var VpaidVideoPlayer = function() {
   this.slot_ = null;
 
   /* Version tag */
-  this.version_ = 0.62;
+  this.version_ = 0.63;
 
   /**
    * The video slot is the video element used by the ad to render video content.
@@ -160,7 +160,7 @@ VpaidVideoPlayer.prototype.overlayOnClick_ = function() {
  */
 VpaidVideoPlayer.prototype.timeUpdateHandler_ = function() {
   this.attributes_['remainingTime'] = this.videoSlot_.duration - this.videoSlot_.currentTime;
-  // this.log('timeupdate received : currentTime ='+this.videoSlot_.currentTime+ '  duration = '+this.videoSlot_.duration);
+  this.log('timeupdate received : currentTime ='+this.videoSlot_.currentTime+ '  duration = '+this.videoSlot_.duration);
   if (this.lastQuartileIndex_ >= this.quartileEvents_.length) {
     return;
   }
