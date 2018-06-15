@@ -122,6 +122,9 @@ VpaidVideoPlayer.prototype.initAd = function(
 
   // Parse the incoming parameters.
   this.parameters_ = JSON.parse(creativeData['AdParameters']);
+  if(this.parameters_.adDuration) {
+    this.adDuration = this.parameters_.adDuration;
+  }
 
   this.log('initAd ' + width + 'x' + height +
       ' ' + viewMode + ' ' + desiredBitrate);
