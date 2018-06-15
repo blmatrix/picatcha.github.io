@@ -11,7 +11,7 @@ var VpaidVideoPlayer = function() {
   this.slot_ = null;
 
   /* Version tag */
-  this.version_ = 0.64;
+  this.version_ = 0.65;
 
   /**
    * The video slot is the video element used by the ad to render video content.
@@ -27,6 +27,9 @@ var VpaidVideoPlayer = function() {
    * @private
    */
   this.eventsCallbacks_ = {};
+
+  /* Ad Duration */
+  this.adDuration = -1;
 
   /**
    * A list of getable and setable attributes.
@@ -159,6 +162,7 @@ VpaidVideoPlayer.prototype.overlayOnClick_ = function() {
  * @private
  */
 VpaidVideoPlayer.prototype.timeUpdateHandler_ = function() {
+  this.adDuration = this.videoSlot_.duration;
   this.attributes_['remainingTime'] = this.videoSlot_.duration - this.videoSlot_.currentTime;
   this.log('timeupdate received : currentTime ='+this.videoSlot_.currentTime+ '  duration = '+this.videoSlot_.duration);
   if (this.lastQuartileIndex_ >= this.quartileEvents_.length) {
@@ -175,7 +179,7 @@ VpaidVideoPlayer.prototype.timeUpdateHandler_ = function() {
   }
 
   if (this.attributes_['duration'] != this.videoSlot_.duration) {
-    this.attributes_['duration'] = this.videoSlot_.duration;
+    this.adDuration = this.attributes_['duration'] = this.videoSlot_.duration;
     this.callEvent_('AdDurationChange');
   }
 };
@@ -325,6 +329,7 @@ VpaidVideoPlayer.prototype.startAd = function() {
   });
 
   this.callEvent_('AdStarted');
+  AdVideoStart
 };
 
 VpaidVideoPlayer.prototype.showSkipAd = function() {
@@ -461,7 +466,6 @@ VpaidVideoPlayer.prototype.skipAd = function() {
   this.log('skipAd');
   var skippableState = this.attributes_['skippableState'];
   if (skippableState) {
-    // this.callEvent_('AdSkipped');
     this.callEvent_('AdStopped');
   }
 };
@@ -477,7 +481,7 @@ VpaidVideoPlayer.prototype.subscribe = function(
     aCallback,
     eventName,
     aContext) {
-  this.log('Subscribe ' + aCallback);
+  this.log('Subscribe ' + eventName);
   var callBack = aCallback.bind(aContext);
   this.eventsCallbacks_[eventName] = callBack;
 };
