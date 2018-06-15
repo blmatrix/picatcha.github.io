@@ -11,7 +11,7 @@ var VpaidVideoPlayer = function() {
   this.slot_ = null;
 
   /* Version tag */
-  this.version_ = 0.58;
+  this.version_ = 0.59;
 
   /**
    * The video slot is the video element used by the ad to render video content.
@@ -300,8 +300,8 @@ VpaidVideoPlayer.prototype.startAd = function() {
 
       var display_status = adsnativetag.displayAdUnit(videoAdUnit, 'ad-display', function(responseStatus, displayStatus, adObject){
               console.log('Demo Instream Multiform ad rendered callback');
-              console.log('videoAdUnit responseStatus : 'responseStatus);
-              console.log('videoAdUnit displayStatus : 'displayStatus);
+              console.log('videoAdUnit responseStatus : ', responseStatus);
+              console.log('videoAdUnit displayStatus : ', displayStatus);
             });
   });
 

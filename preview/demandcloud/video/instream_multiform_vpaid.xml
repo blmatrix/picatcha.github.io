@@ -35,7 +35,7 @@
                         </AdParameters>
                         <MediaFiles>
                             <MediaFile id="3224257" height="480" width="640" type="application/javascript" delivery="progressive" maintainAspectRatio="true" scalable="true" apiFramework="VPAID">
-                                <![CDATA[https://docs.getpolymorph.com/preview/demandcloud/video/html5vpaid.js?v=0.58]]>
+                                <![CDATA[https://docs.getpolymorph.com/preview/demandcloud/video/html5vpaid.js?v=0.59]]>
                             </MediaFile>
                         </MediaFiles>
                     </Linear>
