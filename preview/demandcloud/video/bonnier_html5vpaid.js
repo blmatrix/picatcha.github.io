@@ -1,7 +1,7 @@
 /**
  * @constructor
  */
-var VpaidVideoPlayer = function() {
+var VpaidVideoPlayer = function(tagContext) {
   /**
    * The slot is the div element on the main page that the ad is supposed to
    * occupy.
@@ -84,6 +84,9 @@ var VpaidVideoPlayer = function() {
    * @private
    */
   this.parameters_ = {};
+
+  /* Query paramaters passed to vpaid JS */
+  this.tagContext = tagContext;
 };
 
 
@@ -120,21 +123,19 @@ VpaidVideoPlayer.prototype.initAd = function(
     this.adWindow_ = window.adWindow = this.adDoc_.defaultView || this.adDoc_.parentWindow;
   }
 
+  /* query parameters passed to vpaid js script URL */
+  if(this.adWindow_) {
+    this.adWindow_.tagContext = window.tagContext = this.tagContext;
+  }
+
   // Parse the incoming parameters.
   this.parameters_ = JSON.parse(creativeData['AdParameters']);
   if(this.parameters_.adDuration) {
     this.adDuration = this.parameters_.adDuration;
   }
 
-  if(this.parameters_.placementId) {
-    window.adWindow.placementId = this.parameters_.placementId;
-    window.adWindow.templateKey = (this.parameters_.templateKey) ? this.parameters_.templateKey : null;
-    window.adWindow.pub = (this.parameters_.pub) ? this.parameters_.pub : null;
-  }
-
   this.log('initAd ' + width + 'x' + height +
       ' ' + viewMode + ' ' + desiredBitrate);
-
   this.updateVideoSlot_();
 
   this.videoSlot_.addEventListener(
@@ -194,7 +195,33 @@ VpaidVideoPlayer.prototype.timeUpdateHandler_ = function() {
 };
 
 
-VpaidVideoPlayer.prototype.addNativeAdContainer = function() {
+/**
+ * @private
+ */
+VpaidVideoPlayer.prototype.updateVideoSlot_ = function() {
+  if (this.videoSlot_ == null) {
+    this.videoSlot_ = document.createElement('video');
+    this.log('Warning: No video element passed to ad, creating element.');
+    this.slot_.appendChild(this.videoSlot_);
+  }
+
+  var foundSource = false;
+  var videos = this.parameters_.videos || [];
+  for (var i = 0; i < videos.length; i++) {
+    // Choose the first video with a supported mimetype.
+    if (this.videoSlot_.canPlayType(videos[i].mimetype) != '') {
+      this.videoSlot_.setAttribute('src', videos[i].url);
+      foundSource = true;
+      this.log('Video source from <attributes> loaded into player');
+      this.log('Video duration : '+ this.videoSlot_.duration);
+      break;
+    }
+  }
+  if (!foundSource) {
+    // Unable to find a source video.
+    this.callEvent_('AdError');
+  }
+
   // Ad overlay
   overlay = this.overlay = this.adDoc_.createElement('div');
   overlay.id = 'ad-overlay';
@@ -251,83 +278,32 @@ VpaidVideoPlayer.prototype.addNativeAdContainer = function() {
   pmads.type = 'text/javascript';
   pmads.src = 'https://static.adsnative.com/static/js/render.v2.js';
   overlay.appendChild(pmads);
-}
-
-/**
- * @private
- */
-VpaidVideoPlayer.prototype.updateVideoSlot_ = function() {
-  if (this.videoSlot_ == null) {
-    this.videoSlot_ = document.createElement('video');
-    this.log('Warning: No video element passed to ad, creating element.');
-    this.slot_.appendChild(this.videoSlot_);
-  }
-
-  var foundSource = false;
-  var videos = this.parameters_.videos || [];
-  for (var i = 0; i < videos.length; i++) {
-    // Choose the first video with a supported mimetype.
-    if (this.videoSlot_.canPlayType(videos[i].mimetype) != '') {
-      this.videoSlot_.setAttribute('src', videos[i].url);
-      foundSource = true;
-      this.log('Video source from <attributes> loaded into player');
-      this.log('Video duration : '+ this.videoSlot_.duration);
-      break;
-    }
-  }
-  if (!foundSource) {
-    // Unable to find a source video.
-    this.callEvent_('AdError');
-  }
-
-  adsnativetag = this.adWindow_.adsnativetag = this.adWindow_.adsnativetag || {};
-  adsnativetag.cmdQ = this.adWindow_.adsnativetag.cmdQ = this.adWindow_.adsnativetag.cmdQ || [];
-
-  var pmads = this.adDoc_.createElement('script');
-  pmads.async = true;
-  pmads.type = 'text/javascript';
-  pmads.src = 'https://static.adsnative.com/static/js/render.v2.js';
-  this.slot_.appendChild(pmads);
 
   // Fetch Ad
   this.adWindow_.adsnativetag.cmdQ.push(function() {
-      if(!window.adWindow) {
+      if(!this.adWindow) {
         console.log('Instream Multiform Ad Window reference error');
         return;
       }
 
-      if(!window.adWindow.placementId) {
-        console.log('No placement id configured for In-Stream Native-Ads VPAID tag');
-        return;
+      if(this.adWindow.tagContext && this.adWindow.tagContext.zid) {
+        alert(this.adWindow.tagContext);
       }
-
-      if(!window.adWindow.pub) {
-        console.log('Loading Polymorph - '+ window.adWindow.pub + ' VPAID tag');
-      }
-
-      videoAdUnit = window.adWindow.adsnativetag.defineAdUnit({
-          apiKey: window.adWindow.placementId,
-          templateKey: (window.adWindow.templateKey) ? window.adWindow.templateKey : null
+      videoAdUnit = this.adWindow.adsnativetag.defineAdUnit({
+          // apiKey: 'RWx-CgMg6nqEqGVkUH6F_5LRnlsUr3RrnQ24ticS'
+          // apiKey: 'PUsdGuPU-D0ppa62liGjTqcRWERXpOoJ0_hpi0IX'
+          // apiKey: 'gOQ0VEscL2dvGjWpov-wtuHSX5FgC0jVfXaeT77B',  // Demo placement
+          apiKey: this.adWindow.tagContext.zid,
+          templateKey: 'streamable_01'
       });
 
-      window.adWindow.adsnativetag.requestAds(function(responseStatus, adObject){
+      this.adWindow.adsnativetag.requestAds(function(responseStatus, adObject){
         console.log('Instream Multiform Overall ad response callback')
         console.log('Instream Multiform : ', responseStatus);
         console.log('Instream Multiform : ', adObject);
-
-        if(!responseStatus) {
-          console.log('No-Fill : Native Ad, skipping to content');
-          if(window.adWindow.vpaidPlayer && window.adWindow.vpaidPlayer.skipAd) {
-            window.adWindow.vpaidPlayer.skipAd();
-          }
-        } else if(window.adWindow.vpaidPlayer.addNativeAdContainer) {
-          console.log('Fill : Rendering Native Ad.');
-          window.adWindow.vpaidPlayer.videoSlot_.play();
-          window.adWindow.vpaidPlayer.addNativeAdContainer();
-        }
       });
 
-      window.adWindow.adsnativetag.displayAdUnit(videoAdUnit, 'ad-display', function(responseStatus, displayStatus, adObject){
+      this.adWindow.adsnativetag.displayAdUnit(videoAdUnit, 'ad-display', function(responseStatus, displayStatus, adObject){
         console.log('Instream Multiform ad rendered callback');
         console.log('Instream Multiform displayStatus : ', displayStatus);
       });
@@ -364,7 +340,7 @@ VpaidVideoPlayer.prototype.handshakeVersion = function(version) {
  */
 VpaidVideoPlayer.prototype.startAd = function() {
   this.log('Starting ad');
-  this.startAdReceived = true;
+  this.videoSlot_.play();
 
   this.callEvent_('AdStarted');
   this.callEvent_('AdImpression');
@@ -659,12 +635,45 @@ VpaidVideoPlayer.prototype.videoResume_ = function() {
   this.log("video element resumed.");
 };
 
+
+// Extract "GET" parameters from a JS include querystring
+
+function getParams(script_name) {
+  // Find all script tags
+
+  var scripts = document.getElementsByTagName("script");
+  
+  // Look through them trying to find ourselves
+
+  for(var i=0; i<scripts.length; i++) {
+    if(scripts[i].src.indexOf("/" + script_name) > -1) {
+      // Get an array of key=value strings of params
+
+      var pa = scripts[i].src.split("?").pop().split("&");
+
+      // Split each key=value into array, the construct js object
+
+      var p = {};
+      for(var j=0; j<pa.length; j++) {
+        var kv = pa[j].split("=");
+        p[kv[0]] = kv[1];
+      }
+      return p;
+    }
+  }
+  
+  // No scripts match
+
+  return {};
+}
+
 /**
  * Main function called by wrapper to get the VPAID ad.
  * @return {Object} The VPAID compliant ad.
  */
 var getVPAIDAd = function() {
-  window.vpaidPlayer = new VpaidVideoPlayer();
+  var tagContext = getParams('bonnier_html5vpaid.js');
+  window.vpaidPlayer = new VpaidVideoPlayer(tagContext);
   return window.vpaidPlayer;
 };
 
