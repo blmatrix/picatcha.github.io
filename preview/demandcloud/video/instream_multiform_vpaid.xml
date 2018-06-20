@@ -30,7 +30,7 @@
                             <![CDATA[
                             {
                                 "skipoffset": "5",
-                                "vpaidFileName": "html5vpaid.js",
+                                "vpaidFileName": "https://docs.getpolymorph.com/picatcha.github.io/preview/demandcloud/video/html5vpaid.js",
                                 "adDuration": "00:00:10",
                                 "impOnVidStart": true,
                                 "videos": [{
@@ -46,7 +46,7 @@
                         </AdParameters>
                         <MediaFiles>
                             <MediaFile id="3224257" height="480" width="640" type="application/javascript" delivery="progressive" maintainAspectRatio="true" scalable="true" apiFramework="VPAID">
-                                <![CDATA[html5vpaid.js]]>
+                                <![CDATA[https://docs.getpolymorph.com/picatcha.github.io/preview/demandcloud/video/html5vpaid.js]]>
                             </MediaFile>
                         </MediaFiles>
                     </Linear>
