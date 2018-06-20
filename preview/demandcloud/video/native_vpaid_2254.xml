@@ -1,0 +1,44 @@
+<VAST xmlns:MM="https://www.w3.org/2001/XMLSchema-instance" version="2.0">
+    <Ad id="1122334455">
+        <InLine>
+            <AdSystem><![CDATA[ Polymorph ]]></AdSystem>
+            <AdTitle><![CDATA[ Instream Native VPAID JS Example ]]></AdTitle>
+            <Description><![CDATA[ Vpaid Linear Native In-Video Ad ]]></Description>
+            <Impression id="Impression">
+            </Impression>
+            <Creatives>
+                <Creative id="123456" AdID="123456" sequence="1">
+                    <Linear>
+                        <Duration>00:00:10</Duration>
+                        <TrackingEvents>
+                        </TrackingEvents>
+                        <AdParameters>
+                            <![CDATA[
+                            {
+                                "skipoffset": "5",
+                                "vpaidFileName": "html5vpaid.js",
+                                "adDuration": "00:00:10",
+                                "impOnVidStart": true,
+                                "videos": [{
+                                    "url": "https://static.adsnative.com/static/video/polymorph_10s.mp4",
+                                    "mimetype": "video/mp4"
+                                }],
+                                "overlay": "https://static.adsnative.com/static/img/Polymorph-Mark.png",
+                                "placementId": "Le5Xt2P4yWgNBP75QieNcCh3qr000nTWUH2RGSSa",
+                                "templateKey": "streamable_01",
+                                "pub": "bonniercorp"
+                            }
+                            ]]>
+                        </AdParameters>
+                        <MediaFiles>
+                            <MediaFile id="3224257" height="480" width="640" type="application/javascript" delivery="progressive" maintainAspectRatio="true" scalable="true" apiFramework="VPAID">
+                                <![CDATA[ https://static.adsnative.com/static/js/html5vpaid.js ]]>
+                            </MediaFile>
+                        </MediaFiles>
+                    </Linear>
+                </Creative>
+                <Creative sequence="1"></Creative>
+            </Creatives>
+        </InLine>
+    </Ad>
+</VAST>
