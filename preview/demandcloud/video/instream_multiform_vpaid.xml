@@ -34,7 +34,7 @@
                                 "adDuration": "00:00:10",
                                 "impOnVidStart": true,
                                 "videos": [{
-                                    "url": "polymorph_10s.mp4",
+                                    "url": "https://static.adsnative.com/static/video/polymorph_10s.mp4",
                                     "mimetype": "video/mp4"
                                 }],
                                 "overlay": "https://s3.amazonaws.com/adsnative-logos/Polymorph-Mark.png",
